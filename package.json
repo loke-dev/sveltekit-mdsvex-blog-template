@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "@hot-loader/react-dom": "17.0.1",
-    "@types/react-helmet": "6.1.0",
+    "@types/react-helmet": "6.1.1",
     "@types/theme-ui": "0.3.7",
     "cross-env": "7.0.3"
   }
