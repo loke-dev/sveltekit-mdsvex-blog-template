@@ -18,7 +18,7 @@
     "@iconify/icons-simple-icons": "1.1.24",
     "@iconify/react": "1.1.4",
     "@mdx-js/mdx": "1.6.22",
-    "@theme-ui/presets": "0.3.5",
+    "@theme-ui/presets": "0.8.4",
     "@theme-ui/prism": "0.8.4",
     "@types/react-modal": "3.12.0",
     "gatsby": "3.5.0",
