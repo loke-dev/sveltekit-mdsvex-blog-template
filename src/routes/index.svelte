@@ -18,13 +18,4 @@
 
 <section class="">
   <Hero />
-
-  <div class="flex flex-col items-center text-center mt-20">
-    <p>
-      Contact me via <a href="mailto:hello@loke.dev">Email</a> or find me on other medias:
-      <a href="https://github.com/loke-dev">Github</a>
-      | <a href="https://www.linkedin.com/in/lokecarlsson/">Linkedin</a>
-      | <a href="https://twitter.com/loke_dev">Twitter</a>
-    </p>
-  </div>
 </section>
