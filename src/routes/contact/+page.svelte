@@ -5,7 +5,7 @@
 </script>
 
 <script lang="ts">
-  import Patterns from "$components/Patterns.svelte"
+  import Patterns from "$src/lib/components/Patterns.svelte"
 </script>
 
 <svelte:head>

@@ -1,7 +1,13 @@
 import { slugFromPath } from "$utils/journal"
 
+interface Props {
+  url: URL
+}
+
+export const prerender = true
+
 /** @type {import('@sveltejs/kit').RequestHandler} */
-export async function get({ url }) {
+export async function load({ url }: Props) {
   const modules: Record<string, () => any> = import.meta.glob("./posts/*.{md,svx,svelte.md}")
 
   const postPromises = []
@@ -28,7 +34,5 @@ export async function get({ url }) {
 
   publishedPosts.sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
 
-  return {
-    body: publishedPosts.slice(0, limit),
-  }
+  return { posts: publishedPosts.slice(0, limit) }
 }

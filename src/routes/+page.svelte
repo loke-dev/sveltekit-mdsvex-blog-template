@@ -5,7 +5,7 @@
 </script>
 
 <script lang="ts">
-  import Hero from "$components/Hero.svelte"
+  import Hero from "$src/lib/components/Hero.svelte"
 </script>
 
 <svelte:head>

@@ -1,6 +1,5 @@
-const config = {
+export const mdsvexConfig = {
   extensions: [".svelte.md", ".md", ".svx"],
-
   smartypants: {
     dashes: "oldschool",
   },
@@ -10,5 +9,3 @@ const config = {
   remarkPlugins: [],
   rehypePlugins: [],
 }
-
-export default config

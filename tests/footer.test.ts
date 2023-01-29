@@ -1,7 +1,7 @@
 import { beforeEach, test, expect } from "vitest"
 import { cleanup, render } from "@testing-library/svelte"
 
-import Footer from "$components/Footer.svelte"
+import Footer from "$lib/components/Footer.svelte"
 
 beforeEach(cleanup)
 

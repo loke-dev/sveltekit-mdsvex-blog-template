@@ -1,5 +1,5 @@
 <script context="module">
-  import { dev } from "$app/env"
+  import { dev } from "$app/environment"
 
   export const hydrate = dev
   export const router = true
