@@ -1,11 +1,3 @@
-<script context="module">
-  import { dev } from "$app/environment"
-
-  export const hydrate = dev
-  export const router = true
-  export const prerender = true
-</script>
-
 <script>
   const yearsOfWork = new Date().getFullYear() - new Date("2017").getFullYear()
 </script>

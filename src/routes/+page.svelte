@@ -1,9 +1,3 @@
-<script context="module" lang="ts">
-  export const hydrate = true
-  export const router = true
-  export const prerender = true
-</script>
-
 <script lang="ts">
   import Hero from "$src/lib/components/Hero.svelte"
 </script>
