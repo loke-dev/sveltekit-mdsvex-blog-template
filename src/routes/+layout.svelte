@@ -1,20 +1,20 @@
 <script lang="ts">
   import { onMount } from "svelte"
-  import splitbee from "@splitbee/web"
-  import { dev } from "$app/env"
-  import Header from "$components/Header.svelte"
-  import Footer from "$components/Footer.svelte"
+  // import splitbee from "@splitbee/web"
+  // import { dev } from "$app/env"
+  import Header from "$src/lib/components/Header.svelte"
+  import Footer from "$src/lib/components/Footer.svelte"
 
   import "$styles/app.css"
 
-  onMount(() => {
-    if (!dev) {
-      splitbee.init({
-        scriptUrl: "/bee.js",
-        apiUrl: "/_hive",
-      })
-    }
-  })
+  // onMount(() => {
+  //   if (!dev) {
+  //     splitbee.init({
+  //       scriptUrl: "/bee.js",
+  //       apiUrl: "/_hive",
+  //     })
+  //   }
+  // })
 </script>
 
 <svelte:head>
