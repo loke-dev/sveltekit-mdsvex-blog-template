@@ -43,7 +43,11 @@
   },
   "dependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
-    "@tailwindcss/typography": "^0.5.8"
+    "@tailwindcss/typography": "^0.5.8",
+    "rehype-autolink-headings": "^6.1.1",
+    "rehype-slug": "^5.1.0",
+    "remark-abbr": "^1.4.1",
+    "remark-github": "^11.2.4"
   },
   "type": "module"
 }

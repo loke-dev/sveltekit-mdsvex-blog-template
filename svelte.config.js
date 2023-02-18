@@ -3,7 +3,7 @@ import { vitePreprocess } from "@sveltejs/kit/vite"
 import preprocess from "svelte-preprocess"
 import { resolve } from "path"
 import { mdsvex } from "mdsvex"
-import { mdsvexConfig } from "./mdsvex.config.js"
+import mdsvexConfig from "./mdsvex.config.js"
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {

@@ -9,9 +9,9 @@
       <li class:active={$page.url.pathname === "/about"}>
         <a href="/about">About</a>
       </li>
-      <li class:active={$page.url.pathname === "/projects"}>
+      <!-- <li class:active={$page.url.pathname === "/projects"}>
         <a href="/projects">Projects</a>
-      </li>
+      </li> -->
       <li class:active={$page.url.pathname.includes("/journal")}>
         <a href="/journal">Journal</a>
       </li>

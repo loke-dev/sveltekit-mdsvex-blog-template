@@ -8,7 +8,7 @@ export const prerender = true
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function load({ url }: Props) {
-  const modules: Record<string, () => any> = import.meta.glob("./posts/*.{md,svx,svelte.md}")
+  const modules: Record<string, () => any> = import.meta.glob("/src/posts/*.{md,svx,svelte.md}")
 
   const postPromises = []
   const limit = Number(url.searchParams.get("limit") ?? Infinity)
@@ -21,7 +21,7 @@ export async function load({ url }: Props) {
 
   for (const [path, resolver] of Object.entries(modules)) {
     const slug = slugFromPath(path)
-    const promise = resolver().then((post) => ({
+    const promise = resolver().then((post: App.Post) => ({
       slug,
       ...post.metadata,
     }))
@@ -33,6 +33,8 @@ export async function load({ url }: Props) {
   const publishedPosts = posts.filter((post) => post.published).slice(0, limit)
 
   publishedPosts.sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
+
+  console.log(posts)
 
   return { posts: publishedPosts.slice(0, limit) }
 }

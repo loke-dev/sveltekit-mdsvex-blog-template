@@ -50,18 +50,16 @@
       </svg>
       <div class="relative text-base mx-auto max-w-prose lg:max-w-none">
         <figure>
-          <div class="aspect-w-12 aspect-h-7 lg:aspect-none">
-            <picture>
-              <source srcSet="/images/loke.webp" type="image/webp" />
-              <img
-                class="rounded-lg shadow-lg bg-white object-contain object-center"
-                src="/images/loke.png"
-                alt="Loke"
-                width={370}
-                height={370}
-              />
-            </picture>
-          </div>
+          <picture>
+            <source srcSet="/images/loke.webp" type="image/webp" />
+            <img
+              class="rounded-lg shadow-lg bg-white object-contain object-center"
+              src="/images/loke.png"
+              alt="Loke"
+              width={370}
+              height={370}
+            />
+          </picture>
         </figure>
       </div>
     </div>

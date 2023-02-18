@@ -14,12 +14,18 @@ declare namespace App {
 
   type MdsvexResolver = () => Promise<MdsvexFile>
 
-  interface BlogPost {
+  interface Post {
     slug: string
     title: string
-    author: string
-    description: string
     date: string
     published: boolean
+    tags: string[]
+    description: string
+    default: import("svelte/internal").SvelteComponent
+    metadata: Record<string, string>
+  }
+
+  interface Posts {
+    posts: Post[]
   }
 }

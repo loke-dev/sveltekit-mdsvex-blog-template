@@ -1,7 +1,7 @@
 <script lang="ts">
   export let title: string
   export let description: string
-  const siteTitle = "SvelteKit + MDsveX Blog"
+  const siteTitle = "Loke.dev"
   const formattedTitle = title ? `${title} | ${siteTitle}` : siteTitle
 </script>
 

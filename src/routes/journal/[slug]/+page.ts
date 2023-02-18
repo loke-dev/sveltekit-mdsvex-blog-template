@@ -15,8 +15,8 @@ export const load: PageLoad = async ({ params }) => {
 
   const post = await match?.resolver?.()
 
-  if (!post || !post.metadata.published) {
-    throw error(404) // Couldn't resolve the post
+  if (!post) {
+    throw error(404)
   }
 
   return {
