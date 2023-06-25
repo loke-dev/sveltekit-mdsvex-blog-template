@@ -25,6 +25,14 @@ const config = {
       $src: resolve("./src"),
     },
   },
+  vitePlugin: {
+    experimental: {
+      inspector: {
+        holdMode: true,
+        toggleKeyCombo: "meta-shift",
+      },
+    },
+  },
 }
 
 export default config
