@@ -1,5 +1,11 @@
 <script lang="ts">
   import Patterns from "$src/lib/components/Patterns.svelte"
+  import va from '@vercel/analytics';
+
+  function handleClick() {
+    va.track('Contact button clicked');
+  }
+
 </script>
 
 <svelte:head>
@@ -69,6 +75,7 @@
         <button
           type="submit"
           class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+          on:click|once="{handleClick}"
         >
           Let's talk
         </button>
