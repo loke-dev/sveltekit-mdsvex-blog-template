@@ -1,20 +1,12 @@
 <script lang="ts">
-  import { onMount } from "svelte"
-  // import splitbee from "@splitbee/web"
-  // import { dev } from "$app/env"
   import Header from "$src/lib/components/Header.svelte"
   import Footer from "$src/lib/components/Footer.svelte"
+  import { dev } from '$app/environment'
+  import { inject } from '@vercel/analytics'
 
   import "$styles/app.css"
 
-  // onMount(() => {
-  //   if (!dev) {
-  //     splitbee.init({
-  //       scriptUrl: "/bee.js",
-  //       apiUrl: "/_hive",
-  //     })
-  //   }
-  // })
+  inject({ mode: dev ? 'development' : 'production' })
 </script>
 
 <svelte:head>
