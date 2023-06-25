@@ -8,6 +8,7 @@
     name="description"
     content="Loke is a frontend developer based in Lund, Sweden. Read more about me or what services I can help you with."
   />
+  <meta name="Cache-Control" content="max-age=1, stale-while-revalidate=59" />
 </svelte:head>
 
 <section class="">

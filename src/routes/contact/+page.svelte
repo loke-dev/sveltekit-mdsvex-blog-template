@@ -5,6 +5,7 @@
 <svelte:head>
   <title>Contact - loke.dev</title>
   <meta name="description" content="Want to get in touch, you will find the best way here." />
+  <meta name="Cache-Control" content="max-age=1, stale-while-revalidate=59" />
 </svelte:head>
 
 <Patterns />

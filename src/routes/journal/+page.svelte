@@ -9,6 +9,7 @@
 <svelte:head>
   <title>Journal - loke.dev</title>
   <meta name="description" content="Some of my written down thought, guides and blog posts" />
+  <meta name="Cache-Control" content="max-age=1, stale-while-revalidate=59" />
 </svelte:head>
 
 <Patterns variant="2" />
