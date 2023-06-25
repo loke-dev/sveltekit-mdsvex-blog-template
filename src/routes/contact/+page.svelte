@@ -18,12 +18,9 @@
     <form
       name="contact"
       method="post"
-      data-netlify="true"
-      netlify-honeypot="bot-field"
+      action="https://formspree.io/f/mleyrgqy"
       class="flex flex-col"
     >
-      <input type="hidden" name="form-name" value="contact" />
-      <input type="hidden" name="bot-field" />
       <div class="flex gap-8 flex-col sm:flex-row">
         <div class="flex-grow">
           <label for="first-name" class="block text-sm font-medium text-gray-500">Name</label>
