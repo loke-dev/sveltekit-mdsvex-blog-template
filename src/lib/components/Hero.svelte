@@ -114,7 +114,7 @@
   }
 
   const initCanvas = (canvas: HTMLCanvasElement) => {
-    const ctx = canvas.getContext("2d")
+    const ctx = canvas.getContext("2d", { willReadFrequently: true })
     const gradientWidth = 500
     let gradient = ctx.createLinearGradient(0, 0, gradientWidth, 0)
 
@@ -141,7 +141,7 @@
       return
     }
 
-    const ctx = canvas.getContext("2d")
+    const ctx = canvas.getContext("2d", { willReadFrequently: true })
     let needsUpdate = false
 
     ctx.clearRect(0, 0, canvas.width, canvas.height)
