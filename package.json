@@ -1,6 +1,6 @@
 {
-  "name": "latestsvelte",
-  "version": "0.0.1",
+  "name": "loke.dev",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "vite dev",
