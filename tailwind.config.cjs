@@ -84,6 +84,9 @@ const config = {
             pre: {
               color: "none",
             },
+            code: {
+              color: "#FFBA02",
+            },
           },
         },
       }),
