@@ -13,7 +13,7 @@
     <div>
       <h2 class="text-base text-primary font-semibold tracking-wide uppercase">About</h2>
       <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-100 sm:text-4xl">
-        Loke Carlsson
+        Loke
       </h3>
     </div>
   </div>

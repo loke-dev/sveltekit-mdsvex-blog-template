@@ -13,8 +13,6 @@ describe("Footer", () => {
   it("Correct copy and year", async () => {
     const { getByText } = render(Footer)
 
-    expect(
-      getByText(`All rights reserved © Loke Carlsson ${new Date().getFullYear()}`)
-    ).toBeDefined()
+    expect(getByText(`All rights reserved © Loke ${new Date().getFullYear()}`)).toBeDefined()
   })
 })
