@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from "svelte"
+  import { onMount, afterUpdate } from "svelte"
 
   type Geo = {
     opacity: number
@@ -10,6 +10,7 @@
     centerX: number
     centerY: number
     draw: boolean
+    targetOpacity?: number
   }
 
   type GeoRow = Geo[]
@@ -27,19 +28,34 @@
     y: number
   }
 
+  type GradientColor = {
+    r: number
+    g: number
+    b: number
+  }
+
   const defaultSquareColor = "#c6c7c950"
   const squareSize = 15
   const squareMargin = 45
-  const gradientColors = []
+  const gradientColors: GradientColor[] = []
   const updateColorDistanceThreshold = 400
   const colorStopResolution = 200
-  let loaded = false
+  const maxScaleFactor = 2.25 // Increased scale factor for more growth
+  const opacityApproachRate = 0.3 // How quickly opacity approaches target when mouse is still
+  const opacityBlendRate = 0.7 // How much to blend current opacity (1-this = target blend)
+  const mouseMoveThreshold = 50 // Time in ms to consider mouse "still" after movement
   let scale = 1
   let geoMap: GeoMap = []
   let finishedDrawing = false
   let columnCount: number
   let rowCount: number
   let safeArea: SafeArea
+  let canvas: HTMLCanvasElement | null = null
+  let canvasInitialized = false
+  let lastMousePosition: MouseLocation | null = null
+  let mouseUpdateInterval: number | null = null
+  let isMouseStill = false
+  let mouseStillTimeout: number | null = null
 
   const setResolution = (canvas: HTMLCanvasElement) => {
     const clientRect = canvas.getBoundingClientRect()
@@ -50,7 +66,9 @@
     columnCount = Math.floor(clientRect.width / (squareSize + squareMargin))
     rowCount = Math.floor(clientRect.height / (squareSize + squareMargin) + 0.5)
 
-    const drawAreaRect = document.querySelector(".hero-content").getBoundingClientRect()
+    const drawAreaRect = document.querySelector(".hero-content")?.getBoundingClientRect()
+    if (!drawAreaRect) return
+
     const canvasRect = canvas.getBoundingClientRect()
 
     safeArea = {
@@ -74,7 +92,8 @@
         const yPos = offsetY + j * (squareSize + squareMargin)
 
         const geo: Geo = {
-          opacity: 1,
+          opacity: 0.01,
+          targetOpacity: 0.01,
           x: xPos * scale,
           y: yPos * scale,
           width: squareSize * scale,
@@ -114,7 +133,11 @@
   }
 
   const initCanvas = (canvas: HTMLCanvasElement) => {
+    if (canvasInitialized) return
+
     const ctx = canvas.getContext("2d", { willReadFrequently: true })
+    if (!ctx) return
+
     const gradientWidth = 500
     let gradient = ctx.createLinearGradient(0, 0, gradientWidth, 0)
 
@@ -127,11 +150,15 @@
     ctx.fillStyle = gradient
     ctx.fillRect(0, 0, gradientWidth, 2)
 
-    for (let i = 0; i < colorStopResolution; i++) {
-      const imageData = ctx.getImageData(i * (gradientWidth / colorStopResolution), 1, 1, 1).data
-      gradientColors.push({ r: imageData[0], g: imageData[1], b: imageData[2] })
+    // Only populate gradient colors if they're empty
+    if (gradientColors.length === 0) {
+      for (let i = 0; i < colorStopResolution; i++) {
+        const imageData = ctx.getImageData(i * (gradientWidth / colorStopResolution), 1, 1, 1).data
+        gradientColors.push({ r: imageData[0], g: imageData[1], b: imageData[2] })
+      }
     }
 
+    canvasInitialized = true
     drawSquares(canvas)
   }
 
@@ -142,6 +169,8 @@
     }
 
     const ctx = canvas.getContext("2d", { willReadFrequently: true })
+    if (!ctx) return
+
     let needsUpdate = false
 
     ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -149,7 +178,15 @@
     for (let y = 0; y < rowCount; y++) {
       for (let x = 0; x < columnCount; x++) {
         const geo = geoMap[x][y]
-        const localScale = 1 + geo.opacity
+
+        // Always update opacity towards target for smoother transitions
+        if (geo.targetOpacity !== undefined && Math.abs(geo.opacity - geo.targetOpacity) > 0.001) {
+          geo.opacity += (geo.targetOpacity - geo.opacity) * opacityApproachRate
+          needsUpdate = true
+        }
+
+        // Increase the scale factor for more growth
+        const localScale = geo.opacity > 0.02 ? 1 + (geo.opacity * maxScaleFactor) : 1
         const scaledWidth = geo.width * localScale
         const scaledHeight = geo.height * localScale
         const scaleOffset = (scaledWidth - geo.width) / 2
@@ -160,13 +197,11 @@
         ctx.fillRect(geo.x - scaleOffset, geo.y - scaleOffset, scaledWidth, scaledHeight)
 
         if (geo.opacity > 0.02) {
-          needsUpdate = true
           const colorTarget = Math.floor((x / columnCount) * colorStopResolution + 0.5)
           const colorData = gradientColors[colorTarget]
 
           ctx.fillStyle = `rgba(${colorData.r}, ${colorData.g}, ${colorData.b}, ${geo.opacity})`
           ctx.fillRect(geo.x - scaleOffset, geo.y - scaleOffset, scaledWidth, scaledHeight)
-          geo.opacity = geo.opacity * 0.98
         }
       }
     }
@@ -177,6 +212,7 @@
 
   const updateColors = (position: MouseLocation) => {
     finishedDrawing = false
+    lastMousePosition = position
 
     for (let x = 0; x < columnCount; x++) {
       for (let y = 0; y < rowCount; y++) {
@@ -186,40 +222,136 @@
         const distance = Math.sqrt(distanceY * distanceY + distanceX * distanceX)
 
         if (distance < updateColorDistanceThreshold) {
-          const targetOpacity = 1 - distance / updateColorDistanceThreshold
+          const newTargetOpacity = 1 - distance / updateColorDistanceThreshold
 
-          geo.opacity = Math.max(targetOpacity, geo.opacity)
+          // Always set target opacity for smooth transitions
+          geo.targetOpacity = newTargetOpacity
+
+          // If mouse is moving, also set current opacity to avoid lag
+          if (!isMouseStill) {
+            // Blend current and target for smoother transitions during slow movement
+            geo.opacity = geo.opacity * opacityBlendRate + newTargetOpacity * (1 - opacityBlendRate)
+          }
+        } else {
+          // If outside the threshold, gradually fade out
+          geo.targetOpacity = 0.01
         }
       }
     }
   }
 
-  const handleMouseMove = (e: any) => {
-    const canvas = e.target
-    const clientRect = canvas.getBoundingClientRect()
+  // Function to continuously update colors when mouse is still
+  const continuouslyUpdateColors = () => {
+    if (lastMousePosition) {
+      updateColors(lastMousePosition)
+    }
+  }
 
+  const setMouseStill = () => {
+    isMouseStill = true
+  }
+
+  const handleMouseMove = (e: MouseEvent) => {
+    if (!canvas) return
+
+    // Clear any existing timeout
+    if (mouseStillTimeout !== null) {
+      window.clearTimeout(mouseStillTimeout)
+      mouseStillTimeout = null
+    }
+
+    // Set mouse as moving
+    isMouseStill = false
+
+    // Set a timeout to mark mouse as still after threshold
+    mouseStillTimeout = window.setTimeout(setMouseStill, mouseMoveThreshold)
+
+    const clientRect = canvas.getBoundingClientRect()
     updateColors({ x: e.clientX - clientRect.left, y: e.clientY - clientRect.top })
   }
 
+  const handleMouseEnter = () => {
+    // Start interval to update colors even when mouse is still
+    if (mouseUpdateInterval === null) {
+      mouseUpdateInterval = window.setInterval(continuouslyUpdateColors, 100)
+    }
+  }
+
+  const handleMouseLeave = () => {
+    // Clear the interval when mouse leaves the canvas
+    if (mouseUpdateInterval !== null) {
+      window.clearInterval(mouseUpdateInterval)
+      mouseUpdateInterval = null
+    }
+
+    // Clear any mouse still timeout
+    if (mouseStillTimeout !== null) {
+      window.clearTimeout(mouseStillTimeout)
+      mouseStillTimeout = null
+    }
+
+    isMouseStill = false
+    lastMousePosition = null
+
+    // Reset all target opacities when mouse leaves
+    for (let x = 0; x < columnCount; x++) {
+      for (let y = 0; y < rowCount; y++) {
+        if (geoMap[x] && geoMap[x][y]) {
+          geoMap[x][y].targetOpacity = 0.01
+        }
+      }
+    }
+  }
+
+  const setupCanvas = () => {
+    if (!canvas) return
+
+    scale = window.devicePixelRatio
+    initCanvas(canvas)
+
+    canvas.addEventListener("mousemove", handleMouseMove)
+    canvas.addEventListener("mouseenter", handleMouseEnter)
+    canvas.addEventListener("mouseleave", handleMouseLeave)
+  }
+
   onMount(() => {
-    loaded = true
+    // Set up resize listener
+    window.addEventListener("resize", () => {
+      if (canvas) setResolution(canvas)
+    })
 
-    setTimeout(() => {
-      const canvas = document.querySelector("#hero-canvas") as HTMLCanvasElement
-      scale = window.devicePixelRatio
+    // Clean up event listeners and intervals on component destruction
+    return () => {
+      window.removeEventListener("resize", () => {
+        if (canvas) setResolution(canvas)
+      })
+      if (canvas) {
+        canvas.removeEventListener("mousemove", handleMouseMove)
+        canvas.removeEventListener("mouseenter", handleMouseEnter)
+        canvas.removeEventListener("mouseleave", handleMouseLeave)
+      }
+      if (mouseUpdateInterval !== null) {
+        window.clearInterval(mouseUpdateInterval)
+      }
+      if (mouseStillTimeout !== null) {
+        window.clearTimeout(mouseStillTimeout)
+      }
+    }
+  })
 
-      if (!canvas) return
-
-      initCanvas(canvas)
-
-      canvas.addEventListener("mousemove", handleMouseMove)
-      window.addEventListener("resize", () => setResolution(canvas))
-    }, 200)
+  // Use afterUpdate to ensure the DOM is ready
+  afterUpdate(() => {
+    if (!canvasInitialized && !canvas) {
+      canvas = document.querySelector("#hero-canvas")
+      if (canvas) {
+        setupCanvas()
+      }
+    }
   })
 </script>
 
 <div class="hero fullWidth">
-  <canvas id="hero-canvas" class={loaded ? "opacity-100" : "opacity-0"} />
+  <canvas id="hero-canvas" />
   <div class="hero-content">
     <h2 class="prefix">Welcome to</h2>
     <h1 class="title">
@@ -251,7 +383,7 @@
     position: absolute;
     left: 0;
     top: 0;
-    transition: opacity 1.5s ease-in;
+    opacity: 1;
   }
 
   .hero-content {
