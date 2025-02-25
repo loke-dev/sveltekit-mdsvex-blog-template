@@ -1,0 +1,201 @@
+---
+title: "Web Accessibility: A Practical Guide for Modern Developers"
+description: "Learn how to make your web applications accessible to all users with these practical tips, techniques, and tools. This guide covers everything from semantic HTML to ARIA attributes, keyboard navigation, and testing strategies."
+date: 2023-08-05
+published: true
+---
+
+# Web Accessibility: A Practical Guide for Modern Developers
+
+## Introduction
+
+Web accessibility is not just a nice-to-have feature—it's a fundamental aspect of building inclusive digital experiences. As developers, we have the responsibility to ensure our websites and applications are usable by everyone, regardless of their abilities or disabilities. In this article, I'll share practical approaches to implementing accessibility in your web projects, focusing on techniques that integrate seamlessly into modern development workflows.
+
+## Why Accessibility Matters
+
+Beyond the ethical imperative of creating inclusive experiences, there are several compelling reasons to prioritize accessibility:
+
+- **Legal requirements**: Many countries have laws requiring digital accessibility (like the ADA in the US or the EAA in Europe)
+- **Larger audience**: Approximately 15% of the global population lives with some form of disability
+- **SEO benefits**: Many accessibility improvements also enhance search engine optimization
+- **Better UX for everyone**: Features like keyboard navigation and clear content structure benefit all users
+
+## Starting with Semantic HTML
+
+The foundation of web accessibility is proper HTML semantics. Using the right elements for the right purpose gives assistive technologies the information they need to interpret your content correctly.
+
+### Common Semantic Mistakes and Solutions
+
+Instead of:
+```html
+<div class="button" onclick="submitForm()">Submit</div>
+```
+
+Use:
+```html
+<button type="submit">Submit</button>
+```
+
+Instead of:
+```html
+<div class="heading">Important Section</div>
+```
+
+Use:
+```html
+<h2>Important Section</h2>
+```
+
+### Document Structure
+
+A well-structured document helps users navigate your content efficiently:
+
+- Use a single `<h1>` for the main page title
+- Create a logical heading hierarchy (`h1` → `h2` → `h3`, etc.)
+- Use `<main>`, `<nav>`, `<header>`, `<footer>`, and `<aside>` to define page regions
+- Group related form fields with `<fieldset>` and `<legend>`
+
+## Making Interactive Elements Accessible
+
+### Keyboard Navigation
+
+Many users rely on keyboards to navigate websites. Ensure all interactive elements are keyboard accessible:
+
+- Maintain a logical tab order
+- Provide visible focus styles (but feel free to customize the default browser styles)
+- Ensure dropdown menus and custom components can be operated with keyboard alone
+- Add skip links to bypass repetitive navigation
+
+### Focus Management
+
+When building SPAs or interactive components, proper focus management is crucial:
+
+```javascript
+// After loading new content or opening a modal
+document.querySelector('#newContent').focus();
+
+// When closing a modal, return focus to the triggering element
+triggerButton.focus();
+```
+
+## ARIA: When and How to Use It
+
+ARIA (Accessible Rich Internet Applications) attributes enhance HTML semantics, but they should be used judiciously. The first rule of ARIA is: don't use ARIA if native HTML can do the job.
+
+### Common ARIA Patterns
+
+1. **Labeling elements**:
+   ```html
+   <button aria-label="Close dialog">×</button>
+   ```
+
+2. **Indicating current state**:
+   ```html
+   <button aria-expanded="false" aria-controls="dropdown1">Menu</button>
+   <div id="dropdown1" hidden><!-- dropdown content --></div>
+   ```
+
+3. **Live regions for dynamic content**:
+   ```html
+   <div aria-live="polite" aria-atomic="true">
+     <!-- Content that updates dynamically -->
+   </div>
+   ```
+
+## Color and Contrast
+
+Visual accessibility is just as important as structural accessibility:
+
+- Ensure sufficient color contrast (WCAG recommends a ratio of at least 4.5:1 for normal text)
+- Don't rely solely on color to convey information
+- Consider how your site appears in different color modes (light/dark) and to users with color blindness
+
+## Responsive and Flexible Design
+
+Accessibility includes supporting different viewing contexts:
+
+- Ensure your site works at different zoom levels (up to 200%)
+- Use relative units (em, rem) instead of fixed pixel values
+- Test with different screen sizes and orientations
+- Allow content to reflow rather than requiring horizontal scrolling
+
+## Testing Your Accessibility Implementation
+
+### Automated Testing Tools
+
+Automated tools can catch many common issues:
+
+- Browser extensions like axe DevTools or WAVE
+- Lighthouse in Chrome DevTools
+- ESLint plugins for catching accessibility issues in code
+
+### Manual Testing Techniques
+
+Automated tests can't catch everything. Include these manual checks:
+
+- Keyboard navigation testing: Can you use all features without a mouse?
+- Screen reader testing: Use VoiceOver (Mac), NVDA or JAWS (Windows), or TalkBack (Android)
+- Zoom testing: Does your layout break at 200% zoom?
+- Reduced motion: Test with "prefers-reduced-motion" media query
+
+## Implementing Accessibility in Svelte and Next.js
+
+### Accessibility in Svelte
+
+Svelte has some built-in features that help with accessibility:
+
+```svelte
+<!-- Automatic ARIA attributes for certain elements -->
+<button disabled={isDisabled}>
+  Submit
+</button>
+
+<!-- Will automatically add aria-disabled="true" when disabled -->
+```
+
+For custom components, you can use the `use:actions` pattern to add accessibility features:
+
+```svelte
+<script>
+  function trapFocus(node) {
+    // Implementation of focus trapping for modals
+    // ...
+
+    return {
+      destroy() {
+        // Cleanup
+      }
+    };
+  }
+</script>
+
+<div class="modal" use:trapFocus>
+  <!-- Modal content -->
+</div>
+```
+
+### Accessibility in Next.js
+
+Next.js works well with libraries like `@react-aria` for building accessible components:
+
+```jsx
+import { useButton } from '@react-aria/button';
+import { useRef } from 'react';
+
+function Button(props) {
+  const ref = useRef();
+  const { buttonProps } = useButton(props, ref);
+
+  return (
+    <button {...buttonProps} ref={ref}>
+      {props.children}
+    </button>
+  );
+}
+```
+
+## Conclusion
+
+Implementing accessibility doesn't have to be overwhelming. By integrating these practices into your development workflow from the start, you can create more inclusive experiences without significant additional effort.
+
+Remember that accessibility is not a checkbox to tick off but an ongoing process. Start with the basics, test regularly with real users when possible, and continuously improve your implementation.

@@ -1,0 +1,429 @@
+---
+title: "TypeScript Tips for Writing Better, Safer Code"
+description: "Discover practical TypeScript techniques that go beyond the basics to help you write more maintainable, type-safe code. Learn about utility types, type narrowing, discriminated unions, and more advanced patterns that will level up your TypeScript skills."
+date: 2023-10-15
+published: true
+---
+
+# TypeScript Tips for Writing Better, Safer Code
+
+## Introduction
+
+TypeScript has become an essential tool in modern web development, offering type safety and improved developer experience on top of JavaScript. While many developers are familiar with the basics, TypeScript has a wealth of advanced features that can help you write more robust, maintainable code. In this article, I'll share some practical TypeScript tips that I've found valuable in my own projects.
+
+## Beyond Basic Types
+
+### Leveraging Utility Types
+
+TypeScript comes with built-in utility types that can save you time and make your code more expressive:
+
+```typescript
+// Instead of duplicating interface properties
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: 'admin' | 'user';
+  createdAt: Date;
+}
+
+// Use Partial for optional updates
+function updateUser(userId: string, updates: Partial<User>) {
+  // ...
+}
+
+// Use Pick to select specific properties
+type UserCredentials = Pick<User, 'email' | 'id'>;
+
+// Use Omit to exclude properties
+type UserWithoutTimestamps = Omit<User, 'createdAt'>;
+
+// Use Record for dictionary-like objects
+const userRoleDescriptions: Record<User['role'], string> = {
+  admin: 'Full system access',
+  user: 'Limited access'
+};
+```
+
+### Creating Custom Utility Types
+
+You can also create your own utility types for common patterns in your codebase:
+
+```typescript
+// Make all properties nullable
+type Nullable<T> = { [P in keyof T]: T[P] | null };
+
+// Make all properties in an object required and non-nullable
+type Required<T> = { [P in keyof T]-?: NonNullable<T[P]> };
+
+// Convert union type to intersection type
+type UnionToIntersection<U> =
+  (U extends any ? (k: U) => void : never) extends
+  ((k: infer I) => void) ? I : never;
+```
+
+## Type Narrowing Techniques
+
+Type narrowing is the process of refining types to more specific ones within conditional blocks. Here are some effective techniques:
+
+### User-Defined Type Guards
+
+```typescript
+interface Bird {
+  type: 'bird';
+  flies: boolean;
+  laysEggs: boolean;
+}
+
+interface Fish {
+  type: 'fish';
+  swims: boolean;
+  laysEggs: boolean;
+}
+
+type Animal = Bird | Fish;
+
+// Type guard function
+function isBird(animal: Animal): animal is Bird {
+  return animal.type === 'bird';
+}
+
+function makeAnimalSound(animal: Animal) {
+  if (isBird(animal)) {
+    // TypeScript knows animal is Bird here
+    console.log(animal.flies ? 'Tweet tweet' : 'Cluck cluck');
+  } else {
+    // TypeScript knows animal is Fish here
+    console.log('Blub blub');
+  }
+}
+```
+
+### Discriminated Unions
+
+Discriminated unions are a pattern where you include a common property with literal types to differentiate between union members:
+
+```typescript
+type Success = {
+  status: 'success';
+  data: { id: string; name: string };
+};
+
+type Error = {
+  status: 'error';
+  error: { code: number; message: string };
+};
+
+type Loading = {
+  status: 'loading';
+};
+
+type ApiResponse = Success | Error | Loading;
+
+function handleResponse(response: ApiResponse) {
+  switch (response.status) {
+    case 'success':
+      // TypeScript knows response is Success here
+      return processData(response.data);
+    case 'error':
+      // TypeScript knows response is Error here
+      return showError(response.error);
+    case 'loading':
+      // TypeScript knows response is Loading here
+      return showSpinner();
+  }
+}
+```
+
+## Working with Functions
+
+### Function Overloads
+
+Function overloads allow you to define multiple function signatures for different parameter types:
+
+```typescript
+// Overload signatures
+function getItem(id: string): Promise<Item>;
+function getItem(options: { id: string; includeDetails: boolean }): Promise<ItemWithDetails>;
+
+// Implementation signature
+function getItem(idOrOptions: string | { id: string; includeDetails: boolean }): Promise<Item | ItemWithDetails> {
+  if (typeof idOrOptions === 'string') {
+    return fetchItem(idOrOptions);
+  } else {
+    return fetchItemWithDetails(idOrOptions.id);
+  }
+}
+```
+
+### Generic Constraints and Defaults
+
+Use generic constraints to limit the types that can be used with your generic functions:
+
+```typescript
+// T must have an id property of type string
+function findById<T extends { id: string }>(items: T[], id: string): T | undefined {
+  return items.find(item => item.id === id);
+}
+
+// With default type parameter
+function createState<T = string>() {
+  let state: T | undefined;
+
+  return {
+    get: () => state,
+    set: (newState: T) => { state = newState; }
+  };
+}
+
+// String state by default
+const stringState = createState();
+// Number state explicitly
+const numberState = createState<number>();
+```
+
+## Advanced Type Patterns
+
+### Conditional Types
+
+Conditional types allow you to create types that depend on conditions:
+
+```typescript
+type IsArray<T> = T extends any[] ? true : false;
+
+// Usage
+type CheckString = IsArray<string>; // false
+type CheckArray = IsArray<string[]>; // true
+
+// More useful example: Extract non-function properties
+type NonFunctionPropertyNames<T> = {
+  [K in keyof T]: T[K] extends Function ? never : K;
+}[keyof T];
+
+type NonFunctionProperties<T> = Pick<T, NonFunctionPropertyNames<T>>;
+
+interface User {
+  name: string;
+  email: string;
+  login(): void;
+  logout(): void;
+}
+
+// Only includes name and email, not the methods
+type UserData = NonFunctionProperties<User>;
+```
+
+### Template Literal Types
+
+Template literal types allow you to create new string types by concatenating other types:
+
+```typescript
+type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
+type Endpoint = 'users' | 'posts' | 'comments';
+
+// Creates types like 'GET /users', 'POST /posts', etc.
+type ApiRoute = `${HttpMethod} /${Endpoint}`;
+
+// Usage
+function fetchApi(route: ApiRoute, data?: unknown) {
+  // Implementation
+}
+
+fetchApi('GET /users'); // Valid
+fetchApi('PATCH /users'); // Error: not a valid HttpMethod
+```
+
+## Practical Patterns for Real-World TypeScript
+
+### Safe API Response Handling
+
+```typescript
+// Define your API response structure
+interface ApiResponse<T> {
+  data: T | null;
+  error: string | null;
+  status: number;
+}
+
+// Generic fetch function with type safety
+async function apiFetch<T>(url: string): Promise<ApiResponse<T>> {
+  try {
+    const response = await fetch(url);
+    const status = response.status;
+
+    if (!response.ok) {
+      return {
+        data: null,
+        error: `Error ${status}: ${response.statusText}`,
+        status
+      };
+    }
+
+    const data = await response.json();
+
+    return {
+      data,
+      error: null,
+      status
+    };
+  } catch (err) {
+    return {
+      data: null,
+      error: err instanceof Error ? err.message : 'Unknown error',
+      status: 0
+    };
+  }
+}
+
+// Usage
+interface User {
+  id: string;
+  name: string;
+}
+
+async function getUser(id: string) {
+  const result = await apiFetch<User>(`/api/users/${id}`);
+
+  if (result.error || !result.data) {
+    console.error(result.error);
+    return null;
+  }
+
+  // result.data is typed as User here
+  return result.data;
+}
+```
+
+### Type-Safe Event Handling
+
+```typescript
+type EventMap = {
+  'user:login': { userId: string; timestamp: number };
+  'user:logout': { userId: string; timestamp: number };
+  'item:select': { itemId: string };
+};
+
+class TypedEventEmitter {
+  private listeners: {
+    [K in keyof EventMap]?: ((data: EventMap[K]) => void)[];
+  } = {};
+
+  on<K extends keyof EventMap>(event: K, listener: (data: EventMap[K]) => void) {
+    if (!this.listeners[event]) {
+      this.listeners[event] = [];
+    }
+    this.listeners[event]?.push(listener);
+    return this;
+  }
+
+  emit<K extends keyof EventMap>(event: K, data: EventMap[K]) {
+    this.listeners[event]?.forEach(listener => listener(data));
+    return this;
+  }
+}
+
+// Usage
+const events = new TypedEventEmitter();
+
+events.on('user:login', ({ userId, timestamp }) => {
+  console.log(`User ${userId} logged in at ${new Date(timestamp)}`);
+});
+
+// Type error: missing timestamp property
+// events.emit('user:login', { userId: '123' });
+
+// Correct
+events.emit('user:login', { userId: '123', timestamp: Date.now() });
+```
+
+## TypeScript in Svelte and Next.js Projects
+
+### TypeScript with Svelte
+
+Svelte has excellent TypeScript support. Here's how to type your props and events:
+
+```svelte
+<script lang="ts">
+  import type { User } from '../types';
+
+  // Typed props
+  export let user: User;
+  export let isActive = false;
+
+  // Typed events
+  import { createEventDispatcher } from 'svelte';
+  const dispatch = createEventDispatcher<{
+    select: { id: string };
+    close: undefined;
+  }>();
+
+  function handleSelect() {
+    dispatch('select', { id: user.id });
+  }
+</script>
+
+<div class:active={isActive}>
+  <h2>{user.name}</h2>
+  <button on:click={handleSelect}>Select</button>
+</div>
+```
+
+### TypeScript with Next.js
+
+Next.js also works well with TypeScript, especially for typing API routes and pages:
+
+```typescript
+// pages/api/users/[id].ts
+import type { NextApiRequest, NextApiResponse } from 'next';
+import type { User } from '../../../types';
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<User | { error: string }>
+) {
+  const { id } = req.query;
+
+  try {
+    const user = await getUserById(id as string);
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(404).json({ error: 'User not found' });
+  }
+}
+
+// pages/users/[id].tsx
+import type { GetServerSideProps, NextPage } from 'next';
+import type { User } from '../../types';
+
+interface UserPageProps {
+  user: User;
+}
+
+const UserPage: NextPage<UserPageProps> = ({ user }) => {
+  return (
+    <div>
+      <h1>{user.name}</h1>
+      <p>{user.email}</p>
+    </div>
+  );
+};
+
+export const getServerSideProps: GetServerSideProps<UserPageProps> = async (context) => {
+  const { id } = context.params!;
+
+  try {
+    const user = await getUserById(id as string);
+    return { props: { user } };
+  } catch {
+    return { notFound: true };
+  }
+};
+
+export default UserPage;
+```
+
+## Conclusion
+
+TypeScript offers a wealth of features that can help you write safer, more maintainable code. By leveraging utility types, type narrowing, discriminated unions, and other advanced patterns, you can catch errors at compile time rather than runtime and create more self-documenting code.
+
+Remember that TypeScript is a tool to help you, not a goal in itself. Use these techniques where they add value, but don't overcomplicate your code just to satisfy the type system. The best TypeScript code is both type-safe and readable.
