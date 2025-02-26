@@ -35,6 +35,28 @@
 			}
 		},
 		{
+			"src": "/projects",
+			"dest": "/projects/"
+		},
+		{
+			"src": "/projects/",
+			"status": 308,
+			"headers": {
+				"Location": "/projects"
+			}
+		},
+		{
+			"src": "/test",
+			"dest": "/test/"
+		},
+		{
+			"src": "/test/",
+			"status": 308,
+			"headers": {
+				"Location": "/test"
+			}
+		},
+		{
 			"src": "/journal/understanding-web-accessibility-for-beginners",
 			"dest": "/journal/understanding-web-accessibility-for-beginners/"
 		},
@@ -286,14 +308,6 @@
 			"handle": "filesystem"
 		},
 		{
-			"src": "^/projects/?(?:/__data.json)?$",
-			"dest": "/fn-0"
-		},
-		{
-			"src": "^/test/?(?:/__data.json)?$",
-			"dest": "/fn-1"
-		},
-		{
 			"src": "/.*",
 			"dest": "/fn"
 		}
@@ -310,6 +324,12 @@
 		},
 		"journal.html": {
 			"path": "journal"
+		},
+		"projects.html": {
+			"path": "projects"
+		},
+		"test.html": {
+			"path": "test"
 		},
 		"journal/understanding-web-accessibility-for-beginners.html": {
 			"path": "journal/understanding-web-accessibility-for-beginners"

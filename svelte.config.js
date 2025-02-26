@@ -1,5 +1,5 @@
 import adapter from "@sveltejs/adapter-vercel"
-import { sveltePreprocess } from "svelte-preprocess"
+import preprocess from "svelte-preprocess"
 import { mdsvex } from "mdsvex"
 import mdsvexConfig from "./mdsvex.config.js"
 import { dirname, resolve } from "path"
@@ -11,15 +11,12 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const config = {
   extensions: [".svelte", ...mdsvexConfig.extensions],
   preprocess: [
-    sveltePreprocess({
+    preprocess({
       postcss: true,
       typescript: {
         tsconfigFile: "./tsconfig.json",
         compilerOptions: {
-          // Use compatible options
-          verbatimModuleSyntax: false,
-          importsNotUsedAsValues: "preserve",
-          preserveValueImports: true
+          verbatimModuleSyntax: true
         }
       }
     }),
@@ -28,7 +25,7 @@ const config = {
   kit: {
     adapter: adapter({
       // Specify Node.js version
-      runtime: 'nodejs18.x',
+      runtime: 'nodejs22.x',
 
       // Split your app into smaller chunks
       split: true
@@ -39,6 +36,17 @@ const config = {
       $styles: resolve(__dirname, "./src/lib/styles"),
       $utils: resolve(__dirname, "./src/lib/utils"),
       $src: resolve(__dirname, "./src"),
+    },
+    prerender: {
+      handleHttpError: ({ path, referrer, message }) => {
+        // Ignore 404 errors for test links
+        if (path.startsWith('/test/') && referrer === '/test') {
+          return;
+        }
+
+        // Otherwise, throw the error
+        throw new Error(message);
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 {
-  "buildCommand": "bun run build:vercel",
-  "devCommand": "bun run dev",
-  "installCommand": "bun install",
+  "buildCommand": "npm run build:vercel",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
   "framework": "sveltekit"
 }

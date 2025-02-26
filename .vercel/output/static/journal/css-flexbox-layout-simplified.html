@@ -13,8 +13,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
     
-		<link href="../_app/immutable/assets/0.4f35da9d.css" rel="stylesheet">
-		<link href="../_app/immutable/assets/6.6f179f01.css" rel="stylesheet"><title>CSS Flexbox Layout Simplified: A Visual Guide for Beginners | Loke.dev</title><!-- HEAD_svelte-curlbp_START --><meta name="og:title" content="Loke.dev"><meta name="og:description" content="Loke is a web developer based in Sweden. Read more about me or what services I can help you with."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@loke_dev"><!-- HEAD_svelte-curlbp_END --><!-- HEAD_svelte-ekx74r_START --><meta property="og:site_name" content="Loke.dev"><meta property="og:title" content="CSS Flexbox Layout Simplified: A Visual Guide for Beginners"><meta property="og:description" content="Master CSS Flexbox layout with this beginner-friendly guide. Learn how to create responsive layouts, align elements, and solve common layout problems with practical examples and visual explanations."><!-- HEAD_svelte-ekx74r_END -->
+		<link href="../_app/immutable/assets/0.BRMvKc6t.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/6.DRIEKtSr.css" rel="stylesheet"><!--[--><meta name="og:title" content="Loke.dev"> <meta name="og:description" content="Loke is a web developer based in Sweden. Read more about me or what services I can help you with."> <meta name="twitter:card" content="summary_large_image"> <meta name="twitter:creator" content="@loke_dev"><!--]--><!--[--><meta property="og:site_name" content="Loke.dev"> <meta property="og:title" content="CSS Flexbox Layout Simplified: A Visual Guide for Beginners"> <meta property="og:description" content="Master CSS Flexbox layout with this beginner-friendly guide. Learn how to create responsive layouts, align elements, and solve common layout problems with practical examples and visual explanations."><!--]--><title>CSS Flexbox Layout Simplified: A Visual Guide for Beginners | Loke.dev</title>
     <script>
       // Unregister service workers in development mode
       if ('serviceWorker' in navigator && (window.location.hostname === 'localhost' || window.location.hostname.includes('127.0.0.1'))) {
@@ -42,91 +42,25 @@
     </script>
   </head>
   <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">
-
-
-
-
-
-
-
-<a href="#main-content" class="skip-link svelte-1wxgfe9">Skip to main content</a>
-
-<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full bg-transparent"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center py-4 md:justify-start md:space-x-10">
-      <div class="flex justify-start lg:w-0 lg:flex-1"><a href="/" class="flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md" aria-label="Home" data-sveltekit-preload-data="hover" tabindex="0"><span class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">loke.dev</span></a></div>
-
-      
-      <div class="md:hidden"><button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-primary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary" aria-expanded="false" aria-label="Toggle menu"><span class="sr-only">Open menu</span>
-          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button></div>
-
-      
-      <nav class="hidden md:flex space-x-10" aria-label="Main navigation"><ul class="flex items-center space-x-1"><li class="nav-item  svelte-1wxgfe9"><a href="/about" class="nav-link svelte-1wxgfe9" data-sveltekit-preload-data="hover" tabindex="0">About
-            </a></li>
-          <li class="nav-item active svelte-1wxgfe9"><a href="/journal" class="nav-link svelte-1wxgfe9" aria-current="page" data-sveltekit-preload-data="hover" tabindex="0">Journal
-            </a></li>
-          <li class="nav-item  svelte-1wxgfe9"><a href="/contact" class="nav-link svelte-1wxgfe9" data-sveltekit-preload-data="hover" tabindex="0">Contact
-            </a></li>
-          </ul></nav></div></div>
-
-  
-  </header>
-
-
-<div class="h-20"></div>
-
-<main id="main-content" class="flex flex-1 flex-col p-8 w-full m-auto box-border mb-20 max-w-[900px]">
-
-<article class="prose prose-lg"><a href="/journal" class="flex gap-2 mb-8 items-center">❮ Back to Journal </a>
-  
-  <h1 id="css-flexbox-layout-simplified-a-visual-guide-for-beginners">CSS Flexbox Layout Simplified: A Visual Guide for Beginners</h1>
-<h2 id="introduction">Introduction</h2>
-<p>If you’re new to web development, creating layouts that work across different screen sizes can feel overwhelming. CSS Flexbox is a powerful layout system that makes this task much easier. In this guide, I’ll break down Flexbox concepts with visual examples and practical solutions to common layout problems.</p>
-<h2 id="what-is-flexbox-and-why-should-you-use-it">What is Flexbox and Why Should You Use It?</h2>
-<p>Flexbox (Flexible Box Layout) is a CSS layout model designed to help you arrange elements within a container, even when their size is unknown or dynamic. Before Flexbox, creating certain layouts required complex CSS hacks or JavaScript.</p>
-<p>Benefits of using Flexbox:</p>
-<ul><li>Simplifies vertical centering</li>
-<li>Makes creating equal-height columns easy</li>
-<li>Provides flexible space distribution</li>
-<li>Allows reordering elements without changing HTML</li>
-<li>Works great for responsive designs</li></ul>
-<h2 id="getting-started-with-flexbox">Getting Started with Flexbox</h2>
-<p>To use Flexbox, you need a container element (parent) with one or more child elements:</p>
-<pre class="language-html"><!-- HTML_TAG_START --><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <div style="display: contents"><!--[--><!--[--><!----><a href="#main-content" class="skip-link svelte-1wxgfe9">Skip to main content</a> <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full bg-transparent"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center py-4 md:justify-start md:space-x-10"><div class="flex justify-start lg:w-0 lg:flex-1"><a href="/" class="flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md" aria-label="Home" data-sveltekit-preload-data="hover" tabindex="0"><span class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">loke.dev</span></a></div> <div class="md:hidden"><button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-primary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary" aria-expanded="false" aria-label="Toggle menu"><span class="sr-only">Open menu</span> <!--[!--><svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg><!--]--></button></div> <nav class="hidden md:flex space-x-10" aria-label="Main navigation"><ul class="flex items-center space-x-1"><li class="nav-item  svelte-1wxgfe9"><a href="/about" class="nav-link svelte-1wxgfe9" data-sveltekit-preload-data="hover" tabindex="0">About</a></li> <li class="nav-item active svelte-1wxgfe9"><a href="/journal" class="nav-link svelte-1wxgfe9" aria-current="page" data-sveltekit-preload-data="hover" tabindex="0">Journal</a></li> <li class="nav-item  svelte-1wxgfe9"><a href="/contact" class="nav-link svelte-1wxgfe9" data-sveltekit-preload-data="hover" tabindex="0">Contact</a></li></ul></nav></div></div> <!--[!--><!--]--></header> <div class="h-20"></div><!----> <main id="main-content" class="flex flex-1 flex-col p-8 w-full m-auto box-border mb-20 max-w-[900px]"><!----><!----><!----> <article class="prose prose-lg"><a href="/journal" class="flex gap-2 mb-8 items-center">❮ Back to Journal</a> <!----><h1 id="css-flexbox-layout-simplified-a-visual-guide-for-beginners">CSS Flexbox Layout Simplified: A Visual Guide for Beginners</h1> <h2 id="introduction">Introduction</h2> <p>If you’re new to web development, creating layouts that work across different screen sizes can feel overwhelming. CSS Flexbox is a powerful layout system that makes this task much easier. In this guide, I’ll break down Flexbox concepts with visual examples and practical solutions to common layout problems.</p> <h2 id="what-is-flexbox-and-why-should-you-use-it">What is Flexbox and Why Should You Use It?</h2> <p>Flexbox (Flexible Box Layout) is a CSS layout model designed to help you arrange elements within a container, even when their size is unknown or dynamic. Before Flexbox, creating certain layouts required complex CSS hacks or JavaScript.</p> <p>Benefits of using Flexbox:</p> <ul><li>Simplifies vertical centering</li> <li>Makes creating equal-height columns easy</li> <li>Provides flexible space distribution</li> <li>Allows reordering elements without changing HTML</li> <li>Works great for responsive designs</li></ul> <h2 id="getting-started-with-flexbox">Getting Started with Flexbox</h2> <p>To use Flexbox, you need a container element (parent) with one or more child elements:</p> <pre class="language-html"><!----><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Item 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Item 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Item 3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
-<p>Then, make the container a flex container:</p>
-<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css"><span class="token selector">.container</span> <span class="token punctuation">&#123;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code><!----></pre> <p>Then, make the container a flex container:</p> <pre class="language-css"><!----><code class="language-css"><span class="token selector">.container</span> <span class="token punctuation">&#123;</span>
   <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
-<p>That’s it! You’ve created your first Flexbox layout. By default, the items will align in a row and take up only as much space as they need.</p>
-<h2 id="the-two-axes-of-flexbox">The Two Axes of Flexbox</h2>
-<p>Understanding the two axes is crucial for mastering Flexbox:</p>
-<ol><li><strong>Main Axis</strong>: The primary axis along which flex items are placed (horizontal by default)</li>
-<li><strong>Cross Axis</strong>: Perpendicular to the main axis (vertical by default)</li></ol>
-<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css"><span class="token selector">.container</span> <span class="token punctuation">&#123;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <p>That’s it! You’ve created your first Flexbox layout. By default, the items will align in a row and take up only as much space as they need.</p> <h2 id="the-two-axes-of-flexbox">The Two Axes of Flexbox</h2> <p>Understanding the two axes is crucial for mastering Flexbox:</p> <ol><li><strong>Main Axis</strong>: The primary axis along which flex items are placed (horizontal by default)</li> <li><strong>Cross Axis</strong>: Perpendicular to the main axis (vertical by default)</li></ol> <pre class="language-css"><!----><code class="language-css"><span class="token selector">.container</span> <span class="token punctuation">&#123;</span>
   <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
   <span class="token property">flex-direction</span><span class="token punctuation">:</span> row<span class="token punctuation">;</span> <span class="token comment">/* Default: main axis is horizontal */</span>
   <span class="token comment">/* OR */</span>
   <span class="token property">flex-direction</span><span class="token punctuation">:</span> column<span class="token punctuation">;</span> <span class="token comment">/* Changes main axis to vertical */</span>
-<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
-<h2 id="solving-common-layout-problems-with-flexbox">Solving Common Layout Problems with Flexbox</h2>
-<h3 id="problem-1-centering-elements-vertically-and-horizontally">Problem 1: Centering Elements Vertically and Horizontally</h3>
-<p>One of the most common layout challenges is centering content both horizontally and vertically. With Flexbox, it’s simple:</p>
-<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css"><span class="token selector">.container</span> <span class="token punctuation">&#123;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <h2 id="solving-common-layout-problems-with-flexbox">Solving Common Layout Problems with Flexbox</h2> <h3 id="problem-1-centering-elements-vertically-and-horizontally">Problem 1: Centering Elements Vertically and Horizontally</h3> <p>One of the most common layout challenges is centering content both horizontally and vertically. With Flexbox, it’s simple:</p> <pre class="language-css"><!----><code class="language-css"><span class="token selector">.container</span> <span class="token punctuation">&#123;</span>
   <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
   <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span> <span class="token comment">/* Centers along the main axis */</span>
   <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span> <span class="token comment">/* Centers along the cross axis */</span>
   <span class="token property">height</span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span> <span class="token comment">/* Give the container some height */</span>
-<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
-<p>This creates a perfectly centered element regardless of its dimensions:</p>
-<pre class="language-html"><!-- HTML_TAG_START --><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <p>This creates a perfectly centered element regardless of its dimensions:</p> <pre class="language-html"><!----><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>centered-item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>I'm centered!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
-<h3 id="problem-2-creating-a-navigation-bar">Problem 2: Creating a Navigation Bar</h3>
-<p>Navigation bars are perfect candidates for Flexbox:</p>
-<pre class="language-html"><!-- HTML_TAG_START --><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nav</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>navbar<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code><!----></pre> <h3 id="problem-2-creating-a-navigation-bar">Problem 2: Creating a Navigation Bar</h3> <p>Navigation bars are perfect candidates for Flexbox:</p> <pre class="language-html"><!----><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nav</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>navbar<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>logo<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>MySite<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>nav-links<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Home<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
@@ -134,8 +68,7 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Services<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Contact<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nav</span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
-<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css"><span class="token selector">.navbar</span> <span class="token punctuation">&#123;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nav</span><span class="token punctuation">></span></span></code><!----></pre> <pre class="language-css"><!----><code class="language-css"><span class="token selector">.navbar</span> <span class="token punctuation">&#123;</span>
   <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
   <span class="token property">justify-content</span><span class="token punctuation">:</span> space-between<span class="token punctuation">;</span> <span class="token comment">/* Logo on left, links on right */</span>
   <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
@@ -148,10 +81,7 @@
   <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span> <span class="token comment">/* Make the list items flex too */</span>
   <span class="token property">list-style</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
   <span class="token property">gap</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span> <span class="token comment">/* Space between nav items */</span>
-<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
-<h3 id="problem-3-equal-height-columns">Problem 3: Equal Height Columns</h3>
-<p>Creating equal-height columns used to be a CSS nightmare. With Flexbox, it’s automatic:</p>
-<pre class="language-html"><!-- HTML_TAG_START --><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>card-container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <h3 id="problem-3-equal-height-columns">Problem 3: Equal Height Columns</h3> <p>Creating equal-height columns used to be a CSS nightmare. With Flexbox, it’s automatic:</p> <pre class="language-html"><!----><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>card-container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>card<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">></span></span>Card 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>This card has a small amount of content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
@@ -164,8 +94,7 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">></span></span>Card 3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Medium amount of content here.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
-<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css"><span class="token selector">.card-container</span> <span class="token punctuation">&#123;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code><!----></pre> <pre class="language-css"><!----><code class="language-css"><span class="token selector">.card-container</span> <span class="token punctuation">&#123;</span>
   <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
   <span class="token property">gap</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span>
@@ -175,18 +104,13 @@
   <span class="token property">padding</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span>
   <span class="token property">border</span><span class="token punctuation">:</span> 1px solid #ddd<span class="token punctuation">;</span>
   <span class="token property">border-radius</span><span class="token punctuation">:</span> 4px<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
-<p>All cards will have the same height, regardless of content length.</p>
-<h3 id="problem-4-responsive-layout-without-media-queries">Problem 4: Responsive Layout Without Media Queries</h3>
-<p>Flexbox can create layouts that adapt without media queries:</p>
-<pre class="language-html"><!-- HTML_TAG_START --><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>flexible-grid<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <p>All cards will have the same height, regardless of content length.</p> <h3 id="problem-4-responsive-layout-without-media-queries">Problem 4: Responsive Layout Without Media Queries</h3> <p>Flexbox can create layouts that adapt without media queries:</p> <pre class="language-html"><!----><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>flexible-grid<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>grid-item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Item 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>grid-item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Item 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>grid-item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Item 3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>grid-item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Item 4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>grid-item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Item 5<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
-<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css"><span class="token selector">.flexible-grid</span> <span class="token punctuation">&#123;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code><!----></pre> <pre class="language-css"><!----><code class="language-css"><span class="token selector">.flexible-grid</span> <span class="token punctuation">&#123;</span>
   <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
   <span class="token property">flex-wrap</span><span class="token punctuation">:</span> wrap<span class="token punctuation">;</span> <span class="token comment">/* Allow items to wrap to next line */</span>
 <span class="token punctuation">&#125;</span>
@@ -196,19 +120,11 @@
   <span class="token property">margin</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span>
   <span class="token property">height</span><span class="token punctuation">:</span> 150px<span class="token punctuation">;</span>
   <span class="token property">background-color</span><span class="token punctuation">:</span> #f0f0f0<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
-<p>This creates a grid where:</p>
-<ul><li>Items are at least 200px wide</li>
-<li>Items grow to fill available space</li>
-<li>Items wrap to the next line when they don’t fit</li></ul>
-<h3 id="problem-5-sticky-footer">Problem 5: Sticky Footer</h3>
-<p>Creating a footer that sticks to the bottom of the page when content is short:</p>
-<pre class="language-html"><!-- HTML_TAG_START --><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <p>This creates a grid where:</p> <ul><li>Items are at least 200px wide</li> <li>Items grow to fill available space</li> <li>Items wrap to the next line when they don’t fit</li></ul> <h3 id="problem-5-sticky-footer">Problem 5: Sticky Footer</h3> <p>Creating a footer that sticks to the bottom of the page when content is short:</p> <pre class="language-html"><!----><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>header</span><span class="token punctuation">></span></span>Header<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>header</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span><span class="token punctuation">></span></span>Content (might be short)<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>footer</span><span class="token punctuation">></span></span>Footer<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>footer</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
-<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css"><span class="token selector">body</span> <span class="token punctuation">&#123;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></code><!----></pre> <pre class="language-css"><!----><code class="language-css"><span class="token selector">body</span> <span class="token punctuation">&#123;</span>
   <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
   <span class="token property">flex-direction</span><span class="token punctuation">:</span> column<span class="token punctuation">;</span>
   <span class="token property">min-height</span><span class="token punctuation">:</span> 100vh<span class="token punctuation">;</span> <span class="token comment">/* Full viewport height */</span>
@@ -217,12 +133,7 @@
 
 <span class="token selector">main</span> <span class="token punctuation">&#123;</span>
   <span class="token property">flex</span><span class="token punctuation">:</span> 1<span class="token punctuation">;</span> <span class="token comment">/* Takes up all available space */</span>
-<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
-<h2 id="key-flexbox-properties-explained">Key Flexbox Properties Explained</h2>
-<h3 id="for-the-container-parent">For the Container (Parent)</h3>
-<h4 id="flex-direction"><code>flex-direction</code></h4>
-<p>Controls the direction of the main axis:</p>
-<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css"><span class="token selector">.container</span> <span class="token punctuation">&#123;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <h2 id="key-flexbox-properties-explained">Key Flexbox Properties Explained</h2> <h3 id="for-the-container-parent">For the Container (Parent)</h3> <h4 id="flex-direction"><code>flex-direction</code></h4> <p>Controls the direction of the main axis:</p> <pre class="language-css"><!----><code class="language-css"><span class="token selector">.container</span> <span class="token punctuation">&#123;</span>
   <span class="token property">flex-direction</span><span class="token punctuation">:</span> row<span class="token punctuation">;</span> <span class="token comment">/* Default: left to right */</span>
   <span class="token comment">/* OR */</span>
   <span class="token property">flex-direction</span><span class="token punctuation">:</span> row-reverse<span class="token punctuation">;</span> <span class="token comment">/* Right to left */</span>
@@ -230,19 +141,13 @@
   <span class="token property">flex-direction</span><span class="token punctuation">:</span> column<span class="token punctuation">;</span> <span class="token comment">/* Top to bottom */</span>
   <span class="token comment">/* OR */</span>
   <span class="token property">flex-direction</span><span class="token punctuation">:</span> column-reverse<span class="token punctuation">;</span> <span class="token comment">/* Bottom to top */</span>
-<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
-<h4 id="flex-wrap"><code>flex-wrap</code></h4>
-<p>Controls whether items wrap to new lines:</p>
-<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css"><span class="token selector">.container</span> <span class="token punctuation">&#123;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <h4 id="flex-wrap"><code>flex-wrap</code></h4> <p>Controls whether items wrap to new lines:</p> <pre class="language-css"><!----><code class="language-css"><span class="token selector">.container</span> <span class="token punctuation">&#123;</span>
   <span class="token property">flex-wrap</span><span class="token punctuation">:</span> nowrap<span class="token punctuation">;</span> <span class="token comment">/* Default: no wrapping */</span>
   <span class="token comment">/* OR */</span>
   <span class="token property">flex-wrap</span><span class="token punctuation">:</span> wrap<span class="token punctuation">;</span> <span class="token comment">/* Wrap to new lines */</span>
   <span class="token comment">/* OR */</span>
   <span class="token property">flex-wrap</span><span class="token punctuation">:</span> wrap-reverse<span class="token punctuation">;</span> <span class="token comment">/* Wrap in reverse order */</span>
-<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
-<h4 id="justify-content"><code>justify-content</code></h4>
-<p>Aligns items along the main axis:</p>
-<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css"><span class="token selector">.container</span> <span class="token punctuation">&#123;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <h4 id="justify-content"><code>justify-content</code></h4> <p>Aligns items along the main axis:</p> <pre class="language-css"><!----><code class="language-css"><span class="token selector">.container</span> <span class="token punctuation">&#123;</span>
   <span class="token property">justify-content</span><span class="token punctuation">:</span> flex-start<span class="token punctuation">;</span> <span class="token comment">/* Default: items at start */</span>
   <span class="token comment">/* OR */</span>
   <span class="token property">justify-content</span><span class="token punctuation">:</span> flex-end<span class="token punctuation">;</span> <span class="token comment">/* Items at end */</span>
@@ -254,10 +159,7 @@
   <span class="token property">justify-content</span><span class="token punctuation">:</span> space-around<span class="token punctuation">;</span> <span class="token comment">/* Equal space around items */</span>
   <span class="token comment">/* OR */</span>
   <span class="token property">justify-content</span><span class="token punctuation">:</span> space-evenly<span class="token punctuation">;</span> <span class="token comment">/* Equal space between and around */</span>
-<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
-<h4 id="align-items"><code>align-items</code></h4>
-<p>Aligns items along the cross axis:</p>
-<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css"><span class="token selector">.container</span> <span class="token punctuation">&#123;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <h4 id="align-items"><code>align-items</code></h4> <p>Aligns items along the cross axis:</p> <pre class="language-css"><!----><code class="language-css"><span class="token selector">.container</span> <span class="token punctuation">&#123;</span>
   <span class="token property">align-items</span><span class="token punctuation">:</span> stretch<span class="token punctuation">;</span> <span class="token comment">/* Default: stretch to fill container */</span>
   <span class="token comment">/* OR */</span>
   <span class="token property">align-items</span><span class="token punctuation">:</span> flex-start<span class="token punctuation">;</span> <span class="token comment">/* Items at start of cross axis */</span>
@@ -267,48 +169,31 @@
   <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span> <span class="token comment">/* Items at center of cross axis */</span>
   <span class="token comment">/* OR */</span>
   <span class="token property">align-items</span><span class="token punctuation">:</span> baseline<span class="token punctuation">;</span> <span class="token comment">/* Items aligned by text baseline */</span>
-<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
-<h3 id="for-the-items-children">For the Items (Children)</h3>
-<h4 id="flex-grow"><code>flex-grow</code></h4>
-<p>Determines how much an item can grow:</p>
-<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css"><span class="token selector">.item</span> <span class="token punctuation">&#123;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <h3 id="for-the-items-children">For the Items (Children)</h3> <h4 id="flex-grow"><code>flex-grow</code></h4> <p>Determines how much an item can grow:</p> <pre class="language-css"><!----><code class="language-css"><span class="token selector">.item</span> <span class="token punctuation">&#123;</span>
   <span class="token property">flex-grow</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span> <span class="token comment">/* Default: don't grow */</span>
   <span class="token comment">/* OR */</span>
   <span class="token property">flex-grow</span><span class="token punctuation">:</span> 1<span class="token punctuation">;</span> <span class="token comment">/* Grow to fill available space */</span>
   <span class="token comment">/* OR */</span>
   <span class="token property">flex-grow</span><span class="token punctuation">:</span> 2<span class="token punctuation">;</span> <span class="token comment">/* Grow twice as much as items with flex-grow: 1 */</span>
-<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
-<h4 id="flex-shrink"><code>flex-shrink</code></h4>
-<p>Determines how much an item can shrink:</p>
-<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css"><span class="token selector">.item</span> <span class="token punctuation">&#123;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <h4 id="flex-shrink"><code>flex-shrink</code></h4> <p>Determines how much an item can shrink:</p> <pre class="language-css"><!----><code class="language-css"><span class="token selector">.item</span> <span class="token punctuation">&#123;</span>
   <span class="token property">flex-shrink</span><span class="token punctuation">:</span> 1<span class="token punctuation">;</span> <span class="token comment">/* Default: can shrink if needed */</span>
   <span class="token comment">/* OR */</span>
   <span class="token property">flex-shrink</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span> <span class="token comment">/* Don't shrink */</span>
   <span class="token comment">/* OR */</span>
   <span class="token property">flex-shrink</span><span class="token punctuation">:</span> 2<span class="token punctuation">;</span> <span class="token comment">/* Shrink twice as much as others */</span>
-<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
-<h4 id="flex-basis"><code>flex-basis</code></h4>
-<p>Sets the initial size of an item:</p>
-<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css"><span class="token selector">.item</span> <span class="token punctuation">&#123;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <h4 id="flex-basis"><code>flex-basis</code></h4> <p>Sets the initial size of an item:</p> <pre class="language-css"><!----><code class="language-css"><span class="token selector">.item</span> <span class="token punctuation">&#123;</span>
   <span class="token property">flex-basis</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span> <span class="token comment">/* Default: size based on content */</span>
   <span class="token comment">/* OR */</span>
   <span class="token property">flex-basis</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span> <span class="token comment">/* Start at 200px before growing/shrinking */</span>
   <span class="token comment">/* OR */</span>
   <span class="token property">flex-basis</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span> <span class="token comment">/* Start at 50% of container */</span>
-<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
-<h4 id="flex-shorthand"><code>flex</code> (shorthand)</h4>
-<p>Combines grow, shrink, and basis:</p>
-<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css"><span class="token selector">.item</span> <span class="token punctuation">&#123;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <h4 id="flex-shorthand"><code>flex</code> (shorthand)</h4> <p>Combines grow, shrink, and basis:</p> <pre class="language-css"><!----><code class="language-css"><span class="token selector">.item</span> <span class="token punctuation">&#123;</span>
   <span class="token property">flex</span><span class="token punctuation">:</span> 0 1 auto<span class="token punctuation">;</span> <span class="token comment">/* Default: don't grow, can shrink, auto basis */</span>
   <span class="token comment">/* OR */</span>
   <span class="token property">flex</span><span class="token punctuation">:</span> 1<span class="token punctuation">;</span> <span class="token comment">/* Same as flex: 1 1 0% - grow, shrink, zero basis */</span>
   <span class="token comment">/* OR */</span>
   <span class="token property">flex</span><span class="token punctuation">:</span> 1 0 200px<span class="token punctuation">;</span> <span class="token comment">/* Grow, don't shrink, 200px basis */</span>
-<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
-<h2 id="common-flexbox-mistakes-to-avoid">Common Flexbox Mistakes to Avoid</h2>
-<h3 id="mistake-1-forgetting-to-set-height-on-container">Mistake 1: Forgetting to Set Height on Container</h3>
-<p>Flexbox needs a defined height to center items vertically:</p>
-<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css"><span class="token comment">/* ❌ This won't center vertically */</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <h2 id="common-flexbox-mistakes-to-avoid">Common Flexbox Mistakes to Avoid</h2> <h3 id="mistake-1-forgetting-to-set-height-on-container">Mistake 1: Forgetting to Set Height on Container</h3> <p>Flexbox needs a defined height to center items vertically:</p> <pre class="language-css"><!----><code class="language-css"><span class="token comment">/* ❌ This won't center vertically */</span>
 <span class="token selector">.container</span> <span class="token punctuation">&#123;</span>
   <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
   <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
@@ -319,10 +204,7 @@
   <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
   <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
   <span class="token property">height</span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span> <span class="token comment">/* or 100vh, or any other height */</span>
-<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
-<h3 id="mistake-2-using-wrong-axis-properties">Mistake 2: Using Wrong Axis Properties</h3>
-<p>Remember which axis you’re working with:</p>
-<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css"><span class="token comment">/* ❌ Wrong property for horizontal centering */</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <h3 id="mistake-2-using-wrong-axis-properties">Mistake 2: Using Wrong Axis Properties</h3> <p>Remember which axis you’re working with:</p> <pre class="language-css"><!----><code class="language-css"><span class="token comment">/* ❌ Wrong property for horizontal centering */</span>
 <span class="token selector">.container</span> <span class="token punctuation">&#123;</span>
   <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
   <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span> <span class="token comment">/* This centers vertically, not horizontally */</span>
@@ -332,10 +214,7 @@
 <span class="token selector">.container</span> <span class="token punctuation">&#123;</span>
   <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
   <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span> <span class="token comment">/* This centers horizontally */</span>
-<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
-<h3 id="mistake-3-not-accounting-for-flex-direction">Mistake 3: Not Accounting for Flex Direction</h3>
-<p>When you change flex-direction, the axes swap:</p>
-<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css"><span class="token comment">/* ❌ This won't work as expected */</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <h3 id="mistake-3-not-accounting-for-flex-direction">Mistake 3: Not Accounting for Flex Direction</h3> <p>When you change flex-direction, the axes swap:</p> <pre class="language-css"><!----><code class="language-css"><span class="token comment">/* ❌ This won't work as expected */</span>
 <span class="token selector">.container</span> <span class="token punctuation">&#123;</span>
   <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
   <span class="token property">flex-direction</span><span class="token punctuation">:</span> column<span class="token punctuation">;</span>
@@ -348,48 +227,6 @@
   <span class="token property">flex-direction</span><span class="token punctuation">:</span> column<span class="token punctuation">;</span>
   <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span> <span class="token comment">/* This centers horizontally in column layout */</span>
   <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span> <span class="token comment">/* This centers vertically in column layout */</span>
-<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
-<h2 id="browser-compatibility">Browser Compatibility</h2>
-<p>Flexbox is supported in all modern browsers. For older browsers (like IE10), you might need some vendor prefixes or a polyfill.</p>
-<h2 id="conclusion">Conclusion</h2>
-<p>Flexbox has revolutionized CSS layouts, making previously complex designs simple to implement. By understanding the core concepts of flex containers, flex items, and the two axes, you can solve most layout challenges with clean, maintainable CSS.</p>
-<p>Remember these key points:</p>
-<ul><li>Use <code>display: flex</code> to create a flex container</li>
-<li>Control alignment with <code>justify-content</code> and <code>align-items</code></li>
-<li>Use <code>flex</code> properties on children to control how they grow and shrink</li>
-<li>Think in terms of main axis and cross axis</li></ul>
-<p>With these Flexbox fundamentals, you’ll be able to create responsive, flexible layouts that work across devices without the headaches of older CSS techniques.</p>
-<h2 id="further-resources">Further Resources</h2>
-<ul><li><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox" rel="nofollow">MDN Web Docs: Flexbox</a></li>
-<li><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" rel="nofollow">CSS-Tricks: A Complete Guide to Flexbox</a></li>
-<li><a href="https://flexboxfroggy.com/" rel="nofollow">Flexbox Froggy</a> - A game for learning Flexbox</li></ul></article></main>
-
-<footer class="relative mt-20 pt-16 pb-10 bg-background">
-  <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-primary to-purple-600"></div>
-
-  <div class="container mx-auto px-6"><div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-10"><div><h2 class="text-xl font-bold mb-4 text-white">Loke.dev</h2>
-        <p class="text-gray-300 mb-4">Web developer based in Sweden. Specializing in fullstack development with expertise in React, Svelte, Node.js, and TypeScript.</p>
-        <p class="text-gray-400 text-sm">© 2025 Loke. All rights reserved.</p></div>
-
-      <div><h2 class="text-xl font-bold mb-4 text-white">Navigation</h2>
-        <ul class="space-y-2"><li><a href="/" class="footer-link text-gray-300" tabindex="0" data-sveltekit-preload-data="hover">Home</a></li>
-          <li><a href="/about" class="footer-link text-gray-300" tabindex="0" data-sveltekit-preload-data="hover">About</a></li>
-          <li><a href="/journal" class="footer-link text-gray-300" tabindex="0" data-sveltekit-preload-data="hover">Journal</a></li>
-          <li><a href="/contact" class="footer-link text-gray-300" tabindex="0" data-sveltekit-preload-data="hover">Contact</a></li></ul></div>
-
-      <div><h2 class="text-xl font-bold mb-4 text-white">Connect</h2>
-        <ul class="space-y-2"><li><a href="https://github.com/loke-dev" class="footer-link text-gray-300 flex items-center" rel="noopener noreferrer" aria-label="GitHub profile" tabindex="0" target="_blank"><svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
-              GitHub
-            </a></li>
-          <li><a href="https://twitter.com/loke_dev" class="footer-link text-gray-300 flex items-center" rel="noopener noreferrer" aria-label="Twitter profile" tabindex="0" target="_blank"><svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
-              Twitter
-            </a></li>
-          <li><a href="mailto:hello@loke.dev" class="footer-link text-gray-300 flex items-center" aria-label="Email me" tabindex="0"><svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-              Email
-            </a></li></ul></div></div>
-
-    <div class="text-center text-sm text-gray-400 mt-8"><p>Built with <a href="https://kit.svelte.dev" class="footer-link" rel="noopener noreferrer" tabindex="0" target="_blank">SvelteKit</a> and <a href="https://tailwindcss.com" class="footer-link" rel="noopener noreferrer" tabindex="0" target="_blank">Tailwind CSS</a></p></div></div></footer>
-
-</div>
+<span class="token punctuation">&#125;</span></code><!----></pre> <h2 id="browser-compatibility">Browser Compatibility</h2> <p>Flexbox is supported in all modern browsers. For older browsers (like IE10), you might need some vendor prefixes or a polyfill.</p> <h2 id="conclusion">Conclusion</h2> <p>Flexbox has revolutionized CSS layouts, making previously complex designs simple to implement. By understanding the core concepts of flex containers, flex items, and the two axes, you can solve most layout challenges with clean, maintainable CSS.</p> <p>Remember these key points:</p> <ul><li>Use <code>display: flex</code> to create a flex container</li> <li>Control alignment with <code>justify-content</code> and <code>align-items</code></li> <li>Use <code>flex</code> properties on children to control how they grow and shrink</li> <li>Think in terms of main axis and cross axis</li></ul> <p>With these Flexbox fundamentals, you’ll be able to create responsive, flexible layouts that work across devices without the headaches of older CSS techniques.</p> <h2 id="further-resources">Further Resources</h2> <ul><li><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox" rel="nofollow">MDN Web Docs: Flexbox</a></li> <li><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" rel="nofollow">CSS-Tricks: A Complete Guide to Flexbox</a></li> <li><a href="https://flexboxfroggy.com/" rel="nofollow">Flexbox Froggy</a> - A game for learning Flexbox</li></ul><!----></article><!----><!----></main> <footer class="relative mt-20 pt-16 pb-10 bg-background"><div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-primary to-purple-600"></div> <div class="container mx-auto px-6"><div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-10"><div><h2 class="text-xl font-bold mb-4 text-white">Loke.dev</h2> <p class="text-gray-300 mb-4">Web developer based in Sweden. Specializing in fullstack development with expertise in React, Svelte, Node.js, and TypeScript.</p> <p class="text-gray-400 text-sm">© 2025 Loke. All rights reserved.</p></div> <div><h2 class="text-xl font-bold mb-4 text-white">Navigation</h2> <ul class="space-y-2"><li><a href="/" class="footer-link text-gray-300" tabindex="0" data-sveltekit-preload-data="hover">Home</a></li> <li><a href="/about" class="footer-link text-gray-300" tabindex="0" data-sveltekit-preload-data="hover">About</a></li> <li><a href="/journal" class="footer-link text-gray-300" tabindex="0" data-sveltekit-preload-data="hover">Journal</a></li> <li><a href="/contact" class="footer-link text-gray-300" tabindex="0" data-sveltekit-preload-data="hover">Contact</a></li></ul></div> <div><h2 class="text-xl font-bold mb-4 text-white">Connect</h2> <ul class="space-y-2"><li><a href="https://github.com/loke-dev" class="footer-link text-gray-300 flex items-center" rel="noopener noreferrer" aria-label="GitHub profile" tabindex="0" target="_blank"><svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg> GitHub</a></li> <li><a href="https://twitter.com/loke_dev" class="footer-link text-gray-300 flex items-center" rel="noopener noreferrer" aria-label="Twitter profile" tabindex="0" target="_blank"><svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg> Twitter</a></li> <li><a href="mailto:hello@loke.dev" class="footer-link text-gray-300 flex items-center" aria-label="Email me" tabindex="0"><svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg> Email</a></li></ul></div></div> <div class="text-center text-sm text-gray-400 mt-8"><p>Built with <a href="https://kit.svelte.dev" class="footer-link" rel="noopener noreferrer" tabindex="0" target="_blank">SvelteKit</a> and <a href="https://tailwindcss.com" class="footer-link" rel="noopener noreferrer" tabindex="0" target="_blank">Tailwind CSS</a></p></div></div></footer><!----><!----><!--]--> <!--[!--><!--]--><!--]--></div>
   </body>
 </html>

@@ -1,8 +1,0 @@
-{
-  "test": {
-    "preload": ["./tests/setup-vitest.js"],
-    "loader": {
-      "js": "vitest"
-    }
-  }
-}

@@ -1,3 +1,0 @@
-#!/bin/sh
-# Simple wrapper to run Vitest with coverage through Bun
-bun run test:coverage "$@"

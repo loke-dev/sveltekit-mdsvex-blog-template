@@ -1,3 +1,0 @@
-#!/bin/sh
-# Simple wrapper to run Playwright e2e tests through Bun
-bun run test:e2e "$@"

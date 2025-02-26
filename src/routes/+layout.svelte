@@ -25,7 +25,7 @@
   }
 
   // Handle prefetching for links that don't have explicit preload attributes
-  function handleMouseMove(e: MouseEvent) {
+  function handleMouseMove(e: MouseEvent): void {
     const target = e.target as HTMLElement;
     const anchor = target.closest('a');
     if (anchor && anchor.href && anchor.href.startsWith(window.location.origin) && !anchor.hasAttribute('data-sveltekit-preload-data')) {

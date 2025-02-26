@@ -351,7 +351,7 @@
 </script>
 
 <div class="hero fullWidth">
-  <canvas id="hero-canvas" />
+  <canvas id="hero-canvas"></canvas>
   <div class="hero-content">
     <h2 class="prefix">Welcome to</h2>
     <h1 class="title">

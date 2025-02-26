@@ -81,7 +81,7 @@
             class="py-3 px-4 block text-white w-full shadow-sm focus:ring-primary focus:border-primary rounded-md bg-gray-800"
             minlength="5"
             required
-          />
+          ></textarea>
         </div>
       </div>
       <div class="mt-12 m-auto">
