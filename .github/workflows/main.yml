@@ -19,16 +19,16 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm install --frozen-lockfile
 
       - name: Install Playwright
         run: npx playwright install
 
       - name: Run vitest
-        run: yarn run test
+        run: npm run test
 
       - name: Run Playwright tests
-        run: yarn run test:e2e
+        run: npm run test:e2e
 
       # - name: Deploy to Vercel
       #   if: ${{ success() }}
