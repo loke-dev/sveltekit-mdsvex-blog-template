@@ -7,7 +7,22 @@
 
   import "$styles/app.css"
 
-  inject({ mode: dev ? 'development' : 'production' })
+  // Only inject Vercel Analytics in production
+  if (!dev) {
+    try {
+      // Use the latest API with configurable deployment basepath
+      inject({
+        mode: 'production',
+        debug: false,
+        beforeSend: (data) => {
+          // You can modify the data before it's sent
+          return data;
+        }
+      });
+    } catch (error) {
+      console.log('Vercel Analytics not available')
+    }
+  }
 
   // Handle prefetching for links that don't have explicit preload attributes
   function handleMouseMove(e: MouseEvent) {

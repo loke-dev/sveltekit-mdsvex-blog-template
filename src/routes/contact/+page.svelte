@@ -1,9 +1,22 @@
 <script lang="ts">
   import Patterns from "$src/lib/components/Patterns.svelte"
   import va from '@vercel/analytics';
+  import { dev } from '$app/environment'
 
   function handleClick() {
-    va.track('Contact button clicked');
+    // Only track events in production
+    if (!dev) {
+      try {
+        // Use the latest API for tracking events
+        va.track('Contact button clicked', {
+          // You can add additional properties here
+          source: 'contact_page',
+          action: 'submit'
+        });
+      } catch (error) {
+        console.log('Vercel Analytics not available');
+      }
+    }
   }
 
 </script>
