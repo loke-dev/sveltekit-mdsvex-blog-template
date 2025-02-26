@@ -8,8 +8,8 @@
   <nav class="flex justify-center w-full max-w-5xl" aria-label="Main navigation">
     <ul class="relative p-0 m-0 flex justify-center items-center bg-contain h-12 list-none">
       <li class:active={$page.url.pathname === "/"}><a href="/" class="nav-link" tabindex="0" data-sveltekit-preload-data="hover" aria-current={$page.url.pathname === "/" ? 'page' : undefined}>Home</a></li>
-      <li class:active={$page.url.pathname === "/about"}>
-        <a href="/about" class="nav-link" tabindex="0" data-sveltekit-preload-data="hover" aria-current={$page.url.pathname === "/about" ? 'page' : undefined}>About</a>
+      <li class:active={$page.url.pathname.includes("/about")}>
+        <a href="/about" class="nav-link" tabindex="0" data-sveltekit-preload-data="hover" aria-current={$page.url.pathname.includes("/about") ? 'page' : undefined}>About</a>
       </li>
       <!-- <li class:active={$page.url.pathname === "/projects"}>
         <a href="/projects" class="nav-link" aria-current={$page.url.pathname === "/projects" ? 'page' : undefined}>Projects</a>
@@ -17,8 +17,8 @@
       <li class:active={$page.url.pathname.includes("/journal")}>
         <a href="/journal" class="nav-link" tabindex="0" data-sveltekit-preload-data="hover" aria-current={$page.url.pathname.includes("/journal") ? 'page' : undefined}>Journal</a>
       </li>
-      <li class:active={$page.url.pathname === "/contact"}>
-        <a href="/contact" class="nav-link" tabindex="0" data-sveltekit-preload-data="hover" aria-current={$page.url.pathname === "/contact" ? 'page' : undefined}>Contact</a>
+      <li class:active={$page.url.pathname.includes("/contact")}>
+        <a href="/contact" class="nav-link" tabindex="0" data-sveltekit-preload-data="hover" aria-current={$page.url.pathname.includes("/contact") ? 'page' : undefined}>Contact</a>
       </li>
     </ul>
   </nav>
