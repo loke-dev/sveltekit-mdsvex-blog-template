@@ -33,9 +33,9 @@
   <div class="mb-8">
     <h2 class="mb-4">Test Links</h2>
     <div class="flex flex-wrap gap-4">
-      <a href="#" class="px-4 py-2 bg-gray-700 rounded hover:bg-gray-600">Link 1</a>
-      <a href="#" class="px-4 py-2 bg-gray-700 rounded hover:bg-gray-600">Link 2</a>
-      <a href="#" class="px-4 py-2 bg-gray-700 rounded hover:bg-gray-600">Link 3</a>
+      <a href="/test/link1" class="px-4 py-2 bg-gray-700 rounded hover:bg-gray-600">Link 1</a>
+      <a href="/test/link2" class="px-4 py-2 bg-gray-700 rounded hover:bg-gray-600">Link 2</a>
+      <a href="/test/link3" class="px-4 py-2 bg-gray-700 rounded hover:bg-gray-600">Link 3</a>
     </div>
   </div>
 
