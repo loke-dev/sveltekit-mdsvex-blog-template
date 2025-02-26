@@ -24,7 +24,9 @@ const config = {
     mdsvex(mdsvexConfig),
   ],
   kit: {
-    adapter: adapter(),
+    adapter: adapter({
+      runtime: 'nodejs20.x'
+    }),
     alias: {
       $components: resolve(__dirname, "./src/lib/components"),
       $stores: resolve(__dirname, "./src/lib/stores"),
