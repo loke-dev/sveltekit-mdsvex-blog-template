@@ -10,8 +10,19 @@
     <meta name="color-scheme" content="dark light" />
     %sveltekit.head%
     <script>
-      // Register service worker for PWA support
-      if ('serviceWorker' in navigator) {
+      // Unregister service workers in development mode
+      if ('serviceWorker' in navigator && (window.location.hostname === 'localhost' || window.location.hostname.includes('127.0.0.1'))) {
+        navigator.serviceWorker.getRegistrations().then(registrations => {
+          for (let registration of registrations) {
+            registration.unregister().then(success => {
+              console.log('Service worker unregistered in development mode:', success);
+            });
+          }
+        });
+      }
+
+      // Register service worker for PWA support only in production
+      if ('serviceWorker' in navigator && window.location.hostname !== 'localhost' && !window.location.hostname.includes('127.0.0.1')) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/service-worker.js')
             .then(registration => {
