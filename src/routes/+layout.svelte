@@ -49,7 +49,7 @@
 
 <Header />
 
-<main id="main-content" class="flex flex-1 flex-col p-8 w-full m-auto box-border mt-6 mb-20 max-w-[900px]">
+<main id="main-content" class="flex flex-1 flex-col p-8 w-full m-auto box-border mb-20 max-w-[900px]">
   <slot />
 </main>
 
