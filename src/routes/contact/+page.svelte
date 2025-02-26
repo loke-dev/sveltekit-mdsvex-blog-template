@@ -78,7 +78,7 @@
             id="message"
             name="message"
             rows="8"
-            class="py-3 px-4 block text-white w-full shadow-sm focus:ring-primary focus:border-primary border border-gray-600 rounded-md bg-gray-800"
+            class="py-3 px-4 block text-white w-full shadow-sm focus:ring-primary focus:border-primary rounded-md bg-gray-800"
             minlength="5"
             required
           />
