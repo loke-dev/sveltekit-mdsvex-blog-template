@@ -1,0 +1,3 @@
+#!/bin/sh
+# Simple wrapper to run Vitest through Bun
+bun run test "$@"

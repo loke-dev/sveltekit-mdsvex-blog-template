@@ -13,6 +13,47 @@ npm run dev
 npm run dev -- --open
 ```
 
+## Testing
+
+The project uses Vitest for unit testing and Playwright for end-to-end testing. You can run tests using the following commands:
+
+```bash
+# Run unit tests
+npm run test
+# or with Bun
+bun run test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Run tests with coverage
+npm run test:coverage
+# or with Bun
+bun run test:coverage
+
+# Run end-to-end tests
+npm run test:e2e
+# or with Bun
+bun run test:e2e
+```
+
+### Convenience Scripts
+
+The project includes convenience shell scripts for running tests:
+
+```bash
+# Run unit tests
+./buntest
+
+# Run tests with coverage
+./buntest-coverage
+
+# Run end-to-end tests
+./buntest-e2e
+```
+
+These scripts can be used instead of typing the full `bun run test` commands.
+
 ## Building
 
 To create a production version of your app:
