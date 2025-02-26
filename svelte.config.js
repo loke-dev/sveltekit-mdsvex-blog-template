@@ -47,8 +47,9 @@ const config = {
     }
   },
   compilerOptions: {
-    compatibility: {
-      componentApi: 4
+    runes: true,
+    legacy: {
+      componentApi: false
     }
   }
 }

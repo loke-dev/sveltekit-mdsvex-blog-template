@@ -1,7 +1,18 @@
-import { writable } from "svelte/store"
 import { variables } from "$src/variables"
 
-export const projects = writable([])
+// Create a state object that can be imported and used across components
+export const projects = $state([]);
+
+// Function to load projects data
+export function loadProjects() {
+  // Example implementation - replace with actual data loading logic
+  // This could be an API call or other data source
+  setTimeout(() => {
+    projects = [
+      // Your project data here
+    ];
+  }, 100);
+}
 
 const fetchProjects = async () => {
   const url =
