@@ -3,18 +3,17 @@
   import { onMount } from "svelte"
   import { slide } from "svelte/transition"
 
-  // Using Svelte 5 Runes for reactive state
-  let isMenuOpen = $state(false);
-  let scrollY = $state(0);
-  let isScrolled = $derived(scrollY > 20);
-  let headerElement: HTMLElement;
+  let isMenuOpen = false
+  let scrollY = 0
+  let headerElement: HTMLElement
+  let isScrolled = false
 
   // Toggle mobile menu with improved event handling
   function toggleMenu(event: MouseEvent) {
     // Stop event propagation to prevent immediate closing
     event.stopPropagation()
 
-    isMenuOpen = !isMenuOpen;
+    isMenuOpen = !isMenuOpen
 
     // Prevent scrolling when menu is open
     if (isMenuOpen) {
@@ -27,21 +26,21 @@
   // Close menu when clicking outside
   function handleClickOutside(event: MouseEvent) {
     if (isMenuOpen && headerElement && !headerElement.contains(event.target as Node)) {
-      isMenuOpen = false;
+      isMenuOpen = false
       document.body.style.overflow = ''
     }
   }
 
   // Handle scroll events to add shadow and background to header
   function handleScroll() {
-    scrollY = window.scrollY;
-    // isScrolled is now derived automatically
+    scrollY = window.scrollY
+    isScrolled = scrollY > 20
   }
 
   // Close mobile menu on navigation
   function handleNavigation() {
     if (isMenuOpen) {
-      isMenuOpen = false;
+      isMenuOpen = false
       document.body.style.overflow = ''
     }
   }
@@ -49,7 +48,7 @@
   // Handle keyboard events for accessibility
   function handleKeydown(event: KeyboardEvent) {
     if (event.key === 'Escape' && isMenuOpen) {
-      isMenuOpen = false;
+      isMenuOpen = false
       document.body.style.overflow = ''
     }
   }
