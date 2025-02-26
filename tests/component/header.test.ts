@@ -27,8 +27,9 @@ describe("Header", () => {
   })
 
   it("renders all navigation links", () => {
-    const { getByText } = render(Header)
-    expect(getByText("Home")).toBeDefined()
+    const { getByText, getByLabelText } = render(Header)
+    // Use getByLabelText for the Home link since it uses aria-label
+    expect(getByLabelText("Home")).toBeDefined()
     expect(getByText("About")).toBeDefined()
     expect(getByText("Journal")).toBeDefined()
     expect(getByText("Contact")).toBeDefined()

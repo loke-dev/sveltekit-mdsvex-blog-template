@@ -2,7 +2,7 @@ import { defineConfig } from "vite"
 import { svelte } from "@sveltejs/vite-plugin-svelte"
 import { resolve } from "path"
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [svelte({ hot: !process.env.VITEST })],
   test: {
     globals: true,
@@ -20,5 +20,6 @@ export default defineConfig({
       $app: resolve("./tests/mocks/app"),
       $src: resolve("./src"),
     },
+    conditions: mode === 'test' ? ['browser'] : [],
   },
-})
+}))

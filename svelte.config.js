@@ -4,6 +4,7 @@ import { mdsvex } from "mdsvex"
 import mdsvexConfig from "./mdsvex.config.js"
 import { dirname, resolve } from "path"
 import { fileURLToPath } from "url"
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -11,7 +12,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const config = {
   extensions: [".svelte", ...mdsvexConfig.extensions],
   preprocess: [
-    preprocess({
+    vitePreprocess({
       postcss: true,
       typescript: {
         tsconfigFile: "./tsconfig.json",
@@ -23,13 +24,7 @@ const config = {
     mdsvex(mdsvexConfig),
   ],
   kit: {
-    adapter: adapter({
-      // Specify Node.js version
-      runtime: 'nodejs22.x',
-
-      // Split your app into smaller chunks
-      split: true
-    }),
+    adapter: adapter(),
     alias: {
       $components: resolve(__dirname, "./src/lib/components"),
       $stores: resolve(__dirname, "./src/lib/stores"),
@@ -47,6 +42,11 @@ const config = {
         // Otherwise, throw the error
         throw new Error(message);
       }
+    }
+  },
+  compilerOptions: {
+    compatibility: {
+      componentApi: 4
     }
   }
 }
