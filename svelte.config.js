@@ -26,12 +26,10 @@ const config = {
     },
   },
   vitePlugin: {
-    experimental: {
-      inspector: {
-        holdMode: true,
-        toggleKeyCombo: "meta-shift",
-      },
-    },
+    inspector: {
+      holdMode: true,
+      toggleKeyCombo: "meta-shift",
+    }
   },
 }
 

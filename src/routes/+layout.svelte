@@ -3,10 +3,20 @@
   import Footer from "$src/lib/components/Footer.svelte"
   import { dev } from '$app/environment'
   import { inject } from '@vercel/analytics'
+  import { preloadData } from '$app/navigation'
 
   import "$styles/app.css"
 
   inject({ mode: dev ? 'development' : 'production' })
+
+  // Handle prefetching for links that don't have explicit preload attributes
+  function handleMouseMove(e: MouseEvent) {
+    const target = e.target as HTMLElement;
+    const anchor = target.closest('a');
+    if (anchor && anchor.href && anchor.href.startsWith(window.location.origin) && !anchor.hasAttribute('data-sveltekit-preload-data')) {
+      preloadData(anchor.href);
+    }
+  }
 </script>
 
 <svelte:head>
@@ -18,6 +28,9 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:creator" content="@loke_dev" />
 </svelte:head>
+
+<!-- Enable prefetching for the entire app -->
+<svelte:window on:mousemove={handleMouseMove} />
 
 <Header />
 

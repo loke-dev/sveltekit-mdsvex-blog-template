@@ -19,18 +19,12 @@
     @apply text-primary;
   }
 
-  /* Improved focus styles for better keyboard navigation */
-  :focus {
-    @apply outline-2 outline-offset-2 outline-primary;
-  }
-
-  /* Remove outline for mouse users, keep for keyboard */
-  :focus:not(:focus-visible) {
-    @apply outline-none;
-  }
-
-  /* Ensure focus-visible has the right styling */
-  :focus-visible {
+  /* Make focus styles visible for all interactive elements */
+  a:focus,
+  button:focus,
+  input:focus,
+  select:focus,
+  textarea:focus {
     @apply outline-2 outline-offset-2 outline-primary;
   }
 
@@ -64,6 +58,14 @@
     position: relative;
     display: inline-flex;
     align-items: center;
+  }
+
+  .footer-link:focus {
+    @apply text-primary;
+    outline: 2px solid theme('colors.primary');
+    outline-offset: 2px;
+    border-radius: 4px;
+    box-shadow: 0 0 0 2px rgba(255, 41, 93, 0.3);
   }
 
   .footer-link::after {

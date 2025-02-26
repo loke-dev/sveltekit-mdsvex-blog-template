@@ -4,21 +4,21 @@
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<header class="bg-background p-4 flex justify-center shadow-sm" role="banner">
+<header class="bg-background p-4 flex justify-center shadow-sm">
   <nav class="flex justify-center w-full max-w-5xl" aria-label="Main navigation">
     <ul class="relative p-0 m-0 flex justify-center items-center bg-contain h-12 list-none">
-      <li class:active={$page.url.pathname === "/"}><a href="/" class="nav-link" aria-current={$page.url.pathname === "/" ? 'page' : undefined}>Home</a></li>
+      <li class:active={$page.url.pathname === "/"}><a href="/" class="nav-link" tabindex="0" data-sveltekit-preload-data="hover" aria-current={$page.url.pathname === "/" ? 'page' : undefined}>Home</a></li>
       <li class:active={$page.url.pathname === "/about"}>
-        <a href="/about" class="nav-link" aria-current={$page.url.pathname === "/about" ? 'page' : undefined}>About</a>
+        <a href="/about" class="nav-link" tabindex="0" data-sveltekit-preload-data="hover" aria-current={$page.url.pathname === "/about" ? 'page' : undefined}>About</a>
       </li>
       <!-- <li class:active={$page.url.pathname === "/projects"}>
         <a href="/projects" class="nav-link" aria-current={$page.url.pathname === "/projects" ? 'page' : undefined}>Projects</a>
       </li> -->
       <li class:active={$page.url.pathname.includes("/journal")}>
-        <a href="/journal" class="nav-link" aria-current={$page.url.pathname.includes("/journal") ? 'page' : undefined}>Journal</a>
+        <a href="/journal" class="nav-link" tabindex="0" data-sveltekit-preload-data="hover" aria-current={$page.url.pathname.includes("/journal") ? 'page' : undefined}>Journal</a>
       </li>
       <li class:active={$page.url.pathname === "/contact"}>
-        <a href="/contact" class="nav-link" aria-current={$page.url.pathname === "/contact" ? 'page' : undefined}>Contact</a>
+        <a href="/contact" class="nav-link" tabindex="0" data-sveltekit-preload-data="hover" aria-current={$page.url.pathname === "/contact" ? 'page' : undefined}>Contact</a>
       </li>
     </ul>
   </nav>
@@ -94,11 +94,15 @@
     }
 
     /* Explicit focus styles for keyboard navigation */
-    &:focus-visible {
-      @apply text-primary outline-2 outline-offset-2 outline-primary;
+    &:focus {
+      @apply text-primary;
+      outline: 2px solid theme('colors.primary');
+      outline-offset: 2px;
+      border-radius: 4px;
+      box-shadow: 0 0 0 2px rgba(255, 41, 93, 0.3);
     }
 
-    &:focus-visible::after {
+    &:focus::after {
       width: 80%;
       left: 10%;
       opacity: 1;
