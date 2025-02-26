@@ -28,7 +28,7 @@ jobs:
         run: yarn run test
 
       - name: Run Playwright tests
-        run: yarn run test:playwright
+        run: yarn run test:e2e
 
       # - name: Deploy to Vercel
       #   if: ${{ success() }}
