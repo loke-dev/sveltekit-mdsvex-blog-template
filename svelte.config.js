@@ -12,7 +12,16 @@ const config = {
   extensions: [".svelte", ...mdsvexConfig.extensions],
   preprocess: [
     sveltePreprocess({
-      postcss: true
+      postcss: true,
+      typescript: {
+        tsconfigFile: "./tsconfig.json",
+        compilerOptions: {
+          // Use compatible options
+          verbatimModuleSyntax: false,
+          importsNotUsedAsValues: "preserve",
+          preserveValueImports: true
+        }
+      }
     }),
     mdsvex(mdsvexConfig),
   ],

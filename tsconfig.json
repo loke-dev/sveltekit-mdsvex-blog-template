@@ -9,7 +9,6 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "verbatimModuleSyntax": true,
     "types": ["vitest/globals", "@testing-library/jest-dom"]
   }
 }
