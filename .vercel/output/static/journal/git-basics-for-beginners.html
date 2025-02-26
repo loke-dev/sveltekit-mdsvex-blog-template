@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="../favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="all" />
+    <meta name="theme-color" content="#1a202c" />
+    <link rel="manifest" href="../manifest.json" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="description" content="Loke Carlsson - Web Developer" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+    
+		<link href="../_app/immutable/assets/0.4f35da9d.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/6.6f179f01.css" rel="stylesheet"><title>Git Basics for Beginners: A Practical Guide to Version Control | Loke.dev</title><!-- HEAD_svelte-curlbp_START --><meta name="og:title" content="Loke.dev"><meta name="og:description" content="Loke is a web developer based in Sweden. Read more about me or what services I can help you with."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@loke_dev"><!-- HEAD_svelte-curlbp_END --><!-- HEAD_svelte-ekx74r_START --><meta property="og:site_name" content="Loke.dev"><meta property="og:title" content="Git Basics for Beginners: A Practical Guide to Version Control"><meta property="og:description" content="Learn the essential Git commands and workflows that every new developer needs to know. This beginner-friendly guide covers installation, basic commands, branching, merging, and how to recover from common mistakes."><!-- HEAD_svelte-ekx74r_END -->
+    <script>
+      // Unregister service workers in development mode
+      if ('serviceWorker' in navigator && (window.location.hostname === 'localhost' || window.location.hostname.includes('127.0.0.1'))) {
+        navigator.serviceWorker.getRegistrations().then(registrations => {
+          for (let registration of registrations) {
+            registration.unregister().then(success => {
+              console.log('Service worker unregistered in development mode:', success);
+            });
+          }
+        });
+      }
+
+      // Register service worker for PWA support only in production
+      if ('serviceWorker' in navigator && window.location.hostname !== 'localhost' && !window.location.hostname.includes('127.0.0.1')) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then(registration => {
+              console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch(error => {
+              console.error('Service Worker registration failed:', error);
+            });
+        });
+      }
+    </script>
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">
+
+
+
+
+
+
+
+<a href="#main-content" class="skip-link svelte-1wxgfe9">Skip to main content</a>
+
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full bg-transparent"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center py-4 md:justify-start md:space-x-10">
+      <div class="flex justify-start lg:w-0 lg:flex-1"><a href="/" class="flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md" aria-label="Home" data-sveltekit-preload-data="hover" tabindex="0"><span class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">loke.dev</span></a></div>
+
+      
+      <div class="md:hidden"><button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-primary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary" aria-expanded="false" aria-label="Toggle menu"><span class="sr-only">Open menu</span>
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button></div>
+
+      
+      <nav class="hidden md:flex space-x-10" aria-label="Main navigation"><ul class="flex items-center space-x-1"><li class="nav-item  svelte-1wxgfe9"><a href="/about" class="nav-link svelte-1wxgfe9" data-sveltekit-preload-data="hover" tabindex="0">About
+            </a></li>
+          <li class="nav-item active svelte-1wxgfe9"><a href="/journal" class="nav-link svelte-1wxgfe9" aria-current="page" data-sveltekit-preload-data="hover" tabindex="0">Journal
+            </a></li>
+          <li class="nav-item  svelte-1wxgfe9"><a href="/contact" class="nav-link svelte-1wxgfe9" data-sveltekit-preload-data="hover" tabindex="0">Contact
+            </a></li>
+          </ul></nav></div></div>
+
+  
+  </header>
+
+
+<div class="h-20"></div>
+
+<main id="main-content" class="flex flex-1 flex-col p-8 w-full m-auto box-border mb-20 max-w-[900px]">
+
+<article class="prose prose-lg"><a href="/journal" class="flex gap-2 mb-8 items-center">❮ Back to Journal </a>
+  
+  <h1 id="git-basics-for-beginners-a-practical-guide-to-version-control">Git Basics for Beginners: A Practical Guide to Version Control</h1>
+<h2 id="introduction">Introduction</h2>
+<p>If you’re new to programming, you’ve probably heard that you should be using Git, but might not understand why or how to get started. Git is a version control system that helps you track changes to your code, collaborate with others, and maintain different versions of your project. In this guide, I’ll walk you through the essential Git concepts and commands with practical examples that you can start using right away.</p>
+<h2 id="why-use-git">Why Use Git?</h2>
+<p>Before diving into commands, let’s understand why Git is so important:</p>
+<ol><li><strong>Track changes</strong>: Git keeps a history of all changes to your code, so you can see what changed, when, and by whom.</li>
+<li><strong>Experiment safely</strong>: Create branches to try new ideas without affecting your main code.</li>
+<li><strong>Collaborate</strong>: Work with others on the same project without overwriting each other’s changes.</li>
+<li><strong>Backup</strong>: Your code is stored both locally and remotely (if using GitHub, GitLab, etc.).</li>
+<li><strong>Revert mistakes</strong>: Made a mistake? Git makes it easy to go back to a previous working state.</li></ol>
+<h2 id="getting-started-with-git">Getting Started with Git</h2>
+<h3 id="installing-git">Installing Git</h3>
+<p>First, you need to install Git on your computer:</p>
+<p><strong>For Windows</strong>:
+Download and install from <a href="https://git-scm.com/download/win" rel="nofollow">git-scm.com</a></p>
+<p><strong>For macOS</strong>:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token comment"># Using Homebrew</span>
+brew <span class="token function">install</span> <span class="token function">git</span>
+
+<span class="token comment"># Or using the installer from git-scm.com</span></code><!-- HTML_TAG_END --></pre>
+<p><strong>For Linux</strong>:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token comment"># Ubuntu/Debian</span>
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token function">git</span>
+
+<span class="token comment"># Fedora</span>
+<span class="token function">sudo</span> dnf <span class="token function">install</span> <span class="token function">git</span></code><!-- HTML_TAG_END --></pre>
+<h3 id="configuring-git">Configuring Git</h3>
+<p>After installation, set up your identity:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> user.name <span class="token string">"Your Name"</span>
+<span class="token function">git</span> config <span class="token parameter variable">--global</span> user.email <span class="token string">"your.email@example.com"</span></code><!-- HTML_TAG_END --></pre>
+<p>This information will be included with every commit you make.</p>
+<h2 id="creating-your-first-git-repository">Creating Your First Git Repository</h2>
+<p>A repository (or “repo”) is a project tracked by Git. Let’s create one:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token comment"># Create a new directory for your project</span>
+<span class="token function">mkdir</span> my-project
+<span class="token builtin class-name">cd</span> my-project
+
+<span class="token comment"># Initialize a new Git repository</span>
+<span class="token function">git</span> init</code><!-- HTML_TAG_END --></pre>
+<p>You should see a message like “Initialized empty Git repository in /path/to/my-project/.git/“.</p>
+<h2 id="the-basic-git-workflow">The Basic Git Workflow</h2>
+<p>The typical Git workflow involves these steps:</p>
+<ol><li>Make changes to your files</li>
+<li>Stage the changes you want to commit</li>
+<li>Commit the staged changes with a message</li>
+<li>Push the commits to a remote repository (optional)</li></ol>
+<p>Let’s go through each step:</p>
+<h3 id="1-making-changes">1. Making Changes</h3>
+<p>Create a file in your project:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"# My Project"</span> <span class="token operator">></span> README.md</code><!-- HTML_TAG_END --></pre>
+<h3 id="2-checking-status">2. Checking Status</h3>
+<p>To see what files have been changed:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">git</span> status</code><!-- HTML_TAG_END --></pre>
+<p>You should see <code>README.md</code> listed as an untracked file.</p>
+<h3 id="3-staging-changes">3. Staging Changes</h3>
+<p>Before committing, you need to stage the files you want to include:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">git</span> <span class="token function">add</span> README.md
+
+<span class="token comment"># To add all changed files</span>
+<span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span></code><!-- HTML_TAG_END --></pre>
+<h3 id="4-committing-changes">4. Committing Changes</h3>
+<p>Now commit the staged changes with a descriptive message:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"Add README file"</span></code><!-- HTML_TAG_END --></pre>
+<p>A commit is like a snapshot of your project at a specific point in time.</p>
+<h3 id="5-viewing-commit-history">5. Viewing Commit History</h3>
+<p>To see your commit history:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">git</span> log</code><!-- HTML_TAG_END --></pre>
+<p>This shows all commits with their messages, authors, and timestamps.</p>
+<h2 id="working-with-remote-repositories">Working with Remote Repositories</h2>
+<p>To collaborate with others or back up your code, you’ll want to use a remote repository like GitHub, GitLab, or Bitbucket.</p>
+<h3 id="creating-a-remote-repository">Creating a Remote Repository</h3>
+<ol><li>Sign up for a GitHub account at <a href="https://github.com" rel="nofollow">github.com</a></li>
+<li>Click the ”+” icon and select “New repository”</li>
+<li>Name your repository and click “Create repository”</li>
+<li>Follow the instructions to push your existing repository</li></ol>
+<h3 id="connecting-to-a-remote-repository">Connecting to a Remote Repository</h3>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> origin https://github.com/yourusername/your-repo-name.git</code><!-- HTML_TAG_END --></pre>
+<h3 id="pushing-to-a-remote-repository">Pushing to a Remote Repository</h3>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">git</span> push <span class="token parameter variable">-u</span> origin main</code><!-- HTML_TAG_END --></pre>
+<p>This pushes your commits to the remote repository named “origin” on the “main” branch. The <code>-u</code> flag sets up tracking, so in the future you can simply use <code>git push</code>.</p>
+<h3 id="cloning-an-existing-repository">Cloning an Existing Repository</h3>
+<p>To download a copy of an existing repository:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">git</span> clone https://github.com/username/repository.git</code><!-- HTML_TAG_END --></pre>
+<p>This creates a new directory with the repository name, downloads all the code, and sets up the remote connection automatically.</p>
+<h2 id="branching-and-merging">Branching and Merging</h2>
+<p>Branches allow you to work on different features or fixes in isolation.</p>
+<h3 id="creating-a-branch">Creating a Branch</h3>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token comment"># Create a new branch</span>
+<span class="token function">git</span> branch feature-login
+
+<span class="token comment"># Switch to the new branch</span>
+<span class="token function">git</span> checkout feature-login
+
+<span class="token comment"># Or do both in one command</span>
+<span class="token function">git</span> checkout <span class="token parameter variable">-b</span> feature-login</code><!-- HTML_TAG_END --></pre>
+<h3 id="working-with-branches">Working with Branches</h3>
+<p>Make changes, stage, and commit as usual:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token comment"># Make some changes</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"Login functionality"</span> <span class="token operator">></span> login.js
+
+<span class="token comment"># Stage and commit</span>
+<span class="token function">git</span> <span class="token function">add</span> login.js
+<span class="token function">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"Add login functionality"</span></code><!-- HTML_TAG_END --></pre>
+<h3 id="switching-between-branches">Switching Between Branches</h3>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token comment"># Switch back to the main branch</span>
+<span class="token function">git</span> checkout main
+
+<span class="token comment"># Switch to the feature branch again</span>
+<span class="token function">git</span> checkout feature-login</code><!-- HTML_TAG_END --></pre>
+<h3 id="merging-branches">Merging Branches</h3>
+<p>When your feature is complete, you can merge it back to the main branch:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token comment"># First, switch to the branch you want to merge into</span>
+<span class="token function">git</span> checkout main
+
+<span class="token comment"># Then merge the feature branch</span>
+<span class="token function">git</span> merge feature-login</code><!-- HTML_TAG_END --></pre>
+<h3 id="deleting-a-branch">Deleting a Branch</h3>
+<p>After merging, you can delete the feature branch:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">git</span> branch <span class="token parameter variable">-d</span> feature-login</code><!-- HTML_TAG_END --></pre>
+<h2 id="handling-merge-conflicts">Handling Merge Conflicts</h2>
+<p>Sometimes Git can’t automatically merge changes because the same lines were modified in different ways. This is called a merge conflict.</p>
+<h3 id="example-of-a-merge-conflict">Example of a Merge Conflict</h3>
+<p>Let’s say you and a teammate both modified the same line in README.md:</p>
+<pre class="language-undefined"><!-- HTML_TAG_START --><code class="language-undefined">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+# My Awesome Project
+=======
+# My Cool Project
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature-branch</code><!-- HTML_TAG_END --></pre>
+<p>The part between <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code> and <code>=======</code> is your current branch’s version. The part between <code>=======</code> and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature-branch</code> is the incoming branch’s version.</p>
+<h3 id="resolving-merge-conflicts">Resolving Merge Conflicts</h3>
+<ol><li>Open the file with conflicts in your editor</li>
+<li>Decide which version to keep, or create a combination</li>
+<li>Remove the conflict markers (<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>)</li>
+<li>Save the file</li>
+<li>Stage and commit the resolved file</li></ol>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token comment"># After resolving the conflict</span>
+<span class="token function">git</span> <span class="token function">add</span> README.md
+<span class="token function">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"Resolve merge conflict in README"</span></code><!-- HTML_TAG_END --></pre>
+<h2 id="common-git-problems-and-solutions">Common Git Problems and Solutions</h2>
+<h3 id="problem-1-accidentally-committed-to-the-wrong-branch">Problem 1: Accidentally Committed to the Wrong Branch</h3>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token comment"># Undo the last commit but keep the changes</span>
+<span class="token function">git</span> reset HEAD~1
+
+<span class="token comment"># Switch to the correct branch</span>
+<span class="token function">git</span> checkout correct-branch
+
+<span class="token comment"># Stage and commit the changes</span>
+<span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+<span class="token function">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"Your commit message"</span></code><!-- HTML_TAG_END --></pre>
+<h3 id="problem-2-need-to-undo-a-commit">Problem 2: Need to Undo a Commit</h3>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token comment"># Undo the last commit but keep the changes staged</span>
+<span class="token function">git</span> reset <span class="token parameter variable">--soft</span> HEAD~1
+
+<span class="token comment"># Undo the last commit and unstage the changes</span>
+<span class="token function">git</span> reset HEAD~1
+
+<span class="token comment"># Undo the last commit and discard the changes (be careful!)</span>
+<span class="token function">git</span> reset <span class="token parameter variable">--hard</span> HEAD~1</code><!-- HTML_TAG_END --></pre>
+<h3 id="problem-3-want-to-temporarily-save-changes-without-committing">Problem 3: Want to Temporarily Save Changes Without Committing</h3>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token comment"># Save changes to the stash</span>
+<span class="token function">git</span> stash
+
+<span class="token comment"># Do something else, like switch branches</span>
+<span class="token function">git</span> checkout another-branch
+
+<span class="token comment"># Apply the stashed changes later</span>
+<span class="token function">git</span> stash apply</code><!-- HTML_TAG_END --></pre>
+<h3 id="problem-4-accidentally-added-a-file-you-dont-want-to-commit">Problem 4: Accidentally Added a File You Don’t Want to Commit</h3>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token comment"># Unstage a specific file</span>
+<span class="token function">git</span> reset HEAD filename
+
+<span class="token comment"># Unstage all files</span>
+<span class="token function">git</span> reset HEAD</code><!-- HTML_TAG_END --></pre>
+<h3 id="problem-5-need-to-change-the-last-commit-message">Problem 5: Need to Change the Last Commit Message</h3>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">git</span> commit <span class="token parameter variable">--amend</span> <span class="token parameter variable">-m</span> <span class="token string">"New commit message"</span></code><!-- HTML_TAG_END --></pre>
+<h2 id="best-practices-for-git">Best Practices for Git</h2>
+<ol><li><strong>Commit often</strong>: Make small, focused commits rather than large ones</li>
+<li><strong>Write clear commit messages</strong>: Describe what and why, not how</li>
+<li><strong>Create a .gitignore file</strong>: Exclude files like build artifacts and dependencies</li>
+<li><strong>Use branches for features/fixes</strong>: Keep your main branch stable</li>
+<li><strong>Pull before pushing</strong>: Always get the latest changes before pushing yours</li>
+<li><strong>Review changes before committing</strong>: Use <code>git diff</code> to see what you’re about to commit</li></ol>
+<h2 id="creating-a-gitignore-file">Creating a .gitignore File</h2>
+<p>A <code>.gitignore</code> file tells Git which files to ignore:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token comment"># Create a .gitignore file</span>
+<span class="token function">touch</span> .gitignore</code><!-- HTML_TAG_END --></pre>
+<p>Add common patterns to ignore:</p>
+<pre class="language-undefined"><!-- HTML_TAG_START --><code class="language-undefined"># Node.js
+node_modules/
+npm-debug.log
+
+# Build directories
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db</code><!-- HTML_TAG_END --></pre>
+<h2 id="git-workflows-for-beginners">Git Workflows for Beginners</h2>
+<h3 id="solo-developer-workflow">Solo Developer Workflow</h3>
+<ol><li>Create a repository</li>
+<li>Make changes and commit regularly</li>
+<li>Push to a remote repository for backup</li>
+<li>Use branches for experimental features</li></ol>
+<h3 id="team-workflow-github-flow">Team Workflow (GitHub Flow)</h3>
+<ol><li>Create a branch for a feature/fix</li>
+<li>Make changes and commit</li>
+<li>Push the branch to GitHub</li>
+<li>Create a Pull Request (PR)</li>
+<li>Get code review and make changes if needed</li>
+<li>Merge the PR when approved</li></ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>Git might seem complex at first, but starting with these basic commands will help you build a solid foundation. As you get more comfortable, you can explore more advanced features.</p>
+<p>Remember these key points:</p>
+<ul><li><code>git init</code> creates a new repository</li>
+<li><code>git add</code> stages changes</li>
+<li><code>git commit</code> saves staged changes</li>
+<li><code>git push</code> uploads commits to a remote repository</li>
+<li><code>git pull</code> downloads changes from a remote repository</li>
+<li>Branches let you work on features in isolation</li>
+<li>Commit often with clear messages</li></ul>
+<p>With these Git basics, you’re well on your way to better code management and collaboration.</p>
+<h2 id="further-resources">Further Resources</h2>
+<ul><li><a href="https://git-scm.com/doc" rel="nofollow">Git Documentation</a></li>
+<li><a href="https://guides.github.com/" rel="nofollow">GitHub Guides</a></li>
+<li><a href="https://learngitbranching.js.org/" rel="nofollow">Learn Git Branching</a> - An interactive tutorial</li>
+<li><a href="https://ohshitgit.com/" rel="nofollow">Oh Shit, Git!?!</a> - Common Git mistakes and how to fix them</li></ul></article></main>
+
+<footer class="relative mt-20 pt-16 pb-10 bg-background">
+  <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-primary to-purple-600"></div>
+
+  <div class="container mx-auto px-6"><div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-10"><div><h2 class="text-xl font-bold mb-4 text-white">Loke.dev</h2>
+        <p class="text-gray-300 mb-4">Web developer based in Sweden. Specializing in fullstack development with expertise in React, Svelte, Node.js, and TypeScript.</p>
+        <p class="text-gray-400 text-sm">© 2025 Loke. All rights reserved.</p></div>
+
+      <div><h2 class="text-xl font-bold mb-4 text-white">Navigation</h2>
+        <ul class="space-y-2"><li><a href="/" class="footer-link text-gray-300" tabindex="0" data-sveltekit-preload-data="hover">Home</a></li>
+          <li><a href="/about" class="footer-link text-gray-300" tabindex="0" data-sveltekit-preload-data="hover">About</a></li>
+          <li><a href="/journal" class="footer-link text-gray-300" tabindex="0" data-sveltekit-preload-data="hover">Journal</a></li>
+          <li><a href="/contact" class="footer-link text-gray-300" tabindex="0" data-sveltekit-preload-data="hover">Contact</a></li></ul></div>
+
+      <div><h2 class="text-xl font-bold mb-4 text-white">Connect</h2>
+        <ul class="space-y-2"><li><a href="https://github.com/loke-dev" class="footer-link text-gray-300 flex items-center" rel="noopener noreferrer" aria-label="GitHub profile" tabindex="0" target="_blank"><svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
+              GitHub
+            </a></li>
+          <li><a href="https://twitter.com/loke_dev" class="footer-link text-gray-300 flex items-center" rel="noopener noreferrer" aria-label="Twitter profile" tabindex="0" target="_blank"><svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
+              Twitter
+            </a></li>
+          <li><a href="mailto:hello@loke.dev" class="footer-link text-gray-300 flex items-center" aria-label="Email me" tabindex="0"><svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              Email
+            </a></li></ul></div></div>
+
+    <div class="text-center text-sm text-gray-400 mt-8"><p>Built with <a href="https://kit.svelte.dev" class="footer-link" rel="noopener noreferrer" tabindex="0" target="_blank">SvelteKit</a> and <a href="https://tailwindcss.com" class="footer-link" rel="noopener noreferrer" tabindex="0" target="_blank">Tailwind CSS</a></p></div></div></footer>
+
+</div>
+  </body>
+</html>

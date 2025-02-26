@@ -1,0 +1,381 @@
+{
+	"version": 3,
+	"routes": [
+		{
+			"src": "/about",
+			"dest": "/about/"
+		},
+		{
+			"src": "/about/",
+			"status": 308,
+			"headers": {
+				"Location": "/about"
+			}
+		},
+		{
+			"src": "/contact",
+			"dest": "/contact/"
+		},
+		{
+			"src": "/contact/",
+			"status": 308,
+			"headers": {
+				"Location": "/contact"
+			}
+		},
+		{
+			"src": "/journal",
+			"dest": "/journal/"
+		},
+		{
+			"src": "/journal/",
+			"status": 308,
+			"headers": {
+				"Location": "/journal"
+			}
+		},
+		{
+			"src": "/journal/understanding-web-accessibility-for-beginners",
+			"dest": "/journal/understanding-web-accessibility-for-beginners/"
+		},
+		{
+			"src": "/journal/understanding-web-accessibility-for-beginners/",
+			"status": 308,
+			"headers": {
+				"Location": "/journal/understanding-web-accessibility-for-beginners"
+			}
+		},
+		{
+			"src": "/journal/mastering-command-line-basics",
+			"dest": "/journal/mastering-command-line-basics/"
+		},
+		{
+			"src": "/journal/mastering-command-line-basics/",
+			"status": 308,
+			"headers": {
+				"Location": "/journal/mastering-command-line-basics"
+			}
+		},
+		{
+			"src": "/journal/understanding-api-requests-for-beginners",
+			"dest": "/journal/understanding-api-requests-for-beginners/"
+		},
+		{
+			"src": "/journal/understanding-api-requests-for-beginners/",
+			"status": 308,
+			"headers": {
+				"Location": "/journal/understanding-api-requests-for-beginners"
+			}
+		},
+		{
+			"src": "/journal/javascript-array-methods-every-beginner-should-know",
+			"dest": "/journal/javascript-array-methods-every-beginner-should-know/"
+		},
+		{
+			"src": "/journal/javascript-array-methods-every-beginner-should-know/",
+			"status": 308,
+			"headers": {
+				"Location": "/journal/javascript-array-methods-every-beginner-should-know"
+			}
+		},
+		{
+			"src": "/journal/responsive-web-design-fundamentals",
+			"dest": "/journal/responsive-web-design-fundamentals/"
+		},
+		{
+			"src": "/journal/responsive-web-design-fundamentals/",
+			"status": 308,
+			"headers": {
+				"Location": "/journal/responsive-web-design-fundamentals"
+			}
+		},
+		{
+			"src": "/journal/react-hooks-explained-for-beginners",
+			"dest": "/journal/react-hooks-explained-for-beginners/"
+		},
+		{
+			"src": "/journal/react-hooks-explained-for-beginners/",
+			"status": 308,
+			"headers": {
+				"Location": "/journal/react-hooks-explained-for-beginners"
+			}
+		},
+		{
+			"src": "/journal/git-basics-for-beginners",
+			"dest": "/journal/git-basics-for-beginners/"
+		},
+		{
+			"src": "/journal/git-basics-for-beginners/",
+			"status": 308,
+			"headers": {
+				"Location": "/journal/git-basics-for-beginners"
+			}
+		},
+		{
+			"src": "/journal/debugging-javascript-like-a-pro",
+			"dest": "/journal/debugging-javascript-like-a-pro/"
+		},
+		{
+			"src": "/journal/debugging-javascript-like-a-pro/",
+			"status": 308,
+			"headers": {
+				"Location": "/journal/debugging-javascript-like-a-pro"
+			}
+		},
+		{
+			"src": "/journal/css-flexbox-layout-simplified",
+			"dest": "/journal/css-flexbox-layout-simplified/"
+		},
+		{
+			"src": "/journal/css-flexbox-layout-simplified/",
+			"status": 308,
+			"headers": {
+				"Location": "/journal/css-flexbox-layout-simplified"
+			}
+		},
+		{
+			"src": "/journal/understanding-javascript-promises-for-beginners",
+			"dest": "/journal/understanding-javascript-promises-for-beginners/"
+		},
+		{
+			"src": "/journal/understanding-javascript-promises-for-beginners/",
+			"status": 308,
+			"headers": {
+				"Location": "/journal/understanding-javascript-promises-for-beginners"
+			}
+		},
+		{
+			"src": "/journal/typescript-tips-for-better-code",
+			"dest": "/journal/typescript-tips-for-better-code/"
+		},
+		{
+			"src": "/journal/typescript-tips-for-better-code/",
+			"status": 308,
+			"headers": {
+				"Location": "/journal/typescript-tips-for-better-code"
+			}
+		},
+		{
+			"src": "/journal/modern-css-techniques-2023",
+			"dest": "/journal/modern-css-techniques-2023/"
+		},
+		{
+			"src": "/journal/modern-css-techniques-2023/",
+			"status": 308,
+			"headers": {
+				"Location": "/journal/modern-css-techniques-2023"
+			}
+		},
+		{
+			"src": "/journal/web-accessibility-practical-guide",
+			"dest": "/journal/web-accessibility-practical-guide/"
+		},
+		{
+			"src": "/journal/web-accessibility-practical-guide/",
+			"status": 308,
+			"headers": {
+				"Location": "/journal/web-accessibility-practical-guide"
+			}
+		},
+		{
+			"src": "/journal/ai-tools-for-modern-web-development",
+			"dest": "/journal/ai-tools-for-modern-web-development/"
+		},
+		{
+			"src": "/journal/ai-tools-for-modern-web-development/",
+			"status": 308,
+			"headers": {
+				"Location": "/journal/ai-tools-for-modern-web-development"
+			}
+		},
+		{
+			"src": "/journal/nextjs-vs-sveltekit-choosing-the-right-framework",
+			"dest": "/journal/nextjs-vs-sveltekit-choosing-the-right-framework/"
+		},
+		{
+			"src": "/journal/nextjs-vs-sveltekit-choosing-the-right-framework/",
+			"status": 308,
+			"headers": {
+				"Location": "/journal/nextjs-vs-sveltekit-choosing-the-right-framework"
+			}
+		},
+		{
+			"src": "/journal/progressive-web-apps-in-2023",
+			"dest": "/journal/progressive-web-apps-in-2023/"
+		},
+		{
+			"src": "/journal/progressive-web-apps-in-2023/",
+			"status": 308,
+			"headers": {
+				"Location": "/journal/progressive-web-apps-in-2023"
+			}
+		},
+		{
+			"src": "/journal/svelte-kit-for-beginners",
+			"dest": "/journal/svelte-kit-for-beginners/"
+		},
+		{
+			"src": "/journal/svelte-kit-for-beginners/",
+			"status": 308,
+			"headers": {
+				"Location": "/journal/svelte-kit-for-beginners"
+			}
+		},
+		{
+			"src": "/journal/the-power-of-chat-gpt-for-web-developers",
+			"dest": "/journal/the-power-of-chat-gpt-for-web-developers/"
+		},
+		{
+			"src": "/journal/the-power-of-chat-gpt-for-web-developers/",
+			"status": 308,
+			"headers": {
+				"Location": "/journal/the-power-of-chat-gpt-for-web-developers"
+			}
+		},
+		{
+			"src": "/journal/tips-and-tricks-to-leverage-chat-gpt-as-a-web-developer",
+			"dest": "/journal/tips-and-tricks-to-leverage-chat-gpt-as-a-web-developer/"
+		},
+		{
+			"src": "/journal/tips-and-tricks-to-leverage-chat-gpt-as-a-web-developer/",
+			"status": 308,
+			"headers": {
+				"Location": "/journal/tips-and-tricks-to-leverage-chat-gpt-as-a-web-developer"
+			}
+		},
+		{
+			"src": "/journal/gridsome-netlify-forms",
+			"dest": "/journal/gridsome-netlify-forms/"
+		},
+		{
+			"src": "/journal/gridsome-netlify-forms/",
+			"status": 308,
+			"headers": {
+				"Location": "/journal/gridsome-netlify-forms"
+			}
+		},
+		{
+			"src": "/journal/gridsome-disqus",
+			"dest": "/journal/gridsome-disqus/"
+		},
+		{
+			"src": "/journal/gridsome-disqus/",
+			"status": 308,
+			"headers": {
+				"Location": "/journal/gridsome-disqus"
+			}
+		},
+		{
+			"src": "/journal/jamstack",
+			"dest": "/journal/jamstack/"
+		},
+		{
+			"src": "/journal/jamstack/",
+			"status": 308,
+			"headers": {
+				"Location": "/journal/jamstack"
+			}
+		},
+		{
+			"src": "/_app/immutable/.+",
+			"headers": {
+				"cache-control": "public, immutable, max-age=31536000"
+			}
+		},
+		{
+			"handle": "filesystem"
+		},
+		{
+			"src": "^/projects/?(?:/__data.json)?$",
+			"dest": "/fn-0"
+		},
+		{
+			"src": "^/test/?(?:/__data.json)?$",
+			"dest": "/fn-1"
+		},
+		{
+			"src": "/.*",
+			"dest": "/fn"
+		}
+	],
+	"overrides": {
+		"index.html": {
+			"path": ""
+		},
+		"about.html": {
+			"path": "about"
+		},
+		"contact.html": {
+			"path": "contact"
+		},
+		"journal.html": {
+			"path": "journal"
+		},
+		"journal/understanding-web-accessibility-for-beginners.html": {
+			"path": "journal/understanding-web-accessibility-for-beginners"
+		},
+		"journal/mastering-command-line-basics.html": {
+			"path": "journal/mastering-command-line-basics"
+		},
+		"journal/understanding-api-requests-for-beginners.html": {
+			"path": "journal/understanding-api-requests-for-beginners"
+		},
+		"journal/javascript-array-methods-every-beginner-should-know.html": {
+			"path": "journal/javascript-array-methods-every-beginner-should-know"
+		},
+		"journal/responsive-web-design-fundamentals.html": {
+			"path": "journal/responsive-web-design-fundamentals"
+		},
+		"journal/react-hooks-explained-for-beginners.html": {
+			"path": "journal/react-hooks-explained-for-beginners"
+		},
+		"journal/git-basics-for-beginners.html": {
+			"path": "journal/git-basics-for-beginners"
+		},
+		"journal/debugging-javascript-like-a-pro.html": {
+			"path": "journal/debugging-javascript-like-a-pro"
+		},
+		"journal/css-flexbox-layout-simplified.html": {
+			"path": "journal/css-flexbox-layout-simplified"
+		},
+		"journal/understanding-javascript-promises-for-beginners.html": {
+			"path": "journal/understanding-javascript-promises-for-beginners"
+		},
+		"journal/typescript-tips-for-better-code.html": {
+			"path": "journal/typescript-tips-for-better-code"
+		},
+		"journal/modern-css-techniques-2023.html": {
+			"path": "journal/modern-css-techniques-2023"
+		},
+		"journal/web-accessibility-practical-guide.html": {
+			"path": "journal/web-accessibility-practical-guide"
+		},
+		"journal/ai-tools-for-modern-web-development.html": {
+			"path": "journal/ai-tools-for-modern-web-development"
+		},
+		"journal/nextjs-vs-sveltekit-choosing-the-right-framework.html": {
+			"path": "journal/nextjs-vs-sveltekit-choosing-the-right-framework"
+		},
+		"journal/progressive-web-apps-in-2023.html": {
+			"path": "journal/progressive-web-apps-in-2023"
+		},
+		"journal/svelte-kit-for-beginners.html": {
+			"path": "journal/svelte-kit-for-beginners"
+		},
+		"journal/the-power-of-chat-gpt-for-web-developers.html": {
+			"path": "journal/the-power-of-chat-gpt-for-web-developers"
+		},
+		"journal/tips-and-tricks-to-leverage-chat-gpt-as-a-web-developer.html": {
+			"path": "journal/tips-and-tricks-to-leverage-chat-gpt-as-a-web-developer"
+		},
+		"journal/gridsome-netlify-forms.html": {
+			"path": "journal/gridsome-netlify-forms"
+		},
+		"journal/gridsome-disqus.html": {
+			"path": "journal/gridsome-disqus"
+		},
+		"journal/jamstack.html": {
+			"path": "journal/jamstack"
+		}
+	}
+}

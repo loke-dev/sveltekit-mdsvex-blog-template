@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="../favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="all" />
+    <meta name="theme-color" content="#1a202c" />
+    <link rel="manifest" href="../manifest.json" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="description" content="Loke Carlsson - Web Developer" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+    
+		<link href="../_app/immutable/assets/0.4f35da9d.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/6.6f179f01.css" rel="stylesheet"><title>Understanding Web Accessibility for Beginners: A Practical Guide | Loke.dev</title><!-- HEAD_svelte-curlbp_START --><meta name="og:title" content="Loke.dev"><meta name="og:description" content="Loke is a web developer based in Sweden. Read more about me or what services I can help you with."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@loke_dev"><!-- HEAD_svelte-curlbp_END --><!-- HEAD_svelte-ekx74r_START --><meta property="og:site_name" content="Loke.dev"><meta property="og:title" content="Understanding Web Accessibility for Beginners: A Practical Guide"><meta property="og:description" content="Learn the fundamentals of web accessibility and how to make your websites usable by everyone. This beginner-friendly guide covers WCAG guidelines, semantic HTML, keyboard navigation, ARIA attributes, and practical tips to create more inclusive web experiences."><!-- HEAD_svelte-ekx74r_END -->
+    <script>
+      // Unregister service workers in development mode
+      if ('serviceWorker' in navigator && (window.location.hostname === 'localhost' || window.location.hostname.includes('127.0.0.1'))) {
+        navigator.serviceWorker.getRegistrations().then(registrations => {
+          for (let registration of registrations) {
+            registration.unregister().then(success => {
+              console.log('Service worker unregistered in development mode:', success);
+            });
+          }
+        });
+      }
+
+      // Register service worker for PWA support only in production
+      if ('serviceWorker' in navigator && window.location.hostname !== 'localhost' && !window.location.hostname.includes('127.0.0.1')) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then(registration => {
+              console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch(error => {
+              console.error('Service Worker registration failed:', error);
+            });
+        });
+      }
+    </script>
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">
+
+
+
+
+
+
+
+<a href="#main-content" class="skip-link svelte-1wxgfe9">Skip to main content</a>
+
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full bg-transparent"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center py-4 md:justify-start md:space-x-10">
+      <div class="flex justify-start lg:w-0 lg:flex-1"><a href="/" class="flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md" aria-label="Home" data-sveltekit-preload-data="hover" tabindex="0"><span class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">loke.dev</span></a></div>
+
+      
+      <div class="md:hidden"><button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-primary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary" aria-expanded="false" aria-label="Toggle menu"><span class="sr-only">Open menu</span>
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button></div>
+
+      
+      <nav class="hidden md:flex space-x-10" aria-label="Main navigation"><ul class="flex items-center space-x-1"><li class="nav-item  svelte-1wxgfe9"><a href="/about" class="nav-link svelte-1wxgfe9" data-sveltekit-preload-data="hover" tabindex="0">About
+            </a></li>
+          <li class="nav-item active svelte-1wxgfe9"><a href="/journal" class="nav-link svelte-1wxgfe9" aria-current="page" data-sveltekit-preload-data="hover" tabindex="0">Journal
+            </a></li>
+          <li class="nav-item  svelte-1wxgfe9"><a href="/contact" class="nav-link svelte-1wxgfe9" data-sveltekit-preload-data="hover" tabindex="0">Contact
+            </a></li>
+          </ul></nav></div></div>
+
+  
+  </header>
+
+
+<div class="h-20"></div>
+
+<main id="main-content" class="flex flex-1 flex-col p-8 w-full m-auto box-border mb-20 max-w-[900px]">
+
+<article class="prose prose-lg"><a href="/journal" class="flex gap-2 mb-8 items-center">❮ Back to Journal </a>
+  
+  <h1 id="understanding-web-accessibility-for-beginners-a-practical-guide">Understanding Web Accessibility for Beginners: A Practical Guide</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Web accessibility is about ensuring that websites and web applications can be used by everyone, including people with disabilities. It’s not just a nice-to-have feature—it’s a fundamental aspect of good web design and development. In many countries, it’s also a legal requirement.</p>
+<p>In this guide, I’ll walk you through the basics of web accessibility, why it matters, and practical steps you can take to make your websites more accessible, even if you’re just starting out.</p>
+<h2 id="why-accessibility-matters">Why Accessibility Matters</h2>
+<p>Before diving into the technical details, let’s understand why accessibility is important:</p>
+<ol><li><p><strong>Inclusivity</strong>: About 15% of the world’s population lives with some form of disability. Making your website accessible ensures everyone can use it.</p></li>
+<li><p><strong>Legal requirements</strong>: Many countries have laws requiring websites to be accessible, especially for government, education, and business sites.</p></li>
+<li><p><strong>Better user experience for everyone</strong>: Many accessibility features benefit all users, not just those with disabilities.</p></li>
+<li><p><strong>SEO benefits</strong>: Many accessibility practices also improve your site’s search engine optimization.</p></li>
+<li><p><strong>Larger audience</strong>: An accessible website can reach more people, potentially increasing your user base or customer reach.</p></li></ol>
+<h2 id="understanding-disabilities-and-web-usage">Understanding Disabilities and Web Usage</h2>
+<p>People with various disabilities use the web in different ways:</p>
+<ul><li><p><strong>Visual impairments</strong>: From low vision to complete blindness, these users might use screen readers, screen magnifiers, or high-contrast modes.</p></li>
+<li><p><strong>Hearing impairments</strong>: Deaf or hard-of-hearing users need alternatives to audio content, such as captions or transcripts.</p></li>
+<li><p><strong>Motor impairments</strong>: People with limited mobility might use keyboard-only navigation, voice commands, or specialized input devices.</p></li>
+<li><p><strong>Cognitive impairments</strong>: These include learning disabilities, attention deficit disorders, and memory issues, requiring clear layouts, simple language, and consistent navigation.</p></li></ul>
+<h2 id="web-content-accessibility-guidelines-wcag">Web Content Accessibility Guidelines (WCAG)</h2>
+<p>The Web Content Accessibility Guidelines (WCAG) are the internationally recognized standards for web accessibility. They’re organized around four principles, often remembered by the acronym POUR:</p>
+<ol><li><strong>Perceivable</strong>: Information must be presentable to users in ways they can perceive.</li>
+<li><strong>Operable</strong>: User interface components must be operable by all users.</li>
+<li><strong>Understandable</strong>: Information and operation must be understandable.</li>
+<li><strong>Robust</strong>: Content must be robust enough to work with current and future technologies.</li></ol>
+<p>WCAG has three levels of conformance: A (minimum), AA (standard), and AAA (enhanced). Most organizations aim for AA compliance.</p>
+<h2 id="getting-started-with-accessible-html">Getting Started with Accessible HTML</h2>
+<h3 id="semantic-html-the-foundation-of-accessibility">Semantic HTML: The Foundation of Accessibility</h3>
+<p>Using the right HTML elements for their intended purpose is the first step toward accessibility:</p>
+<pre class="language-html"><!-- HTML_TAG_START --><code class="language-html"><span class="token comment">&lt;!-- ❌ Non-semantic approach --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>header<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>nav<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>nav-item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Home<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>nav-item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>About<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>main-content<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>title<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Welcome to Our Website<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>paragraph<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>This is some content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+<span class="token comment">&lt;!-- ✅ Semantic approach --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>header</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nav</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Home<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/about<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>About<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nav</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>header</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Welcome to Our Website<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>This is some content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
+<p>Semantic HTML helps screen readers and other assistive technologies understand the structure and purpose of your content.</p>
+<h3 id="key-semantic-elements-to-use">Key Semantic Elements to Use</h3>
+<ul><li><code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code> for page structure</li>
+<li><code>&lt;h1&gt;</code> through <code>&lt;h6&gt;</code> for headings (in proper hierarchical order)</li>
+<li><code>&lt;p&gt;</code> for paragraphs</li>
+<li><code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;li&gt;</code> for lists</li>
+<li><code>&lt;button&gt;</code> for clickable buttons (not <code>&lt;div&gt;</code> styled to look like buttons)</li>
+<li><code>&lt;a&gt;</code> for links</li>
+<li><code>&lt;table&gt;</code> for tabular data (with <code>&lt;th&gt;</code>, <code>&lt;caption&gt;</code>, etc.)</li>
+<li><code>&lt;form&gt;</code>, <code>&lt;label&gt;</code>, <code>&lt;input&gt;</code> for forms</li></ul>
+<h3 id="document-structure">Document Structure</h3>
+<p>Ensure your HTML document has a proper structure:</p>
+<pre class="language-html"><!-- HTML_TAG_START --><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Descriptive Page Title<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>header</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!-- Site header content --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nav</span><span class="token punctuation">></span></span>
+      <span class="token comment">&lt;!-- Navigation --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nav</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>header</span><span class="token punctuation">></span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!-- Main content --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Main Page Heading<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!-- Rest of content --></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">></span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>footer</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!-- Footer content --></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>footer</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
+<p>Note the <code>lang</code> attribute on the <code>&lt;html&gt;</code> element, which helps screen readers use the correct pronunciation.</p>
+<h2 id="images-and-alternative-text">Images and Alternative Text</h2>
+<p>Images need alternative text to be accessible to screen reader users:</p>
+<pre class="language-html"><!-- HTML_TAG_START --><code class="language-html"><span class="token comment">&lt;!-- ❌ Inaccessible image --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>logo.png<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+
+<span class="token comment">&lt;!-- ✅ Accessible image with alt text --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>logo.png<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Company Logo: A blue circle with a white star<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+
+<span class="token comment">&lt;!-- For decorative images that don't convey information --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>decorative-line.png<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
+<p>Guidelines for writing good alt text:</p>
+<ul><li>Be concise but descriptive</li>
+<li>Convey the purpose and content of the image</li>
+<li>Don’t start with “Image of” or “Picture of” (screen readers already announce it’s an image)</li>
+<li>Use empty alt text (<code>alt=&quot;&quot;</code>) for decorative images</li></ul>
+<h2 id="forms-and-labels">Forms and Labels</h2>
+<p>Forms are often challenging for users with disabilities. Here’s how to make them more accessible:</p>
+<pre class="language-html"><!-- HTML_TAG_START --><code class="language-html"><span class="token comment">&lt;!-- ❌ Inaccessible form --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+  Email:
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+<span class="token comment">&lt;!-- ✅ Accessible form --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Email Address:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+<span class="token comment">&lt;!-- Even better with additional accessibility attributes --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Email Address:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span>
+    <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span>
+    <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span>
+    <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span>
+    <span class="token attr-name">aria-required</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span>
+    <span class="token attr-name">aria-describedby</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email-help<span class="token punctuation">"</span></span>
+  <span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email-help<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>We'll never share your email with anyone else.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
+<p>Key form accessibility features:</p>
+<ul><li>Associate labels with inputs using the <code>for</code> attribute</li>
+<li>Use appropriate input types (<code>type=&quot;email&quot;</code>, <code>type=&quot;tel&quot;</code>, etc.)</li>
+<li>Provide clear error messages</li>
+<li>Group related fields with <code>&lt;fieldset&gt;</code> and <code>&lt;legend&gt;</code></li>
+<li>Ensure form controls can be navigated and activated using keyboard only</li></ul>
+<h2 id="color-and-contrast">Color and Contrast</h2>
+<p>Color should never be the only way to convey information, and text should have sufficient contrast against its background:</p>
+<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css"><span class="token comment">/* ❌ Poor contrast */</span>
+<span class="token selector">.text</span> <span class="token punctuation">&#123;</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> #999<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> #777<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/* ✅ Good contrast */</span>
+<span class="token selector">.text</span> <span class="token punctuation">&#123;</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> #fff<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> #333<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<p>WCAG 2.1 AA requires:</p>
+<ul><li>Text contrast ratio of at least 4.5:1 for normal text</li>
+<li>Text contrast ratio of at least 3:1 for large text (18pt or 14pt bold)</li>
+<li>Non-text contrast ratio of at least 3:1 for user interface components and graphics</li></ul>
+<p>You can check contrast using tools like:</p>
+<ul><li><a href="https://webaim.org/resources/contrastchecker/" rel="nofollow">WebAIM Contrast Checker</a></li>
+<li><a href="https://contrast-ratio.com/" rel="nofollow">Contrast Ratio</a></li></ul>
+<h2 id="keyboard-navigation">Keyboard Navigation</h2>
+<p>Many users navigate websites using only a keyboard. Ensure all interactive elements are keyboard accessible:</p>
+<pre class="language-html"><!-- HTML_TAG_START --><code class="language-html"><span class="token comment">&lt;!-- ❌ Not keyboard accessible --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token special-attr"><span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value javascript language-javascript"><span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">"</span></span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Click Me<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+<span class="token comment">&lt;!-- ✅ Keyboard accessible --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token special-attr"><span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value javascript language-javascript"><span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>Click Me<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
+<p>Key keyboard accessibility features:</p>
+<ul><li>All interactive elements should be focusable</li>
+<li>Focus order should be logical and follow the visual layout</li>
+<li>Focus states should be visible (don’t remove the outline without providing an alternative)</li>
+<li>Avoid keyboard traps where focus can’t move away from an element</li></ul>
+<p>Test keyboard navigation by:</p>
+<ol><li>Pressing Tab to move through interactive elements</li>
+<li>Pressing Enter to activate links and buttons</li>
+<li>Using arrow keys for components like sliders and menus</li>
+<li>Ensuring you can access all functionality without a mouse</li></ol>
+<h2 id="aria-accessible-rich-internet-applications">ARIA: Accessible Rich Internet Applications</h2>
+<p>ARIA attributes provide additional information to assistive technologies when HTML alone isn’t enough:</p>
+<pre class="language-html"><!-- HTML_TAG_START --><code class="language-html"><span class="token comment">&lt;!-- Example: A custom dropdown menu --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>combobox<span class="token punctuation">"</span></span> <span class="token attr-name">aria-expanded</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span> <span class="token attr-name">aria-controls</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dropdown-list<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  Select an option
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dropdown-list<span class="token punctuation">"</span></span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>listbox<span class="token punctuation">"</span></span> <span class="token attr-name">aria-hidden</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>option<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Option 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>option<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Option 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
+<p>Important ARIA concepts:</p>
+<ul><li><strong>Roles</strong>: Define what an element is or does (<code>role=&quot;button&quot;</code>, <code>role=&quot;alert&quot;</code>)</li>
+<li><strong>Properties</strong>: Define properties of elements (<code>aria-required=&quot;true&quot;</code>, <code>aria-disabled=&quot;false&quot;</code>)</li>
+<li><strong>States</strong>: Define the current state of elements (<code>aria-expanded=&quot;true&quot;</code>, <code>aria-checked=&quot;false&quot;</code>)</li></ul>
+<p>The first rule of ARIA: <strong>Don’t use ARIA if you can use native HTML elements instead</strong>. Native elements have built-in accessibility features.</p>
+<h2 id="common-aria-patterns">Common ARIA Patterns</h2>
+<p>Here are some common ARIA patterns for interactive components:</p>
+<h3 id="toggle-buttons">Toggle Buttons</h3>
+<pre class="language-html"><!-- HTML_TAG_START --><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">aria-pressed</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value javascript language-javascript"><span class="token function">toggleButton</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>
+  Dark Mode
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword">function</span> <span class="token function">toggleButton</span><span class="token punctuation">(</span><span class="token parameter">button</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> isPressed <span class="token operator">=</span> button<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'aria-pressed'</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token string">'true'</span><span class="token punctuation">;</span>
+  button<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'aria-pressed'</span><span class="token punctuation">,</span> <span class="token operator">!</span>isPressed<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// Additional logic to apply the change</span>
+<span class="token punctuation">&#125;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
+<h3 id="accordion">Accordion</h3>
+<pre class="language-html"><!-- HTML_TAG_START --><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>accordion<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span>
+      <span class="token attr-name">aria-expanded</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span>
+      <span class="token attr-name">aria-controls</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>section1<span class="token punctuation">"</span></span>
+      <span class="token special-attr"><span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value javascript language-javascript"><span class="token function">toggleAccordion</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span></span><span class="token punctuation">"</span></span></span>
+    <span class="token punctuation">></span></span>
+      Section 1
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>section1<span class="token punctuation">"</span></span> <span class="token attr-name">hidden</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Content for section 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+  <span class="token comment">&lt;!-- More accordion items --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword">function</span> <span class="token function">toggleAccordion</span><span class="token punctuation">(</span><span class="token parameter">button</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> isExpanded <span class="token operator">=</span> button<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'aria-expanded'</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token string">'true'</span><span class="token punctuation">;</span>
+  button<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'aria-expanded'</span><span class="token punctuation">,</span> <span class="token operator">!</span>isExpanded<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> sectionId <span class="token operator">=</span> button<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'aria-controls'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> section <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span>sectionId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  section<span class="token punctuation">.</span>hidden <span class="token operator">=</span> isExpanded<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
+<h3 id="modal-dialog">Modal Dialog</h3>
+<pre class="language-html"><!-- HTML_TAG_START --><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token special-attr"><span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value javascript language-javascript"><span class="token function">openDialog</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>Open Dialog<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span>
+  <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dialog<span class="token punctuation">"</span></span>
+  <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dialog<span class="token punctuation">"</span></span>
+  <span class="token attr-name">aria-labelledby</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dialog-title<span class="token punctuation">"</span></span>
+  <span class="token attr-name">aria-describedby</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dialog-desc<span class="token punctuation">"</span></span>
+  <span class="token attr-name">aria-modal</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span>
+  <span class="token attr-name">hidden</span>
+<span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dialog-title<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Confirmation<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dialog-desc<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Are you sure you want to continue?<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token special-attr"><span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value javascript language-javascript"><span class="token function">closeDialog</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>Cancel<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token special-attr"><span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value javascript language-javascript"><span class="token function">confirm</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>Confirm<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
+<h2 id="testing-for-accessibility">Testing for Accessibility</h2>
+<h3 id="manual-testing">Manual Testing</h3>
+<p>Basic accessibility testing you can do yourself:</p>
+<ol><li><strong>Keyboard navigation</strong>: Navigate your site using only the keyboard</li>
+<li><strong>Screen reader testing</strong>: Use a screen reader like VoiceOver (Mac), NVDA (Windows), or TalkBack (Android)</li>
+<li><strong>Zoom testing</strong>: Zoom your browser to 200% and check if content is still usable</li>
+<li><strong>Color contrast</strong>: Use contrast checker tools</li>
+<li><strong>Disable styles</strong>: View your site with CSS disabled to check the underlying structure</li></ol>
+<h3 id="automated-testing-tools">Automated Testing Tools</h3>
+<p>While not comprehensive, these tools can catch many issues:</p>
+<ul><li><a href="https://wave.webaim.org/" rel="nofollow">WAVE Web Accessibility Evaluation Tool</a></li>
+<li><a href="https://www.deque.com/axe/" rel="nofollow">axe DevTools</a></li>
+<li><a href="https://developers.google.com/web/tools/lighthouse" rel="nofollow">Lighthouse</a> (built into Chrome DevTools)</li>
+<li><a href="https://squizlabs.github.io/HTML_CodeSniffer/" rel="nofollow">HTML_CodeSniffer</a></li></ul>
+<h2 id="practical-accessibility-checklist">Practical Accessibility Checklist</h2>
+<p>Here’s a practical checklist for making your website more accessible:</p>
+<h3 id="structure-and-content">Structure and Content</h3>
+<ul class="contains-task-list"><li class="task-list-item"><input type="checkbox" disabled> Use semantic HTML elements</li>
+<li class="task-list-item"><input type="checkbox" disabled> Ensure proper heading hierarchy (h1, h2, etc.)</li>
+<li class="task-list-item"><input type="checkbox" disabled> Include a page language (<code>&lt;html lang=&quot;en&quot;&gt;</code>)</li>
+<li class="task-list-item"><input type="checkbox" disabled> Provide descriptive page titles</li>
+<li class="task-list-item"><input type="checkbox" disabled> Ensure content is readable and understandable</li></ul>
+<h3 id="images-and-media">Images and Media</h3>
+<ul class="contains-task-list"><li class="task-list-item"><input type="checkbox" disabled> Add alt text to all informative images</li>
+<li class="task-list-item"><input type="checkbox" disabled> Provide captions and transcripts for videos</li>
+<li class="task-list-item"><input type="checkbox" disabled> Ensure media doesn’t autoplay</li>
+<li class="task-list-item"><input type="checkbox" disabled> Make sure media controls are keyboard accessible</li></ul>
+<h3 id="forms-and-interaction">Forms and Interaction</h3>
+<ul class="contains-task-list"><li class="task-list-item"><input type="checkbox" disabled> Label all form fields properly</li>
+<li class="task-list-item"><input type="checkbox" disabled> Group related form elements with fieldset and legend</li>
+<li class="task-list-item"><input type="checkbox" disabled> Provide clear error messages</li>
+<li class="task-list-item"><input type="checkbox" disabled> Ensure all interactive elements are keyboard accessible</li>
+<li class="task-list-item"><input type="checkbox" disabled> Make sure focus states are visible</li></ul>
+<h3 id="visual-design">Visual Design</h3>
+<ul class="contains-task-list"><li class="task-list-item"><input type="checkbox" disabled> Ensure sufficient color contrast</li>
+<li class="task-list-item"><input type="checkbox" disabled> Don’t rely on color alone to convey information</li>
+<li class="task-list-item"><input type="checkbox" disabled> Support text resizing up to 200% without loss of content</li>
+<li class="task-list-item"><input type="checkbox" disabled> Ensure the site is usable at different viewport sizes</li></ul>
+<h3 id="aria-and-javascript">ARIA and JavaScript</h3>
+<ul class="contains-task-list"><li class="task-list-item"><input type="checkbox" disabled> Use ARIA attributes when necessary</li>
+<li class="task-list-item"><input type="checkbox" disabled> Ensure dynamic content changes are announced to screen readers</li>
+<li class="task-list-item"><input type="checkbox" disabled> Make custom widgets keyboard accessible</li>
+<li class="task-list-item"><input type="checkbox" disabled> Test JavaScript-enhanced features with assistive technologies</li></ul>
+<h2 id="real-world-examples">Real-World Examples</h2>
+<p>Let’s look at some common components and how to make them accessible:</p>
+<h3 id="navigation-menu">Navigation Menu</h3>
+<pre class="language-html"><!-- HTML_TAG_START --><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nav</span> <span class="token attr-name">aria-label</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Main<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/<span class="token punctuation">"</span></span> <span class="token attr-name">aria-current</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>page<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Home<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/about<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>About<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/services<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Services<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/contact<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Contact<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nav</span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
+<p>The <code>aria-current=&quot;page&quot;</code> attribute indicates the current page in the navigation.</p>
+<h3 id="card-component">Card Component</h3>
+<pre class="language-html"><!-- HTML_TAG_START --><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>card<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>product.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Blue t-shirt with white logo<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/product/123<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Cotton T-Shirt<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Comfortable cotton t-shirt available in multiple colors.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>price<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>$19.99<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">aria-label</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Add Cotton T-Shirt to cart<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Add to Cart<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
+<h3 id="skip-link">Skip Link</h3>
+<p>A skip link allows keyboard users to bypass navigation and jump straight to the main content:</p>
+<pre class="language-html"><!-- HTML_TAG_START --><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#main-content<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>skip-link<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Skip to main content<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>header</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!-- Navigation and header content --></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>header</span><span class="token punctuation">></span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>main-content<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!-- Main content --></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
+<p>With CSS:</p>
+<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css"><span class="token selector">.skip-link</span> <span class="token punctuation">&#123;</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+  <span class="token property">top</span><span class="token punctuation">:</span> -40px<span class="token punctuation">;</span>
+  <span class="token property">left</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> 8px<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> #000<span class="token punctuation">;</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> #fff<span class="token punctuation">;</span>
+  <span class="token property">z-index</span><span class="token punctuation">:</span> 100<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token selector">.skip-link:focus</span> <span class="token punctuation">&#123;</span>
+  <span class="token property">top</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<h2 id="mobile-accessibility-considerations">Mobile Accessibility Considerations</h2>
+<p>Mobile devices present unique accessibility challenges:</p>
+<ol><li><strong>Touch targets</strong>: Make interactive elements at least 44×44 pixels</li>
+<li><strong>Gestures</strong>: Provide alternatives for complex gestures</li>
+<li><strong>Orientation</strong>: Support both portrait and landscape orientations</li>
+<li><strong>Zoom</strong>: Don’t disable pinch-to-zoom</li>
+<li><strong>Screen readers</strong>: Test with mobile screen readers (VoiceOver on iOS, TalkBack on Android)</li></ol>
+<h2 id="progressive-enhancement">Progressive Enhancement</h2>
+<p>Progressive enhancement is an approach that aligns well with accessibility:</p>
+<ol><li>Start with semantic HTML that works for everyone</li>
+<li>Add CSS for visual styling</li>
+<li>Add JavaScript for enhanced functionality</li>
+<li>Ensure the site remains functional if JavaScript fails</li></ol>
+<p>This approach ensures that your site remains usable even when certain technologies aren’t available or supported.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Web accessibility isn’t about checking boxes or meeting minimum requirements—it’s about creating inclusive experiences that work for everyone. By incorporating these practices into your development workflow from the beginning, you’ll build better websites that reach more people.</p>
+<p>Remember these key points:</p>
+<ul><li>Use semantic HTML as your foundation</li>
+<li>Ensure keyboard accessibility for all interactive elements</li>
+<li>Provide alternatives for visual and auditory content</li>
+<li>Test with assistive technologies</li>
+<li>Think about accessibility from the start of your projects</li></ul>
+<p>Making your websites accessible is not just the right thing to do—it’s also good for business, good for SEO, and often required by law. By following the guidelines in this article, you’ll be well on your way to creating more inclusive web experiences.</p>
+<h2 id="further-resources">Further Resources</h2>
+<ul><li><a href="https://webaim.org/" rel="nofollow">WebAIM</a> - Web Accessibility In Mind</li>
+<li><a href="https://www.a11yproject.com/" rel="nofollow">The A11Y Project</a> - A community-driven effort to make web accessibility easier</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility" rel="nofollow">MDN Web Docs: Accessibility</a></li>
+<li><a href="https://www.w3.org/WAI/" rel="nofollow">W3C Web Accessibility Initiative (WAI)</a></li>
+<li><a href="https://inclusive-components.design/" rel="nofollow">Inclusive Components</a> - A pattern library of accessible components</li></ul></article></main>
+
+<footer class="relative mt-20 pt-16 pb-10 bg-background">
+  <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-primary to-purple-600"></div>
+
+  <div class="container mx-auto px-6"><div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-10"><div><h2 class="text-xl font-bold mb-4 text-white">Loke.dev</h2>
+        <p class="text-gray-300 mb-4">Web developer based in Sweden. Specializing in fullstack development with expertise in React, Svelte, Node.js, and TypeScript.</p>
+        <p class="text-gray-400 text-sm">© 2025 Loke. All rights reserved.</p></div>
+
+      <div><h2 class="text-xl font-bold mb-4 text-white">Navigation</h2>
+        <ul class="space-y-2"><li><a href="/" class="footer-link text-gray-300" tabindex="0" data-sveltekit-preload-data="hover">Home</a></li>
+          <li><a href="/about" class="footer-link text-gray-300" tabindex="0" data-sveltekit-preload-data="hover">About</a></li>
+          <li><a href="/journal" class="footer-link text-gray-300" tabindex="0" data-sveltekit-preload-data="hover">Journal</a></li>
+          <li><a href="/contact" class="footer-link text-gray-300" tabindex="0" data-sveltekit-preload-data="hover">Contact</a></li></ul></div>
+
+      <div><h2 class="text-xl font-bold mb-4 text-white">Connect</h2>
+        <ul class="space-y-2"><li><a href="https://github.com/loke-dev" class="footer-link text-gray-300 flex items-center" rel="noopener noreferrer" aria-label="GitHub profile" tabindex="0" target="_blank"><svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
+              GitHub
+            </a></li>
+          <li><a href="https://twitter.com/loke_dev" class="footer-link text-gray-300 flex items-center" rel="noopener noreferrer" aria-label="Twitter profile" tabindex="0" target="_blank"><svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
+              Twitter
+            </a></li>
+          <li><a href="mailto:hello@loke.dev" class="footer-link text-gray-300 flex items-center" aria-label="Email me" tabindex="0"><svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              Email
+            </a></li></ul></div></div>
+
+    <div class="text-center text-sm text-gray-400 mt-8"><p>Built with <a href="https://kit.svelte.dev" class="footer-link" rel="noopener noreferrer" tabindex="0" target="_blank">SvelteKit</a> and <a href="https://tailwindcss.com" class="footer-link" rel="noopener noreferrer" tabindex="0" target="_blank">Tailwind CSS</a></p></div></div></footer>
+
+</div>
+  </body>
+</html>

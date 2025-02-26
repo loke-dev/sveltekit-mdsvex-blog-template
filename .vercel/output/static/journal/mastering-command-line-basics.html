@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="../favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="all" />
+    <meta name="theme-color" content="#1a202c" />
+    <link rel="manifest" href="../manifest.json" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="description" content="Loke Carlsson - Web Developer" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+    
+		<link href="../_app/immutable/assets/0.4f35da9d.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/6.6f179f01.css" rel="stylesheet"><title>Mastering Command Line Basics: A Beginner's Guide | Loke.dev</title><!-- HEAD_svelte-curlbp_START --><meta name="og:title" content="Loke.dev"><meta name="og:description" content="Loke is a web developer based in Sweden. Read more about me or what services I can help you with."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@loke_dev"><!-- HEAD_svelte-curlbp_END --><!-- HEAD_svelte-ekx74r_START --><meta property="og:site_name" content="Loke.dev"><meta property="og:title" content="Mastering Command Line Basics: A Beginner's Guide"><meta property="og:description" content="Learn the essential command line skills every developer should know. This beginner-friendly guide covers navigation, file operations, permissions, and practical tips to help you become comfortable and efficient with the terminal."><!-- HEAD_svelte-ekx74r_END -->
+    <script>
+      // Unregister service workers in development mode
+      if ('serviceWorker' in navigator && (window.location.hostname === 'localhost' || window.location.hostname.includes('127.0.0.1'))) {
+        navigator.serviceWorker.getRegistrations().then(registrations => {
+          for (let registration of registrations) {
+            registration.unregister().then(success => {
+              console.log('Service worker unregistered in development mode:', success);
+            });
+          }
+        });
+      }
+
+      // Register service worker for PWA support only in production
+      if ('serviceWorker' in navigator && window.location.hostname !== 'localhost' && !window.location.hostname.includes('127.0.0.1')) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then(registration => {
+              console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch(error => {
+              console.error('Service Worker registration failed:', error);
+            });
+        });
+      }
+    </script>
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">
+
+
+
+
+
+
+
+<a href="#main-content" class="skip-link svelte-1wxgfe9">Skip to main content</a>
+
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full bg-transparent"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center py-4 md:justify-start md:space-x-10">
+      <div class="flex justify-start lg:w-0 lg:flex-1"><a href="/" class="flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md" aria-label="Home" data-sveltekit-preload-data="hover" tabindex="0"><span class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">loke.dev</span></a></div>
+
+      
+      <div class="md:hidden"><button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-primary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary" aria-expanded="false" aria-label="Toggle menu"><span class="sr-only">Open menu</span>
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button></div>
+
+      
+      <nav class="hidden md:flex space-x-10" aria-label="Main navigation"><ul class="flex items-center space-x-1"><li class="nav-item  svelte-1wxgfe9"><a href="/about" class="nav-link svelte-1wxgfe9" data-sveltekit-preload-data="hover" tabindex="0">About
+            </a></li>
+          <li class="nav-item active svelte-1wxgfe9"><a href="/journal" class="nav-link svelte-1wxgfe9" aria-current="page" data-sveltekit-preload-data="hover" tabindex="0">Journal
+            </a></li>
+          <li class="nav-item  svelte-1wxgfe9"><a href="/contact" class="nav-link svelte-1wxgfe9" data-sveltekit-preload-data="hover" tabindex="0">Contact
+            </a></li>
+          </ul></nav></div></div>
+
+  
+  </header>
+
+
+<div class="h-20"></div>
+
+<main id="main-content" class="flex flex-1 flex-col p-8 w-full m-auto box-border mb-20 max-w-[900px]">
+
+<article class="prose prose-lg"><a href="/journal" class="flex gap-2 mb-8 items-center">❮ Back to Journal </a>
+  
+  <h1 id="mastering-command-line-basics-a-beginners-guide">Mastering Command Line Basics: A Beginner’s Guide</h1>
+<h2 id="introduction">Introduction</h2>
+<p>For many new developers, the command line can seem intimidating—a black screen with a blinking cursor, waiting for you to type mysterious commands. However, becoming comfortable with the command line is an essential skill that will make you more efficient and open up powerful capabilities that aren’t available through graphical interfaces.</p>
+<p>In this guide, I’ll walk you through the fundamental command line skills every developer should know, with practical examples that you can try right away.</p>
+<h2 id="why-learn-the-command-line">Why Learn the Command Line?</h2>
+<p>Before diving into commands, let’s understand why the command line is worth learning:</p>
+<ol><li><strong>Efficiency</strong>: Many tasks are faster to perform with commands than clicking through interfaces</li>
+<li><strong>Automation</strong>: You can script repetitive tasks to save time</li>
+<li><strong>Remote access</strong>: You can work on remote servers where graphical interfaces aren’t available</li>
+<li><strong>Developer tools</strong>: Many development tools are primarily or exclusively used via command line</li>
+<li><strong>Understanding</strong>: It gives you a deeper understanding of how your computer works</li></ol>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="accessing-the-terminal">Accessing the Terminal</h3>
+<p><strong>On macOS</strong>:</p>
+<ul><li>Open Spotlight (Cmd+Space) and type “Terminal”</li>
+<li>Or find it in Applications → Utilities → Terminal</li></ul>
+<p><strong>On Windows</strong>:</p>
+<ul><li>Windows has Command Prompt and PowerShell, but for a Unix-like experience, I recommend installing <a href="https://docs.microsoft.com/en-us/windows/wsl/install" rel="nofollow">Windows Subsystem for Linux (WSL)</a> or <a href="https://gitforwindows.org/" rel="nofollow">Git Bash</a></li></ul>
+<p><strong>On Linux</strong>:</p>
+<ul><li>Usually Ctrl+Alt+T or find Terminal in your applications menu</li></ul>
+<h3 id="understanding-the-prompt">Understanding the Prompt</h3>
+<p>When you open the terminal, you’ll see something like:</p>
+<pre class="language-undefined"><!-- HTML_TAG_START --><code class="language-undefined">username@hostname:~$</code><!-- HTML_TAG_END --></pre>
+<p>This tells you:</p>
+<ul><li>Your username</li>
+<li>The hostname (computer name)</li>
+<li>Your current directory (<code>~</code> is shorthand for your home directory)</li>
+<li><code>$</code> indicates you’re using a regular user account (not root)</li></ul>
+<p>The prompt is where you’ll type commands.</p>
+<h2 id="essential-navigation-commands">Essential Navigation Commands</h2>
+<h3 id="1-pwd-print-working-directory">1. pwd (Print Working Directory)</h3>
+<p>The <code>pwd</code> command shows your current location in the file system:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token builtin class-name">pwd</span></code><!-- HTML_TAG_END --></pre>
+<p>Output might look like:</p>
+<pre class="language-undefined"><!-- HTML_TAG_START --><code class="language-undefined">/home/username</code><!-- HTML_TAG_END --></pre>
+<h3 id="2-ls-list">2. ls (List)</h3>
+<p>The <code>ls</code> command lists files and directories in your current location:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">ls</span></code><!-- HTML_TAG_END --></pre>
+<p>Common options:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">ls</span> <span class="token parameter variable">-l</span>    <span class="token comment"># Long format with details</span>
+<span class="token function">ls</span> <span class="token parameter variable">-a</span>    <span class="token comment"># Show hidden files (those starting with .)</span>
+<span class="token function">ls</span> <span class="token parameter variable">-la</span>   <span class="token comment"># Combine options for long format and hidden files</span>
+<span class="token function">ls</span> <span class="token parameter variable">-lh</span>   <span class="token comment"># Human-readable file sizes</span></code><!-- HTML_TAG_END --></pre>
+<p>Example output of <code>ls -l</code>:</p>
+<pre class="language-undefined"><!-- HTML_TAG_START --><code class="language-undefined">drwxr-xr-x  2 username group  4096 Mar 15 14:30 Documents
+-rw-r--r--  1 username group  8980 Mar 10 09:15 example.txt</code><!-- HTML_TAG_END --></pre>
+<p>This shows:</p>
+<ul><li>File permissions</li>
+<li>Number of links</li>
+<li>Owner</li>
+<li>Group</li>
+<li>Size</li>
+<li>Last modified date</li>
+<li>Name</li></ul>
+<h3 id="3-cd-change-directory">3. cd (Change Directory)</h3>
+<p>The <code>cd</code> command lets you navigate between directories:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token builtin class-name">cd</span> Documents            <span class="token comment"># Go to Documents folder</span>
+<span class="token builtin class-name">cd</span> /home/username/Downloads  <span class="token comment"># Go to a specific path</span>
+<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span>                   <span class="token comment"># Go up one directory</span>
+<span class="token builtin class-name">cd</span> ~                    <span class="token comment"># Go to home directory</span>
+<span class="token builtin class-name">cd</span> -                    <span class="token comment"># Go to previous directory</span></code><!-- HTML_TAG_END --></pre>
+<h2 id="working-with-files-and-directories">Working with Files and Directories</h2>
+<h3 id="1-mkdir-make-directory">1. mkdir (Make Directory)</h3>
+<p>Create new directories:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">mkdir</span> Projects          <span class="token comment"># Create a directory</span>
+<span class="token function">mkdir</span> <span class="token parameter variable">-p</span> Projects/Web/CSS  <span class="token comment"># Create nested directories</span></code><!-- HTML_TAG_END --></pre>
+<h3 id="2-touch">2. touch</h3>
+<p>Create empty files or update timestamps of existing files:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">touch</span> file.txt          <span class="token comment"># Create an empty file</span>
+<span class="token function">touch</span> file1.txt file2.txt  <span class="token comment"># Create multiple files</span></code><!-- HTML_TAG_END --></pre>
+<h3 id="3-cp-copy">3. cp (Copy)</h3>
+<p>Copy files and directories:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">cp</span> file.txt backup.txt  <span class="token comment"># Copy a file</span>
+<span class="token function">cp</span> <span class="token parameter variable">-r</span> folder newfolder  <span class="token comment"># Copy a directory and its contents</span></code><!-- HTML_TAG_END --></pre>
+<h3 id="4-mv-moverename">4. mv (Move/Rename)</h3>
+<p>Move or rename files and directories:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">mv</span> file.txt Documents/  <span class="token comment"># Move a file to another directory</span>
+<span class="token function">mv</span> oldname.txt newname.txt  <span class="token comment"># Rename a file</span>
+<span class="token function">mv</span> folder newlocation/  <span class="token comment"># Move a directory</span></code><!-- HTML_TAG_END --></pre>
+<h3 id="5-rm-remove">5. rm (Remove)</h3>
+<p>Delete files and directories (be careful, there’s no recycle bin!):</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">rm</span> file.txt             <span class="token comment"># Delete a file</span>
+<span class="token function">rm</span> <span class="token parameter variable">-r</span> folder            <span class="token comment"># Delete a directory and its contents</span>
+<span class="token function">rm</span> <span class="token parameter variable">-i</span> file.txt          <span class="token comment"># Interactive mode (asks for confirmation)</span>
+<span class="token function">rm</span> <span class="token parameter variable">-f</span> file.txt          <span class="token comment"># Force deletion without confirmation</span></code><!-- HTML_TAG_END --></pre>
+<p>⚠️ <strong>Warning</strong>: Be extremely careful with <code>rm -rf</code> as it can delete everything without asking!</p>
+<h3 id="6-cat-concatenate">6. cat (Concatenate)</h3>
+<p>Display file contents:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">cat</span> file.txt            <span class="token comment"># Show file contents</span>
+<span class="token function">cat</span> file1.txt file2.txt <span class="token comment"># Show contents of multiple files</span></code><!-- HTML_TAG_END --></pre>
+<h3 id="7-less">7. less</h3>
+<p>View file contents with pagination (useful for large files):</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">less</span> file.txt</code><!-- HTML_TAG_END --></pre>
+<p>Navigation in less:</p>
+<ul><li>Space: Next page</li>
+<li>b: Previous page</li>
+<li>/pattern: Search for “pattern”</li>
+<li>n: Next search result</li>
+<li>q: Quit</li></ul>
+<h2 id="file-permissions">File Permissions</h2>
+<p>In Unix-like systems, files and directories have permissions that control who can read, write, or execute them.</p>
+<h3 id="understanding-permission-notation">Understanding Permission Notation</h3>
+<p>When you run <code>ls -l</code>, you’ll see something like:</p>
+<pre class="language-undefined"><!-- HTML_TAG_START --><code class="language-undefined">-rw-r--r--  1 username group  8980 Mar 10 09:15 example.txt</code><!-- HTML_TAG_END --></pre>
+<p>The first 10 characters represent:</p>
+<ul><li>1st character: File type (<code>-</code> for regular file, <code>d</code> for directory)</li>
+<li>2-4th characters: Owner permissions (read, write, execute)</li>
+<li>5-7th characters: Group permissions</li>
+<li>8-10th characters: Others permissions</li></ul>
+<p>Where:</p>
+<ul><li><code>r</code> = read permission</li>
+<li><code>w</code> = write permission</li>
+<li><code>x</code> = execute permission</li>
+<li><code>-</code> = no permission</li></ul>
+<h3 id="chmod-change-mode">chmod (Change Mode)</h3>
+<p>Change file permissions:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">chmod</span> u+x script.sh     <span class="token comment"># Add execute permission for the owner</span>
+<span class="token function">chmod</span> g+w file.txt      <span class="token comment"># Add write permission for the group</span>
+<span class="token function">chmod</span> o-r file.txt      <span class="token comment"># Remove read permission for others</span>
+<span class="token function">chmod</span> <span class="token number">755</span> script.sh     <span class="token comment"># Set specific permissions using octal notation</span></code><!-- HTML_TAG_END --></pre>
+<p>Octal notation:</p>
+<ul><li>4 = read</li>
+<li>2 = write</li>
+<li>1 = execute</li></ul>
+<p>Common permission combinations:</p>
+<ul><li>755 (rwxr-xr-x): Owner can read/write/execute, others can read/execute</li>
+<li>644 (rw-r–r–): Owner can read/write, others can read</li>
+<li>700 (rwx------): Owner can read/write/execute, no permissions for others</li></ul>
+<h2 id="redirecting-output">Redirecting Output</h2>
+<h3 id="redirecting-to-files">Redirecting to Files</h3>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token builtin class-name">command</span> <span class="token operator">></span> file.txt      <span class="token comment"># Redirect output to a file (overwrite)</span>
+<span class="token builtin class-name">command</span> <span class="token operator">>></span> file.txt     <span class="token comment"># Append output to a file</span>
+<span class="token builtin class-name">command</span> <span class="token operator"><span class="token file-descriptor important">2</span>></span> errors.txt   <span class="token comment"># Redirect error messages to a file</span>
+<span class="token builtin class-name">command</span> <span class="token operator">></span> output.txt <span class="token operator"><span class="token file-descriptor important">2</span>></span> errors.txt  <span class="token comment"># Redirect output and errors separately</span>
+<span class="token builtin class-name">command</span> <span class="token operator">></span> output.txt <span class="token operator"><span class="token file-descriptor important">2</span>></span><span class="token file-descriptor important">&amp;1</span>  <span class="token comment"># Redirect both output and errors to the same file</span></code><!-- HTML_TAG_END --></pre>
+<h3 id="piping">Piping</h3>
+<p>Pipes (<code>|</code>) connect the output of one command to the input of another:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">ls</span> <span class="token parameter variable">-l</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">".txt"</span>     <span class="token comment"># List files and filter for those containing ".txt"</span>
+<span class="token function">cat</span> file.txt <span class="token operator">|</span> <span class="token function">wc</span> <span class="token parameter variable">-l</span>    <span class="token comment"># Count lines in a file</span>
+<span class="token function">history</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"git commit"</span>  <span class="token comment"># Find git commit commands in your history</span></code><!-- HTML_TAG_END --></pre>
+<h2 id="useful-text-processing-commands">Useful Text Processing Commands</h2>
+<h3 id="1-grep-global-regular-expression-print">1. grep (Global Regular Expression Print)</h3>
+<p>Search for patterns in files:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">grep</span> <span class="token string">"pattern"</span> file.txt  <span class="token comment"># Search for "pattern" in file.txt</span>
+<span class="token function">grep</span> <span class="token parameter variable">-i</span> <span class="token string">"pattern"</span> file.txt  <span class="token comment"># Case-insensitive search</span>
+<span class="token function">grep</span> <span class="token parameter variable">-r</span> <span class="token string">"pattern"</span> directory/  <span class="token comment"># Recursive search in directory</span>
+<span class="token function">grep</span> <span class="token parameter variable">-n</span> <span class="token string">"pattern"</span> file.txt  <span class="token comment"># Show line numbers</span>
+<span class="token function">grep</span> <span class="token parameter variable">-v</span> <span class="token string">"pattern"</span> file.txt  <span class="token comment"># Show lines that don't match</span></code><!-- HTML_TAG_END --></pre>
+<h3 id="2-head-and-tail">2. head and tail</h3>
+<p>View the beginning or end of a file:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">head</span> file.txt           <span class="token comment"># Show first 10 lines</span>
+<span class="token function">head</span> <span class="token parameter variable">-n</span> <span class="token number">5</span> file.txt      <span class="token comment"># Show first 5 lines</span>
+<span class="token function">tail</span> file.txt           <span class="token comment"># Show last 10 lines</span>
+<span class="token function">tail</span> <span class="token parameter variable">-n</span> <span class="token number">20</span> file.txt     <span class="token comment"># Show last 20 lines</span>
+<span class="token function">tail</span> <span class="token parameter variable">-f</span> log.txt         <span class="token comment"># Follow the file (show updates in real-time)</span></code><!-- HTML_TAG_END --></pre>
+<h3 id="3-wc-word-count">3. wc (Word Count)</h3>
+<p>Count lines, words, and characters:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">wc</span> file.txt             <span class="token comment"># Show lines, words, and characters</span>
+<span class="token function">wc</span> <span class="token parameter variable">-l</span> file.txt          <span class="token comment"># Count lines only</span>
+<span class="token function">wc</span> <span class="token parameter variable">-w</span> file.txt          <span class="token comment"># Count words only</span>
+<span class="token function">wc</span> <span class="token parameter variable">-c</span> file.txt          <span class="token comment"># Count characters only</span></code><!-- HTML_TAG_END --></pre>
+<h3 id="4-sort">4. sort</h3>
+<p>Sort lines in a file:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">sort</span> file.txt           <span class="token comment"># Sort alphabetically</span>
+<span class="token function">sort</span> <span class="token parameter variable">-r</span> file.txt        <span class="token comment"># Sort in reverse</span>
+<span class="token function">sort</span> <span class="token parameter variable">-n</span> file.txt        <span class="token comment"># Sort numerically</span></code><!-- HTML_TAG_END --></pre>
+<h3 id="5-uniq">5. uniq</h3>
+<p>Filter out duplicate lines (works best after sorting):</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">sort</span> file.txt <span class="token operator">|</span> <span class="token function">uniq</span>    <span class="token comment"># Show unique lines</span>
+<span class="token function">sort</span> file.txt <span class="token operator">|</span> <span class="token function">uniq</span> <span class="token parameter variable">-c</span> <span class="token comment"># Count occurrences of each line</span></code><!-- HTML_TAG_END --></pre>
+<h2 id="finding-files">Finding Files</h2>
+<h3 id="1-find">1. find</h3>
+<p>Search for files and directories:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-name</span> <span class="token string">"*.txt"</span>    <span class="token comment"># Find all .txt files in current directory and subdirectories</span>
+<span class="token function">find</span> /home <span class="token parameter variable">-type</span> d <span class="token parameter variable">-name</span> <span class="token string">"Projects"</span>  <span class="token comment"># Find directories named "Projects"</span>
+<span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-type</span> f <span class="token parameter variable">-size</span> +1M  <span class="token comment"># Find files larger than 1 MB</span>
+<span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-type</span> f <span class="token parameter variable">-mtime</span> <span class="token parameter variable">-7</span>  <span class="token comment"># Find files modified in the last 7 days</span></code><!-- HTML_TAG_END --></pre>
+<h3 id="2-which">2. which</h3>
+<p>Find the location of a command:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">which</span> python            <span class="token comment"># Show the path to the Python executable</span>
+<span class="token function">which</span> <span class="token function">npm</span>               <span class="token comment"># Show the path to npm</span></code><!-- HTML_TAG_END --></pre>
+<h2 id="command-history-and-shortcuts">Command History and Shortcuts</h2>
+<h3 id="history">History</h3>
+<p>View and reuse previous commands:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token function">history</span>                 <span class="token comment"># Show command history</span>
+<span class="token operator">!</span><span class="token number">42</span>                     <span class="token comment"># Run command number 42 from history</span>
+<span class="token operator">!</span><span class="token operator">!</span>                      <span class="token comment"># Run the previous command</span>
+<span class="token operator">!</span>string                 <span class="token comment"># Run the most recent command starting with "string"</span></code><!-- HTML_TAG_END --></pre>
+<h3 id="keyboard-shortcuts">Keyboard Shortcuts</h3>
+<ul><li><code>Ctrl+C</code>: Interrupt (cancel) the current command</li>
+<li><code>Ctrl+D</code>: Exit the current shell</li>
+<li><code>Ctrl+L</code>: Clear the screen</li>
+<li><code>Ctrl+A</code>: Move cursor to beginning of line</li>
+<li><code>Ctrl+E</code>: Move cursor to end of line</li>
+<li><code>Ctrl+U</code>: Delete from cursor to beginning of line</li>
+<li><code>Ctrl+K</code>: Delete from cursor to end of line</li>
+<li><code>Ctrl+W</code>: Delete the word before the cursor</li>
+<li><code>Tab</code>: Auto-complete commands, file names, and directories</li>
+<li><code>Up/Down arrows</code>: Navigate through command history</li></ul>
+<h2 id="environment-variables">Environment Variables</h2>
+<p>Environment variables store information that can be used by the shell and programs.</p>
+<h3 id="viewing-variables">Viewing Variables</h3>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token environment constant">$HOME</span>              <span class="token comment"># Show the value of HOME variable</span>
+<span class="token builtin class-name">echo</span> <span class="token environment constant">$PATH</span>              <span class="token comment"># Show the PATH variable (where commands are searched)</span>
+<span class="token function">env</span>                     <span class="token comment"># List all environment variables</span></code><!-- HTML_TAG_END --></pre>
+<h3 id="setting-variables">Setting Variables</h3>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">NAME</span><span class="token operator">=</span><span class="token string">"John"</span>      <span class="token comment"># Set a variable for the current session</span>
+<span class="token builtin class-name">echo</span> <span class="token variable">$NAME</span>              <span class="token comment"># Use the variable</span></code><!-- HTML_TAG_END --></pre>
+<p>To make variables permanent, add them to your shell configuration file (e.g., <code>~/.bashrc</code> or <code>~/.zshrc</code>).</p>
+<h2 id="practical-examples">Practical Examples</h2>
+<p>Let’s put these commands together in some practical examples:</p>
+<h3 id="example-1-creating-a-project-structure">Example 1: Creating a Project Structure</h3>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token comment"># Create a new web project</span>
+<span class="token function">mkdir</span> <span class="token parameter variable">-p</span> my-project/<span class="token punctuation">&#123;</span>css,js,images<span class="token punctuation">&#125;</span>
+<span class="token function">touch</span> my-project/index.html
+<span class="token function">touch</span> my-project/css/style.css
+<span class="token function">touch</span> my-project/js/script.js
+<span class="token builtin class-name">echo</span> <span class="token string">"&lt;!DOCTYPE html>&lt;html>&lt;head>&lt;title>My Project&lt;/title>&lt;/head>&lt;body>&lt;h1>Hello World&lt;/h1>&lt;/body>&lt;/html>"</span> <span class="token operator">></span> my-project/index.html</code><!-- HTML_TAG_END --></pre>
+<h3 id="example-2-finding-and-replacing-text">Example 2: Finding and Replacing Text</h3>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token comment"># Find all JavaScript files containing "function" and replace "var" with "let"</span>
+<span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-name</span> <span class="token string">"*.js"</span> <span class="token parameter variable">-type</span> f <span class="token parameter variable">-exec</span> <span class="token function">grep</span> <span class="token parameter variable">-l</span> <span class="token string">"function"</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> <span class="token punctuation"></span><span class="token punctuation">;</span> <span class="token operator">|</span> <span class="token function">xargs</span> <span class="token function">sed</span> <span class="token parameter variable">-i</span> <span class="token string">'s/var /let /g'</span></code><!-- HTML_TAG_END --></pre>
+<h3 id="example-3-analyzing-log-files">Example 3: Analyzing Log Files</h3>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token comment"># Count occurrences of each HTTP status code in an Apache log</span>
+<span class="token function">grep</span> <span class="token parameter variable">-o</span> <span class="token string">"HTTP/1.1<span class="token entity" title="&quot;">"</span> [0-9]&#123;3&#125;"</span> access.log <span class="token operator">|</span> <span class="token function">sort</span> <span class="token operator">|</span> <span class="token function">uniq</span> <span class="token parameter variable">-c</span> <span class="token operator">|</span> <span class="token function">sort</span> <span class="token parameter variable">-nr</span></code><!-- HTML_TAG_END --></pre>
+<h3 id="example-4-monitoring-a-process">Example 4: Monitoring a Process</h3>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token comment"># Watch the CPU and memory usage of a specific process</span>
+<span class="token function">watch</span> <span class="token parameter variable">-n</span> <span class="token number">1</span> <span class="token string">"ps aux | grep [n]odejs"</span></code><!-- HTML_TAG_END --></pre>
+<h2 id="command-line-tips-for-beginners">Command Line Tips for Beginners</h2>
+<ol><li><strong>Start small</strong>: Learn a few commands at a time and practice them</li>
+<li><strong>Use tab completion</strong>: Press Tab to auto-complete commands and file names</li>
+<li><strong>Read the manual</strong>: Use <code>man command</code> to read the manual for any command</li>
+<li><strong>Create aliases</strong>: Define shortcuts for commands you use frequently</li>
+<li><strong>Use the history</strong>: Press Up arrow to cycle through previous commands</li>
+<li><strong>Be careful with destructive commands</strong>: Double-check before using <code>rm</code>, especially with wildcards</li>
+<li><strong>Make use of –help</strong>: Most commands support <code>--help</code> flag for quick reference</li></ol>
+<h2 id="creating-aliases">Creating Aliases</h2>
+<p>Aliases are shortcuts for commands you use frequently:</p>
+<pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash"><span class="token comment"># Add to your ~/.bashrc or ~/.zshrc</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">ll</span><span class="token operator">=</span><span class="token string">'ls -la'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">gs</span><span class="token operator">=</span><span class="token string">'git status'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">gp</span><span class="token operator">=</span><span class="token string">'git push'</span></code><!-- HTML_TAG_END --></pre>
+<p>After adding aliases, run <code>source ~/.bashrc</code> (or your shell’s config file) to apply them.</p>
+<h2 id="customizing-your-terminal">Customizing Your Terminal</h2>
+<p>You can customize your terminal to make it more useful and visually appealing:</p>
+<ol><li><strong>Install a better shell</strong>: Consider <a href="https://www.zsh.org/" rel="nofollow">Zsh</a> with <a href="https://ohmyz.sh/" rel="nofollow">Oh My Zsh</a></li>
+<li><strong>Use a color theme</strong>: Many terminals support custom color schemes</li>
+<li><strong>Configure your prompt</strong>: Customize what information appears in your prompt</li>
+<li><strong>Add useful information</strong>: Show git branch, current directory, etc.</li></ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>The command line is a powerful tool that becomes more valuable the more you use it. Don’t try to memorize every command at once—start with the basics and gradually expand your knowledge as you need new functionality.</p>
+<p>Remember these key points:</p>
+<ul><li>Navigation: <code>pwd</code>, <code>ls</code>, <code>cd</code></li>
+<li>File operations: <code>mkdir</code>, <code>touch</code>, <code>cp</code>, <code>mv</code>, <code>rm</code></li>
+<li>Viewing content: <code>cat</code>, <code>less</code>, <code>head</code>, <code>tail</code></li>
+<li>Finding things: <code>grep</code>, <code>find</code></li>
+<li>Redirecting output: <code>&gt;</code>, <code>&gt;&gt;</code>, <code>|</code></li></ul>
+<p>With these fundamentals, you’ll be well on your way to becoming proficient with the command line. As you grow more comfortable, you’ll discover that many tasks are faster and more powerful when performed in the terminal.</p>
+<h2 id="further-resources">Further Resources</h2>
+<ul><li><a href="https://linuxcommand.org/tlcl.php" rel="nofollow">The Linux Command Line</a> - A comprehensive guide</li>
+<li><a href="https://explainshell.com/" rel="nofollow">Explain Shell</a> - Explains command line arguments</li>
+<li><a href="https://www.git-tower.com/blog/command-line-cheat-sheet/" rel="nofollow">Command Line Cheat Sheet</a></li>
+<li><a href="https://linuxconfig.org/bash-scripting-tutorial-for-beginners" rel="nofollow">Bash Scripting Tutorial</a></li></ul></article></main>
+
+<footer class="relative mt-20 pt-16 pb-10 bg-background">
+  <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-primary to-purple-600"></div>
+
+  <div class="container mx-auto px-6"><div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-10"><div><h2 class="text-xl font-bold mb-4 text-white">Loke.dev</h2>
+        <p class="text-gray-300 mb-4">Web developer based in Sweden. Specializing in fullstack development with expertise in React, Svelte, Node.js, and TypeScript.</p>
+        <p class="text-gray-400 text-sm">© 2025 Loke. All rights reserved.</p></div>
+
+      <div><h2 class="text-xl font-bold mb-4 text-white">Navigation</h2>
+        <ul class="space-y-2"><li><a href="/" class="footer-link text-gray-300" tabindex="0" data-sveltekit-preload-data="hover">Home</a></li>
+          <li><a href="/about" class="footer-link text-gray-300" tabindex="0" data-sveltekit-preload-data="hover">About</a></li>
+          <li><a href="/journal" class="footer-link text-gray-300" tabindex="0" data-sveltekit-preload-data="hover">Journal</a></li>
+          <li><a href="/contact" class="footer-link text-gray-300" tabindex="0" data-sveltekit-preload-data="hover">Contact</a></li></ul></div>
+
+      <div><h2 class="text-xl font-bold mb-4 text-white">Connect</h2>
+        <ul class="space-y-2"><li><a href="https://github.com/loke-dev" class="footer-link text-gray-300 flex items-center" rel="noopener noreferrer" aria-label="GitHub profile" tabindex="0" target="_blank"><svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
+              GitHub
+            </a></li>
+          <li><a href="https://twitter.com/loke_dev" class="footer-link text-gray-300 flex items-center" rel="noopener noreferrer" aria-label="Twitter profile" tabindex="0" target="_blank"><svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
+              Twitter
+            </a></li>
+          <li><a href="mailto:hello@loke.dev" class="footer-link text-gray-300 flex items-center" aria-label="Email me" tabindex="0"><svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              Email
+            </a></li></ul></div></div>
+
+    <div class="text-center text-sm text-gray-400 mt-8"><p>Built with <a href="https://kit.svelte.dev" class="footer-link" rel="noopener noreferrer" tabindex="0" target="_blank">SvelteKit</a> and <a href="https://tailwindcss.com" class="footer-link" rel="noopener noreferrer" tabindex="0" target="_blank">Tailwind CSS</a></p></div></div></footer>
+
+</div>
+  </body>
+</html>

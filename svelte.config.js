@@ -1,17 +1,18 @@
 import adapter from "@sveltejs/adapter-vercel"
-import { vitePreprocess } from "@sveltejs/kit/vite"
-import preprocess from "svelte-preprocess"
-import { resolve } from "path"
+import { sveltePreprocess } from "svelte-preprocess"
 import { mdsvex } from "mdsvex"
 import mdsvexConfig from "./mdsvex.config.js"
+import { dirname, resolve } from "path"
+import { fileURLToPath } from "url"
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   extensions: [".svelte", ...mdsvexConfig.extensions],
   preprocess: [
-    vitePreprocess(),
-    preprocess({
-      postcss: true,
+    sveltePreprocess({
+      postcss: true
     }),
     mdsvex(mdsvexConfig),
   ],
@@ -20,26 +21,17 @@ const config = {
       // Specify Node.js version
       runtime: 'nodejs18.x',
 
-      // Specify edge runtime if needed
-      // edge: false,
-
       // Split your app into smaller chunks
       split: true
     }),
     alias: {
-      $components: resolve("./src/lib/components"),
-      $stores: resolve("./src/lib/stores"),
-      $styles: resolve("./src/lib/styles"),
-      $utils: resolve("./src/lib/utils"),
-      $src: resolve("./src"),
-    },
-  },
-  vitePlugin: {
-    inspector: {
-      holdMode: true,
-      toggleKeyCombo: "meta-shift",
+      $components: resolve(__dirname, "./src/lib/components"),
+      $stores: resolve(__dirname, "./src/lib/stores"),
+      $styles: resolve(__dirname, "./src/lib/styles"),
+      $utils: resolve(__dirname, "./src/lib/utils"),
+      $src: resolve(__dirname, "./src"),
     }
-  },
+  }
 }
 
 export default config

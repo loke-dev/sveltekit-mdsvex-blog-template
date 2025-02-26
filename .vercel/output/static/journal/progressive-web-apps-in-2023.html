@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="../favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="all" />
+    <meta name="theme-color" content="#1a202c" />
+    <link rel="manifest" href="../manifest.json" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="description" content="Loke Carlsson - Web Developer" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+    
+		<link href="../_app/immutable/assets/0.4f35da9d.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/6.6f179f01.css" rel="stylesheet"><title>Progressive Web Apps in 2023: Why They Matter More Than Ever | Loke.dev</title><!-- HEAD_svelte-curlbp_START --><meta name="og:title" content="Loke.dev"><meta name="og:description" content="Loke is a web developer based in Sweden. Read more about me or what services I can help you with."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@loke_dev"><!-- HEAD_svelte-curlbp_END --><!-- HEAD_svelte-ekx74r_START --><meta property="og:site_name" content="Loke.dev"><meta property="og:title" content="Progressive Web Apps in 2023: Why They Matter More Than Ever"><meta property="og:description" content="Discover how Progressive Web Apps (PWAs) are transforming the web development landscape in 2023. Learn about the key benefits, implementation strategies, and real-world examples that show why PWAs are becoming essential for modern web experiences."><!-- HEAD_svelte-ekx74r_END -->
+    <script>
+      // Unregister service workers in development mode
+      if ('serviceWorker' in navigator && (window.location.hostname === 'localhost' || window.location.hostname.includes('127.0.0.1'))) {
+        navigator.serviceWorker.getRegistrations().then(registrations => {
+          for (let registration of registrations) {
+            registration.unregister().then(success => {
+              console.log('Service worker unregistered in development mode:', success);
+            });
+          }
+        });
+      }
+
+      // Register service worker for PWA support only in production
+      if ('serviceWorker' in navigator && window.location.hostname !== 'localhost' && !window.location.hostname.includes('127.0.0.1')) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then(registration => {
+              console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch(error => {
+              console.error('Service Worker registration failed:', error);
+            });
+        });
+      }
+    </script>
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">
+
+
+
+
+
+
+
+<a href="#main-content" class="skip-link svelte-1wxgfe9">Skip to main content</a>
+
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full bg-transparent"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center py-4 md:justify-start md:space-x-10">
+      <div class="flex justify-start lg:w-0 lg:flex-1"><a href="/" class="flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md" aria-label="Home" data-sveltekit-preload-data="hover" tabindex="0"><span class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">loke.dev</span></a></div>
+
+      
+      <div class="md:hidden"><button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-primary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary" aria-expanded="false" aria-label="Toggle menu"><span class="sr-only">Open menu</span>
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button></div>
+
+      
+      <nav class="hidden md:flex space-x-10" aria-label="Main navigation"><ul class="flex items-center space-x-1"><li class="nav-item  svelte-1wxgfe9"><a href="/about" class="nav-link svelte-1wxgfe9" data-sveltekit-preload-data="hover" tabindex="0">About
+            </a></li>
+          <li class="nav-item active svelte-1wxgfe9"><a href="/journal" class="nav-link svelte-1wxgfe9" aria-current="page" data-sveltekit-preload-data="hover" tabindex="0">Journal
+            </a></li>
+          <li class="nav-item  svelte-1wxgfe9"><a href="/contact" class="nav-link svelte-1wxgfe9" data-sveltekit-preload-data="hover" tabindex="0">Contact
+            </a></li>
+          </ul></nav></div></div>
+
+  
+  </header>
+
+
+<div class="h-20"></div>
+
+<main id="main-content" class="flex flex-1 flex-col p-8 w-full m-auto box-border mb-20 max-w-[900px]">
+
+<article class="prose prose-lg"><a href="/journal" class="flex gap-2 mb-8 items-center">❮ Back to Journal </a>
+  
+  <h1 id="progressive-web-apps-in-2023-why-they-matter-more-than-ever">Progressive Web Apps in 2023: Why They Matter More Than Ever</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The web development world is always changing, and one technology that continues to gain momentum is Progressive Web Apps (PWAs). In 2023, PWAs have become more important than ever for businesses and developers who want to create fast, reliable, and engaging web experiences. In this article, we’ll explore what makes PWAs special, why they matter today, and how you can start implementing them in your projects.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol><li><a href="#1-what-are-progressive-web-apps">What Are Progressive Web Apps?</a></li>
+<li><a href="#2-the-key-benefits-of-pwas-in-2023">The Key Benefits of PWAs in 2023</a></li>
+<li><a href="#3-core-technologies-behind-pwas">Core Technologies Behind PWAs</a></li>
+<li><a href="#4-how-to-transform-your-website-into-a-pwa">How to Transform Your Website into a PWA</a></li>
+<li><a href="#5-pwa-success-stories">PWA Success Stories</a></li>
+<li><a href="#6-common-challenges-and-solutions">Common Challenges and Solutions</a></li>
+<li><a href="#7-pwas-vs-native-apps-in-2023">PWAs vs. Native Apps in 2023</a></li>
+<li><a href="#8-testing-and-optimizing-your-pwa">Testing and Optimizing Your PWA</a></li>
+<li><a href="#9-the-future-of-pwas">The Future of PWAs</a></li>
+<li><a href="#conclusion">Conclusion</a></li></ol>
+<h2 id="1-what-are-progressive-web-apps">1. What Are Progressive Web Apps?</h2>
+<p>Progressive Web Apps are web applications that use modern web capabilities to deliver app-like experiences to users. They combine the best of web and mobile apps, offering features like offline functionality, push notifications, and home screen installation without requiring users to visit an app store.</p>
+<p>The concept of PWAs was introduced by Google in 2015, but in 2023, they’ve evolved significantly with broader browser support and more powerful features. At their core, PWAs follow these principles:</p>
+<ul><li><strong>Progressive</strong>: Work for every user, regardless of browser choice</li>
+<li><strong>Responsive</strong>: Fit any form factor, from desktop to mobile</li>
+<li><strong>Connectivity independent</strong>: Function offline or with poor network conditions</li>
+<li><strong>App-like</strong>: Feel like an app with app-style interactions and navigation</li>
+<li><strong>Fresh</strong>: Always up-to-date thanks to service workers</li>
+<li><strong>Safe</strong>: Served via HTTPS to prevent snooping</li>
+<li><strong>Discoverable</strong>: Identifiable as “applications” by search engines</li>
+<li><strong>Re-engageable</strong>: Make re-engagement easy through push notifications</li>
+<li><strong>Installable</strong>: Allow users to add to their home screen without an app store</li>
+<li><strong>Linkable</strong>: Easily share via URL without complex installation</li></ul>
+<h2 id="2-the-key-benefits-of-pwas-in-2023">2. The Key Benefits of PWAs in 2023</h2>
+<p>In today’s competitive digital landscape, PWAs offer several advantages that make them particularly valuable:</p>
+<h3 id="improved-user-experience">Improved User Experience</h3>
+<p>PWAs load instantly and respond quickly to user interactions, regardless of network conditions. This speed and reliability lead to higher engagement rates and lower bounce rates.</p>
+<h3 id="cost-effective-development">Cost-Effective Development</h3>
+<p>Instead of building separate applications for web, iOS, and Android, companies can develop a single PWA that works across all platforms, significantly reducing development and maintenance costs.</p>
+<h3 id="better-performance">Better Performance</h3>
+<p>PWAs are lightweight compared to native apps, requiring less storage space and using fewer resources. This is especially important for users with limited data plans or older devices.</p>
+<h3 id="higher-conversion-rates">Higher Conversion Rates</h3>
+<p>Studies show that PWAs can increase conversion rates by up to 36%. The combination of speed, reliability, and engaging features creates a seamless user journey that encourages conversions.</p>
+<h3 id="enhanced-seo-benefits">Enhanced SEO Benefits</h3>
+<p>Unlike native apps, PWAs are discoverable by search engines. Their improved performance metrics (like faster loading times) also contribute to better search rankings.</p>
+<h2 id="3-core-technologies-behind-pwas">3. Core Technologies Behind PWAs</h2>
+<p>PWAs rely on several key technologies:</p>
+<h3 id="service-workers">Service Workers</h3>
+<p>Service workers are JavaScript files that run separately from the main browser thread, intercepting network requests and caching resources. They enable offline functionality and background syncing.</p>
+<pre class="language-javascript"><!-- HTML_TAG_START --><code class="language-javascript"><span class="token comment">// Example of a basic service worker registration</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">'serviceWorker'</span> <span class="token keyword">in</span> navigator<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'load'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    navigator<span class="token punctuation">.</span>serviceWorker<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'/service-worker.js'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">registration</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'ServiceWorker registration successful'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">error</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'ServiceWorker registration failed: '</span><span class="token punctuation">,</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<h3 id="web-app-manifest">Web App Manifest</h3>
+<p>The Web App Manifest is a JSON file that provides information about a web application, controlling how the app appears when installed on a device.</p>
+<pre class="language-json"><!-- HTML_TAG_START --><code class="language-json"><span class="token punctuation">&#123;</span>
+  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"My PWA App"</span><span class="token punctuation">,</span>
+  <span class="token property">"short_name"</span><span class="token operator">:</span> <span class="token string">"PWA"</span><span class="token punctuation">,</span>
+  <span class="token property">"start_url"</span><span class="token operator">:</span> <span class="token string">"/"</span><span class="token punctuation">,</span>
+  <span class="token property">"display"</span><span class="token operator">:</span> <span class="token string">"standalone"</span><span class="token punctuation">,</span>
+  <span class="token property">"background_color"</span><span class="token operator">:</span> <span class="token string">"#ffffff"</span><span class="token punctuation">,</span>
+  <span class="token property">"theme_color"</span><span class="token operator">:</span> <span class="token string">"#4285f4"</span><span class="token punctuation">,</span>
+  <span class="token property">"icons"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">&#123;</span>
+      <span class="token property">"src"</span><span class="token operator">:</span> <span class="token string">"/icon-192x192.png"</span><span class="token punctuation">,</span>
+      <span class="token property">"sizes"</span><span class="token operator">:</span> <span class="token string">"192x192"</span><span class="token punctuation">,</span>
+      <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"image/png"</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#123;</span>
+      <span class="token property">"src"</span><span class="token operator">:</span> <span class="token string">"/icon-512x512.png"</span><span class="token punctuation">,</span>
+      <span class="token property">"sizes"</span><span class="token operator">:</span> <span class="token string">"512x512"</span><span class="token punctuation">,</span>
+      <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"image/png"</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<h3 id="https">HTTPS</h3>
+<p>PWAs must be served over HTTPS to ensure security. This protects user data and prevents content tampering.</p>
+<h3 id="application-shell-architecture">Application Shell Architecture</h3>
+<p>The app shell is the minimal HTML, CSS, and JavaScript needed to power the user interface. It’s cached by service workers, allowing for instant loading on repeat visits.</p>
+<h2 id="4-how-to-transform-your-website-into-a-pwa">4. How to Transform Your Website into a PWA</h2>
+<p>Converting your existing website into a PWA involves several steps:</p>
+<ol><li><strong>Create a Web App Manifest</strong>: Define how your app appears when installed</li>
+<li><strong>Implement Service Workers</strong>: Enable offline functionality and caching</li>
+<li><strong>Ensure HTTPS</strong>: Secure your site with SSL/TLS</li>
+<li><strong>Design for All Devices</strong>: Make your app responsive</li>
+<li><strong>Optimize Performance</strong>: Aim for fast load times and smooth interactions</li>
+<li><strong>Add Install Prompts</strong>: Encourage users to add your PWA to their home screen</li>
+<li><strong>Implement Push Notifications</strong>: Re-engage users with timely updates</li>
+<li><strong>Test Thoroughly</strong>: Verify functionality across devices and network conditions</li></ol>
+<h2 id="5-pwa-success-stories">5. PWA Success Stories</h2>
+<p>Many companies have seen impressive results after implementing PWAs:</p>
+<ul><li><strong>Twitter Lite</strong>: Reduced data usage by 70% and increased tweets by 75%</li>
+<li><strong>Pinterest</strong>: Increased user engagement by 60% and core engagements by 44%</li>
+<li><strong>Starbucks</strong>: Doubled the number of daily active users with their PWA</li>
+<li><strong>Uber</strong>: Created a PWA that’s only 50KB, making it accessible even on 2G networks</li>
+<li><strong>Forbes</strong>: Increased session duration by 43% and engagement by 100%</li></ul>
+<p>These success stories demonstrate that PWAs can deliver significant business value across various industries.</p>
+<h2 id="6-common-challenges-and-solutions">6. Common Challenges and Solutions</h2>
+<p>While PWAs offer many benefits, developers may face challenges:</p>
+<h3 id="ios-limitations">iOS Limitations</h3>
+<p>Apple’s support for PWAs has lagged behind Android. However, recent iOS updates have improved support for key PWA features.</p>
+<p><strong>Solution</strong>: Test thoroughly on iOS devices and implement graceful degradation for unsupported features.</p>
+<h3 id="complex-features">Complex Features</h3>
+<p>Some native app features remain difficult to implement in PWAs.</p>
+<p><strong>Solution</strong>: Focus on core functionality that works well across platforms, and consider hybrid approaches for complex requirements.</p>
+<h3 id="discoverability">Discoverability</h3>
+<p>Users are accustomed to finding apps in app stores.</p>
+<p><strong>Solution</strong>: Implement app store optimization (ASO) strategies and educate users about installing PWAs from the web.</p>
+<h2 id="7-pwas-vs-native-apps-in-2023">7. PWAs vs. Native Apps in 2023</h2>
+<p>The gap between PWAs and native apps continues to narrow:</p>
+<table><thead><tr><th>Feature</th>
+<th>PWAs</th>
+<th>Native Apps</th></tr></thead>
+<tbody><tr><td>Installation</td>
+<td>Direct from web</td>
+<td>App store required</td></tr>
+<tr><td>Updates</td>
+<td>Automatic</td>
+<td>Manual or automatic</td></tr>
+<tr><td>Storage</td>
+<td>Limited</td>
+<td>More extensive</td></tr>
+<tr><td>Device Features</td>
+<td>Growing access</td>
+<td>Full access</td></tr>
+<tr><td>Development Cost</td>
+<td>Lower</td>
+<td>Higher</td></tr>
+<tr><td>Maintenance</td>
+<td>Single codebase</td>
+<td>Multiple codebases</td></tr>
+<tr><td>Performance</td>
+<td>Near-native</td>
+<td>Native</td></tr>
+<tr><td>Discoverability</td>
+<td>SEO + App stores*</td>
+<td>App stores</td></tr></tbody></table>
+<p>*Some PWAs can now be listed in app stores with minimal modifications</p>
+<h2 id="8-testing-and-optimizing-your-pwa">8. Testing and Optimizing Your PWA</h2>
+<p>To ensure your PWA delivers the best possible experience:</p>
+<ol><li><strong>Use Lighthouse</strong>: Google’s automated tool for improving web page quality</li>
+<li><strong>Test Offline Functionality</strong>: Verify your app works without an internet connection</li>
+<li><strong>Check Performance Metrics</strong>: Monitor Core Web Vitals like LCP, FID, and CLS</li>
+<li><strong>Test on Real Devices</strong>: Don’t rely solely on emulators or simulators</li>
+<li><strong>Optimize Assets</strong>: Compress images and minimize JavaScript and CSS</li>
+<li><strong>Implement Lazy Loading</strong>: Load resources only when needed</li>
+<li><strong>Monitor User Behavior</strong>: Use analytics to identify improvement opportunities</li></ol>
+<h2 id="9-the-future-of-pwas">9. The Future of PWAs</h2>
+<p>Looking ahead, PWAs are likely to become even more powerful with:</p>
+<ul><li><strong>Improved File System Access</strong>: Better integration with device storage</li>
+<li><strong>Advanced Hardware Access</strong>: More capabilities to interact with device features</li>
+<li><strong>Foldable Device Support</strong>: Optimized experiences for new form factors</li>
+<li><strong>AI Integration</strong>: Smarter, more personalized PWA experiences</li>
+<li><strong>WebAssembly Growth</strong>: Near-native performance for complex applications</li></ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>In 2023, Progressive Web Apps represent a compelling approach to web development that balances performance, cost-effectiveness, and user experience. As browser support continues to improve and more companies share success stories, PWAs are becoming an essential part of modern web strategy.</p>
+<p>Whether you’re building a new web application or looking to improve an existing one, implementing PWA principles can help you create faster, more engaging experiences that users love. The time to embrace Progressive Web Apps is now—your users and your business will thank you for it.</p>
+<h2 id="resources-for-getting-started">Resources for Getting Started</h2>
+<ul><li><a href="https://web.dev/progressive-web-apps/" rel="nofollow">Google’s PWA Documentation</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps" rel="nofollow">MDN Web Docs on PWAs</a></li>
+<li><a href="https://developers.google.com/web/tools/workbox" rel="nofollow">Workbox: Libraries for PWAs</a></li>
+<li><a href="https://www.pwabuilder.com/" rel="nofollow">PWA Builder: Tool for Creating PWAs</a></li>
+<li><a href="https://developers.google.com/web/tools/lighthouse" rel="nofollow">Lighthouse: Testing Tool for PWAs</a></li></ul></article></main>
+
+<footer class="relative mt-20 pt-16 pb-10 bg-background">
+  <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-primary to-purple-600"></div>
+
+  <div class="container mx-auto px-6"><div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-10"><div><h2 class="text-xl font-bold mb-4 text-white">Loke.dev</h2>
+        <p class="text-gray-300 mb-4">Web developer based in Sweden. Specializing in fullstack development with expertise in React, Svelte, Node.js, and TypeScript.</p>
+        <p class="text-gray-400 text-sm">© 2025 Loke. All rights reserved.</p></div>
+
+      <div><h2 class="text-xl font-bold mb-4 text-white">Navigation</h2>
+        <ul class="space-y-2"><li><a href="/" class="footer-link text-gray-300" tabindex="0" data-sveltekit-preload-data="hover">Home</a></li>
+          <li><a href="/about" class="footer-link text-gray-300" tabindex="0" data-sveltekit-preload-data="hover">About</a></li>
+          <li><a href="/journal" class="footer-link text-gray-300" tabindex="0" data-sveltekit-preload-data="hover">Journal</a></li>
+          <li><a href="/contact" class="footer-link text-gray-300" tabindex="0" data-sveltekit-preload-data="hover">Contact</a></li></ul></div>
+
+      <div><h2 class="text-xl font-bold mb-4 text-white">Connect</h2>
+        <ul class="space-y-2"><li><a href="https://github.com/loke-dev" class="footer-link text-gray-300 flex items-center" rel="noopener noreferrer" aria-label="GitHub profile" tabindex="0" target="_blank"><svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
+              GitHub
+            </a></li>
+          <li><a href="https://twitter.com/loke_dev" class="footer-link text-gray-300 flex items-center" rel="noopener noreferrer" aria-label="Twitter profile" tabindex="0" target="_blank"><svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
+              Twitter
+            </a></li>
+          <li><a href="mailto:hello@loke.dev" class="footer-link text-gray-300 flex items-center" aria-label="Email me" tabindex="0"><svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              Email
+            </a></li></ul></div></div>
+
+    <div class="text-center text-sm text-gray-400 mt-8"><p>Built with <a href="https://kit.svelte.dev" class="footer-link" rel="noopener noreferrer" tabindex="0" target="_blank">SvelteKit</a> and <a href="https://tailwindcss.com" class="footer-link" rel="noopener noreferrer" tabindex="0" target="_blank">Tailwind CSS</a></p></div></div></footer>
+
+</div>
+  </body>
+</html>
