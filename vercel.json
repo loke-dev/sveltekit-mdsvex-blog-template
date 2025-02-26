@@ -2,6 +2,5 @@
   "buildCommand": "bun run build:vercel",
   "devCommand": "bun run dev",
   "installCommand": "bun install",
-  "framework": "sveltekit",
-  "nodeVersion": "18.x"
+  "framework": "sveltekit"
 }
