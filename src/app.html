@@ -5,9 +5,27 @@
     <link rel="icon" href="%sveltekit.assets%/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="all" />
+    <meta name="theme-color" content="#1a202c" />
+    <link rel="apple-touch-icon" href="%sveltekit.assets%/apple-touch-icon.png" />
+    <link rel="manifest" href="%sveltekit.assets%/manifest.json" />
+    <meta name="color-scheme" content="dark light" />
     %sveltekit.head%
+    <script>
+      // Register service worker for PWA support
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then(registration => {
+              console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch(error => {
+              console.error('Service Worker registration failed:', error);
+            });
+        });
+      }
+    </script>
   </head>
   <body data-sveltekit-preload-data="hover">
-    <div id="svelte">%sveltekit.body%</div>
+    <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>

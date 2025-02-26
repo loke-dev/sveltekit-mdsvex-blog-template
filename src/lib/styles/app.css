@@ -19,6 +19,21 @@
     @apply text-primary;
   }
 
+  /* Improved focus styles for better keyboard navigation */
+  :focus {
+    @apply outline-2 outline-offset-2 outline-primary;
+  }
+
+  /* Remove outline for mouse users, keep for keyboard */
+  :focus:not(:focus-visible) {
+    @apply outline-none;
+  }
+
+  /* Ensure focus-visible has the right styling */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary;
+  }
+
   body {
     min-height: 100vh;
     margin: 0;
@@ -41,6 +56,29 @@
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
+  }
+
+  /* Footer utility classes */
+  .footer-link {
+    @apply transition-colors duration-200 hover:text-primary relative;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .footer-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    @apply bg-primary;
+    transition: width 0.3s ease;
+  }
+
+  .footer-link:hover::after {
+    width: 100%;
   }
 }
 
