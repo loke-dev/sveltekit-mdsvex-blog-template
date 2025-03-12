@@ -121,7 +121,7 @@
               data-sveltekit-preload-data="hover"
               tabindex="0"
             >
-              About
+              about
             </a>
           </li>
           <li class="nav-item {$page.url.pathname.includes('/journal') ? 'active' : ''}">
@@ -133,6 +133,17 @@
               tabindex="0"
             >
               Journal
+            </a>
+          </li>
+          <li class="nav-item {$page.url.pathname.includes('/projects') ? 'active' : ''}">
+            <a
+              href="/projects"
+              class="nav-link"
+              aria-current={$page.url.pathname.includes('/projects') ? 'page' : undefined}
+              data-sveltekit-preload-data="hover"
+              tabindex="0"
+            >
+              Projects
             </a>
           </li>
           <li class="nav-item {$page.url.pathname.includes('/contact') ? 'active' : ''}">
@@ -203,6 +214,15 @@
                 tabindex="0"
               >
                 Journal
+              </a>
+              <a
+                href="/projects"
+                class="mobile-nav-link {$page.url.pathname.includes('/projects') ? 'active-mobile' : ''}"
+                aria-current={$page.url.pathname.includes('/projects') ? 'page' : undefined}
+                on:click={handleNavigation}
+                tabindex="0"
+              >
+                Projects
               </a>
               <a
                 href="/contact"
