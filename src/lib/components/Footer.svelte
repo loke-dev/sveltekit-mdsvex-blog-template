@@ -1,4 +1,4 @@
-<footer class="relative mt-20 pt-16 pb-10 bg-background">
+<footer class="relative mt-20 pt-16 pb-10 bg-background z-10">
   <!-- Decorative top border with gradient -->
   <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-primary to-purple-600"></div>
 
@@ -6,7 +6,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-10">
       <div>
         <h2 class="text-xl font-bold mb-4 text-white">Loke.dev</h2>
-        <p class="text-gray-300 mb-4">Web developer based in Sweden. Specializing in fullstack development with expertise in React, Svelte, Node.js, and TypeScript.</p>
+        <p class="text-gray-300 mb-4">Web developer based in Sweden. Specializing in fullstack development with expertise in React, Node.js, TypeScript and more.</p>
         <p class="text-gray-400 text-sm">© {new Date().getFullYear()} Loke. All rights reserved.</p>
       </div>
 

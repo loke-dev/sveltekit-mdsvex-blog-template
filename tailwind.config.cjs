@@ -18,6 +18,10 @@ const config = {
       "8xl": "6rem",
     },
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'Fira Code', 'ui-monospace', 'monospace'],
+      },
       colors: {
         primary: "#FF295D",
         secondary: "#FFBA02",

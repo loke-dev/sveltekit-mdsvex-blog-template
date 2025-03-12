@@ -3,6 +3,20 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --color-primary: #FF295D;
+    --color-secondary: #FFBA02;
+    --color-background: #030E29;
+  }
+
+  html {
+    @apply font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans font-bold tracking-tight;
+  }
+
   h1 {
     @apply text-6xl;
   }
@@ -19,6 +33,10 @@
     @apply text-primary;
   }
 
+  code, pre {
+    @apply font-mono;
+  }
+
   /* Make focus styles visible for all interactive elements */
   a:focus,
   button:focus,
@@ -33,12 +51,23 @@
     margin: 0;
     background-color: #030e29;
     color: #fff;
+    @apply font-sans text-base antialiased;
   }
 
   #svelte {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+  }
+}
+
+@layer components {
+  .code-block {
+    @apply font-mono text-sm bg-gray-900 p-4 rounded-lg overflow-x-auto border border-gray-800;
+  }
+
+  .inline-code {
+    @apply font-mono text-sm bg-gray-900 px-1.5 py-0.5 rounded border border-gray-800;
   }
 }
 

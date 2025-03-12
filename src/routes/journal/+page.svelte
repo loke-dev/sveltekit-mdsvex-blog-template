@@ -1,7 +1,6 @@
 <script>
   import Patterns from "$src/lib/components/Patterns.svelte"
 
-  /** @type {import('./$types').PageData} */
   export let data
   const { posts } = data
 </script>

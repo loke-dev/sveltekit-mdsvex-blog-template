@@ -4,6 +4,8 @@
   import { dev } from '$app/environment'
   import { inject } from '@vercel/analytics'
   import { preloadData } from '$app/navigation'
+  import { page } from '$app/stores'
+  import GridBackground from "$src/lib/components/GridBackground.svelte"
 
   import "$styles/app.css"
 
@@ -32,6 +34,9 @@
       preloadData(anchor.href);
     }
   }
+
+  // Check if we're on the homepage
+  $: isHomepage = $page.url.pathname === '/';
 </script>
 
 <svelte:head>
@@ -47,9 +52,14 @@
 <!-- Enable prefetching for the entire app -->
 <svelte:window on:mousemove={handleMouseMove} />
 
+<!-- Only show grid background on non-homepage pages -->
+{#if !isHomepage}
+  <GridBackground />
+{/if}
+
 <Header />
 
-<main id="main-content" class="flex flex-1 flex-col p-8 w-full m-auto box-border mb-20 max-w-[900px]">
+<main id="main-content" class="flex flex-1 flex-col p-8 w-full m-auto box-border mb-20 max-w-[900px] relative z-10">
   <slot />
 </main>
 

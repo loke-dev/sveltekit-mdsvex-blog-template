@@ -70,7 +70,7 @@
 
 <header
   bind:this={headerElement}
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full {isScrolled ? 'bg-background/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'}"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full bg-background/85 backdrop-blur-sm shadow-lg"
 >
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center py-4 md:justify-start md:space-x-10">
@@ -78,13 +78,13 @@
       <div class="flex justify-start lg:w-0 lg:flex-1">
         <a
           href="/"
-          class="flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md"
+          class="flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md logo-link"
           aria-label="Home"
           data-sveltekit-preload-data="hover"
           tabindex="0"
           aria-current={$page.url.pathname === '/' ? 'page' : undefined}
         >
-          <span class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">loke.dev</span>
+          <span class="text-2xl font-bold logo-text">Loke<span class="text-primary">.</span>dev</span>
         </a>
       </div>
 
@@ -164,11 +164,11 @@
             <div>
               <a
                 href="/"
-                class="inline-block focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md"
+                class="inline-block focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md logo-link"
                 on:click={handleNavigation}
                 tabindex="0"
               >
-                <span class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">loke.dev</span>
+                <span class="text-2xl font-bold logo-text">Loke<span class="text-primary">.</span>dev</span>
               </a>
             </div>
             <div class="-mr-2">
@@ -230,16 +230,45 @@
     position: absolute;
     top: -40px;
     left: 0;
-    padding: 8px 16px;
-    background-color: #000;
-    color: #fff;
+    background: var(--color-primary);
+    color: white;
+    padding: 8px;
     z-index: 100;
-    transition: top 0.2s ease;
-    border-radius: 0 0 4px 0;
+    transition: top 0.2s;
   }
 
   .skip-link:focus {
     top: 0;
+  }
+
+  .logo-link {
+    transition: transform 0.2s ease;
+  }
+
+  .logo-link:hover {
+    transform: translateY(-1px);
+  }
+
+  .logo-text {
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    color: #fff;
+  }
+
+  .text-primary {
+    color: var(--color-primary, #FF295D);
+    position: relative;
+    display: inline-block;
+    animation: pulse 4s infinite ease-in-out;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.8;
+    }
   }
 
   .nav-item {

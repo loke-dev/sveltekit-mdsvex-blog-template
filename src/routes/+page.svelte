@@ -40,14 +40,6 @@
 
 <section>
   <Hero />
-
-  <div class="flex flex-col items-center text-center mt-20">
-    <p>
-      Contact me via <a href="mailto:hello@loke.dev" class="footer-link" aria-label="Send email to hello@loke.dev">Email</a> or find me on other medias:
-      <a href="https://github.com/loke-dev" class="footer-link" rel="noopener noreferrer" aria-label="Visit my GitHub profile">Github</a>
-      | <a href="https://twitter.com/loke_dev" class="footer-link" rel="noopener noreferrer" aria-label="Visit my Twitter profile">Twitter</a>
-    </p>
-  </div>
 </section>
 
 <style>
