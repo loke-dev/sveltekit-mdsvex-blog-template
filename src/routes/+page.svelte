@@ -43,7 +43,4 @@
 </section>
 
 <style>
-  a {
-    transition: color 0.2s ease;
-  }
 </style>
