@@ -88,7 +88,7 @@ const config = {
               color: "none",
             },
             code: {
-              color: "#FFBA02",
+              color: "#FF295D",
             },
           },
         },
