@@ -1,0 +1,312 @@
+---
+title: "Setting Cookies in Next.js 14: A Complete Guide to Server and Client Components"
+date: 2024-05-15
+description: "Learn how to properly set and manage cookies in Next.js 14 with the App Router, including solutions for both server and client components."
+tags: ["Next.js", "Cookies", "React", "Web Development", "JavaScript", "TypeScript"]
+published: true
+---
+
+# Setting Cookies in Next.js 14: A Complete Guide to Server and Client Components
+
+Next.js 14 introduced significant changes to how we handle cookies with its App Router architecture and the distinction between server and client components. If you've been struggling with setting cookies in your Next.js 14 application, you're not alone. The shift from the Pages Router to the App Router has changed how we interact with cookies, and the official documentation doesn't always provide clear guidance for common use cases.
+
+In this comprehensive guide, I'll walk you through everything you need to know about setting cookies in Next.js 14, covering both server and client components, with practical code examples you can implement right away.
+
+## Understanding the Cookie Challenge in Next.js 14
+
+Next.js 14 with its App Router architecture introduces a clear separation between server components and client components. This separation creates specific challenges when working with cookies:
+
+1. **Server Components**: These run only on the server and have direct access to server-side APIs but cannot use browser APIs or React hooks.
+2. **Client Components**: These run in the browser and can use browser APIs and React hooks but need special handling to interact with server-side functionality.
+
+This separation means that the approach to setting cookies differs significantly depending on where your code is running.
+
+## Setting Cookies in Server Components
+
+Server components are the preferred way to handle cookies in Next.js 14 as they provide direct access to server-side APIs. Here's how to set cookies in server components:
+
+### Using the cookies() Function
+
+Next.js 14 provides a built-in `cookies()` function from the `next/headers` package that allows you to read cookies in server components:
+
+```typescript
+import { cookies } from 'next/headers';
+
+export default async function Page() {
+  const cookieStore = cookies();
+  const theme = cookieStore.get('theme');
+
+  return <div>Current theme: {theme?.value || 'default'}</div>;
+}
+```
+
+However, the `cookies()` function is read-only. To set cookies in server components, you need to use a Server Action.
+
+### Setting Cookies with Server Actions
+
+Server Actions are a powerful feature in Next.js 14 that allow you to run server-side code from both server and client components. Here's how to set a cookie using a Server Action:
+
+```typescript
+'use server';
+
+import { cookies } from 'next/headers';
+
+export async function setThemeCookie(theme: string) {
+  cookies().set('theme', theme, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 60 * 60 * 24 * 7, // One week
+    path: '/',
+  });
+
+  return { success: true };
+}
+```
+
+You can then call this Server Action from a server component:
+
+```typescript
+import { setThemeCookie } from './actions';
+
+export default async function ThemeSelector() {
+  const handleThemeChange = async (theme: string) => {
+    await setThemeCookie(theme);
+  };
+
+  // Implementation details...
+}
+```
+
+### Using Route Handlers
+
+Another approach is to use Route Handlers (API routes in the App Router). Create a file in your `app/api` directory:
+
+```typescript
+// app/api/set-cookie/route.ts
+import { NextResponse } from 'next/server';
+import { type NextRequest } from 'next/server';
+
+export async function GET(request: NextRequest) {
+  const theme = request.nextUrl.searchParams.get('theme');
+
+  const response = NextResponse.json(
+    { message: 'Cookie set successfully' },
+    { status: 200 }
+  );
+
+  response.cookies.set('theme', theme || 'light', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 60 * 60 * 24 * 7, // One week
+    path: '/',
+  });
+
+  return response;
+}
+```
+
+## Setting Cookies in Client Components
+
+Client components run in the browser, so they don't have direct access to the server-side `cookies()` function. Instead, you have a few options:
+
+### Using the Document Cookie API
+
+The simplest approach is to use the browser's built-in `document.cookie` API:
+
+```typescript
+'use client';
+
+import { useState } from 'react';
+
+export default function ThemeToggle() {
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+
+    // Set the cookie
+    document.cookie = `theme=${newTheme}; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Lax`;
+  };
+
+  return (
+    <button onClick={toggleTheme}>
+      Switch to {theme === 'light' ? 'dark' : 'light'} mode
+    </button>
+  );
+}
+```
+
+### Using js-cookie Library
+
+For more complex cookie management, the `js-cookie` library provides a cleaner API:
+
+```typescript
+'use client';
+
+import { useState } from 'react';
+import Cookies from 'js-cookie';
+
+export default function ThemeToggle() {
+  const [theme, setTheme] = useState(Cookies.get('theme') || 'light');
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+
+    // Set the cookie
+    Cookies.set('theme', newTheme, { expires: 7, path: '/' });
+  };
+
+  return (
+    <button onClick={toggleTheme}>
+      Switch to {theme === 'light' ? 'dark' : 'light'} mode
+    </button>
+  );
+}
+```
+
+First, install the library:
+
+```bash
+npm install js-cookie
+npm install --save-dev @types/js-cookie  # If using TypeScript
+```
+
+### Calling Server Actions from Client Components
+
+The most powerful approach is to call Server Actions directly from client components:
+
+```typescript
+'use client';
+
+import { useState } from 'react';
+import { setThemeCookie } from './actions';
+
+export default function ThemeToggle() {
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = async () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+
+    // Call the server action to set the cookie
+    await setThemeCookie(newTheme);
+  };
+
+  return (
+    <button onClick={toggleTheme}>
+      Switch to {theme === 'light' ? 'dark' : 'light'} mode
+    </button>
+  );
+}
+```
+
+This approach combines the best of both worlds: the client component handles the UI state, while the server action handles the cookie setting with all the security benefits of server-side code.
+
+## Best Practices for Cookies in Next.js 14
+
+When working with cookies in Next.js 14, keep these best practices in mind:
+
+### 1. Prefer Server-Side Cookie Management
+
+Whenever possible, handle cookies on the server side using Server Actions or Route Handlers. This provides better security as you can set options like `httpOnly` to prevent JavaScript access to sensitive cookies.
+
+### 2. Set Appropriate Cookie Options
+
+Always set appropriate options for your cookies:
+
+```typescript
+cookies().set('cookieName', 'value', {
+  httpOnly: true, // Prevents JavaScript access (for sensitive cookies)
+  secure: process.env.NODE_ENV === 'production', // HTTPS only in production
+  maxAge: 60 * 60 * 24 * 7, // Expiration in seconds
+  path: '/', // Available across the entire site
+  sameSite: 'strict', // Controls cross-site request behavior
+});
+```
+
+### 3. Handle Cookie Synchronization
+
+When using both client and server components, ensure your cookie state stays synchronized. One approach is to pass the initial cookie value from the server to the client:
+
+```typescript
+// Server component
+import { cookies } from 'next/headers';
+import ThemeToggle from './ThemeToggle';
+
+export default function Page() {
+  const cookieStore = cookies();
+  const initialTheme = cookieStore.get('theme')?.value || 'light';
+
+  return <ThemeToggle initialTheme={initialTheme} />;
+}
+
+// Client component
+'use client';
+
+import { useState } from 'react';
+import { setThemeCookie } from './actions';
+
+export default function ThemeToggle({ initialTheme }: { initialTheme: string }) {
+  const [theme, setTheme] = useState(initialTheme);
+
+  // Implementation details...
+}
+```
+
+## Common Issues and Solutions
+
+### Issue: Cookies Not Being Set
+
+If your cookies aren't being set, check:
+
+1. **CORS issues**: Ensure your domain settings are correct
+2. **SameSite policy**: Modern browsers enforce strict SameSite policies
+3. **Secure flag**: Cookies with `secure: true` only work on HTTPS
+
+### Issue: Cookies Not Persisting After Navigation
+
+If cookies disappear after navigation:
+
+1. Ensure you're setting the `path` correctly (usually `'/'`)
+2. Check that the `maxAge` or `expires` value is appropriate
+3. Verify that the cookie isn't being overwritten elsewhere
+
+### Issue: Server/Client Mismatch
+
+If you're seeing hydration errors or mismatches between server and client:
+
+1. Ensure you're properly marking components with `'use client'` when needed
+2. Use the `useEffect` hook to handle client-side cookie operations to avoid hydration mismatches
+
+```typescript
+'use client';
+
+import { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
+
+export default function ThemeToggle() {
+  const [theme, setTheme] = useState('light');
+
+  // Read the cookie after component mounts to avoid hydration mismatch
+  useEffect(() => {
+    const savedTheme = Cookies.get('theme');
+    if (savedTheme) {
+      setTheme(savedTheme);
+    }
+  }, []);
+
+  // Implementation details...
+}
+```
+
+## Conclusion
+
+Setting cookies in Next.js 14 requires understanding the distinction between server and client components and choosing the right approach for your specific use case. By leveraging Server Actions, Route Handlers, and client-side libraries like `js-cookie`, you can effectively manage cookies in your Next.js 14 applications.
+
+Remember that server-side cookie management is generally preferred for security-sensitive operations, while client-side cookie management offers more flexibility for UI state that needs to persist across sessions.
+
+With the techniques outlined in this guide, you should now have a solid understanding of how to work with cookies in Next.js 14's App Router architecture, regardless of whether you're working with server or client components.
+
+Happy coding!
