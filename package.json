@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
-    "build:vercel": "svelte-kit sync && vite build",
+    "dev": "node -r dotenv/config load-env.js && vite dev",
+    "build": "node -r dotenv/config load-env.js && vite build",
+    "build:vercel": "node -r dotenv/config load-env.js && svelte-kit sync && vite build",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest watch",
@@ -14,7 +14,8 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
-    "format": "prettier --plugin-search-dir . --write ."
+    "format": "prettier --plugin-search-dir . --write .",
+    "load-env": "node -r dotenv/config load-env.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.30.0",
@@ -55,10 +56,12 @@
     "yarn-upgrade-all": "^0.7.2"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.49.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/typography": "^0.5.9",
     "@vercel/analytics": "^1.0.1",
     "@vercel/speed-insights": "^1.2.0",
+    "dotenv": "^16.4.7",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-slug": "^5.1.0",
     "remark-abbr": "^1.4.1",

@@ -14,12 +14,6 @@ const config = {
   preprocess: [
     vitePreprocess({
       postcss: true,
-      typescript: {
-        tsconfigFile: "./tsconfig.json",
-        compilerOptions: {
-          verbatimModuleSyntax: true
-        }
-      }
     }),
     mdsvex(mdsvexConfig),
   ],
@@ -44,11 +38,6 @@ const config = {
         // Otherwise, throw the error
         throw new Error(message);
       }
-    }
-  },
-  compilerOptions: {
-    compatibility: {
-      componentApi: 4
     }
   }
 }

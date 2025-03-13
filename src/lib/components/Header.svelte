@@ -1,15 +1,15 @@
-<script lang="ts">
+<script>
   import { page } from "$app/stores"
   import { onMount } from "svelte"
   import { slide } from "svelte/transition"
 
   let isMenuOpen = false
   let scrollY = 0
-  let headerElement: HTMLElement
+  let headerElement
   let isScrolled = false
 
   // Toggle mobile menu with improved event handling
-  function toggleMenu(event: MouseEvent) {
+  function toggleMenu(event) {
     // Stop event propagation to prevent immediate closing
     event.stopPropagation()
 
@@ -18,16 +18,23 @@
     // Prevent scrolling when menu is open
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden'
+      // Only add the click event listener when the menu is open
+      document.addEventListener('click', handleClickOutside)
     } else {
       document.body.style.overflow = ''
+      // Remove the click event listener when the menu is closed
+      document.removeEventListener('click', handleClickOutside)
     }
   }
 
-  // Close menu when clicking outside
-  function handleClickOutside(event: MouseEvent) {
-    if (isMenuOpen && headerElement && !headerElement.contains(event.target as Node)) {
+  // Close menu when clicking outside - only active when menu is open
+  function handleClickOutside(event) {
+    // Check if the click was outside the header
+    if (headerElement && !headerElement.contains(event.target)) {
       isMenuOpen = false
       document.body.style.overflow = ''
+      // Remove the click event listener when the menu is closed
+      document.removeEventListener('click', handleClickOutside)
     }
   }
 
@@ -42,20 +49,24 @@
     if (isMenuOpen) {
       isMenuOpen = false
       document.body.style.overflow = ''
+      // Remove the click event listener when the menu is closed
+      document.removeEventListener('click', handleClickOutside)
     }
   }
 
   // Handle keyboard events for accessibility
-  function handleKeydown(event: KeyboardEvent) {
+  function handleKeydown(event) {
     if (event.key === 'Escape' && isMenuOpen) {
       isMenuOpen = false
       document.body.style.overflow = ''
+      // Remove the click event listener when the menu is closed
+      document.removeEventListener('click', handleClickOutside)
     }
   }
 
   onMount(() => {
+    console.log('Header component mounted');
     window.addEventListener('scroll', handleScroll)
-    document.addEventListener('click', handleClickOutside)
     window.addEventListener('keydown', handleKeydown)
 
     return () => {

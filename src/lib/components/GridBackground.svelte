@@ -2,7 +2,7 @@
   // No props or logic needed for this component
 </script>
 
-<div class="grid-background">
+<div class="grid-background" aria-hidden="true">
   <div class="grid-container">
     <div class="grid-pattern"></div>
     <div class="grid-fade-overlay"></div>
@@ -16,18 +16,25 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: -20;
     overflow: hidden;
     pointer-events: none;
+    touch-action: none;
+    user-select: none;
   }
 
-  .grid-container {
+  .grid-container,
+  .grid-pattern,
+  .grid-fade-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
+    pointer-events: none;
+    touch-action: none;
+    user-select: none;
   }
 
   .grid-pattern {
@@ -58,7 +65,6 @@
       rgba(3, 14, 41, 0.1) 50%,
       rgba(3, 14, 41, 0.4) 100%
     );
-    pointer-events: none;
   }
 
   @keyframes grid-move {

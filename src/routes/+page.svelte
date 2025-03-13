@@ -38,9 +38,6 @@
   </script>
 </svelte:head>
 
-<section>
+<section class="container mx-auto px-4 py-8">
   <Hero />
 </section>
-
-<style>
-</style>
