@@ -19,7 +19,7 @@ declare namespace App {
     title: string
     date: string
     published: boolean
-    tags: string[]
+    tag: string
     description: string
     default: import("svelte/internal").SvelteComponent
     metadata: Record<string, string>

@@ -12,7 +12,7 @@ interface Post {
   description: string
   date: string
   published: boolean
-  tags: string[]
+  tag: string
   [key: string]: any
 }
 
@@ -25,10 +25,12 @@ export async function GET() {
 
   for (const [path, resolver] of Object.entries(modules)) {
     const slug = slugFromPath(path)
-    const promise = resolver().then((post: MdsvexFile) => ({
-      slug,
-      ...post.metadata,
-    })) as Promise<Post>
+    const promise = resolver().then((post: MdsvexFile) => {
+      return {
+        slug,
+        ...post.metadata,
+      }
+    }) as Promise<Post>
 
     postPromises.push(promise)
   }

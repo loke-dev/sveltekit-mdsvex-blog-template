@@ -7,8 +7,7 @@ description: >-
   deployment, and performance optimization.
 date: 2023-07-12T00:00:00.000Z
 published: true
-tags:
-  - svelte
+tag: svelte
 ---
 
 ## Introduction

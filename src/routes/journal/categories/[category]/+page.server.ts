@@ -4,6 +4,17 @@ import { error } from "@sveltejs/kit"
 export const prerender = true
 export const csr = false
 
+interface Post {
+  slug: string
+  title: string
+  description: string
+  date: string
+  published: boolean
+  tag: string
+  category?: string
+  [key: string]: any
+}
+
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function load({ params }) {
   const categoryName = params.category
@@ -14,14 +25,14 @@ export async function load({ params }) {
 
   const modules: Record<string, () => any> = import.meta.glob("/src/posts/*.{md,svx,svelte.md}")
 
-  const postPromises = []
+  const postPromises: Promise<Post>[] = []
 
   for (const [path, resolver] of Object.entries(modules)) {
     const slug = slugFromPath(path)
-    const promise = resolver().then((post: App.Post) => ({
+    const promise = resolver().then((post: any) => ({
       slug,
       ...post.metadata,
-    }))
+    })) as Promise<Post>
 
     postPromises.push(promise)
   }
@@ -44,21 +55,18 @@ export async function load({ params }) {
   // Find related categories based on posts with the same tags
   const currentCategoryTags = new Set<string>()
   postsWithCategory.forEach((post) => {
-    if (post.tags && Array.isArray(post.tags)) {
-      post.tags.forEach((tag) => currentCategoryTags.add(tag))
+    if (post.tag) {
+      currentCategoryTags.add(post.tag)
     }
   })
 
   // Create a map of categories to posts
-  const categoryMap = new Map<string, any[]>()
+  const categoryMap = new Map<string, Post[]>()
 
   publishedPosts.forEach((post) => {
     if (post.category && post.category !== decodeURIComponent(categoryName)) {
       // Check if this category has posts with tags that overlap with the current category
-      const hasRelatedTags =
-        post.tags &&
-        Array.isArray(post.tags) &&
-        post.tags.some((tag) => currentCategoryTags.has(tag))
+      const hasRelatedTags = post.tag && currentCategoryTags.has(post.tag)
 
       if (hasRelatedTags) {
         if (!categoryMap.has(post.category)) {

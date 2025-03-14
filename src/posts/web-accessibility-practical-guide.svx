@@ -6,8 +6,7 @@ description: >-
   semantic HTML to ARIA attributes, keyboard navigation, and testing strategies.
 date: 2023-08-05T00:00:00.000Z
 published: true
-tags:
-  - accessibility
+tag: accessibility
 ---
 
 ## Introduction

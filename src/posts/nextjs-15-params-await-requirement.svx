@@ -5,8 +5,7 @@ description: >-
   Learn how to fix the common 'params should be awaited' error in Next.js 15
   with practical solutions for both server and client components.
 published: true
-tags:
-  - next.js
+tag: next.js
 ---
 
 If you've recently upgraded to Next.js 15 or started a new project with it, you might have encountered this frustrating error message:

@@ -7,8 +7,7 @@ description: >-
   web experiences.
 date: 2023-07-15T00:00:00.000Z
 published: true
-tags:
-  - pwa
+tag: pwa
 ---
 
 ## Introduction

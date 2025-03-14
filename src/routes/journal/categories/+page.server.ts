@@ -3,18 +3,29 @@ import { slugFromPath } from "$lib/utils/journal"
 export const prerender = true
 export const csr = false
 
+interface Post {
+  slug: string
+  title: string
+  description: string
+  date: string
+  published: boolean
+  tag: string
+  category?: string
+  [key: string]: any
+}
+
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function load() {
   const modules: Record<string, () => any> = import.meta.glob("/src/posts/*.{md,svx,svelte.md}")
 
-  const postPromises = []
+  const postPromises: Promise<Post>[] = []
 
   for (const [path, resolver] of Object.entries(modules)) {
     const slug = slugFromPath(path)
-    const promise = resolver().then((post: App.Post) => ({
+    const promise = resolver().then((post: any) => ({
       slug,
       ...post.metadata,
-    }))
+    })) as Promise<Post>
 
     postPromises.push(promise)
   }
@@ -25,7 +36,7 @@ export async function load() {
   publishedPosts.sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
 
   // Create a map of categories to posts
-  const categoryMap = new Map<string, any[]>()
+  const categoryMap = new Map<string, Post[]>()
 
   publishedPosts.forEach((post) => {
     if (post.category) {
@@ -50,19 +61,17 @@ export async function load() {
   categories.sort((a, b) => b.count - a.count)
 
   // Create a map of tags to posts
-  const tagMap = new Map<string, any[]>()
+  const tagMap = new Map<string, Post[]>()
 
   publishedPosts.forEach((post) => {
-    if (post.tags && Array.isArray(post.tags)) {
-      post.tags.forEach((tag: string) => {
-        if (!tagMap.has(tag)) {
-          tagMap.set(tag, [])
-        }
-        const postsWithTag = tagMap.get(tag)
-        if (postsWithTag) {
-          postsWithTag.push(post)
-        }
-      })
+    if (post.tag) {
+      if (!tagMap.has(post.tag)) {
+        tagMap.set(post.tag, [])
+      }
+      const postsWithTag = tagMap.get(post.tag)
+      if (postsWithTag) {
+        postsWithTag.push(post)
+      }
     }
   })
 

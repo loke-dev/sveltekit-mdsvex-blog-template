@@ -1,5 +1,5 @@
 ---
-title: 'TypeScript Tips for Writing Better, Safer Code'
+title: TypeScript Tips for Writing Better, Safer Code
 description: >-
   Discover practical TypeScript techniques that go beyond the basics to help you
   write more maintainable, type-safe code. Learn about utility types, type
@@ -7,8 +7,7 @@ description: >-
   your TypeScript skills.
 date: 2023-10-15T00:00:00.000Z
 published: true
-tags:
-  - typescript
+tag: typescript
 ---
 
 ## Introduction

@@ -7,8 +7,7 @@ description: >-
   create more inclusive web experiences.
 date: 2024-04-05T00:00:00.000Z
 published: true
-tags:
-  - accessibility
+tag: accessibility
 ---
 
 ## Introduction

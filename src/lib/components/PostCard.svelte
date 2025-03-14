@@ -6,7 +6,7 @@
     title: string;
     description: string;
     date: string;
-    tags?: string[];
+    tag?: string;
   };
 
   // Format date to YYYY-MM-DD
@@ -15,11 +15,8 @@
     return date.toLocaleDateString("sv-SE");
   }
 
-  // Get the primary tag (there should only be one)
-  const tag = post.tags && post.tags.length > 0 ? post.tags[0] : null;
-
   // Get the tag color
-  const tagColor = tag ? getTagColor(tag) : getTagColor('default');
+  const tagColor = post.tag ? getTagColor(post.tag) : getTagColor('default');
 </script>
 
 <div class="post-card-container">
@@ -31,13 +28,13 @@
     </div>
   </a>
 
-  {#if tag}
+  {#if post.tag}
     <a
-      href={`/journal/tags/${encodeURIComponent(tag)}`}
+      href={`/journal/tags/${encodeURIComponent(post.tag)}`}
       class="tag-pill"
       style="background-color: {tagColor}20; color: {tagColor};"
     >
-      {tag.toLowerCase()}
+      {post.tag.toLowerCase()}
     </a>
   {/if}
 </div>

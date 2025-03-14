@@ -6,8 +6,7 @@ description: >-
   optimization that can help you build better websites faster.
 date: 2023-07-20T00:00:00.000Z
 published: true
-tags:
-  - ai
+tag: ai
 ---
 
 ## Introduction

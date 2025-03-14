@@ -6,8 +6,7 @@ description: >-
   with practical examples and visual explanations.
 date: 2023-11-25T00:00:00.000Z
 published: true
-tags:
-  - css
+tag: css
 ---
 
 ## Introduction

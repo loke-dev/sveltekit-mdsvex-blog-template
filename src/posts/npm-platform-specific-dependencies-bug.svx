@@ -8,9 +8,8 @@ description: >-
   development teams and prevent build failures across different operating
   systems.
 cover_image: /images/posts/npm-dependencies-bug.jpg
-tags:
-  - javascript
 published: true
+tag: javascript
 ---
 
 Are your JavaScript builds mysteriously failing on different operating systems? Is your CI/CD pipeline breaking while everything works fine locally? You might be experiencing the notorious npm platform-specific dependencies bug that has been frustrating development teams for many years.

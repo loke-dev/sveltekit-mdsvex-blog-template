@@ -9,16 +9,13 @@
   import "$styles/syntax.css"
 
   const component = data.component;
-  const { title, description, date, tags } = data.frontmatter
+  const { title, description, date, tag } = data.frontmatter
 
   // Format date to YYYY-MM-DD
   function formatDate(dateString: string): string {
     const date = new Date(dateString);
     return date.toLocaleDateString("sv-SE");
   }
-
-  // Get the primary tag (there should only be one)
-  const tag = tags && tags.length > 0 ? tags[0] : null;
 
   // Get the tag color
   const tagColor = tag ? getTagColor(tag) : getTagColor('default');

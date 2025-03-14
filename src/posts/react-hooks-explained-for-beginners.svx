@@ -6,8 +6,7 @@ description: >-
   build more efficient and maintainable React applications.
 date: 2024-01-20T00:00:00.000Z
 published: true
-tags:
-  - react
+tag: react
 ---
 
 ## Introduction

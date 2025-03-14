@@ -7,8 +7,7 @@ description: >-
   techniques to solve common responsive design challenges.
 date: 2024-02-05T00:00:00.000Z
 published: true
-tags:
-  - css
+tag: css
 ---
 
 ## Introduction

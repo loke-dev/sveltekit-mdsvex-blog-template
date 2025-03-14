@@ -6,8 +6,7 @@ description: >-
   solve common API challenges with practical examples in JavaScript.
 date: 2024-03-05T00:00:00.000Z
 published: true
-tags:
-  - api
+tag: api
 ---
 
 ## Introduction

@@ -7,8 +7,7 @@ description: >-
   face.
 date: 2023-11-10T00:00:00.000Z
 published: true
-tags:
-  - javascript
+tag: javascript
 ---
 
 ## Introduction
