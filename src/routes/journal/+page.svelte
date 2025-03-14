@@ -1,6 +1,8 @@
 <script lang="ts">
   import Patterns from "$lib/components/Patterns.svelte"
   import PostCard from "$lib/components/PostCard.svelte"
+  import Link from "$lib/components/Link.svelte"
+  import { onMount } from "svelte"
 
   /** @type {any} */
   export let data
@@ -10,6 +12,16 @@
   const topTags = tags
     .sort((a: {count: number}, b: {count: number}) => b.count - a.count)
     .slice(0, 6) // Show only top 6 tags
+
+  // For staggered animations
+  let visible = false;
+
+  onMount(() => {
+    // Set visible to true after a short delay for animations
+    setTimeout(() => {
+      visible = true;
+    }, 100);
+  });
 </script>
 
 <svelte:head>
@@ -21,20 +33,25 @@
 <Patterns variant="2" />
 
 <div class="content">
-  <h1 class="mb-6">Let's learn together!</h1>
+  <div class="journal-header animate-item">
+    <h2 class="text-primary font-semibold tracking-wide uppercase">Journal</h2>
+    <h3 class="text-3xl leading-8 font-extrabold tracking-tight text-gray-100 sm:text-4xl mb-6">
+      Let's learn together!
+    </h3>
+  </div>
 
-  <div class="mb-8">
+  <div class="mb-8 animate-item">
     <div class="flex flex-wrap gap-3 items-center">
       <span class="text-gray-400">Browse by topic:</span>
-      <a href="/journal/tags" class="tag-pill">all topics</a>
+      <Link href="/journal/tags" className="tag-pill">all topics</Link>
       {#if topTags && topTags.length > 0}
         {#each topTags as tag}
-          <a
+          <Link
             href={`/journal/tags/${encodeURIComponent(tag.name)}`}
-            class="tag-pill"
+            className="tag-pill"
           >
             {tag.name.toLowerCase()}
-          </a>
+          </Link>
         {/each}
       {/if}
     </div>
@@ -42,8 +59,10 @@
 
   <div class="posts-grid">
     {#if posts}
-      {#each posts as post}
-        <PostCard {post} />
+      {#each posts as post, i}
+        <div class="post-item" style="--delay: {i * 0.05}s">
+          <PostCard {post} />
+        </div>
       {/each}
     {/if}
   </div>
@@ -54,6 +73,35 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 0 1rem;
+    position: relative;
+  }
+
+  .journal-header {
+    margin-bottom: 2rem;
+  }
+
+  .animate-item {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+  }
+
+  .journal-header {
+    animation-delay: 0.2s;
+  }
+
+  .mb-8 {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .tag-pill {
@@ -74,13 +122,20 @@
   .posts-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin-top: 2rem;
+    gap: 2rem;
+    margin-top: 3rem;
   }
 
   @media (min-width: 640px) {
     .posts-grid {
       grid-template-columns: repeat(2, 1fr);
     }
+  }
+
+  .post-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: calc(0.4s + var(--delay));
   }
 </style>

@@ -1,31 +1,32 @@
 <script lang="ts">
   import Patterns from "$lib/components/Patterns.svelte"
+  import Link from "$lib/components/Link.svelte"
   import type { PageData } from './$types'
 
-  /** @type {PageData} */
+  /** @type {import('./$types').PageData} */
   export let data: PageData
   const { tags } = data
 
   // Filter out tags with only 1 post, except for a few important ones
   const importantSinglePostTags = ['svelte', 'react', 'next.js', 'typescript', 'javascript'];
-  const filteredTags = tags.filter(tag =>
+  const filteredTags = tags.filter((tag: {name: string, count: number}) =>
     tag.count > 1 || importantSinglePostTags.includes(tag.name.toLowerCase())
   );
 
   // Group tags by first letter for better organization
-  const tagsByLetter = new Map<string, Array<{name: string, count: number}>>()
+  const tagsByLetter = new Map<string, Array<{name: string, count: number, posts: any[]}>>();
 
-  filteredTags.forEach((tag: {name: string, count: number}) => {
-    const firstLetter = tag.name.charAt(0).toUpperCase()
+  filteredTags.forEach((tag: {name: string, count: number, posts: any[]}) => {
+    const firstLetter = tag.name.charAt(0).toUpperCase();
     if (!tagsByLetter.has(firstLetter)) {
-      tagsByLetter.set(firstLetter, [])
+      tagsByLetter.set(firstLetter, []);
     }
-    tagsByLetter.get(firstLetter)?.push(tag)
-  })
+    tagsByLetter.get(firstLetter)?.push(tag);
+  });
 
   // Convert to array and sort alphabetically
   const groupedTags = Array.from(tagsByLetter.entries())
-    .sort((a, b) => a[0].localeCompare(b[0]))
+    .sort((a, b) => a[0].localeCompare(b[0]));
 
   // Get popular tags
   const popularTags = [...filteredTags]
@@ -42,39 +43,40 @@
 <Patterns variant="2" />
 
 <div class="content">
-  <h1 class="mb-6">Topics</h1>
-  <a href="/journal" class="flex gap-2 mb-8 items-center">❮ Back to Journal</a>
+  <div class="tags-header animate-item">
+    <h2 class="text-primary font-semibold tracking-wide uppercase">Journal</h2>
+    <h3 class="text-3xl leading-8 font-extrabold tracking-tight text-gray-100 sm:text-4xl mb-6">
+      Topics
+    </h3>
+    <Link href="/journal" className="back-link">❮ Back to Journal</Link>
+  </div>
 
-  <div class="mb-12">
+  <div class="mb-12 animate-item">
     <h2 class="text-xl font-semibold mb-4">Popular Topics</h2>
     <div class="flex flex-wrap gap-3">
       {#each popularTags as tag}
-        <a
+        <Link
           href={`/journal/tags/${encodeURIComponent(tag.name)}`}
-          class="tag-pill"
+          className="tag-pill"
         >
           {tag.name.toLowerCase()} <span class="text-gray-400">({tag.count})</span>
-        </a>
+        </Link>
       {/each}
     </div>
   </div>
 
-  <div class="mb-12">
-    <h2 class="text-xl font-semibold mb-4">All Topics</h2>
-
+  <div class="all-topics animate-item">
+    <h3 class="text-xl font-bold mb-4">All Topics</h3>
     <div class="tag-groups">
-      {#each groupedTags as [letter, letterTags]}
+      {#each groupedTags as [letter, tagsInGroup]}
         <div class="tag-group">
-          <h3 class="text-lg font-medium mb-2 letter-heading">{letter}</h3>
-          <ul class="space-y-2">
-            {#each letterTags as tag}
+          <h4 class="letter-heading mb-2">{letter}</h4>
+          <ul class="space-y-1">
+            {#each tagsInGroup as tag}
               <li>
-                <a
-                  href={`/journal/tags/${encodeURIComponent(tag.name)}`}
-                  class="tag-link"
-                >
-                  {tag.name.toLowerCase()} <span class="text-gray-400">({tag.count})</span>
-                </a>
+                <Link href={`/journal/tags/${encodeURIComponent(tag.name)}`} className="tag-link">
+                  {tag.name} <span class="text-gray-500">({tag.count})</span>
+                </Link>
               </li>
             {/each}
           </ul>
@@ -89,6 +91,52 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 0 1rem;
+    position: relative;
+  }
+
+  .tags-header {
+    margin-bottom: 2rem;
+  }
+
+  .animate-item {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+  }
+
+  .tags-header {
+    animation-delay: 0.2s;
+  }
+
+  .popular-topics {
+    animation-delay: 0.4s;
+  }
+
+  .all-topics {
+    animation-delay: 0.6s;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .back-link {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 2rem;
+    color: var(--color-primary);
+    transition: all 0.2s ease;
+  }
+
+  .back-link:hover {
+    transform: translateX(-2px);
   }
 
   .tag-pill {
@@ -113,9 +161,9 @@
   }
 
   .letter-heading {
-    color: #60A5FA; /* Primary blue color */
+    color: white;
     font-weight: 600;
-    border-bottom: 2px solid rgba(96, 165, 250, 0.3);
+    border-bottom: 2px solid rgba(156, 163, 175, 0.75);
     padding-bottom: 0.25rem;
   }
 

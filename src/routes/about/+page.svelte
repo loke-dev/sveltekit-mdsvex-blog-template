@@ -141,9 +141,28 @@
     left: -5px;
     right: -5px;
     bottom: -5px;
-    background: #ff295d;
+    background: linear-gradient(90deg,
+      rgba(255, 41, 93, 0.9),
+      rgba(255, 186, 2, 0.9),
+      rgba(75, 46, 198, 0.9),
+      rgba(255, 41, 93, 0.9)
+    );
+    background-size: 300% 100%;
+    animation: gradient-shift 15s ease infinite;
     border-radius: 28px;
     z-index: -1;
+  }
+
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 
   .image-glow {
@@ -199,6 +218,7 @@
     top: 60%;
     right: 5%;
     animation-delay: -1s;
+    background: #FFBA02;
   }
 
   .p3 {
@@ -207,6 +227,7 @@
     bottom: 10%;
     left: 30%;
     animation-delay: -2s;
+    background: #4b2ec6;
   }
 
   .p4 {
@@ -215,6 +236,7 @@
     top: 5%;
     right: 30%;
     animation-delay: -3s;
+    background: #FFBA02;
   }
 
   .p5 {
@@ -223,6 +245,7 @@
     bottom: 30%;
     left: 5%;
     animation-delay: -4s;
+    background: #4b2ec6;
   }
 
   .p6 {
@@ -231,6 +254,7 @@
     top: 40%;
     right: 0;
     animation-delay: -5s;
+    background: #FFBA02;
   }
 
   @keyframes float {

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { getTagColor } from "$lib/utils/tagColors";
+  import Link from "./Link.svelte";
 
   export let post: {
     slug: string;
@@ -20,22 +21,22 @@
 </script>
 
 <div class="post-card-container">
-  <a href={`/journal/${post.slug}`} class="post-card">
+  <Link href={`/journal/${post.slug}`} className="post-card">
     <h2 class="text-xl font-semibold mb-2 text-white">{post.title}</h2>
     <p class="text-gray-400 mb-4">{post.description}</p>
     <div class="flex justify-between items-center">
       <div class="text-sm text-gray-500">{formatDate(post.date)}</div>
     </div>
-  </a>
+  </Link>
 
   {#if post.tag}
-    <a
+    <Link
       href={`/journal/tags/${encodeURIComponent(post.tag)}`}
-      class="tag-pill"
+      className="tag-pill"
       style="background-color: {tagColor}20; color: {tagColor};"
     >
       {post.tag.toLowerCase()}
-    </a>
+    </Link>
   {/if}
 </div>
 

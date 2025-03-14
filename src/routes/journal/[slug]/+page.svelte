@@ -4,6 +4,7 @@
 
   import PageHead from "$components/PageHead.svelte"
   import Patterns from "$lib/components/Patterns.svelte"
+  import Link from "$lib/components/Link.svelte"
   import { getTagColor } from "$lib/utils/tagColors";
 
   import "$styles/syntax.css"
@@ -23,99 +24,83 @@
 
 <PageHead title={title} description={description} />
 
-<div class="post-header" style="--tag-color: {tagColor}">
-  <div class="header-background">
-    <Patterns variant="1" />
-    <div class="color-accent"></div>
-  </div>
+<Patterns variant="2" />
 
-  <div class="header-content">
-    <a href="/journal" class="back-button">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M19 12H5M12 19l-7-7 7-7"/>
-      </svg>
-      <span>Back to Journal</span>
-    </a>
+<div class="post-container">
+  <div class="post-header animate-item" style="--tag-color: {tagColor}">
+    <Link href="/journal" className="back-link">❮ Back to Journal</Link>
 
     <h1 class="title">{title}</h1>
     <p class="description">{description}</p>
 
     <div class="meta-info">
       {#if tag}
-        <a
+        <Link
           href={`/journal/tags/${encodeURIComponent(tag)}`}
-          class="tag-pill"
+          className="tag-pill"
           style="background-color: {tagColor}20; color: {tagColor};"
         >
           {tag.toLowerCase()}
-        </a>
+        </Link>
       {/if}
       <span class="date-divider">•</span>
       <span class="date">{formatDate(date)}</span>
     </div>
   </div>
+
+  <article class="prose prose-lg animate-item">
+    <!-- Article body -->
+    <svelte:component this={component} />
+  </article>
 </div>
 
-<article class="prose prose-lg">
-  <!-- Article body -->
-  <svelte:component this={component} />
-</article>
-
 <style>
-  .post-header {
-    position: relative;
-    padding: 4rem 0 3rem;
-    margin-bottom: 3rem;
-    overflow: hidden;
-    background-color: rgba(31, 41, 55, 0.4);
-    border-radius: 16px;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-  }
-
-  .header-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 0;
-  }
-
-  .color-accent {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: var(--tag-color, #60a5fa);
-    box-shadow: 0 0 30px 0 var(--tag-color, #60a5fa);
-  }
-
-  .header-content {
-    position: relative;
-    z-index: 10;
+  .post-container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 1rem;
+    position: relative;
   }
 
-  .back-button {
-    display: inline-flex;
-    align-items: center;
+  .post-header {
+    margin-bottom: 3rem;
+  }
+
+  .animate-item {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+  }
+
+  .post-header {
+    animation-delay: 0.2s;
+  }
+
+  .prose {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .back-link {
+    display: flex;
     gap: 0.5rem;
+    align-items: center;
     margin-bottom: 2rem;
-    padding: 0.5rem 1rem;
-    background-color: rgba(31, 41, 55, 0.7);
-    border-radius: 8px;
-    color: #d1d5db;
-    font-size: 0.875rem;
-    font-weight: 500;
+    color: var(--color-primary);
     transition: all 0.2s ease;
   }
 
-  .back-button:hover {
-    background-color: rgba(31, 41, 55, 0.9);
-    transform: translateY(-1px);
+  .back-link:hover {
+    transform: translateX(-2px);
   }
 
   .title {
@@ -138,6 +123,7 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    margin-bottom: 2rem;
   }
 
   .tag-pill {
@@ -147,11 +133,6 @@
     font-size: 0.875rem;
     font-weight: 500;
     transition: all 0.2s ease;
-  }
-
-  .tag-pill:hover {
-    transform: translateY(-1px);
-    filter: brightness(1.1);
   }
 
   .date-divider {
@@ -164,8 +145,6 @@
   }
 
   .prose {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
+    margin-bottom: 4rem;
   }
 </style>

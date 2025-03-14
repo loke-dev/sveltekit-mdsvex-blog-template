@@ -1,15 +1,6 @@
 <script lang="ts">
-  import { onMount } from "svelte"
-  import { fade, fly } from "svelte/transition"
-
-  let visible = false;
-
-  onMount(() => {
-    // Set visible to true after a short delay for animations
-    setTimeout(() => {
-      visible = true;
-    }, 100);
-  });
+    import { fly } from "svelte/transition"
+  import Button from "./Button.svelte"
 </script>
 
 <div class="hero fullWidth">
@@ -48,18 +39,16 @@
   </div>
 
   <div class="hero-content">
-    {#if visible}
-      <h1 class="title" in:fly={{ y: 20, duration: 800, delay: 200 }}>
-        Loke<span class="accent">.</span>dev
-      </h1>
-      <p class="tagline" in:fly={{ y: 20, duration: 800, delay: 400 }}>
-        Web Developer
-      </p>
-      <div class="cta-container" in:fade={{ duration: 1000, delay: 800 }}>
-        <a href="/projects" class="cta-button primary">View Projects</a>
-        <a href="/contact" class="cta-button secondary">Get in Touch</a>
-      </div>
-    {/if}
+    <h1 in:fly={{ y: 200, duration: 2000, delay: 200 }} class="title">
+      Loke<span class="accent">.</span>dev
+    </h1>
+    <p class="tagline">
+      Web Developer
+    </p>
+    <div class="cta-container">
+      <Button href="/projects" variant="primary">View Projects</Button>
+      <Button href="/contact" variant="outline">Get in Touch</Button>
+    </div>
   </div>
 </div>
 
@@ -177,6 +166,70 @@
     z-index: -1;
   }
 
+  .gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(3, 14, 41, 0.5) 0%, rgba(3, 14, 41, 0.8) 70%, rgba(3, 14, 41, 0.95) 100%);
+    z-index: 1;
+  }
+
+  /* CSS animations for hero content */
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    max-width: 800px;
+    width: 100%;
+  }
+
+  .title {
+    font-size: 5rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 1rem;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .tagline {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .cta-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .accent {
+    color: var(--color-primary);
+    animation: pulse 4s infinite ease-in-out;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  /* Existing particle animations */
   .p1 {
     top: 12%;
     left: 13%;
@@ -323,8 +376,8 @@
 
   @keyframes float-code {
     0% {
-      transform: translateZ(-50px) translateY(0) translateX(0) rotate(0deg);
       opacity: 0;
+      transform: translateZ(-50px) translateY(0) translateX(0) rotate(0deg);
     }
     20% {
       opacity: 0.7;
@@ -342,276 +395,20 @@
     }
   }
 
-  /* Add variation to animations */
-  .p1, .p5, .p9, .p13, .p17, .p21 {
-    animation-name: float-code-1;
-  }
-
-  .p2, .p6, .p10, .p14, .p18, .p22 {
-    animation-name: float-code-2;
-  }
-
-  .p3, .p7, .p11, .p15, .p19, .p23 {
-    animation-name: float-code-3;
-  }
-
-  .p4, .p8, .p12, .p16, .p20, .p24 {
-    animation-name: float-code-4;
-  }
-
-  @keyframes float-code-1 {
-    0% {
-      transform: translateZ(-50px) translateY(0) translateX(0) rotate(0deg);
-      opacity: 0;
-    }
-    20% {
-      opacity: 0.7;
-    }
-    50% {
-      transform: translateZ(50px) translateY(-20px) translateX(20px) rotate(5deg);
-      opacity: 0.7;
-    }
-    80% {
-      opacity: 0.7;
-    }
-    100% {
-      transform: translateZ(-50px) translateY(0) translateX(0) rotate(0deg);
-      opacity: 0;
-    }
-  }
-
-  @keyframes float-code-2 {
-    0% {
-      transform: translateZ(-30px) translateY(0) translateX(0) rotate(0deg);
-      opacity: 0;
-    }
-    20% {
-      opacity: 0.6;
-    }
-    50% {
-      transform: translateZ(40px) translateY(15px) translateX(-25px) rotate(-3deg);
-      opacity: 0.6;
-    }
-    80% {
-      opacity: 0.6;
-    }
-    100% {
-      transform: translateZ(-30px) translateY(0) translateX(0) rotate(0deg);
-      opacity: 0;
-    }
-  }
-
-  @keyframes float-code-3 {
-    0% {
-      transform: translateZ(-20px) translateY(0) translateX(0) rotate(0deg);
-      opacity: 0;
-    }
-    20% {
-      opacity: 0.5;
-    }
-    50% {
-      transform: translateZ(30px) translateY(-15px) translateX(-15px) rotate(2deg);
-      opacity: 0.5;
-    }
-    80% {
-      opacity: 0.5;
-    }
-    100% {
-      transform: translateZ(-20px) translateY(0) translateX(0) rotate(0deg);
-      opacity: 0;
-    }
-  }
-
-  @keyframes float-code-4 {
-    0% {
-      transform: translateZ(-40px) translateY(0) translateX(0) rotate(0deg);
-      opacity: 0;
-    }
-    20% {
-      opacity: 0.65;
-    }
-    50% {
-      transform: translateZ(45px) translateY(10px) translateX(30px) rotate(-2deg);
-      opacity: 0.65;
-    }
-    80% {
-      opacity: 0.65;
-    }
-    100% {
-      transform: translateZ(-40px) translateY(0) translateX(0) rotate(0deg);
-      opacity: 0;
-    }
-  }
-
-  /* Vary animation durations */
-  .p1, .p11, .p21 { animation-duration: 18s; }
-  .p2, .p12, .p22 { animation-duration: 22s; }
-  .p3, .p13, .p23 { animation-duration: 16s; }
-  .p4, .p14, .p24 { animation-duration: 24s; }
-  .p5, .p15 { animation-duration: 20s; }
-  .p6, .p16 { animation-duration: 19s; }
-  .p7, .p17 { animation-duration: 23s; }
-  .p8, .p18 { animation-duration: 17s; }
-  .p9, .p19 { animation-duration: 21s; }
-  .p10, .p20 { animation-duration: 25s; }
-
-  .p2, .p7, .p13, .p18, .p23 {
-    font-size: 12px;
-    padding: 6px 10px;
-  }
-
-  .p4, .p9, .p15, .p20, .p22 {
-    font-size: 16px;
-    padding: 9px 14px;
-  }
-
-  .p6, .p11, .p16, .p21, .p24 {
-    font-size: 11px;
-    padding: 5px 8px;
-  }
-
-  .gradient-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at center, rgba(3, 14, 41, 0.5) 0%, rgba(3, 14, 41, 0.8) 70%, rgba(3, 14, 41, 0.95) 100%);
-    z-index: 1;
-  }
-
-  .hero-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    padding: 2rem;
-    text-align: center;
-    max-width: 800px;
-    width: 100%;
-    z-index: 2;
-  }
-
-  .title {
-    color: #fff;
-    font-size: calc(36px + 5vw);
-    letter-spacing: -0.03em;
-    font-weight: 800;
-    line-height: 1em;
-    margin: 0;
-    position: relative;
-    display: inline-block;
-    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
-
-  .accent {
-    color: var(--color-primary, #FF295D);
-    position: relative;
-    display: inline-block;
-    animation: pulse 4s infinite ease-in-out;
-  }
-
-  .tagline {
-    color: rgba(255, 255, 255, 0.85);
-    font-size: calc(16px + 0.5vw);
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    margin-top: 1.5rem;
-    position: relative;
-    display: inline-block;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  }
-
-  .cta-container {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .cta-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.375rem;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: all 0.2s ease;
-    text-decoration: none;
-    position: relative;
-    overflow: hidden;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-
-  .cta-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-  }
-
-  .cta-button:hover::before {
-    transform: translateX(0);
-  }
-
-  .cta-button.primary {
-    background-color: var(--color-primary, #FF295D);
-    color: white;
-    box-shadow: 0 4px 12px rgba(255, 41, 93, 0.3);
-  }
-
-  .cta-button.primary:hover {
-    box-shadow: 0 6px 16px rgba(255, 41, 93, 0.4);
-    transform: translateY(-2px);
-  }
-
-  .cta-button.secondary {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-  }
-
-  .cta-button.secondary:hover {
-    border-color: var(--color-primary, #FF295D);
-    transform: translateY(-2px);
-  }
-
-  @keyframes pulse {
-    0%, 100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.8;
-    }
-  }
-
+  /* Responsive styles */
   @media (max-width: 768px) {
     .title {
-      font-size: calc(28px + 5vw);
+      font-size: 3.5rem;
     }
 
     .tagline {
-      font-size: calc(14px + 0.5vw);
-      margin-top: 1rem;
+      font-size: 1.25rem;
     }
 
     .cta-container {
       flex-direction: column;
-      width: 100%;
-      gap: 0.75rem;
-    }
-
-    .cta-button {
-      width: 100%;
+      align-items: center;
     }
   }
 </style>
+

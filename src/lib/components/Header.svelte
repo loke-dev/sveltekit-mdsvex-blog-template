@@ -2,6 +2,7 @@
   import { page } from "$app/stores"
   import { onMount } from "svelte"
   import { slide } from "svelte/transition"
+  import Link from "./Link.svelte"
 
   let isMenuOpen = false
   let scrollY = 0
@@ -70,8 +71,9 @@
 
 <header
   bind:this={headerElement}
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full bg-background/85 backdrop-blur-sm shadow-lg"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full {isScrolled ? 'bg-background/90 backdrop-blur-md shadow-lg' : 'bg-background/70 backdrop-blur-sm'}"
 >
+  <div class="header-glow"></div>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center py-4 md:justify-start md:space-x-10">
       <!-- Logo as Home Link -->
@@ -112,41 +114,34 @@
 
       <!-- Desktop navigation -->
       <nav class="hidden md:flex space-x-10" aria-label="Main navigation">
-        <ul class="flex items-center space-x-1">
-          <li class="nav-item {$page.url.pathname.includes('/about') ? 'active' : ''}">
-            <a
+        <ul class="flex items-center space-x-6">
+          <li class="nav-item">
+            <Link
               href="/about"
-              class="nav-link"
-              aria-current={$page.url.pathname.includes('/about') ? 'page' : undefined}
-              data-sveltekit-preload-data="hover"
-              tabindex="0"
+              variant="nav"
+              active={$page.url.pathname.includes('/about')}
             >
               About
-            </a>
+            </Link>
           </li>
-          <li class="nav-item {$page.url.pathname.includes('/journal') ? 'active' : ''}">
-            <a
+          <li class="nav-item">
+            <Link
               href="/journal"
-              class="nav-link"
-              aria-current={$page.url.pathname.includes('/journal') ? 'page' : undefined}
-              data-sveltekit-preload-data="hover"
-              tabindex="0"
+              variant="nav"
+              active={$page.url.pathname.includes('/journal')}
             >
               Journal
-            </a>
+            </Link>
           </li>
-          <li class="nav-item {$page.url.pathname.includes('/contact') ? 'active' : ''}">
-            <a
+          <li class="nav-item">
+            <Link
               href="/contact"
-              class="nav-link"
-              aria-current={$page.url.pathname.includes('/contact') ? 'page' : undefined}
-              data-sveltekit-preload-data="hover"
-              tabindex="0"
+              variant="nav"
+              active={$page.url.pathname.includes('/contact')}
             >
               Contact
-            </a>
+            </Link>
           </li>
-          <!-- Add more nav items here in the future -->
         </ul>
       </nav>
     </div>
@@ -158,7 +153,7 @@
       class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
       transition:slide={{ duration: 300, axis: 'y' }}
     >
-      <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-background/95 backdrop-blur-sm divide-y-2 divide-gray-700">
+      <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-background/95 backdrop-blur-md divide-y-2 divide-gray-700">
         <div class="pt-5 pb-6 px-5">
           <div class="flex items-center justify-between">
             <div>
@@ -213,7 +208,6 @@
               >
                 Contact
               </a>
-              <!-- Add more mobile nav items here in the future -->
             </nav>
           </div>
         </div>
@@ -241,8 +235,38 @@
     top: 0;
   }
 
+  .header-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg,
+      rgba(255, 41, 93, 0.7),
+      rgba(255, 186, 2, 0.7),
+      rgba(75, 46, 198, 0.7),
+      rgba(255, 41, 93, 0.7)
+    );
+    background-size: 300% 100%;
+    animation: gradient-shift 15s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
   .logo-link {
+    position: relative;
     transition: transform 0.2s ease;
+    overflow: hidden;
   }
 
   .logo-link:hover {
@@ -250,96 +274,85 @@
   }
 
   .logo-text {
-    letter-spacing: -0.03em;
+    position: relative;
+    z-index: 1;
+    color: white;
     font-weight: 800;
-    color: #fff;
-  }
-
-  .text-primary {
-    color: var(--color-primary, #FF295D);
-    position: relative;
-    display: inline-block;
-    animation: pulse 4s infinite ease-in-out;
-  }
-
-  @keyframes pulse {
-    0%, 100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.8;
-    }
-  }
-
-  .nav-item {
-    position: relative;
-    height: 100%;
-    display: flex;
-    align-items: center;
+    letter-spacing: -0.03em;
   }
 
   .nav-link {
     position: relative;
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    font-weight: 600;
-    color: white;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    border-radius: 0.375rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0.5rem 0;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: width 0.3s ease;
   }
 
   .nav-link:hover {
-    color: theme('colors.primary');
-    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
   }
 
-  .nav-link:focus {
-    outline: none;
-    color: theme('colors.primary');
-    box-shadow: 0 0 0 2px theme('colors.primary');
+  .nav-link:hover::after {
+    width: 100%;
   }
 
-  .nav-item.active .nav-link {
-    color: theme('colors.primary');
+  .nav-link.active {
+    color: white;
   }
 
-  .nav-item.active .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 3px;
-    background: linear-gradient(to right, theme('colors.primary'), theme('colors.secondary'));
-    border-radius: 3px;
+  .nav-link.active::after {
+    width: 100%;
   }
 
   .mobile-nav-link {
     display: block;
-    padding: 0.75rem;
+    padding: 0.75rem 0;
     font-size: 1.125rem;
     font-weight: 500;
-    color: white;
-    border-radius: 0.375rem;
-    transition: all 0.2s ease;
+    color: rgba(255, 255, 255, 0.8);
+    transition: color 0.2s ease;
+    position: relative;
+    padding-left: 1rem;
+  }
+
+  .mobile-nav-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 1.5rem;
+    background-color: var(--color-primary);
+    opacity: 0.3;
+    transition: width 0.2s ease;
   }
 
   .mobile-nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: theme('colors.primary');
+    color: white;
   }
 
-  .mobile-nav-link:focus {
-    outline: none;
-    color: theme('colors.primary');
-    box-shadow: 0 0 0 2px theme('colors.primary');
+  .mobile-nav-link:hover::before {
+    width: 4px;
   }
 
-  .active-mobile {
-    color: theme('colors.primary');
-    background: linear-gradient(to right, rgba(255, 41, 93, 0.1), rgba(255, 186, 2, 0.05));
-    border-left: 3px solid theme('colors.primary');
+  .mobile-nav-link.active-mobile {
+    color: white;
+  }
+
+  .mobile-nav-link.active-mobile::before {
+    width: 4px;
   }
 </style>
