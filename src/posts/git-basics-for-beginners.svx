@@ -1,11 +1,14 @@
 ---
-title: "Git Basics for Beginners: A Practical Guide to Version Control"
-description: "Learn the essential Git commands and workflows that every new developer needs to know. This beginner-friendly guide covers installation, basic commands, branching, merging, and how to recover from common mistakes."
-date: 2024-01-05
+title: 'Git Basics for Beginners: A Practical Guide to Version Control'
+description: >-
+  Learn the essential Git commands and workflows that every new developer needs
+  to know. This beginner-friendly guide covers installation, basic commands,
+  branching, merging, and how to recover from common mistakes.
+date: 2024-01-05T00:00:00.000Z
 published: true
+tags:
+  - git
 ---
-
-# Git Basics for Beginners: A Practical Guide to Version Control
 
 ## Introduction
 

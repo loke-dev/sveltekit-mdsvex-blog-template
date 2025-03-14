@@ -1,11 +1,14 @@
 ---
-title: "Debugging JavaScript Like a Pro: Essential Techniques for Beginners"
-description: "Learn practical JavaScript debugging techniques that will save you hours of frustration. This guide covers console methods, browser dev tools, common error types, and step-by-step strategies to find and fix bugs in your code."
-date: 2023-12-10
+title: 'Debugging JavaScript Like a Pro: Essential Techniques for Beginners'
+description: >-
+  Learn practical JavaScript debugging techniques that will save you hours of
+  frustration. This guide covers console methods, browser dev tools, common
+  error types, and step-by-step strategies to find and fix bugs in your code.
+date: 2023-12-10T00:00:00.000Z
 published: true
+tags:
+  - javascript
 ---
-
-# Debugging JavaScript Like a Pro: Essential Techniques for Beginners
 
 ## Introduction
 

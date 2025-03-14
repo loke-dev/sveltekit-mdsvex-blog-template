@@ -1,11 +1,15 @@
 ---
-title: "JavaScript Array Methods Every Beginner Should Know"
-description: "Master the essential JavaScript array methods that will make your code cleaner and more efficient. This beginner-friendly guide covers methods for adding, removing, transforming, and searching through arrays with practical examples and common use cases."
-date: 2024-02-20
+title: JavaScript Array Methods Every Beginner Should Know
+description: >-
+  Master the essential JavaScript array methods that will make your code cleaner
+  and more efficient. This beginner-friendly guide covers methods for adding,
+  removing, transforming, and searching through arrays with practical examples
+  and common use cases.
+date: 2024-02-20T00:00:00.000Z
 published: true
+tags:
+  - javascript
 ---
-
-# JavaScript Array Methods Every Beginner Should Know
 
 ## Introduction
 

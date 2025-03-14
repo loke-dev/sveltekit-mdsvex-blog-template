@@ -24,6 +24,31 @@ export async function load() {
 
   publishedPosts.sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
 
+  // Create a map of categories to posts
+  const categoryMap = new Map<string, any[]>()
+
+  publishedPosts.forEach((post) => {
+    if (post.category) {
+      if (!categoryMap.has(post.category)) {
+        categoryMap.set(post.category, [])
+      }
+      const postsWithCategory = categoryMap.get(post.category)
+      if (postsWithCategory) {
+        postsWithCategory.push(post)
+      }
+    }
+  })
+
+  // Convert the map to an array of objects
+  const categories = Array.from(categoryMap.entries()).map(([name, posts]) => ({
+    name,
+    count: posts.length,
+    posts,
+  }))
+
+  // Sort categories by post count (descending)
+  categories.sort((a, b) => b.count - a.count)
+
   // Create a map of tags to posts
   const tagMap = new Map<string, any[]>()
 
@@ -42,8 +67,8 @@ export async function load() {
   })
 
   // Convert the map to an array of objects
-  const tags = Array.from(tagMap.entries()).map(([name, posts]) => ({
-    name,
+  const tags = Array.from(tagMap.entries()).map(([tag, posts]) => ({
+    name: tag,
     count: posts.length,
     posts,
   }))
@@ -51,5 +76,5 @@ export async function load() {
   // Sort tags by post count (descending)
   tags.sort((a, b) => b.count - a.count)
 
-  return { posts: publishedPosts, tags }
+  return { categories, tags, posts: publishedPosts }
 }

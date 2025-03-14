@@ -1,11 +1,13 @@
 ---
-title: "How to add comments to gridsome with Disqus"
-description: Adding comments to a static site can be easy and Disqus is a great alternative that add loads into your site externally as an iframe.
-date: 2019-10-31
+title: How to add comments to gridsome with Disqus
+description: >-
+  Adding comments to a static site can be easy and Disqus is a great alternative
+  that add loads into your site externally as an iframe.
+date: 2019-10-31T00:00:00.000Z
 published: true
+tags:
+  - web
 ---
-
-# How to add comments to Gridsome with Disqus
 
 Disqus is an external service that injects an iframe on your site, one easy way to use Disqus with Gridsome is to use the package [https://github.com/ktquez/vue-disqus](https://github.com/ktquez/vue-disqus "vue-disqus") that provides you with a custom component that you can use across your project.
 

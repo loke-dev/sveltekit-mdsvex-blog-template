@@ -1,11 +1,15 @@
 ---
-title: "Responsive Web Design Fundamentals: Building Sites That Work Everywhere"
-description: "Learn the essential principles of responsive web design to create websites that look great on any device. This beginner-friendly guide covers viewport settings, fluid layouts, media queries, responsive images, and practical techniques to solve common responsive design challenges."
-date: 2024-02-05
+title: 'Responsive Web Design Fundamentals: Building Sites That Work Everywhere'
+description: >-
+  Learn the essential principles of responsive web design to create websites
+  that look great on any device. This beginner-friendly guide covers viewport
+  settings, fluid layouts, media queries, responsive images, and practical
+  techniques to solve common responsive design challenges.
+date: 2024-02-05T00:00:00.000Z
 published: true
+tags:
+  - css
 ---
-
-# Responsive Web Design Fundamentals: Building Sites That Work Everywhere
 
 ## Introduction
 

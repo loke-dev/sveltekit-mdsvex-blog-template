@@ -1,11 +1,15 @@
 ---
-title: "Understanding Web Accessibility for Beginners: A Practical Guide"
-description: "Learn the fundamentals of web accessibility and how to make your websites usable by everyone. This beginner-friendly guide covers WCAG guidelines, semantic HTML, keyboard navigation, ARIA attributes, and practical tips to create more inclusive web experiences."
-date: 2024-04-05
+title: 'Understanding Web Accessibility for Beginners: A Practical Guide'
+description: >-
+  Learn the fundamentals of web accessibility and how to make your websites
+  usable by everyone. This beginner-friendly guide covers WCAG guidelines,
+  semantic HTML, keyboard navigation, ARIA attributes, and practical tips to
+  create more inclusive web experiences.
+date: 2024-04-05T00:00:00.000Z
 published: true
+tags:
+  - accessibility
 ---
-
-# Understanding Web Accessibility for Beginners: A Practical Guide
 
 ## Introduction
 

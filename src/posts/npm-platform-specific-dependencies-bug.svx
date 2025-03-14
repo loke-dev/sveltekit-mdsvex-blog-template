@@ -1,13 +1,17 @@
 ---
-title: "Solving the npm Platform-Specific Dependencies Bug: A Complete Guide for JavaScript Developers"
-date: 2025-03-12
-description: "Discover how to fix the critical npm bug affecting cross-platform JavaScript development teams and prevent build failures across different operating systems."
-cover_image: "/images/posts/npm-dependencies-bug.jpg"
-tags: ["JavaScript", "npm", "DevOps", "Troubleshooting", "Cross-Platform Development", "package-lock.json"]
+title: >-
+  Solving the npm Platform-Specific Dependencies Bug: A Complete Guide for
+  JavaScript Developers
+date: 2025-03-12T00:00:00.000Z
+description: >-
+  Discover how to fix the critical npm bug affecting cross-platform JavaScript
+  development teams and prevent build failures across different operating
+  systems.
+cover_image: /images/posts/npm-dependencies-bug.jpg
+tags:
+  - javascript
 published: true
 ---
-
-# Solving the npm Platform-Specific Dependencies Bug: A Complete Guide for JavaScript Developers
 
 Are your JavaScript builds mysteriously failing on different operating systems? Is your CI/CD pipeline breaking while everything works fine locally? You might be experiencing the notorious npm platform-specific dependencies bug that has been frustrating development teams for many years.
 

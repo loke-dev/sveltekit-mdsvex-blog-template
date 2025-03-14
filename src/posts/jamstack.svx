@@ -1,8 +1,12 @@
 ---
 title: JAMstack
-description: JAM stands for JavaScript API Markup. It is a new way to build websites that are fast, scalable and secure.
-date: 2019-05-06
+description: >-
+  JAM stands for JavaScript API Markup. It is a new way to build websites that
+  are fast, scalable and secure.
+date: 2019-05-06T00:00:00.000Z
 published: true
+tags:
+  - jamstack
 ---
 
 ![JAMstack](/images/jam.png "JAMstack")

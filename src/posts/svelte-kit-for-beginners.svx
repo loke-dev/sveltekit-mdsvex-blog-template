@@ -1,11 +1,15 @@
 ---
-title: "SvelteKit for Beginners: A Comprehensive Guide to Getting Started"
-description: "Learn the ins and outs of SvelteKit, a beginner-friendly framework for building modern web applications. This comprehensive guide covers everything from project setup and component creation to data handling, routing, styling, deployment, and performance optimization."
-date: 2023-07-12
+title: 'SvelteKit for Beginners: A Comprehensive Guide to Getting Started'
+description: >-
+  Learn the ins and outs of SvelteKit, a beginner-friendly framework for
+  building modern web applications. This comprehensive guide covers everything
+  from project setup and component creation to data handling, routing, styling,
+  deployment, and performance optimization.
+date: 2023-07-12T00:00:00.000Z
 published: true
+tags:
+  - svelte
 ---
-
-# SvelteKit for Beginners: A Comprehensive Guide to Getting Started
 
 ## Introduction
 

@@ -1,11 +1,13 @@
 ---
-title: "Solving the Next.js 15 'params should be awaited' Error: A Complete Guide"
-date: 2025-02-27
-description: "Learn how to fix the common 'params should be awaited' error in Next.js 15 with practical solutions for both server and client components."
+title: 'Solving the Next.js 15 ''params should be awaited'' Error: A Complete Guide'
+date: 2025-02-27T00:00:00.000Z
+description: >-
+  Learn how to fix the common 'params should be awaited' error in Next.js 15
+  with practical solutions for both server and client components.
 published: true
+tags:
+  - next.js
 ---
-
-# Solving the Next.js 15 'params should be awaited' Error: A Complete Guide
 
 If you've recently upgraded to Next.js 15 or started a new project with it, you might have encountered this frustrating error message:
 
