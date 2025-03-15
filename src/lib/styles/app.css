@@ -47,17 +47,11 @@
   }
 
   body {
-    min-height: 100vh;
-    margin: 0;
-    background-color: #030e29;
-    color: #fff;
-    @apply font-sans text-base antialiased;
+    @apply min-h-screen m-0 bg-background text-white font-sans text-base antialiased;
   }
 
   #svelte {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    @apply min-h-screen flex flex-col;
   }
 }
 
@@ -69,50 +63,34 @@
   .inline-code {
     @apply font-mono text-sm bg-gray-900 px-1.5 py-0.5 rounded border border-gray-800;
   }
-}
 
-@layer utilities {
-  .fullWidth {
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-  }
-
-  /* Footer utility classes */
   .footer-link {
-    @apply transition-colors duration-200 hover:text-primary relative;
+    @apply transition-colors duration-200 hover:text-primary relative inline-flex items-center;
     position: relative;
-    display: inline-flex;
-    align-items: center;
   }
 
   .footer-link:focus {
-    @apply text-primary;
-    outline: 2px solid theme('colors.primary');
-    outline-offset: 2px;
-    border-radius: 4px;
+    @apply text-primary outline-2 outline-primary outline-offset-2 rounded;
     box-shadow: 0 0 0 2px rgba(255, 41, 93, 0.3);
   }
 
   .footer-link::after {
     content: '';
-    position: absolute;
-    width: 0;
-    height: 1px;
-    bottom: -2px;
-    left: 0;
-    @apply bg-primary;
-    transition: width 0.3s ease;
+    @apply absolute w-0 h-px bottom-[-2px] left-0 bg-primary transition-all duration-300;
   }
 
   .footer-link:hover::after {
-    width: 100%;
+    @apply w-full;
   }
 }
 
+@layer utilities {
+  .fullWidth {
+    @apply w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw];
+  }
+}
+
+/* Custom scrollbar - keep this outside layers as it uses webkit specific selectors */
 html::-webkit-scrollbar-track {
   background: linear-gradient(0deg, #ff295d 25%, #ffba02 50%, #fb44e3 75%, #4b2ec5 100%);
 }

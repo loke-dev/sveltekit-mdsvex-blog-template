@@ -39,7 +39,7 @@
 <Patterns variant="2" />
 
 <div class="contact-container">
-  <div class="contact-header animate-item">
+  <div class="contact-header">
     <h2 class="text-primary font-semibold tracking-wide uppercase">Contact</h2>
     <h3 class="text-3xl leading-8 font-extrabold tracking-tight text-gray-100 sm:text-4xl">
       Let's talk
@@ -49,7 +49,7 @@
     </p>
   </div>
 
-  <div class="contact-form-container animate-item">
+  <div class="contact-form-container">
     {#if !formSubmitted}
       <form
         bind:this={formElement}
@@ -157,28 +157,12 @@
     flex-grow: 1;
   }
 
-  .animate-item {
-    opacity: 0;
-    animation: fadeInUp 0.8s ease forwards;
-  }
-
   .contact-header {
     animation-delay: 0.2s;
   }
 
   .contact-form-container {
     animation-delay: 0.4s;
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
   }
 
   .animate-fade-in {

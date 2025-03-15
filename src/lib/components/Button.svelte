@@ -40,7 +40,7 @@
 {#if isLink}
   <a
     {href}
-    class="{baseClasses} {variantClasses[variant]} {disabled ? disabledClasses : ''}"
+    class="{baseClasses} {variantClasses[variant]} {disabled ? disabledClasses : ''} group"
     aria-disabled={disabled}
     tabindex={disabled ? -1 : 0}
     on:click
@@ -53,13 +53,13 @@
       <slot />
     </span>
     {#if variant === 'primary'}
-      <div class="button-glow"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-primary via-secondary via-[#4b2ec6] to-primary bg-[length:300%_100%] mix-blend-overlay opacity-0 transition-opacity duration-300 animate-gradient-shift group-hover:opacity-60"></div>
     {/if}
   </a>
 {:else}
   <button
     {type}
-    class="{baseClasses} {variantClasses[variant]} {disabled ? disabledClasses : ''}"
+    class="{baseClasses} {variantClasses[variant]} {disabled ? disabledClasses : ''} group"
     disabled={disabled}
     on:click
     on:focus
@@ -71,45 +71,7 @@
       <slot />
     </span>
     {#if variant === 'primary'}
-      <div class="button-glow"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-primary via-[#4b2ec6] to-primary bg-[length:300%_100%] mix-blend-overlay opacity-0 transition-opacity duration-300 animate-gradient-shift group-hover:opacity-60"></div>
     {/if}
   </button>
 {/if}
-
-<style>
-  .button-glow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg,
-      rgba(255, 41, 93, 1),
-      rgba(255, 186, 2, 1),
-      rgba(75, 46, 198, 1),
-      rgba(255, 41, 93, 1)
-    );
-    background-size: 300% 100%;
-    mix-blend-mode: overlay;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    animation: gradient-shift 8s ease infinite;
-  }
-
-  button:hover .button-glow,
-  a:hover .button-glow {
-    opacity: 0.6;
-  }
-
-  @keyframes gradient-shift {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-</style>

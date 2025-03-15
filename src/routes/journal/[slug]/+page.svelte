@@ -27,7 +27,7 @@
 <Patterns variant="2" />
 
 <div class="post-container">
-  <div class="post-header animate-item" style="--tag-color: {tagColor}">
+  <div class="post-header" style="--tag-color: {tagColor}">
     <Link href="/journal" className="back-link">❮ Back to Journal</Link>
 
     <h1 class="title">{title}</h1>
@@ -48,7 +48,7 @@
     </div>
   </div>
 
-  <article class="prose prose-lg animate-item">
+  <article class="prose prose-lg">
     <!-- Article body -->
     <svelte:component this={component} />
   </article>
@@ -64,11 +64,6 @@
 
   .post-header {
     margin-bottom: 3rem;
-  }
-
-  .animate-item {
-    opacity: 0;
-    animation: fadeInUp 0.8s ease forwards;
   }
 
   .post-header {

@@ -43,7 +43,7 @@
 <Patterns variant="2" />
 
 <div class="content">
-  <div class="tags-header animate-item">
+  <div class="tags-header">
     <h2 class="text-primary font-semibold tracking-wide uppercase">Journal</h2>
     <h3 class="text-3xl leading-8 font-extrabold tracking-tight text-gray-100 sm:text-4xl mb-6">
       Topics
@@ -51,7 +51,7 @@
     <Link href="/journal" className="back-link">❮ Back to Journal</Link>
   </div>
 
-  <div class="mb-12 animate-item">
+  <div class="mb-12">
     <h2 class="text-xl font-semibold mb-4">Popular Topics</h2>
     <div class="flex flex-wrap gap-3">
       {#each popularTags as tag}
@@ -65,7 +65,7 @@
     </div>
   </div>
 
-  <div class="all-topics animate-item">
+  <div class="all-topics">
     <h3 class="text-xl font-bold mb-4">All Topics</h3>
     <div class="tag-groups">
       {#each groupedTags as [letter, tagsInGroup]}
@@ -98,62 +98,6 @@
     margin-bottom: 2rem;
   }
 
-  .animate-item {
-    opacity: 0;
-    animation: fadeInUp 0.8s ease forwards;
-  }
-
-  .tags-header {
-    animation-delay: 0.2s;
-  }
-
-  .popular-topics {
-    animation-delay: 0.4s;
-  }
-
-  .all-topics {
-    animation-delay: 0.6s;
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .back-link {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    margin-bottom: 2rem;
-    color: var(--color-primary);
-    transition: all 0.2s ease;
-  }
-
-  .back-link:hover {
-    transform: translateX(-2px);
-  }
-
-  .tag-pill {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    border-radius: 4px;
-    font-size: 0.875rem;
-    background-color: rgba(75, 85, 99, 0.3);
-    color: #D1D5DB;
-    transition: all 0.2s ease;
-  }
-
-  .tag-pill:hover {
-    background-color: rgba(75, 85, 99, 0.5);
-    color: white;
-  }
-
   .tag-groups {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -165,15 +109,5 @@
     font-weight: 600;
     border-bottom: 2px solid rgba(156, 163, 175, 0.75);
     padding-bottom: 0.25rem;
-  }
-
-  .tag-link {
-    color: #D1D5DB;
-    transition: all 0.2s ease;
-  }
-
-  .tag-link:hover {
-    color: white;
-    text-decoration: underline;
   }
 </style>

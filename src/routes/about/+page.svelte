@@ -9,7 +9,7 @@
 </svelte:head>
 
 <div class="about-container">
-  <div class="about-header animate-item">
+  <div class="about-header">
     <h2 class="text-primary font-semibold tracking-wide uppercase">About</h2>
     <h3 class="text-3xl leading-8 font-extrabold tracking-tight text-gray-100 sm:text-4xl">
       Loke
@@ -17,7 +17,7 @@
   </div>
 
   <div class="about-content">
-    <div class="about-text animate-item">
+    <div class="about-text">
       <div class="prose">
         <strong>
           I've worked professionally with JavaScript for about {yearsOfWork} years now, across the
@@ -37,7 +37,7 @@
     </div>
 
     <div class="about-image-container">
-      <div class="animate-item">
+      <div>
         <div class="image-card">
           <div class="image-border"></div>
           <div class="image-wrapper">
@@ -98,26 +98,6 @@
     justify-content: center;
     position: relative;
     height: 450px;
-  }
-
-  .about-image-container .animate-item {
-    animation-delay: 0.6s;
-  }
-
-  .animate-item {
-    opacity: 0;
-    animation: fadeInUp 0.8s ease forwards;
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
   }
 
   .image-card {

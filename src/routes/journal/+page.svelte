@@ -33,14 +33,14 @@
 <Patterns variant="2" />
 
 <div class="content">
-  <div class="journal-header animate-item">
+  <div class="journal-header">
     <h2 class="text-primary font-semibold tracking-wide uppercase">Journal</h2>
     <h3 class="text-3xl leading-8 font-extrabold tracking-tight text-gray-100 sm:text-4xl mb-6">
       Let's learn together!
     </h3>
   </div>
 
-  <div class="mb-8 animate-item">
+    <div class="mb-8">
     <div class="flex flex-wrap gap-3 items-center">
       <span class="text-gray-400">Browse by topic:</span>
       <Link href="/journal/tags" className="tag-pill">all topics</Link>
@@ -79,46 +79,6 @@
   .journal-header {
     margin-bottom: 2rem;
   }
-
-  .animate-item {
-    opacity: 0;
-    animation: fadeInUp 0.8s ease forwards;
-  }
-
-  .journal-header {
-    animation-delay: 0.2s;
-  }
-
-  .mb-8 {
-    animation-delay: 0.4s;
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .tag-pill {
-    display: inline-block;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    background-color: rgba(75, 85, 99, 0.3);
-    color: #9CA3AF;
-    transition: all 0.2s ease;
-  }
-
-  .tag-pill:hover {
-    background-color: rgba(75, 85, 99, 0.5);
-    color: #D1D5DB;
-  }
-
   .posts-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -130,12 +90,5 @@
     .posts-grid {
       grid-template-columns: repeat(2, 1fr);
     }
-  }
-
-  .post-item {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.8s ease forwards;
-    animation-delay: calc(0.4s + var(--delay));
   }
 </style>
