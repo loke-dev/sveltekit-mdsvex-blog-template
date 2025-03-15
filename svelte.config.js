@@ -45,11 +45,6 @@ const config = {
         throw new Error(message);
       }
     }
-  },
-  compilerOptions: {
-    compatibility: {
-      componentApi: 4
-    }
   }
 }
 
