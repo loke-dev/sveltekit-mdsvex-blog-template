@@ -4,7 +4,6 @@
   export let left: string = "0%";
   export let delay: string = "0s";
   export let textSize: string = "text-sm";
-  export let bgOpacity: string = "bg-black/20";
   export let color: string = "white";
   export let customClass: string = "";
   export let rotate: string = "0deg";

@@ -6,14 +6,13 @@
  * Edited by Loke to fit my theme a bit better.
  */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/preflight";
+@import "tailwindcss";
 
 @layer base {
   code[class*="language-"],
   pre[class*="language-"] {
-    @apply text-secondary;
+    color: var(--color-secondary);
     text-shadow: 0 0 2px #100c0f, 0 0 5px #ffba0230, 0 0 10px #fff3;
     background: none;
     text-align: left;
@@ -145,7 +144,8 @@
   }
 
   table thead tr {
-    @apply bg-white/10 text-secondary text-left font-bold border-b-2 border-[#1a2a5e];
+    @apply bg-white/10 text-left font-bold border-b-2 border-[#1a2a5e];
+    color: var(--color-secondary);
   }
 
   table thead tr th {

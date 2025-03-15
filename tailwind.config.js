@@ -1,4 +1,3 @@
-import colors from 'tailwindcss/colors';
 import typography from '@tailwindcss/typography';
 import aspectRatio from '@tailwindcss/aspect-ratio';
 
@@ -26,16 +25,14 @@ const config = {
         mono: ['JetBrains Mono', 'Fira Code', 'ui-monospace', 'monospace'],
       },
       colors: {
-        primary: "#FF295D",
-        secondary: "#FFBA02",
-        tertiary: "#4b2ec6",
-        background: "#030E29",
+        primary: 'var(--color-primary)',
+        secondary: 'var(--color-secondary)',
+        tertiary: '#4b2ec6',
+        background: 'var(--color-background)',
         "background-faded": "#101254",
         "background-faded-hover": "#10125450",
         "background-code": "#001445",
         faded: "#c6c7c950",
-        teal: colors.teal,
-        cyan: colors.cyan,
         brown: {
           DEFAULT: "#795548",
           50: "#efebe9",
@@ -107,7 +104,7 @@ const config = {
               color: '#efebe9',
             },
             a: {
-              color: theme('colors.primary'),
+              color: 'var(--color-primary)',
               textDecoration: 'none',
               '&:hover': {
                 textDecoration: 'initial',

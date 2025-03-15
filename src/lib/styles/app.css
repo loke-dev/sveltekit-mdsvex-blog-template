@@ -1,12 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
   :root {
     --color-primary: #FF295D;
     --color-secondary: #FFBA02;
     --color-background: #030E29;
+    --color-tertiary: #4b2ec6;
+    --color-background-faded: #101254;
+    --color-background-code: #001445;
   }
 
   html {
@@ -14,7 +15,8 @@
   }
 
   body {
-    @apply min-h-screen m-0 bg-background text-white font-sans text-base antialiased;
+    @apply min-h-screen m-0 text-white font-sans text-base antialiased;
+    background-color: var(--color-background);
   }
 
   /* Make focus styles visible for all interactive elements */
@@ -23,13 +25,53 @@
   input:focus,
   select:focus,
   textarea:focus {
-    @apply outline-2 outline-offset-2 outline-primary;
+    outline-width: 2px;
+    outline-offset: 2px;
+    outline-color: var(--color-primary);
   }
 }
 
 @layer utilities {
   .fullWidth {
     @apply w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw];
+  }
+
+  /* Custom color utilities */
+  .text-primary {
+    color: var(--color-primary);
+  }
+
+  .text-secondary {
+    color: var(--color-secondary);
+  }
+
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+
+  .bg-secondary {
+    background-color: var(--color-secondary);
+  }
+
+  .bg-background {
+    background-color: var(--color-background);
+  }
+
+  /* Opacity variants */
+  .bg-primary\/30 {
+    background-color: color-mix(in oklab, var(--color-primary) 30%, transparent);
+  }
+
+  .bg-background\/70 {
+    background-color: color-mix(in oklab, var(--color-background) 70%, transparent);
+  }
+
+  .bg-background\/90 {
+    background-color: color-mix(in oklab, var(--color-background) 90%, transparent);
+  }
+
+  .bg-background\/95 {
+    background-color: color-mix(in oklab, var(--color-background) 95%, transparent);
   }
 }
 
