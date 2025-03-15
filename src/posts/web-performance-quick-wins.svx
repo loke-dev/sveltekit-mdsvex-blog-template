@@ -1,0 +1,81 @@
+---
+title: '5 Web Performance Quick Wins You Can Implement Today'
+description: 'Boost your website speed with these five simple performance optimizations that can be implemented in minutes but deliver significant improvements.'
+date: 2024-01-10T00:00:00.000Z
+published: true
+tag: performance
+---
+
+## Why Performance Matters
+
+Website performance directly impacts user experience, conversion rates, and even SEO rankings. Here are five quick optimizations you can implement today:
+
+## 1. Optimize Images
+
+Images often account for the largest portion of page weight. Optimize them by:
+
+- Using modern formats like WebP or AVIF
+- Implementing responsive images with `srcset`
+- Lazy loading images below the fold
+
+```html
+<img
+  src="image-small.jpg"
+  srcset="image-small.jpg 400w, image-medium.jpg 800w, image-large.jpg 1200w"
+  sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px"
+  loading="lazy"
+  alt="Description"
+/>
+```
+
+## 2. Enable Text Compression
+
+Enable Gzip or Brotli compression on your server to reduce text-based resource sizes by 70-90%:
+
+```nginx
+# Nginx example
+gzip on;
+gzip_types text/plain text/css application/javascript application/json;
+```
+
+## 3. Implement Critical CSS
+
+Inline critical CSS to eliminate render-blocking resources:
+
+```html
+<head>
+  <!-- Critical CSS inlined -->
+  <style>
+    /* Critical styles for above-the-fold content */
+    header { /* styles */ }
+    .hero { /* styles */ }
+  </style>
+
+  <!-- Non-critical CSS loaded asynchronously -->
+  <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+</head>
+```
+
+## 4. Cache Assets Properly
+
+Set appropriate cache headers for static assets:
+
+```nginx
+# Nginx example
+location ~* \.(css|js|jpg|jpeg|png|gif|ico|svg|woff|woff2)$ {
+  expires 1y;
+  add_header Cache-Control "public, max-age=31536000, immutable";
+}
+```
+
+## 5. Defer Non-Critical JavaScript
+
+Move non-essential JavaScript loading to after critical content:
+
+```html
+<script src="non-critical.js" defer></script>
+```
+
+## Conclusion
+
+These five optimizations can significantly improve your website's performance with minimal effort. Start implementing them today to provide a better user experience and improve your site's metrics.

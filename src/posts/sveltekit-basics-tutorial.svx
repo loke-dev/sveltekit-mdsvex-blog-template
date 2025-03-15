@@ -1,0 +1,77 @@
+---
+title: 'Getting Started with SvelteKit: A Beginner-Friendly Guide'
+description: 'Learn the fundamentals of SvelteKit, the full-stack framework for building fast, SEO-friendly web applications with less code and better developer experience.'
+date: 2024-02-20T00:00:00.000Z
+published: true
+tag: svelte
+---
+
+## What is SvelteKit?
+
+SvelteKit is a framework for building web applications using Svelte. It handles routing, server-side rendering, and provides an excellent developer experience out of the box.
+
+## Creating Your First SvelteKit Project
+
+Getting started with SvelteKit is straightforward:
+
+```bash
+# Create a new project
+npm create svelte@latest my-sveltekit-app
+
+# Navigate to the project directory
+cd my-sveltekit-app
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
+```
+
+## File-Based Routing
+
+SvelteKit uses a file-based routing system. Files in the `src/routes` directory automatically become pages:
+
+```
+src/routes/
+├── +page.svelte        # Home page (/)
+├── about/
+│   └── +page.svelte    # About page (/about)
+└── blog/
+    ├── +page.svelte    # Blog index (/blog)
+    └── [slug]/
+        └── +page.svelte # Individual blog post (/blog/:slug)
+```
+
+## Loading Data
+
+SvelteKit makes data loading simple with `+page.server.js` files:
+
+```javascript
+// src/routes/blog/+page.server.js
+export async function load() {
+  const posts = await fetchPosts();
+  return { posts };
+}
+```
+
+Then use the data in your page:
+
+```svelte
+<!-- src/routes/blog/+page.svelte -->
+<script>
+  export let data;
+  const { posts } = data;
+</script>
+
+<h1>Blog Posts</h1>
+<ul>
+  {#each posts as post}
+    <li><a href="/blog/{post.slug}">{post.title}</a></li>
+  {/each}
+</ul>
+```
+
+## Conclusion
+
+SvelteKit provides a powerful yet simple framework for building modern web applications. This brief introduction only scratches the surface of what's possible with SvelteKit.

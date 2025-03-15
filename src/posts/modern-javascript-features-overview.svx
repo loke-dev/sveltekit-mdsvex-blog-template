@@ -1,0 +1,77 @@
+---
+title: 'Modern JavaScript Features Every Developer Should Know'
+description: 'A quick overview of essential JavaScript features that have transformed modern web development, from arrow functions to optional chaining.'
+date: 2023-11-15T00:00:00.000Z
+published: true
+tag: javascript
+---
+
+## Introduction
+
+JavaScript continues to evolve with new features that make code more concise, readable, and powerful. This post highlights some of the most useful modern JavaScript features you should be using in your projects.
+
+## Arrow Functions
+
+Arrow functions provide a shorter syntax and lexical `this` binding:
+
+```javascript
+// Traditional function
+function add(a, b) {
+  return a + b;
+}
+
+// Arrow function
+const add = (a, b) => a + b;
+```
+
+## Destructuring Assignment
+
+Easily extract values from objects and arrays:
+
+```javascript
+// Object destructuring
+const { name, age } = person;
+
+// Array destructuring
+const [first, second] = items;
+```
+
+## Spread and Rest Operators
+
+Spread elements or collect them into an array:
+
+```javascript
+// Spread operator
+const newArray = [...oldArray, newItem];
+const newObject = { ...oldObject, newProp: value };
+
+// Rest operator
+function sum(...numbers) {
+  return numbers.reduce((total, num) => total + num, 0);
+}
+```
+
+## Optional Chaining
+
+Safely access nested properties without checking each level:
+
+```javascript
+// Without optional chaining
+const street = user && user.address && user.address.street;
+
+// With optional chaining
+const street = user?.address?.street;
+```
+
+## Nullish Coalescing
+
+Provide fallbacks for null or undefined values:
+
+```javascript
+// Returns fallback only if value is null or undefined
+const result = value ?? fallback;
+```
+
+## Conclusion
+
+These modern JavaScript features can significantly improve your code quality and developer experience. Start incorporating them into your projects to write more elegant and maintainable code.

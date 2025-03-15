@@ -1,0 +1,98 @@
+---
+title: 'Docker Container Basics for Web Developers'
+description: 'A concise introduction to Docker containers and how they can simplify your web development workflow, improve consistency, and streamline deployments.'
+date: 2024-03-05T00:00:00.000Z
+published: true
+tag: devops
+---
+
+## What Are Docker Containers?
+
+Docker containers are lightweight, standalone, executable packages that include everything needed to run an application: code, runtime, system tools, libraries, and settings.
+
+## Why Use Docker for Web Development?
+
+- **Consistency**: "It works on my machine" becomes "It works on every machine"
+- **Isolation**: Dependencies for different projects don't conflict
+- **Simplified setup**: New team members can get started quickly
+- **Environment parity**: Development environments match production
+
+## Basic Docker Commands
+
+Here are some essential Docker commands to get started:
+
+```bash
+# Pull an image from Docker Hub
+docker pull node:18
+
+# Run a container
+docker run -p 3000:3000 -v $(pwd):/app node:18
+
+# List running containers
+docker ps
+
+# Stop a container
+docker stop container_id
+
+# Remove a container
+docker rm container_id
+```
+
+## Creating a Dockerfile
+
+A Dockerfile defines how to build your application's container:
+
+```dockerfile
+# Use Node.js as the base image
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy application code
+COPY . .
+
+# Expose port
+EXPOSE 3000
+
+# Start the application
+CMD ["npm", "start"]
+```
+
+## Docker Compose for Multi-Container Apps
+
+For applications with multiple services (frontend, backend, database), Docker Compose simplifies management:
+
+```yaml
+# docker-compose.yml
+version: '3'
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    ports:
+      - "4000:4000"
+    depends_on:
+      - database
+
+  database:
+    image: postgres:14
+    environment:
+      POSTGRES_PASSWORD: example
+```
+
+## Conclusion
+
+Docker containers provide a powerful way to standardize development environments and simplify deployments. This introduction covers just the basics - there's much more to explore as you integrate Docker into your workflow.

@@ -1,0 +1,64 @@
+---
+title: 'CSS Custom Properties: The Modern Way to Style'
+description: 'Learn how CSS custom properties (variables) can transform your styling workflow and make your stylesheets more maintainable and flexible.'
+date: 2023-12-05T00:00:00.000Z
+published: true
+tag: css
+---
+
+## What Are CSS Custom Properties?
+
+CSS custom properties, also known as CSS variables, allow you to store specific values to be reused throughout your stylesheet:
+
+```css
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --text-color: #333;
+  --spacing-unit: 8px;
+}
+
+.button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: calc(var(--spacing-unit) * 2);
+  margin-bottom: var(--spacing-unit);
+}
+```
+
+## Benefits Over Preprocessor Variables
+
+Unlike Sass or Less variables, CSS custom properties:
+
+1. Are native to the browser
+2. Can be updated dynamically with JavaScript
+3. Respect the cascade and can be scoped to specific elements
+4. Can be used in media queries
+
+## Dynamic Theming Example
+
+Custom properties make implementing themes much easier:
+
+```css
+/* Light theme (default) */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+}
+
+/* Dark theme */
+.dark-theme {
+  --bg-color: #222222;
+  --text-color: #f0f0f0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+```
+
+## Conclusion
+
+CSS custom properties have transformed how we write and maintain CSS. They bridge the gap between CSS and JavaScript while making our stylesheets more flexible and maintainable.
