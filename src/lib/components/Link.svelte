@@ -15,7 +15,12 @@
 
 <a
   {href}
-  class="link {variant} {active ? 'active' : ''} {className}"
+  class="relative transition-colors duration-200 {className}
+    {variant === 'nav' ? 'font-medium text-white/80 py-2 hover:text-white' : ''}
+    {variant === 'footer' ? 'inline-flex items-center text-gray-400 py-1 hover:text-white' : ''}
+    {variant === 'inline' ? 'text-primary no-underline border-b border-transparent hover:border-primary' : ''}
+    {variant === 'tech' ? 'text-gray-400 px-1 hover:text-white' : ''}
+    {active ? 'text-white' : ''}"
   style={style}
   aria-current={active ? 'page' : undefined}
   data-sveltekit-preload-data={!external ? 'hover' : undefined}
@@ -27,111 +32,13 @@
   on:mouseleave
 >
   <slot />
+  {#if variant === 'nav' && (active || $$slots.default)}
+    <span class="absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-300 {active ? 'w-full' : 'w-0 group-hover:w-full'}"></span>
+  {/if}
+  {#if variant === 'footer' && $$slots.default}
+    <span class="absolute bottom-0 left-0 h-px bg-primary transition-all duration-300 w-0 group-hover:w-full"></span>
+  {/if}
+  {#if variant === 'tech' && $$slots.default}
+    <span class="absolute bottom-[-1px] left-0 h-px bg-gradient-primary transition-all duration-300 w-0 group-hover:w-full"></span>
+  {/if}
 </a>
-
-<style>
-  .link {
-    position: relative;
-    transition: color 0.2s ease;
-  }
-
-  /* Nav link style - like in header */
-  .link.nav {
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.8);
-    padding: 0.5rem 0;
-  }
-
-  .link.nav::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--color-primary);
-    transition: width 0.3s ease;
-  }
-
-  .link.nav:hover {
-    color: white;
-  }
-
-  .link.nav:hover::after {
-    width: 100%;
-  }
-
-  .link.nav.active {
-    color: white;
-  }
-
-  .link.nav.active::after {
-    width: 100%;
-  }
-
-  /* Footer link style */
-  .link.footer {
-    display: inline-flex;
-    align-items: center;
-    color: #9CA3AF;
-    padding: 0.25rem 0;
-  }
-
-  .link.footer::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background-color: var(--color-primary);
-    transition: width 0.3s ease;
-  }
-
-  .link.footer:hover {
-    color: white;
-  }
-
-  .link.footer:hover::after {
-    width: 100%;
-  }
-
-  /* Inline link style - for content */
-  .link.inline {
-    color: var(--color-primary);
-    text-decoration: none;
-    padding-bottom: 1px;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s ease;
-  }
-
-  .link.inline:hover {
-    border-bottom-color: var(--color-primary);
-  }
-
-  /* Tech link style - for footer tech links */
-  .link.tech {
-    position: relative;
-    color: #9CA3AF;
-    padding: 0 0.25rem;
-  }
-
-  .link.tech::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
-    transition: width 0.3s ease;
-  }
-
-  .link.tech:hover {
-    color: white;
-  }
-
-  .link.tech:hover::after {
-    width: 100%;
-  }
-</style>

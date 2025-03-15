@@ -11,31 +11,15 @@
 </script>
 
 {#if slug}
-  <h3 class="heading" class:large={!slug} {id}>
+  <h3 class="m-0 text-2xl {!slug ? 'mt-12 text-3xl' : ''}" {id}>
     <a {href}>
       {title}
     </a>
   </h3>
 {:else}
-  <h2 class="heading" class:large={!slug} {id}>
+  <h2 class="m-0 text-2xl {!slug ? 'mt-12 text-3xl' : ''}" {id}>
     <a {href}>
       {title}
     </a>
   </h2>
 {/if}
-
-<style>
-  h2 {
-    margin: 0;
-  }
-
-  .heading {
-    margin: 0;
-    font-size: 1.8rem;
-  }
-
-  .large {
-    margin-top: calc(var(--spacing-unit) * 12);
-    font-size: 2.2rem;
-  }
-</style>

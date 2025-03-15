@@ -2,71 +2,9 @@
   // No props or logic needed for this component
 </script>
 
-<div class="grid-background">
-  <div class="grid-container">
-    <div class="grid-pattern"></div>
-    <div class="grid-fade-overlay"></div>
+<div class="fixed inset-0 -z-1 overflow-hidden pointer-events-none">
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute inset-0 bg-grid-pattern bg-30px opacity-70 transform perspective-800px rotate-x-5 origin-top-center animate-grid-move"></div>
+    <div class="absolute inset-0 bg-radial-fade pointer-events-none"></div>
   </div>
 </div>
-
-<style>
-  .grid-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    overflow: hidden;
-    pointer-events: none;
-  }
-
-  .grid-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-
-  .grid-pattern {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 30px 30px;
-    transform: perspective(800px) rotateX(5deg);
-    transform-origin: center top;
-    animation: grid-move 30s linear infinite;
-    opacity: 0.7;
-  }
-
-  .grid-fade-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(
-      circle at center,
-      transparent 10%,
-      rgba(3, 14, 41, 0.1) 50%,
-      rgba(3, 14, 41, 0.4) 100%
-    );
-    pointer-events: none;
-  }
-
-  @keyframes grid-move {
-    0% {
-      background-position: 0 0;
-    }
-    100% {
-      background-position: 0 30px;
-    }
-  }
-</style>

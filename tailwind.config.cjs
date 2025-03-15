@@ -28,6 +28,7 @@ const config = {
         background: "#030E29",
         "background-faded": "#101254",
         "background-faded-hover": "#10125450",
+        "background-code": "#001445",
         faded: "#c6c7c950",
         teal: colors.teal,
         cyan: colors.cyan,
@@ -54,6 +55,30 @@ const config = {
           radial-gradient(circle at 60% 20%, rgb(255 186 2 / 0.20), transparent 20%)
         `,
         'radial-fade': 'radial-gradient(circle at center, transparent 10%, rgba(3, 14, 41, 0.1) 50%, rgba(3, 14, 41, 0.4) 100%)',
+        'grid-pattern': `
+          linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px)
+        `,
+        'footer-glow': `
+          linear-gradient(90deg,
+            rgba(255, 41, 93, 0.7),
+            rgba(255, 186, 2, 0.7),
+            rgba(75, 46, 198, 0.7),
+            rgba(255, 41, 93, 0.7)
+          )
+        `,
+        'header-glow': `
+          linear-gradient(90deg,
+            rgba(255, 41, 93, 0.7),
+            rgba(255, 186, 2, 0.7),
+            rgba(75, 46, 198, 0.7),
+            rgba(255, 41, 93, 0.7)
+          )
+        `,
+        'gradient-primary': `
+          linear-gradient(90deg, #FF295D, #FFBA02, #4b2ec6, #FF295D)
+        `,
+        'radial-gradient': 'radial-gradient(circle at center, var(--tw-gradient-from) 0%, var(--tw-gradient-via) 70%, var(--tw-gradient-to) 100%)',
       },
       typography: (theme) => ({
         DEFAULT: {
@@ -99,6 +124,8 @@ const config = {
         'float': 'float 6s ease-in-out infinite',
         'fadeIn': 'fadeIn 0.8s ease-out',
         'grid-move': 'grid-move 30s linear infinite',
+        'float-code': 'float-code 15s ease-in-out infinite',
+        'pulse': 'pulse 4s infinite ease-in-out',
       },
       keyframes: {
         'gradient-shift': {
@@ -117,6 +144,17 @@ const config = {
           '0%': { backgroundPosition: '0 0' },
           '100%': { backgroundPosition: '0 30px' },
         },
+        'float-code': {
+          '0%': { opacity: '0', transform: 'translateZ(-50px) translateY(0) translateX(0) rotate(0deg)' },
+          '20%': { opacity: '0.7' },
+          '50%': { transform: 'translateZ(50px) translateY(-20px) translateX(20px) rotate(5deg)', opacity: '0.7' },
+          '80%': { opacity: '0.7' },
+          '100%': { transform: 'translateZ(-50px) translateY(0) translateX(0) rotate(0deg)', opacity: '0' },
+        },
+        'pulse': {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.8' },
+        },
       },
       rotate: {
         'x-5': 'rotateX(5deg)',
@@ -127,9 +165,68 @@ const config = {
       transformOrigin: {
         'top-center': 'center top',
       },
+      backgroundSize: {
+        '300-100': '300% 100%',
+        '30px': '30px 30px',
+      },
+      boxShadow: {
+        'glow-primary': '0 0 20px rgba(255, 41, 93, 0.3)',
+        'glow-secondary': '0 0 20px rgba(255, 186, 2, 0.3)',
+      },
+      zIndex: {
+        '-1': '-1',
+      },
+      animationDelay: {
+        '1s': '-1s',
+        '2s': '-2s',
+        '3s': '-3s',
+        '4s': '-4s',
+        '5s': '-5s',
+        '6s': '-6s',
+        '7s': '-7s',
+        '8s': '-8s',
+        '9s': '-9s',
+        '10s': '-10s',
+        '12s': '-12s',
+        '14s': '-14s',
+        '16s': '-16s',
+        '18s': '-18s',
+      },
+      textShadow: {
+        'sm': '0 1px 2px rgba(0, 0, 0, 0.2)',
+        'md': '0 2px 8px rgba(0, 0, 0, 0.2)',
+        'lg': '0 4px 12px rgba(0, 0, 0, 0.2)',
+        'xl': '0 8px 16px rgba(0, 0, 0, 0.4)',
+      },
     },
   },
-  plugins: [require("@tailwindcss/typography"), require("@tailwindcss/aspect-ratio")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/aspect-ratio"),
+    function ({ addUtilities, theme }) {
+      const animationDelays = theme('animationDelay', {});
+      const utilities = Object.entries(animationDelays).map(([key, value]) => ({
+        [`.animation-delay-${key}`]: { animationDelay: value },
+      }));
+
+      addUtilities(utilities);
+    },
+    function ({ addUtilities, theme }) {
+      const textShadows = theme('textShadow', {});
+      const utilities = Object.entries(textShadows).map(([key, value]) => ({
+        [`.text-shadow-${key}`]: { textShadow: value },
+      }));
+
+      addUtilities(utilities);
+    },
+    function ({ addUtilities }) {
+      addUtilities({
+        '.transform-style-preserve-3d': {
+          'transform-style': 'preserve-3d',
+        },
+      });
+    }
+  ],
   future: {
     hoverOnlyWhenSupported: true,
   },

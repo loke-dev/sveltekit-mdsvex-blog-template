@@ -4,17 +4,6 @@
   const formattedDate = new Date(date).toDateString()
 </script>
 
-<p>
-  <span class="date">{formattedDate}</span>
+<p class="m-0 mb-8 text-gray-400">
+  <span>{formattedDate}</span>
 </p>
-
-<style>
-  p {
-    margin: 0;
-    margin-bottom: calc(var(--spacing-unit) * 4);
-  }
-
-  .date {
-    color: var(--color-text-secondary);
-  }
-</style>
