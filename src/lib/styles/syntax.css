@@ -6,7 +6,6 @@
  * Edited by Loke to fit my theme a bit better.
  */
 
-@import "tailwindcss/preflight";
 @import "tailwindcss";
 
 @layer base {
