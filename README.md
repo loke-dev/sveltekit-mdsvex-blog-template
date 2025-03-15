@@ -2,6 +2,8 @@
 
 A modern, fast, and SEO-friendly blog template built with SvelteKit, MDSvex, and TailwindCSS. Perfect for developers, writers, and creators looking to build a personal website with a blog.
 
+![Image](https://github.com/user-attachments/assets/88d8ac01-220c-4c25-a3bd-27bc1ae8825a)
+
 ## Features
 
 - 📝 MDSvex for writing blog posts in Markdown with Svelte components
