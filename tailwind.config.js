@@ -104,18 +104,10 @@ const config = {
               color: '#efebe9',
             },
             a: {
-              color: 'var(--color-primary)',
               textDecoration: 'none',
               '&:hover': {
                 textDecoration: 'initial',
               },
-            },
-            pre: {
-              color: 'none',
-              backgroundColor: '#001445',
-            },
-            code: {
-              color: '#FF295D',
             },
           },
         },

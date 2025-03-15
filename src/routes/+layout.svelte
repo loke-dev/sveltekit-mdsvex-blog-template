@@ -40,13 +40,13 @@
 </script>
 
 <svelte:head>
-  <meta name="og:title" content="Loke.dev" />
+  <meta name="og:title" content="SvelteKit MDSvex Blog Template" />
   <meta
     name="og:description"
-    content="Loke is a web developer based in Sweden. Read more about me or what services I can help you with."
+    content="A modern, fast, and SEO-friendly blog template built with SvelteKit, MDSvex, and TailwindCSS."
   />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:creator" content="@loke_dev" />
+  <meta name="twitter:creator" content="@your_twitter_handle" />
 </svelte:head>
 
 <!-- Enable prefetching for the entire app -->

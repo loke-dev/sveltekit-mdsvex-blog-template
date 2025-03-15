@@ -1,0 +1,15 @@
+name: SvelteKit MDSvex Blog Template
+description: A modern, fast, and SEO-friendly blog template built with SvelteKit, MDSvex, and TailwindCSS.
+author: Loke Carlsson
+repository: https://github.com/loke-dev/sveltekit-mdsvex-blog-template
+
+template:
+  features:
+    - SvelteKit 2.0+ with TypeScript
+    - MDSvex for Markdown with Svelte components
+    - TailwindCSS for styling
+    - SEO optimized
+    - Responsive design
+    - Vercel Analytics integration
+    - Testing with Vitest and Playwright
+    - Tag-based categorization for posts
