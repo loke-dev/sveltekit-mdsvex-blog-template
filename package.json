@@ -57,8 +57,7 @@
     "vite": "^6.2.0",
     "vitest": "latest",
     "vitest-svelte-kit": "^0.0.7",
-    "yarn-upgrade-all": "^0.7.2",
-    "zimmerframe": "latest"
+    "yarn-upgrade-all": "^0.7.2"
   },
   "dependencies": {
     "@vercel/analytics": "^1.0.1",

@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build:vercel",
+  "buildCommand": "npm install && npm run build:vercel",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "sveltekit"
