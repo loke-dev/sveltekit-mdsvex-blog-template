@@ -31,6 +31,105 @@
   }
 }
 
+@layer components {
+  /* Custom prose styles for markdown content */
+  .prose {
+    @apply max-w-none text-[#efebe9];
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    @apply text-white font-bold;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+  }
+
+  .prose h1 {
+    @apply text-3xl;
+  }
+
+  .prose h2 {
+    @apply text-2xl;
+  }
+
+  .prose h3 {
+    @apply text-xl;
+  }
+
+  .prose h4 {
+    @apply text-lg;
+  }
+
+  .prose p {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  .prose a {
+    @apply text-[#FF295D] no-underline border-b border-transparent hover:border-[#FF295D];
+  }
+
+  .prose strong {
+    @apply text-white font-bold;
+  }
+
+  .prose ul,
+  .prose ol {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-left: 1.5em;
+  }
+
+  .prose li {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+  }
+
+  .prose blockquote {
+    @apply border-l-4 border-[#FF295D] pl-4 italic;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  .prose code {
+    @apply bg-[#001445] text-[#FFBA02] px-1 py-0.5 rounded text-sm;
+  }
+
+  .prose pre {
+    @apply bg-[#001445] p-4 rounded-lg overflow-auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  .prose img {
+    @apply rounded-lg;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  .prose hr {
+    @apply border-gray-700;
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+
+  .prose table {
+    @apply w-full border-collapse;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  .prose th {
+    @apply text-white font-bold p-2 border border-gray-700 bg-gray-800;
+  }
+
+  .prose td {
+    @apply p-2 border border-gray-700;
+  }
+}
+
 @layer utilities {
   .fullWidth {
     @apply w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw];

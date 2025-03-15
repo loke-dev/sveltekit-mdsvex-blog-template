@@ -1,0 +1,382 @@
+---
+title: Advanced TypeScript Patterns for Enterprise Applications
+date: 2023-07-20T00:00:00.000Z
+description: Discover powerful TypeScript patterns and techniques that will help you build more maintainable, type-safe enterprise applications with confidence.
+published: true
+tag: typescript
+---
+
+TypeScript has revolutionized JavaScript development by bringing static typing to an inherently dynamic language. While many developers are familiar with TypeScript basics, the language offers a wealth of advanced patterns that can dramatically improve code quality, maintainability, and developer experience in large-scale applications.
+
+In this guide, I'll explore advanced TypeScript patterns that I've found invaluable when building enterprise-grade applications. These techniques go beyond the basics to help you leverage TypeScript's type system to its fullest potential.
+
+## Discriminated Unions: Type-Safe State Management
+
+Discriminated unions (also called tagged unions) are one of TypeScript's most powerful features for modeling complex states with complete type safety.
+
+```typescript
+// Instead of this
+type UserState = {
+  isLoading?: boolean;
+  user?: User;
+  error?: Error;
+};
+
+// Use this
+type UserState =
+  | { status: 'idle' }
+  | { status: 'loading' }
+  | { status: 'success'; data: User }
+  | { status: 'error'; error: Error };
+
+// Now you can safely handle each state
+function renderUser(state: UserState) {
+  switch (state.status) {
+    case 'idle':
+      return <div>Please search for a user</div>;
+    case 'loading':
+      return <div>Loading...</div>;
+    case 'success':
+      return <div>User: {state.data.name}</div>; // TypeScript knows data exists
+    case 'error':
+      return <div>Error: {state.error.message}</div>; // TypeScript knows error exists
+  }
+}
+```
+
+This pattern eliminates an entire class of bugs related to undefined properties and impossible states. The compiler forces you to handle each case explicitly, making your code more robust.
+
+## The Builder Pattern with Method Chaining
+
+The Builder pattern is excellent for creating complex objects with many optional parameters. TypeScript makes this pattern even more powerful with full type safety:
+
+```typescript
+class QueryBuilder<T> {
+  private filters: Record<string, any> = {};
+  private sorts: Record<string, 'asc' | 'desc'> = {};
+  private limitValue: number | null = null;
+  private offsetValue: number | null = null;
+
+  where<K extends keyof T>(field: K, value: T[K]): this {
+    this.filters[field as string] = value;
+    return this;
+  }
+
+  orderBy<K extends keyof T>(field: K, direction: 'asc' | 'desc'): this {
+    this.sorts[field as string] = direction;
+    return this;
+  }
+
+  limit(value: number): this {
+    this.limitValue = value;
+    return this;
+  }
+
+  offset(value: number): this {
+    this.offsetValue = value;
+    return this;
+  }
+
+  build(): Query<T> {
+    return {
+      filters: this.filters,
+      sorts: this.sorts,
+      limit: this.limitValue,
+      offset: this.offsetValue
+    };
+  }
+}
+
+// Usage
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  createdAt: Date;
+}
+
+const query = new QueryBuilder<User>()
+  .where('email', 'john@example.com') // Type-safe: field must be keyof User
+  .orderBy('createdAt', 'desc')       // Type-safe: direction must be 'asc' | 'desc'
+  .limit(10)
+  .build();
+```
+
+This pattern provides a fluent, discoverable API while maintaining complete type safety. The compiler will catch invalid field names or values at compile time.
+
+## Type-Safe Event Emitters with Mapped Types
+
+Event emitters are common in JavaScript, but they're often not type-safe. TypeScript's mapped types can fix this:
+
+```typescript
+type EventMap = {
+  'user:login': { userId: string; timestamp: number };
+  'user:logout': { userId: string; timestamp: number };
+  'item:added': { itemId: string; quantity: number };
+};
+
+class TypedEventEmitter<T extends Record<string, any>> {
+  private listeners: Partial<Record<keyof T, Array<(data: any) => void>>> = {};
+
+  on<K extends keyof T>(event: K, listener: (data: T[K]) => void): void {
+    if (!this.listeners[event]) {
+      this.listeners[event] = [];
+    }
+    this.listeners[event]?.push(listener);
+  }
+
+  emit<K extends keyof T>(event: K, data: T[K]): void {
+    this.listeners[event]?.forEach(listener => listener(data));
+  }
+
+  off<K extends keyof T>(event: K, listener: (data: T[K]) => void): void {
+    if (!this.listeners[event]) return;
+
+    const index = this.listeners[event]?.indexOf(listener) ?? -1;
+    if (index !== -1) {
+      this.listeners[event]?.splice(index, 1);
+    }
+  }
+}
+
+// Usage
+const emitter = new TypedEventEmitter<EventMap>();
+
+// Type-safe event registration
+emitter.on('user:login', data => {
+  console.log(`User ${data.userId} logged in at ${data.timestamp}`);
+});
+
+// Type error: Argument of type '{ userId: string; }' is not assignable to parameter of type '{ userId: string; timestamp: number; }'.
+// emitter.emit('user:login', { userId: '123' });
+
+// This works correctly
+emitter.emit('user:login', { userId: '123', timestamp: Date.now() });
+```
+
+This pattern ensures that event names and their associated data structures are always in sync, eliminating an entire class of runtime errors.
+
+## Branded Types for Type Safety
+
+Sometimes TypeScript's structural typing isn't strict enough. For instance, you might have multiple string IDs that shouldn't be interchangeable. Branded types solve this:
+
+```typescript
+// Create branded types for different ID types
+type UserId = string & { readonly __brand: unique symbol };
+type OrderId = string & { readonly __brand: unique symbol };
+
+// Type guard functions to create branded types
+function createUserId(id: string): UserId {
+  return id as UserId;
+}
+
+function createOrderId(id: string): OrderId {
+  return id as OrderId;
+}
+
+// Functions that require specific ID types
+function fetchUser(id: UserId) {
+  // Implementation...
+}
+
+function fetchOrder(id: OrderId) {
+  // Implementation...
+}
+
+// Usage
+const userId = createUserId('user-123');
+const orderId = createOrderId('order-456');
+
+fetchUser(userId); // Works fine
+// fetchUser(orderId); // Type error: Argument of type 'OrderId' is not assignable to parameter of type 'UserId'.
+```
+
+This pattern prevents accidental misuse of IDs, making your code more robust and self-documenting.
+
+## Advanced Type Inference with Conditional Types
+
+Conditional types allow you to create powerful type transformations based on conditions:
+
+```typescript
+// Extract return type of a function
+type ReturnTypeOf<T extends (...args: any) => any> = T extends (...args: any) => infer R ? R : never;
+
+// Extract the type of a Promise's resolved value
+type UnwrapPromise<T> = T extends Promise<infer U> ? U : T;
+
+// Extract property types from an object type
+type PropertyType<T, K extends keyof T> = T[K];
+
+// Usage examples
+function fetchUsers(): Promise<User[]> {
+  // Implementation...
+  return Promise.resolve([]);
+}
+
+// Inferred as User[]
+type FetchResult = UnwrapPromise<ReturnTypeOf<typeof fetchUsers>>;
+
+// Create a type that makes all properties of an interface optional and nullable
+type Nullable<T> = { [K in keyof T]: T[K] | null };
+
+// Create a type with only the specified keys from another type
+type Pick<T, K extends keyof T> = { [P in K]: T[P] };
+type UserBasicInfo = Pick<User, 'id' | 'name' | 'email'>;
+```
+
+These patterns allow you to manipulate types programmatically, reducing duplication and ensuring consistency across your codebase.
+
+## Type-Safe API Requests with Generic Constraints
+
+When working with APIs, you can create type-safe request functions using generics:
+
+```typescript
+interface ApiResponse<T> {
+  data: T;
+  status: number;
+  message: string;
+}
+
+// Define endpoint configurations
+interface ApiEndpoints {
+  '/users': {
+    get: {
+      response: User[];
+      params: { status?: 'active' | 'inactive' };
+    };
+    post: {
+      response: User;
+      body: Omit<User, 'id'>;
+    };
+  };
+  '/users/:id': {
+    get: {
+      response: User;
+      params: { id: string };
+    };
+    put: {
+      response: User;
+      params: { id: string };
+      body: Partial<Omit<User, 'id'>>;
+    };
+  };
+}
+
+// Type-safe API client
+async function apiRequest<
+  T extends keyof ApiEndpoints,
+  M extends keyof ApiEndpoints[T],
+  P extends ApiEndpoints[T][M] extends { params: infer P } ? P : never,
+  B extends ApiEndpoints[T][M] extends { body: infer B } ? B : never,
+  R extends ApiEndpoints[T][M] extends { response: infer R } ? R : never
+>(
+  endpoint: T,
+  method: M,
+  options?: {
+    params?: P;
+    body?: B;
+  }
+): Promise<ApiResponse<R>> {
+  // Implementation details omitted for brevity
+  return {} as any;
+}
+
+// Usage
+async function example() {
+  // Fully type-safe API calls
+  const users = await apiRequest('/users', 'get', {
+    params: { status: 'active' } // Type-checked
+  });
+
+  const newUser = await apiRequest('/users', 'post', {
+    body: { name: 'John', email: 'john@example.com' } // Type-checked
+  });
+
+  const user = await apiRequest('/users/:id', 'get', {
+    params: { id: '123' } // Type-checked
+  });
+
+  // TypeScript would catch this error:
+  // await apiRequest('/users', 'get', {
+  //   params: { status: 'pending' } // Error: Type '"pending"' is not assignable to type '"active" | "inactive" | undefined'.
+  // });
+}
+```
+
+This pattern ensures that your API calls are consistent with your API's contract, catching errors at compile time rather than runtime.
+
+## Recursive Types for Tree Structures
+
+When working with tree-like data structures, recursive types are invaluable:
+
+```typescript
+// File system node representation
+type FileSystemNode = {
+  name: string;
+  path: string;
+  size: number;
+} & (
+  | { type: 'file'; extension: string }
+  | { type: 'directory'; children: FileSystemNode[] }
+);
+
+// Usage
+const fileSystem: FileSystemNode = {
+  name: 'root',
+  path: '/',
+  size: 1024,
+  type: 'directory',
+  children: [
+    {
+      name: 'documents',
+      path: '/documents',
+      size: 512,
+      type: 'directory',
+      children: [
+        {
+          name: 'report.pdf',
+          path: '/documents/report.pdf',
+          size: 128,
+          type: 'file',
+          extension: 'pdf'
+        }
+      ]
+    },
+    {
+      name: 'config.json',
+      path: '/config.json',
+      size: 1,
+      type: 'file',
+      extension: 'json'
+    }
+  ]
+};
+
+// Type-safe recursive function
+function getTotalSize(node: FileSystemNode): number {
+  if (node.type === 'file') {
+    return node.size;
+  }
+
+  return node.size + node.children.reduce((total, child) => total + getTotalSize(child), 0);
+}
+```
+
+This pattern allows you to model complex hierarchical data with full type safety, ensuring that operations on the data structure are correct.
+
+## Conclusion: Leveraging TypeScript's Full Potential
+
+These advanced TypeScript patterns represent just a fraction of what's possible with TypeScript's sophisticated type system. By incorporating these patterns into your codebase, you can:
+
+- Eliminate entire classes of runtime errors
+- Make impossible states truly impossible to represent
+- Create self-documenting APIs that guide developers to correct usage
+- Improve code maintainability and refactorability
+
+Remember that TypeScript's type system is designed to help you write better code, not to get in your way. When used effectively, it becomes an invaluable tool for building robust, maintainable enterprise applications.
+
+What advanced TypeScript patterns have you found most useful in your projects? Share your experiences in the comments below!
+
+---
+
+*Want to master TypeScript? Check out my other articles on TypeScript tips, patterns, and best practices for modern web development.*

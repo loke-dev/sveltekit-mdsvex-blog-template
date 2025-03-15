@@ -86,7 +86,7 @@
           tabindex="0"
           aria-current={$page.url.pathname === '/' ? 'page' : undefined}
         >
-          <span class="text-2xl font-bold text-white font-sans tracking-tight z-10 relative">Loke<span class="text-primary">.</span>dev</span>
+          <span class="text-2xl font-bold text-white font-sans tracking-tight z-10 relative">SvelteKit<span class="text-primary">.</span>Blog</span>
         </a>
       </div>
 
@@ -163,7 +163,7 @@
                 on:click={handleNavigation}
                 tabindex="0"
               >
-                <span class="text-2xl font-bold text-white font-sans tracking-tight">Loke<span class="text-primary">.</span>dev</span>
+                <span class="text-2xl font-bold text-white font-sans tracking-tight">SvelteKit<span class="text-primary">.</span>Blog</span>
               </a>
             </div>
             <div class="-mr-2">
