@@ -1,11 +1,13 @@
 ---
-title: "Web Accessibility: A Practical Guide for Modern Developers"
-description: "Learn how to make your web applications accessible to all users with these practical tips, techniques, and tools. This guide covers everything from semantic HTML to ARIA attributes, keyboard navigation, and testing strategies."
-date: 2023-08-05
+title: 'Web Accessibility: A Practical Guide for Modern Developers'
+description: >-
+  Learn how to make your web applications accessible to all users with these
+  practical tips, techniques, and tools. This guide covers everything from
+  semantic HTML to ARIA attributes, keyboard navigation, and testing strategies.
+date: 2023-08-05T00:00:00.000Z
 published: true
+tag: accessibility
 ---
-
-# Web Accessibility: A Practical Guide for Modern Developers
 
 ## Introduction
 

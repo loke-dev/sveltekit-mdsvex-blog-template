@@ -1,12 +1,14 @@
 ---
-title: "Setting Cookies in Next.js 14: A Complete Guide to Server and Client Components"
-date: 2024-05-15
-description: "Learn how to properly set and manage cookies in Next.js 14 with the App Router, including solutions for both server and client components."
-tags: ["Next.js", "Cookies", "React", "Web Development", "JavaScript", "TypeScript"]
+title: >-
+  Setting Cookies in Next.js 14: A Complete Guide to Server and Client
+  Components
+date: 2024-05-15T00:00:00.000Z
+description: >-
+  Learn how to properly set and manage cookies in Next.js 14 with the App
+  Router, including solutions for both server and client components.
 published: true
+tag: next.js
 ---
-
-# Setting Cookies in Next.js 14: A Complete Guide to Server and Client Components
 
 Next.js 14 introduced significant changes to how we handle cookies with its App Router architecture and the distinction between server and client components. If you've been struggling with setting cookies in your Next.js 14 application, you're not alone. The shift from the Pages Router to the App Router has changed how we interact with cookies, and the official documentation doesn't always provide clear guidance for common use cases.
 

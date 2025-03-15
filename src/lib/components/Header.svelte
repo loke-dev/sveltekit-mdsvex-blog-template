@@ -2,6 +2,7 @@
   import { page } from "$app/stores"
   import { onMount } from "svelte"
   import { slide } from "svelte/transition"
+  import Link from "./Link.svelte"
 
   let isMenuOpen = false
   let scrollY = 0
@@ -66,25 +67,26 @@
   })
 </script>
 
-<a href="#main-content" class="skip-link">Skip to main content</a>
+<a href="#main-content" class="absolute top-[-40px] left-0 bg-primary text-white p-2 z-50 transition-all duration-200 focus:top-0">Skip to main content</a>
 
 <header
   bind:this={headerElement}
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full bg-background/85 backdrop-blur-sm shadow-lg"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full {isScrolled ? 'bg-background/90 backdrop-blur-md shadow-lg' : 'bg-background/70 backdrop-blur-sm'}"
 >
+  <div class="absolute top-0 left-0 w-full h-0.5 bg-header-glow bg-300-100 animate-gradient-shift"></div>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center py-4 md:justify-start md:space-x-10">
       <!-- Logo as Home Link -->
       <div class="flex justify-start lg:w-0 lg:flex-1">
         <a
           href="/"
-          class="flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md logo-link"
+          class="flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md relative transition-transform duration-200 hover:-translate-y-0.5 overflow-hidden"
           aria-label="Home"
           data-sveltekit-preload-data="hover"
           tabindex="0"
           aria-current={$page.url.pathname === '/' ? 'page' : undefined}
         >
-          <span class="text-2xl font-bold logo-text">Loke<span class="text-primary">.</span>dev</span>
+          <span class="text-2xl font-bold text-white font-sans tracking-tight z-10 relative">Loke<span class="text-primary">.</span>dev</span>
         </a>
       </div>
 
@@ -112,41 +114,34 @@
 
       <!-- Desktop navigation -->
       <nav class="hidden md:flex space-x-10" aria-label="Main navigation">
-        <ul class="flex items-center space-x-1">
-          <li class="nav-item {$page.url.pathname.includes('/about') ? 'active' : ''}">
-            <a
+        <ul class="flex items-center space-x-6">
+          <li>
+            <Link
               href="/about"
-              class="nav-link"
-              aria-current={$page.url.pathname.includes('/about') ? 'page' : undefined}
-              data-sveltekit-preload-data="hover"
-              tabindex="0"
+              variant="nav"
+              active={$page.url.pathname.includes('/about')}
             >
               About
-            </a>
+            </Link>
           </li>
-          <li class="nav-item {$page.url.pathname.includes('/journal') ? 'active' : ''}">
-            <a
+          <li>
+            <Link
               href="/journal"
-              class="nav-link"
-              aria-current={$page.url.pathname.includes('/journal') ? 'page' : undefined}
-              data-sveltekit-preload-data="hover"
-              tabindex="0"
+              variant="nav"
+              active={$page.url.pathname.includes('/journal')}
             >
               Journal
-            </a>
+            </Link>
           </li>
-          <li class="nav-item {$page.url.pathname.includes('/contact') ? 'active' : ''}">
-            <a
+          <li>
+            <Link
               href="/contact"
-              class="nav-link"
-              aria-current={$page.url.pathname.includes('/contact') ? 'page' : undefined}
-              data-sveltekit-preload-data="hover"
-              tabindex="0"
+              variant="nav"
+              active={$page.url.pathname.includes('/contact')}
             >
               Contact
-            </a>
+            </Link>
           </li>
-          <!-- Add more nav items here in the future -->
         </ul>
       </nav>
     </div>
@@ -158,17 +153,17 @@
       class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
       transition:slide={{ duration: 300, axis: 'y' }}
     >
-      <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-background/95 backdrop-blur-sm divide-y-2 divide-gray-700">
+      <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-background/95 backdrop-blur-md divide-y-2 divide-gray-700">
         <div class="pt-5 pb-6 px-5">
           <div class="flex items-center justify-between">
             <div>
               <a
                 href="/"
-                class="inline-block focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md logo-link"
+                class="inline-block focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md"
                 on:click={handleNavigation}
                 tabindex="0"
               >
-                <span class="text-2xl font-bold logo-text">Loke<span class="text-primary">.</span>dev</span>
+                <span class="text-2xl font-bold text-white font-sans tracking-tight">Loke<span class="text-primary">.</span>dev</span>
               </a>
             </div>
             <div class="-mr-2">
@@ -188,32 +183,34 @@
             <nav class="grid gap-y-8">
               <a
                 href="/about"
-                class="mobile-nav-link {$page.url.pathname.includes('/about') ? 'active-mobile' : ''}"
+                class="block py-3 text-lg font-medium text-white/80 hover:text-white relative pl-4 {$page.url.pathname.includes('/about') ? 'text-white' : ''}"
                 aria-current={$page.url.pathname.includes('/about') ? 'page' : undefined}
                 on:click={handleNavigation}
                 tabindex="0"
               >
+                <span class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary/30 {$page.url.pathname.includes('/about') ? 'opacity-100' : 'opacity-0'} transition-all duration-200"></span>
                 About
               </a>
               <a
                 href="/journal"
-                class="mobile-nav-link {$page.url.pathname.includes('/journal') ? 'active-mobile' : ''}"
+                class="block py-3 text-lg font-medium text-white/80 hover:text-white relative pl-4 {$page.url.pathname.includes('/journal') ? 'text-white' : ''}"
                 aria-current={$page.url.pathname.includes('/journal') ? 'page' : undefined}
                 on:click={handleNavigation}
                 tabindex="0"
               >
+                <span class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary/30 {$page.url.pathname.includes('/journal') ? 'opacity-100' : 'opacity-0'} transition-all duration-200"></span>
                 Journal
               </a>
               <a
                 href="/contact"
-                class="mobile-nav-link {$page.url.pathname.includes('/contact') ? 'active-mobile' : ''}"
+                class="block py-3 text-lg font-medium text-white/80 hover:text-white relative pl-4 {$page.url.pathname.includes('/contact') ? 'text-white' : ''}"
                 aria-current={$page.url.pathname.includes('/contact') ? 'page' : undefined}
                 on:click={handleNavigation}
                 tabindex="0"
               >
+                <span class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary/30 {$page.url.pathname.includes('/contact') ? 'opacity-100' : 'opacity-0'} transition-all duration-200"></span>
                 Contact
               </a>
-              <!-- Add more mobile nav items here in the future -->
             </nav>
           </div>
         </div>
@@ -224,122 +221,3 @@
 
 <!-- Spacer to prevent content from being hidden under fixed header -->
 <div class="h-20"></div>
-
-<style lang="postcss">
-  .skip-link {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    background: var(--color-primary);
-    color: white;
-    padding: 8px;
-    z-index: 100;
-    transition: top 0.2s;
-  }
-
-  .skip-link:focus {
-    top: 0;
-  }
-
-  .logo-link {
-    transition: transform 0.2s ease;
-  }
-
-  .logo-link:hover {
-    transform: translateY(-1px);
-  }
-
-  .logo-text {
-    letter-spacing: -0.03em;
-    font-weight: 800;
-    color: #fff;
-  }
-
-  .text-primary {
-    color: var(--color-primary, #FF295D);
-    position: relative;
-    display: inline-block;
-    animation: pulse 4s infinite ease-in-out;
-  }
-
-  @keyframes pulse {
-    0%, 100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.8;
-    }
-  }
-
-  .nav-item {
-    position: relative;
-    height: 100%;
-    display: flex;
-    align-items: center;
-  }
-
-  .nav-link {
-    position: relative;
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    font-weight: 600;
-    color: white;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    border-radius: 0.375rem;
-  }
-
-  .nav-link:hover {
-    color: theme('colors.primary');
-    background-color: rgba(255, 255, 255, 0.05);
-  }
-
-  .nav-link:focus {
-    outline: none;
-    color: theme('colors.primary');
-    box-shadow: 0 0 0 2px theme('colors.primary');
-  }
-
-  .nav-item.active .nav-link {
-    color: theme('colors.primary');
-  }
-
-  .nav-item.active .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 3px;
-    background: linear-gradient(to right, theme('colors.primary'), theme('colors.secondary'));
-    border-radius: 3px;
-  }
-
-  .mobile-nav-link {
-    display: block;
-    padding: 0.75rem;
-    font-size: 1.125rem;
-    font-weight: 500;
-    color: white;
-    border-radius: 0.375rem;
-    transition: all 0.2s ease;
-  }
-
-  .mobile-nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: theme('colors.primary');
-  }
-
-  .mobile-nav-link:focus {
-    outline: none;
-    color: theme('colors.primary');
-    box-shadow: 0 0 0 2px theme('colors.primary');
-  }
-
-  .active-mobile {
-    color: theme('colors.primary');
-    background: linear-gradient(to right, rgba(255, 41, 93, 0.1), rgba(255, 186, 2, 0.05));
-    border-left: 3px solid theme('colors.primary');
-  }
-</style>

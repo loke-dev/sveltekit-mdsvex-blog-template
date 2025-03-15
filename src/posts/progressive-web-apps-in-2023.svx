@@ -1,11 +1,14 @@
 ---
-title: "Progressive Web Apps in 2023: Why They Matter More Than Ever"
-description: "Discover how Progressive Web Apps (PWAs) are transforming the web development landscape in 2023. Learn about the key benefits, implementation strategies, and real-world examples that show why PWAs are becoming essential for modern web experiences."
-date: 2023-07-15
+title: 'Progressive Web Apps in 2023: Why They Matter More Than Ever'
+description: >-
+  Discover how Progressive Web Apps (PWAs) are transforming the web development
+  landscape in 2023. Learn about the key benefits, implementation strategies,
+  and real-world examples that show why PWAs are becoming essential for modern
+  web experiences.
+date: 2023-07-15T00:00:00.000Z
 published: true
+tag: pwa
 ---
-
-# Progressive Web Apps in 2023: Why They Matter More Than Ever
 
 ## Introduction
 

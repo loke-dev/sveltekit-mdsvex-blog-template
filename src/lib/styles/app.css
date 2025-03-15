@@ -1,40 +1,22 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
   :root {
     --color-primary: #FF295D;
     --color-secondary: #FFBA02;
     --color-background: #030E29;
+    --color-tertiary: #4b2ec6;
+    --color-background-faded: #101254;
+    --color-background-code: #001445;
   }
 
   html {
     @apply font-sans;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-sans font-bold tracking-tight;
-  }
-
-  h1 {
-    @apply text-6xl;
-  }
-
-  h2 {
-    @apply text-4xl;
-  }
-
-  h3 {
-    @apply text-2xl;
-  }
-
-  a {
-    @apply text-primary;
-  }
-
-  code, pre {
-    @apply font-mono;
+  body {
+    @apply min-h-screen m-0 text-white font-sans text-base antialiased;
+    background-color: var(--color-background);
   }
 
   /* Make focus styles visible for all interactive elements */
@@ -43,76 +25,57 @@
   input:focus,
   select:focus,
   textarea:focus {
-    @apply outline-2 outline-offset-2 outline-primary;
-  }
-
-  body {
-    min-height: 100vh;
-    margin: 0;
-    background-color: #030e29;
-    color: #fff;
-    @apply font-sans text-base antialiased;
-  }
-
-  #svelte {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-@layer components {
-  .code-block {
-    @apply font-mono text-sm bg-gray-900 p-4 rounded-lg overflow-x-auto border border-gray-800;
-  }
-
-  .inline-code {
-    @apply font-mono text-sm bg-gray-900 px-1.5 py-0.5 rounded border border-gray-800;
+    outline-width: 2px;
+    outline-offset: 2px;
+    outline-color: var(--color-primary);
   }
 }
 
 @layer utilities {
   .fullWidth {
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    @apply w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw];
   }
 
-  /* Footer utility classes */
-  .footer-link {
-    @apply transition-colors duration-200 hover:text-primary relative;
-    position: relative;
-    display: inline-flex;
-    align-items: center;
+  /* Custom color utilities */
+  .text-primary {
+    color: var(--color-primary);
   }
 
-  .footer-link:focus {
-    @apply text-primary;
-    outline: 2px solid theme('colors.primary');
-    outline-offset: 2px;
-    border-radius: 4px;
-    box-shadow: 0 0 0 2px rgba(255, 41, 93, 0.3);
+  .text-secondary {
+    color: var(--color-secondary);
   }
 
-  .footer-link::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 1px;
-    bottom: -2px;
-    left: 0;
-    @apply bg-primary;
-    transition: width 0.3s ease;
+  .bg-primary {
+    background-color: var(--color-primary);
   }
 
-  .footer-link:hover::after {
-    width: 100%;
+  .bg-secondary {
+    background-color: var(--color-secondary);
+  }
+
+  .bg-background {
+    background-color: var(--color-background);
+  }
+
+  /* Opacity variants */
+  .bg-primary\/30 {
+    background-color: color-mix(in oklab, var(--color-primary) 30%, transparent);
+  }
+
+  .bg-background\/70 {
+    background-color: color-mix(in oklab, var(--color-background) 70%, transparent);
+  }
+
+  .bg-background\/90 {
+    background-color: color-mix(in oklab, var(--color-background) 90%, transparent);
+  }
+
+  .bg-background\/95 {
+    background-color: color-mix(in oklab, var(--color-background) 95%, transparent);
   }
 }
 
+/* Custom scrollbar - keep this outside layers as it uses webkit specific selectors */
 html::-webkit-scrollbar-track {
   background: linear-gradient(0deg, #ff295d 25%, #ffba02 50%, #fb44e3 75%, #4b2ec5 100%);
 }

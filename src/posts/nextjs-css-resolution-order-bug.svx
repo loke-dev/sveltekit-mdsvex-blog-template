@@ -1,12 +1,15 @@
 ---
-title: "Solving the Next.js CSS Resolution Order Bug: A Complete Guide for React Developers"
-date: 2025-03-12
-description: "Discover how to fix the frustrating CSS ordering inconsistency in Next.js App Router that causes styling issues between development and production environments."
-tags: ["Next.js", "CSS", "React", "Troubleshooting", "App Router", "Frontend Development"]
+title: >-
+  Solving the Next.js CSS Resolution Order Bug: A Complete Guide for React
+  Developers
+date: 2025-03-12T00:00:00.000Z
+description: >-
+  Discover how to fix the frustrating CSS ordering inconsistency in Next.js App
+  Router that causes styling issues between development and production
+  environments.
 published: true
+tag: next.js
 ---
-
-# Solving the Next.js CSS Resolution Order Bug: A Complete Guide for React Developers
 
 Are your Next.js styles working perfectly in development but breaking in production? Do your carefully crafted CSS specificity rules suddenly stop working after deployment? You might be experiencing the notorious Next.js CSS resolution order bug that has been frustrating developers since the introduction of the App Router.
 

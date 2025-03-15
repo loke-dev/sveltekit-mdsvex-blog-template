@@ -9,7 +9,7 @@
 </svelte:head>
 
 <div class="about-container">
-  <div class="about-header animate-item">
+  <div class="about-header">
     <h2 class="text-primary font-semibold tracking-wide uppercase">About</h2>
     <h3 class="text-3xl leading-8 font-extrabold tracking-tight text-gray-100 sm:text-4xl">
       Loke
@@ -17,7 +17,7 @@
   </div>
 
   <div class="about-content">
-    <div class="about-text animate-item">
+    <div class="about-text">
       <div class="prose">
         <strong>
           I've worked professionally with JavaScript for about {yearsOfWork} years now, across the
@@ -37,7 +37,7 @@
     </div>
 
     <div class="about-image-container">
-      <div class="animate-item">
+      <div>
         <div class="image-card">
           <div class="image-border"></div>
           <div class="image-wrapper">
@@ -100,26 +100,6 @@
     height: 450px;
   }
 
-  .about-image-container .animate-item {
-    animation-delay: 0.6s;
-  }
-
-  .animate-item {
-    opacity: 0;
-    animation: fadeInUp 0.8s ease forwards;
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
   .image-card {
     position: relative;
     width: 370px;
@@ -141,9 +121,28 @@
     left: -5px;
     right: -5px;
     bottom: -5px;
-    background: #ff295d;
+    background: linear-gradient(90deg,
+      rgba(255, 41, 93, 0.9),
+      rgba(255, 186, 2, 0.9),
+      rgba(75, 46, 198, 0.9),
+      rgba(255, 41, 93, 0.9)
+    );
+    background-size: 300% 100%;
+    animation: gradient-shift 15s ease infinite;
     border-radius: 28px;
     z-index: -1;
+  }
+
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 
   .image-glow {
@@ -199,6 +198,7 @@
     top: 60%;
     right: 5%;
     animation-delay: -1s;
+    background: #FFBA02;
   }
 
   .p3 {
@@ -207,6 +207,7 @@
     bottom: 10%;
     left: 30%;
     animation-delay: -2s;
+    background: #4b2ec6;
   }
 
   .p4 {
@@ -215,6 +216,7 @@
     top: 5%;
     right: 30%;
     animation-delay: -3s;
+    background: #FFBA02;
   }
 
   .p5 {
@@ -223,6 +225,7 @@
     bottom: 30%;
     left: 5%;
     animation-delay: -4s;
+    background: #4b2ec6;
   }
 
   .p6 {
@@ -231,6 +234,7 @@
     top: 40%;
     right: 0;
     animation-delay: -5s;
+    background: #FFBA02;
   }
 
   @keyframes float {

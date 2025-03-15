@@ -1,11 +1,14 @@
 ---
-title: "Modern CSS Techniques Every Web Developer Should Know in 2023"
-description: "Explore the latest CSS features and techniques that are transforming web development, from container queries and cascade layers to the CSS grid and custom properties. Learn how these modern approaches can simplify your code and enhance your designs."
-date: 2023-09-10
+title: Modern CSS Techniques Every Web Developer Should Know in 2023
+description: >-
+  Explore the latest CSS features and techniques that are transforming web
+  development, from container queries and cascade layers to the CSS grid and
+  custom properties. Learn how these modern approaches can simplify your code
+  and enhance your designs.
+date: 2023-09-10T00:00:00.000Z
 published: true
+tag: css
 ---
-
-# Modern CSS Techniques Every Web Developer Should Know in 2023
 
 ## Introduction
 

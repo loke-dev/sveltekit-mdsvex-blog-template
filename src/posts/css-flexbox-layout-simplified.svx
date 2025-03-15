@@ -1,11 +1,13 @@
 ---
-title: "CSS Flexbox Layout Simplified: A Visual Guide for Beginners"
-description: "Master CSS Flexbox layout with this beginner-friendly guide. Learn how to create responsive layouts, align elements, and solve common layout problems with practical examples and visual explanations."
-date: 2023-11-25
+title: 'CSS Flexbox Layout Simplified: A Visual Guide for Beginners'
+description: >-
+  Master CSS Flexbox layout with this beginner-friendly guide. Learn how to
+  create responsive layouts, align elements, and solve common layout problems
+  with practical examples and visual explanations.
+date: 2023-11-25T00:00:00.000Z
 published: true
+tag: css
 ---
-
-# CSS Flexbox Layout Simplified: A Visual Guide for Beginners
 
 ## Introduction
 

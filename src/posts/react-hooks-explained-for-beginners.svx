@@ -1,11 +1,13 @@
 ---
-title: "React Hooks Explained for Beginners: A Practical Guide"
-description: "Master React Hooks with this beginner-friendly guide. Learn how to use useState, useEffect, useContext, and custom hooks with practical examples to build more efficient and maintainable React applications."
-date: 2024-01-20
+title: 'React Hooks Explained for Beginners: A Practical Guide'
+description: >-
+  Master React Hooks with this beginner-friendly guide. Learn how to use
+  useState, useEffect, useContext, and custom hooks with practical examples to
+  build more efficient and maintainable React applications.
+date: 2024-01-20T00:00:00.000Z
 published: true
+tag: react
 ---
-
-# React Hooks Explained for Beginners: A Practical Guide
 
 ## Introduction
 

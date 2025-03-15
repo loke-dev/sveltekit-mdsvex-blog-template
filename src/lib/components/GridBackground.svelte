@@ -2,71 +2,12 @@
   // No props or logic needed for this component
 </script>
 
-<div class="grid-background">
-  <div class="grid-container">
-    <div class="grid-pattern"></div>
-    <div class="grid-fade-overlay"></div>
+<div class="fixed inset-0 -z-1 overflow-hidden pointer-events-none">
+  <div class="absolute inset-0 overflow-hidden">
+    <div
+      class="absolute inset-0 bg-grid-pattern bg-30px transform perspective-800px rotate-x-5 origin-top-center opacity-90"
+      style="background-size: 30px 30px; background-image: linear-gradient(to right, rgba(255, 255, 255, 0.07) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.07) 1px, transparent 1px); mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0.5) 70%, rgba(0, 0, 0, 0) 100%);"
+    ></div>
+    <div class="absolute inset-0 bg-radial-gradient from-background/10 via-background/40 to-background/70 z-[1]"></div>
   </div>
 </div>
-
-<style>
-  .grid-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    overflow: hidden;
-    pointer-events: none;
-  }
-
-  .grid-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-
-  .grid-pattern {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 30px 30px;
-    transform: perspective(800px) rotateX(5deg);
-    transform-origin: center top;
-    animation: grid-move 30s linear infinite;
-    opacity: 0.7;
-  }
-
-  .grid-fade-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(
-      circle at center,
-      transparent 10%,
-      rgba(3, 14, 41, 0.1) 50%,
-      rgba(3, 14, 41, 0.4) 100%
-    );
-    pointer-events: none;
-  }
-
-  @keyframes grid-move {
-    0% {
-      background-position: 0 0;
-    }
-    100% {
-      background-position: 0 30px;
-    }
-  }
-</style>

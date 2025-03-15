@@ -1,11 +1,14 @@
 ---
-title: "Understanding JavaScript Promises for Beginners: A Practical Guide"
-description: "Learn how to work with JavaScript Promises to handle asynchronous operations effectively. This beginner-friendly guide explains Promises with practical examples, common patterns, and solutions to typical problems new developers face."
-date: 2023-11-10
+title: 'Understanding JavaScript Promises for Beginners: A Practical Guide'
+description: >-
+  Learn how to work with JavaScript Promises to handle asynchronous operations
+  effectively. This beginner-friendly guide explains Promises with practical
+  examples, common patterns, and solutions to typical problems new developers
+  face.
+date: 2023-11-10T00:00:00.000Z
 published: true
+tag: javascript
 ---
-
-# Understanding JavaScript Promises for Beginners: A Practical Guide
 
 ## Introduction
 

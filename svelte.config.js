@@ -1,5 +1,4 @@
 import adapter from "@sveltejs/adapter-vercel"
-import preprocess from "svelte-preprocess"
 import { mdsvex } from "mdsvex"
 import mdsvexConfig from "./mdsvex.config.js"
 import { dirname, resolve } from "path"
@@ -25,7 +24,7 @@ const config = {
   ],
   kit: {
     adapter: adapter({
-      runtime: 'nodejs20.x'
+      runtime: 'nodejs22.x'
     }),
     alias: {
       $components: resolve(__dirname, "./src/lib/components"),
@@ -44,11 +43,6 @@ const config = {
         // Otherwise, throw the error
         throw new Error(message);
       }
-    }
-  },
-  compilerOptions: {
-    compatibility: {
-      componentApi: 4
     }
   }
 }

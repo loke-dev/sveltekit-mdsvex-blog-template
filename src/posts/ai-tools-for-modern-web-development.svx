@@ -1,11 +1,13 @@
 ---
-title: "AI Tools for Modern Web Development: A Practical Guide"
-description: "Discover how AI tools are transforming web development workflows in 2023. Learn about practical AI solutions for coding, design, testing, and optimization that can help you build better websites faster."
-date: 2023-07-20
+title: 'AI Tools for Modern Web Development: A Practical Guide'
+description: >-
+  Discover how AI tools are transforming web development workflows in 2023.
+  Learn about practical AI solutions for coding, design, testing, and
+  optimization that can help you build better websites faster.
+date: 2023-07-20T00:00:00.000Z
 published: true
+tag: ai
 ---
-
-# AI Tools for Modern Web Development: A Practical Guide
 
 ## Introduction
 
