@@ -25,6 +25,7 @@ const config = {
       colors: {
         primary: "#FF295D",
         secondary: "#FFBA02",
+        tertiary: "#4b2ec6",
         background: "#030E29",
         "background-faded": "#101254",
         "background-faded-hover": "#10125450",

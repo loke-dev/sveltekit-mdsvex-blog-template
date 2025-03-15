@@ -1,58 +1,107 @@
 <script lang="ts">
-    import { fly } from "svelte/transition"
   import Button from "./Button.svelte"
+  import CodeParticle from "./CodeParticle.svelte"
+
+  // Define particle type
+  type Particle = {
+    content: string;
+    top: string;
+    left: string;
+    delay: string;
+    textSize?: string;
+    color?: string;
+    bgOpacity?: string;
+    customClass?: string;
+    rotate?: string;
+    scale?: string;
+    initialOpacity?: string;
+    duration?: string;
+    movementRange?: string;
+    spinAmount?: string;
+  };
+
+  // Define particles data for better organization - fewer particles with staggered visibility
+  const particles: Particle[] = [
+    // Initially visible particles
+    { content: "function()", top: "8%", left: "13%", delay: "0s", color: "primary", initialOpacity: "opacity-30", duration: "20s", bgOpacity: "bg-black/20", movementRange: "20px", spinAmount: "4deg" },
+    { content: "const", top: "3%", left: "32%", delay: "0s", color: "white", initialOpacity: "opacity-20", duration: "22s", bgOpacity: "bg-black/15", movementRange: "15px", spinAmount: "3deg" },
+    { content: "div", top: "18%", left: "42%", delay: "0s", color: "primary", scale: "0.9", initialOpacity: "opacity-25", duration: "24s", bgOpacity: "bg-black/25", movementRange: "25px", spinAmount: "6deg" },
+    { content: "export", top: "14%", left: "87%", delay: "0s", color: "secondary", bgOpacity: "bg-black/20", initialOpacity: "opacity-20", duration: "26s", movementRange: "18px", spinAmount: "5deg" },
+
+    // First wave - very short delay
+    { content: "() =>", top: "11%", left: "64%", delay: "0.5s", rotate: "-2deg", duration: "18s", bgOpacity: "bg-black/15", movementRange: "22px", initialOpacity: "opacity-0", spinAmount: "7deg" },
+    { content: "return", top: "27%", left: "6%", delay: "0.8s", rotate: "1deg", duration: "20s", bgOpacity: "bg-black/20", movementRange: "16px", initialOpacity: "opacity-0", spinAmount: "2deg" },
+    { content: "async", top: "22%", left: "74%", delay: "1.2s", rotate: "-1deg", duration: "22s", bgOpacity: "bg-black/18", movementRange: "20px", initialOpacity: "opacity-0", spinAmount: "4deg" },
+
+    // Second wave - short delay
+    { content: "await", top: "42%", left: "17%", delay: "2s", scale: "0.9", duration: "24s", bgOpacity: "bg-black/15", movementRange: "24px", spinAmount: "3deg" },
+    { content: ".then()", top: "32%", left: "40%", delay: "2.5s", color: "secondary", bgOpacity: "bg-black/20", duration: "26s", movementRange: "18px", spinAmount: "5deg" },
+    { content: "useState()", top: "38%", left: "80%", delay: "3s", color: "primary", bgOpacity: "bg-black/25", rotate: "-1deg", duration: "18s", movementRange: "22px", spinAmount: "6deg" },
+
+    // Third wave - medium delay
+    { content: "import", top: "55%", left: "25%", delay: "4s", textSize: "text-xs", duration: "20s", bgOpacity: "bg-black/18", movementRange: "15px", spinAmount: "4deg" },
+    { content: "<Svelte>", top: "58%", left: "70%", delay: "5s", color: "secondary", bgOpacity: "bg-black/20", scale: "0.95", duration: "22s", movementRange: "20px", spinAmount: "7deg" },
+    { content: "props", top: "52%", left: "10%", delay: "6s", color: "primary", rotate: "-1deg", duration: "24s", bgOpacity: "bg-black/15", movementRange: "18px", spinAmount: "3deg" },
+
+    // Fourth wave - longer delay
+    { content: "class", top: "15%", left: "50%", delay: "8s", color: "secondary", scale: "0.9", duration: "26s", bgOpacity: "bg-black/20", movementRange: "25px", spinAmount: "5deg" },
+    { content: "extends", top: "48%", left: "55%", delay: "10s", color: "primary", scale: "0.85", duration: "18s", bgOpacity: "bg-black/18", movementRange: "16px", spinAmount: "4deg" },
+    { content: "let", top: "35%", left: "85%", delay: "12s", color: "white", scale: "0.8", duration: "20s", bgOpacity: "bg-black/15", movementRange: "20px", spinAmount: "2deg" },
+    { content: "export default", top: "65%", left: "45%", delay: "14s", color: "secondary", scale: "0.9", duration: "22s", bgOpacity: "bg-black/20", movementRange: "22px", spinAmount: "6deg" },
+
+    // Additional particles for better distribution
+    { content: "interface", top: "72%", left: "28%", delay: "7s", color: "primary", scale: "0.85", duration: "24s", bgOpacity: "bg-black/18", movementRange: "19px", spinAmount: "5deg" },
+    { content: "type", top: "78%", left: "65%", delay: "9s", color: "white", scale: "0.8", duration: "21s", bgOpacity: "bg-black/15", movementRange: "17px", spinAmount: "3deg" },
+    { content: "npm", top: "85%", left: "15%", delay: "11s", color: "secondary", scale: "0.9", duration: "23s", bgOpacity: "bg-black/20", movementRange: "21px", spinAmount: "4deg" }
+  ];
 </script>
 
-<div class="relative flex justify-center items-center p-16 min-h-[80vh] fullWidth overflow-hidden md:p-8 md:min-h-[70vh]">
+<div class="relative flex justify-center items-center p-8 min-h-[70vh] fullWidth overflow-hidden md:p-16 md:min-h-[80vh]">
   <div class="absolute inset-0 overflow-hidden">
     <!-- Grid background -->
     <div class="absolute inset-0 overflow-hidden">
-      <div class="absolute inset-0 bg-grid-pattern bg-30px transform perspective-800px rotate-x-5 origin-top-center animate-grid-move"></div>
-      <div class="absolute inset-0 bg-radial-fade pointer-events-none"></div>
+      <div
+        class="absolute inset-0 bg-30px transform perspective-800px rotate-x-5 origin-top-center opacity-90"
+        style="background-size: 30px 30px; background-image: linear-gradient(to right, rgba(255, 255, 255, 0.07) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.07) 1px, transparent 1px); mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0.5) 70%, rgba(0, 0, 0, 0) 100%);"
+      ></div>
     </div>
 
     <!-- Code particles -->
     <div class="absolute inset-0 perspective-[1000px]">
-      <!-- Particle 1 -->
-      <div class="absolute text-white/40 font-mono text-sm p-2 rounded bg-white/5 shadow-glow-primary transform-style-preserve-3d animate-float-code opacity-0 top-[12%] left-[13%]">function()</div>
-      <!-- Particle 2 -->
-      <div class="absolute text-white/40 font-mono text-sm p-2 rounded bg-white/5 shadow-glow-primary transform-style-preserve-3d animate-float-code opacity-0 top-[8%] left-[36%] animation-delay-2s">const data = []</div>
-      <!-- Particle 3 -->
-      <div class="absolute text-white/40 font-mono text-sm p-2 rounded bg-white/5 shadow-glow-primary transform-style-preserve-3d animate-float-code opacity-0 top-[11%] left-[64%] animation-delay-4s">() =></div>
-      <!-- Particle 4 -->
-      <div class="absolute text-white/40 font-mono text-sm p-2 rounded bg-white/5 shadow-glow-primary transform-style-preserve-3d animate-float-code opacity-0 top-[9%] left-[87%] animation-delay-6s">npm install</div>
-      <!-- Particle 5 -->
-      <div class="absolute text-white/40 font-mono text-sm p-2 rounded bg-white/5 shadow-glow-primary transform-style-preserve-3d animate-float-code opacity-0 top-[27%] left-[6%] animation-delay-8s">return</div>
-      <!-- Particle 6 -->
-      <div class="absolute text-white/40 font-mono text-sm p-2 rounded bg-white/5 shadow-glow-primary transform-style-preserve-3d animate-float-code opacity-0 top-[23%] left-[32%] animation-delay-10s">div</div>
-      <!-- Particle 7 -->
-      <div class="absolute text-white/40 font-mono text-sm p-2 rounded bg-white/5 shadow-glow-primary transform-style-preserve-3d animate-float-code opacity-0 top-[26%] left-[54%] animation-delay-12s">async</div>
-      <!-- Particle 8 -->
-      <div class="absolute text-white/40 font-mono text-sm p-2 rounded bg-white/5 shadow-glow-primary transform-style-preserve-3d animate-float-code opacity-0 top-[24%] left-[77%] animation-delay-14s">export</div>
-      <!-- Particle 9 -->
-      <div class="absolute text-white/40 font-mono text-sm p-2 rounded bg-white/5 shadow-glow-primary transform-style-preserve-3d animate-float-code opacity-0 top-[42%] left-[17%] animation-delay-16s">await</div>
-      <!-- Particle 10 -->
-      <div class="absolute text-white/40 font-mono text-sm p-2 rounded bg-white/5 shadow-glow-primary transform-style-preserve-3d animate-float-code opacity-0 top-[38%] left-[40%] animation-delay-18s">.then()</div>
-      <!-- Particle 11 -->
-      <div class="absolute text-white/40 font-mono text-sm p-2 rounded bg-white/5 shadow-glow-primary transform-style-preserve-3d animate-float-code opacity-0 top-[41%] left-[60%] animation-delay-1s">useState()</div>
-      <!-- Particle 12 -->
-      <div class="absolute text-white/40 font-mono text-sm p-2 rounded bg-white/5 shadow-glow-primary transform-style-preserve-3d animate-float-code opacity-0 top-[39%] left-[83%] animation-delay-3s">try/catch</div>
+      {#each particles as particle}
+        <CodeParticle
+          content={particle.content}
+          top={particle.top}
+          left={particle.left}
+          delay={particle.delay}
+          textSize={particle.textSize || 'text-sm'}
+          color={particle.color || 'white'}
+          bgOpacity={particle.bgOpacity || 'bg-black/15'}
+          customClass={particle.customClass || ''}
+          rotate={particle.rotate || '0deg'}
+          scale={particle.scale || '1'}
+          initialOpacity={particle.initialOpacity || 'opacity-0'}
+          duration={particle.duration || '20s'}
+          movementRange={particle.movementRange || '20px'}
+          spinAmount={particle.spinAmount || '4deg'}
+        />
+      {/each}
     </div>
 
-    <!-- Gradient overlay -->
-    <div class="absolute inset-0 bg-radial-gradient from-background/50 via-background/80 to-background/95 z-[1]"></div>
+    <!-- Gradient overlay - more subtle -->
+    <div class="absolute inset-0 bg-radial-gradient from-background/10 via-background/40 to-background/70 z-[1]"></div>
   </div>
 
   <div class="relative z-10 text-center flex flex-col items-center justify-center p-8 max-w-[800px] w-full">
-    <h1 in:fly={{ y: 200, duration: 2000, delay: 200 }} class="text-6xl font-extrabold text-white mb-4 leading-none tracking-tight text-shadow-lg md:text-5xl">
-      Loke<span class="text-primary animate-pulse">.</span>dev
+    <h1 class="text-6xl font-extrabold text-white mb-4 leading-none tracking-tight text-shadow-lg md:text-8xl">
+      Loke<span class="text-primary">.</span>dev
     </h1>
-    <p class="text-2xl text-white/80 mb-8 tracking-wide text-shadow-md md:text-xl">
+    <p class="text-2xl text-white/80 mb-12 tracking-wide text-shadow-md md:text-4xl">
       Web Developer
     </p>
-    <div class="flex gap-4 justify-center mt-4 md:flex-col md:items-center">
-      <Button href="/projects" variant="primary">View Projects</Button>
-      <Button href="/contact" variant="outline">Get in Touch</Button>
+    <div class="flex flex-col gap-6 justify-center mt-4 md:flex-row md:gap-6 md:items-center">
+      <Button href="/projects" variant="primary" className="px-10 py-3 text-base font-medium shadow-lg shadow-primary/30 w-full md:w-auto md:text-lg">View Projects</Button>
+      <Button href="/contact" variant="secondary" className="px-10 py-3 text-base font-medium w-full md:w-auto md:text-lg">Get in Touch</Button>
     </div>
   </div>
 </div>
