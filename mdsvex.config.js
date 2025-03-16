@@ -15,7 +15,7 @@ const config = defineConfig({
     [
       remarkGithub,
       {
-        repository: "https://github.com/loke-dev/loke.dev.git",
+        repository: "https://github.com/loke-dev/sveltekit-mdsvex-blog-template.git",
       },
     ],
     remarkAbbr,
