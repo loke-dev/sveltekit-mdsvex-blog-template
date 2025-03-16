@@ -4,8 +4,8 @@
   "description": "Loke is a web developer based in Sweden.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#1a202c",
-  "theme_color": "#1a202c",
+  "background_color": "#030E29",
+  "theme_color": "#FF295D",
   "icons": [
     {
       "src": "/icon-192.png",
