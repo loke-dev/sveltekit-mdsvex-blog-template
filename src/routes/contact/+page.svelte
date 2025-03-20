@@ -180,11 +180,9 @@
 
   .contact-form {
     background: rgba(31, 41, 55, 0.4);
-    backdrop-filter: blur(10px);
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
     overflow: hidden;
   }

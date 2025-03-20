@@ -37,30 +37,27 @@
     </div>
 
     <div class="about-image-container">
-      <div>
-        <div class="image-card">
-          <div class="image-border"></div>
-          <div class="image-wrapper">
-            <div class="image-glow"></div>
-            <picture>
-              <source srcSet="/images/loke.webp" type="image/webp" />
-              <img
-                class="profile-image"
-                src="/images/loke.png"
-                alt="Loke"
-                width={370}
-                height={370}
-              />
-            </picture>
-          </div>
-          <div class="floating-particles">
-            <div class="particle p1"></div>
-            <div class="particle p2"></div>
-            <div class="particle p3"></div>
-            <div class="particle p4"></div>
-            <div class="particle p5"></div>
-            <div class="particle p6"></div>
-          </div>
+      <div class="floating-particles">
+        <div class="particle p1"></div>
+        <div class="particle p2"></div>
+        <div class="particle p3"></div>
+        <div class="particle p4"></div>
+        <div class="particle p5"></div>
+        <div class="particle p6"></div>
+      </div>
+      <div class="image-card">
+        <div class="image-wrapper">
+          <picture>
+            <source srcSet="/images/loke_transparent_370.webp" type="image/webp" />
+            <source srcSet="/images/loke_transparent_370.png" type="image/png" />
+            <img
+              class="profile-image"
+              src="/images/loke_transparent_370.png"
+              alt="Loke"
+              width={370}
+              height={335}
+            />
+          </picture>
         </div>
       </div>
     </div>
@@ -97,13 +94,16 @@
     display: flex;
     justify-content: center;
     position: relative;
-    height: 450px;
+    height: 335px;
+    width: 370px;
+    margin: 0 auto;
   }
 
   .image-card {
     position: relative;
     width: 370px;
-    height: 370px;
+    height: 335px;
+    z-index: 2;
   }
 
   .image-wrapper {
@@ -112,49 +112,9 @@
     height: 100%;
     overflow: hidden;
     border-radius: 24px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  }
-
-  .image-border {
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    background: linear-gradient(90deg,
-      rgba(255, 41, 93, 0.9),
-      rgba(255, 186, 2, 0.9),
-      rgba(75, 46, 198, 0.9),
-      rgba(255, 41, 93, 0.9)
-    );
-    background-size: 300% 100%;
-    animation: gradient-shift 15s ease infinite;
-    border-radius: 28px;
-    z-index: -1;
-  }
-
-  @keyframes gradient-shift {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-
-  .image-glow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    filter: blur(30px);
-    opacity: 0.6;
-    z-index: -1;
-    transform: scale(0.9);
+    background: rgba(31, 41, 55, 0.4);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
   }
 
   .profile-image {
@@ -172,7 +132,7 @@
     width: calc(100% + 100px);
     height: calc(100% + 100px);
     pointer-events: none;
-    z-index: 10;
+    z-index: 1;
   }
 
   .particle {
@@ -254,12 +214,6 @@
     .about-image-container {
       order: -1;
       margin-bottom: 2rem;
-      height: 400px;
-    }
-
-    .image-card {
-      width: 300px;
-      height: 300px;
     }
   }
 </style>
