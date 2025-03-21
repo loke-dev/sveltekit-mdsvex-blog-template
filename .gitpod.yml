@@ -1,5 +1,0 @@
-tasks:
-  - init: npm install
-    command: |
-      export HMR_HOST=`gp url 3000`
-      npm run dev
