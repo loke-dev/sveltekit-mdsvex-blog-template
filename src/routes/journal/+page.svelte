@@ -9,16 +9,13 @@
   export let data
   const { posts, tags } = data
 
-  // Get top tags for minimal browse section
   const topTags = tags
     .sort((a: {count: number}, b: {count: number}) => b.count - a.count)
-    .slice(0, 6) // Show only top 6 tags
+    .slice(0, 6)
 
-  // For staggered animations
   let visible = false;
 
   onMount(() => {
-    // Set visible to true after a short delay for animations
     setTimeout(() => {
       visible = true;
     }, 100);

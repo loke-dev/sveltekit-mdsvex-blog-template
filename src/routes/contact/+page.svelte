@@ -14,12 +14,9 @@
       e.preventDefault()
     }
 
-    // Only track events in production
     if (!dev) {
       try {
-        // Use the latest API for tracking events
         va.track("Contact form submitted", {
-          // You can add additional properties here
           source: "contact_page",
           action: "submit",
         })
@@ -37,12 +34,9 @@
       formSubmitted = true
     }
 
-    // Only track events in production
     if (!dev) {
       try {
-        // Use the latest API for tracking events
         va.track("Contact button clicked", {
-          // You can add additional properties here
           source: "contact_page",
           action: "click",
         })

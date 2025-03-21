@@ -2,7 +2,6 @@
   import Button from "./Button.svelte"
   import CodeParticle from "./CodeParticle.svelte"
 
-  // Define particle type
   type Particle = {
     content: string;
     top: string;
@@ -19,36 +18,29 @@
     spinAmount?: string;
   };
 
-  // Define particles data for better organization - fewer particles with staggered visibility
   const particles: Particle[] = [
-    // Initially visible particles
     { content: "function()", top: "8%", left: "13%", delay: "0s", color: "primary", initialOpacity: "opacity-30", duration: "20s", movementRange: "20px", spinAmount: "4deg" },
     { content: "const", top: "3%", left: "32%", delay: "0s", color: "white", initialOpacity: "opacity-20", duration: "22s", movementRange: "15px", spinAmount: "3deg" },
     { content: "div", top: "18%", left: "42%", delay: "0s", color: "primary", scale: "0.9", initialOpacity: "opacity-25", duration: "24s", movementRange: "25px", spinAmount: "6deg" },
     { content: "export", top: "14%", left: "87%", delay: "0s", color: "secondary", initialOpacity: "opacity-20", duration: "26s", movementRange: "18px", spinAmount: "5deg" },
 
-    // First wave - very short delay
     { content: "() =>", top: "11%", left: "64%", delay: "0.5s", rotate: "-2deg", duration: "18s", movementRange: "22px", initialOpacity: "opacity-0", spinAmount: "7deg" },
     { content: "return", top: "27%", left: "6%", delay: "0.8s", rotate: "1deg", duration: "20s", movementRange: "16px", initialOpacity: "opacity-0", spinAmount: "2deg" },
     { content: "async", top: "22%", left: "74%", delay: "1.2s", rotate: "-1deg", duration: "22s", movementRange: "20px", initialOpacity: "opacity-0", spinAmount: "4deg" },
 
-    // Second wave - short delay
     { content: "await", top: "42%", left: "17%", delay: "2s", scale: "0.9", duration: "24s", movementRange: "24px", spinAmount: "3deg" },
     { content: ".then()", top: "32%", left: "40%", delay: "2.5s", color: "secondary", duration: "26s", movementRange: "18px", spinAmount: "5deg" },
     { content: "useState()", top: "38%", left: "80%", delay: "3s", color: "primary", rotate: "-1deg", duration: "18s", movementRange: "22px", spinAmount: "6deg" },
 
-    // Third wave - medium delay
     { content: "import", top: "55%", left: "25%", delay: "4s", textSize: "text-xs", duration: "20s", movementRange: "15px", spinAmount: "4deg" },
     { content: "<Svelte>", top: "58%", left: "70%", delay: "5s", color: "secondary", scale: "0.95", duration: "22s", movementRange: "20px", spinAmount: "7deg" },
     { content: "props", top: "52%", left: "10%", delay: "6s", color: "primary", rotate: "-1deg", duration: "24s", movementRange: "18px", spinAmount: "3deg" },
 
-    // Fourth wave - longer delay
     { content: "class", top: "15%", left: "50%", delay: "8s", color: "secondary", scale: "0.9", duration: "26s", movementRange: "25px", spinAmount: "5deg" },
     { content: "extends", top: "48%", left: "55%", delay: "10s", color: "primary", scale: "0.85", duration: "18s", movementRange: "16px", spinAmount: "4deg" },
     { content: "let", top: "35%", left: "85%", delay: "12s", color: "white", scale: "0.8", duration: "20s", movementRange: "20px", spinAmount: "2deg" },
     { content: "export default", top: "65%", left: "45%", delay: "14s", color: "secondary", scale: "0.9", duration: "22s", movementRange: "22px", spinAmount: "6deg" },
 
-    // Additional particles for better distribution
     { content: "interface", top: "72%", left: "28%", delay: "7s", color: "primary", scale: "0.85", duration: "24s", movementRange: "19px", spinAmount: "5deg" },
     { content: "type", top: "78%", left: "65%", delay: "9s", color: "white", scale: "0.8", duration: "21s", movementRange: "17px", spinAmount: "3deg" },
     { content: "npm", top: "85%", left: "15%", delay: "11s", color: "secondary", scale: "0.9", duration: "23s", movementRange: "21px", spinAmount: "4deg" }
@@ -57,7 +49,6 @@
 
 <div class="relative flex justify-center items-center p-8 min-h-[70vh] fullWidth overflow-hidden md:p-16 md:min-h-[80vh]">
   <div class="absolute inset-0 overflow-hidden">
-    <!-- Grid background -->
     <div class="absolute inset-0 overflow-hidden">
       <div
         class="absolute inset-0 bg-30px transform perspective-800px rotate-x-5 origin-top-center opacity-90"
@@ -65,7 +56,6 @@
       ></div>
     </div>
 
-    <!-- Code particles -->
     <div class="absolute inset-0 perspective-[1000px]">
       {#each particles as particle}
         <CodeParticle
@@ -86,7 +76,6 @@
       {/each}
     </div>
 
-    <!-- Gradient overlay - more subtle -->
     <div class="absolute inset-0 bg-radial-gradient from-background/10 via-background/40 to-background/70 z-[1]"></div>
   </div>
 

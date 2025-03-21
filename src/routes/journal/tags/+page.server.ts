@@ -39,7 +39,6 @@ export async function load() {
 
   publishedPosts.sort((a, b) => (new Date(b.date) > new Date(a.date) ? -1 : 1))
 
-  // Create a map of tags to posts
   const tagMap = new Map<string, Post[]>()
 
   publishedPosts.forEach((post) => {
@@ -54,14 +53,12 @@ export async function load() {
     }
   })
 
-  // Convert the map to an array of objects
   const tags = Array.from(tagMap.entries()).map(([tag, posts]) => ({
     name: tag,
     count: posts.length,
     posts,
   }))
 
-  // Sort tags alphabetically
   tags.sort((a, b) => a.name.localeCompare(b.name))
 
   return { tags, posts: publishedPosts }

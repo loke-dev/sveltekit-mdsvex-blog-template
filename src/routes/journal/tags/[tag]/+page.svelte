@@ -1,9 +1,7 @@
 <script lang="ts">
   import PostCard from "$lib/components/PostCard.svelte"
-  import Link from "$lib/components/Link.svelte"
   import Button from "$lib/components/Button.svelte"
   import { getTagColor } from "$lib/utils/tagColors";
-  import { page } from "$app/stores";
   import PageContainer from "$lib/components/PageContainer.svelte";
   import PageHead from "$lib/components/PageHead.svelte";
 

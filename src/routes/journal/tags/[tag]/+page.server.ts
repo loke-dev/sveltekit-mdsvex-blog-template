@@ -44,7 +44,6 @@ export async function load({ params }) {
   const posts = await Promise.all(postPromises)
   const publishedPosts = posts.filter((post) => post.published)
 
-  // Filter posts by tag (case insensitive)
   const postsWithTag = publishedPosts.filter(
     (post) => post.tag && post.tag.toLowerCase() === tag.toLowerCase()
   )
@@ -53,22 +52,17 @@ export async function load({ params }) {
     throw error(404, `No posts found with tag "${tag}"`)
   }
 
-  // Sort posts by date (newest first)
   postsWithTag.sort((a, b) => (new Date(b.date) > new Date(a.date) ? -1 : 1))
 
-  // Find related tags
   const relatedTagsMap = new Map<string, number>()
 
   postsWithTag.forEach((post) => {
-    // Skip posts that don't have a tag or have the current tag
     if (!post.tag || post.tag.toLowerCase() === tag.toLowerCase()) return
 
-    // Count occurrences of other tags
     const count = relatedTagsMap.get(post.tag) || 0
     relatedTagsMap.set(post.tag, count + 1)
   })
 
-  // Convert to array, sort by frequency, and take top 5
   const relatedTags = Array.from(relatedTagsMap.entries())
     .sort((a, b) => b[1] - a[1])
     .slice(0, 5)

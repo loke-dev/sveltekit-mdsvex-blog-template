@@ -5,15 +5,13 @@
   import Link from "$lib/components/Link.svelte"
   import Button from "$lib/components/Button.svelte"
   import { getTagColor } from "$lib/utils/tagColors";
-  import PageContainer from "$lib/components/PageContainer.svelte";
-  import { formatDate } from "$lib/utils/date.js";
+  import { formatDate } from "$lib/utils/date";
 
   import "$styles/syntax.css"
 
   const component = data.component;
   const { title, description, date, tag } = data.frontmatter
 
-  // Get the tag color
   const tagColor = tag ? getTagColor(tag) : getTagColor('default');
 </script>
 
@@ -44,7 +42,6 @@
   </div>
 
   <article class="prose prose-lg glass-card bg-gray-800/20 backdrop-blur-sm">
-    <!-- Article body -->
     <svelte:component this={component} />
   </article>
 </div>

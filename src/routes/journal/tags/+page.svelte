@@ -1,6 +1,5 @@
 <script lang="ts">
   import Link from "$lib/components/Link.svelte"
-  import Button from "$lib/components/Button.svelte"
   import { getTagColor } from "$lib/utils/tagColors";
   import type { PageData } from './$types'
   import PageContainer from "$lib/components/PageContainer.svelte";
@@ -10,13 +9,11 @@
   export let data: PageData
   const { tags } = data
 
-  // Filter out tags with only 1 post, except for a few important ones
   const importantSinglePostTags = ['svelte', 'react', 'next.js', 'typescript', 'javascript'];
   const filteredTags = tags.filter((tag: {name: string, count: number}) =>
     tag.count > 1 || importantSinglePostTags.includes(tag.name.toLowerCase())
   );
 
-  // Group tags by first letter for better organization
   const tagsByLetter = new Map<string, Array<{name: string, count: number, posts: any[]}>>();
 
   filteredTags.forEach((tag: {name: string, count: number, posts: any[]}) => {
@@ -27,22 +24,17 @@
     tagsByLetter.get(firstLetter)?.push(tag);
   });
 
-  // Convert to array and sort alphabetically
   const groupedTags = Array.from(tagsByLetter.entries())
     .sort((a, b) => a[0].localeCompare(b[0]));
 
-  // Get popular tags
   const popularTags = [...filteredTags]
     .sort((a, b) => b.count - a.count)
     .slice(0, 12);
 
-  // Tag color for the header
   const tagColor = getTagColor('default');
 
-  // Get the maximum tag count for size calculation
   const maxCount = Math.max(...filteredTags.map(tag => tag.count));
 
-  // Function to calculate tag size based on count
   function getTagSize(count: number, maxCount: number): string {
     const minSize = 0.8;
     const maxSize = 1.4;
