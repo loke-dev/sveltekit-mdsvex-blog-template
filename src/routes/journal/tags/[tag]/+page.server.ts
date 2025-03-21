@@ -1,8 +1,9 @@
 import { slugFromPath } from "$lib/utils"
 import { error } from "@sveltejs/kit"
+import { dev } from "$app/environment"
 
 export const prerender = true
-export const csr = false
+export const csr = dev
 
 interface MdsvexFile {
   default: any
