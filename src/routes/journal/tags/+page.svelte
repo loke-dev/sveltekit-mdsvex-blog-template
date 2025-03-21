@@ -1,7 +1,10 @@
 <script lang="ts">
-  import Patterns from "$lib/components/Patterns.svelte"
   import Link from "$lib/components/Link.svelte"
+  import Button from "$lib/components/Button.svelte"
+  import { getTagColor } from "$lib/utils/tagColors";
   import type { PageData } from './$types'
+  import PageContainer from "$lib/components/PageContainer.svelte";
+  import PageHead from "$lib/components/PageHead.svelte";
 
   /** @type {import('./$types').PageData} */
   export let data: PageData
@@ -32,6 +35,21 @@
   const popularTags = [...filteredTags]
     .sort((a, b) => b.count - a.count)
     .slice(0, 12);
+
+  // Tag color for the header
+  const tagColor = getTagColor('default');
+
+  // Get the maximum tag count for size calculation
+  const maxCount = Math.max(...filteredTags.map(tag => tag.count));
+
+  // Function to calculate tag size based on count
+  function getTagSize(count: number, maxCount: number): string {
+    const minSize = 0.8;
+    const maxSize = 1.4;
+    const ratio = Math.max(0.5, count / maxCount);
+    const size = minSize + ratio * (maxSize - minSize);
+    return size.toFixed(2);
+  }
 </script>
 
 <svelte:head>
@@ -40,42 +58,29 @@
   <meta name="Cache-Control" content="max-age=1, stale-while-revalidate=59" />
 </svelte:head>
 
-<Patterns variant="2" />
+<PageContainer>
+  <PageHead
+    title="Tags"
+    subtitle="Browse by Topic"
+    description="Browse all blog posts by tag to find topics that interest you"
+  />
 
-<div class="content">
-  <div class="tags-header">
-    <h2 class="text-primary font-semibold tracking-wide uppercase">Journal</h2>
-    <h3 class="text-3xl leading-8 font-extrabold tracking-tight text-gray-100 sm:text-4xl mb-6">
-      Topics
-    </h3>
-    <Link href="/journal" className="back-link">❮ Back to Journal</Link>
-  </div>
+  <div class="tag-cloud-container relative">
+    <h2 class="text-3xl font-bold text-white mb-8 relative z-10">Browse by Tag</h2>
 
-  <div class="mb-12">
-    <h2 class="text-xl font-semibold mb-4">Popular Topics</h2>
-    <div class="flex flex-wrap gap-3">
-      {#each popularTags as tag}
-        <Link
-          href={`/journal/tags/${encodeURIComponent(tag.name)}`}
-          className="tag-pill"
-        >
-          {tag.name.toLowerCase()} <span class="text-gray-400">({tag.count})</span>
-        </Link>
-      {/each}
-    </div>
-  </div>
-
-  <div class="all-topics">
-    <h3 class="text-xl font-bold mb-4">All Topics</h3>
-    <div class="tag-groups">
+    <div class="tag-cloud glass-card relative z-10 border-l-3 border-l-primary">
       {#each groupedTags as [letter, tagsInGroup]}
         <div class="tag-group">
           <h4 class="letter-heading mb-2">{letter}</h4>
           <ul class="space-y-1">
             {#each tagsInGroup as tag}
               <li>
-                <Link href={`/journal/tags/${encodeURIComponent(tag.name)}`} className="tag-link">
-                  {tag.name} <span class="text-gray-500">({tag.count})</span>
+                <Link
+                  href={`/journal/tags/${encodeURIComponent(tag.name)}`}
+                  className="tag-item"
+                  style="--tag-size: {getTagSize(tag.count, maxCount)}; --tag-color: {getTagColor(tag.name)};"
+                >
+                  {tag.name} <span class="tag-count">({tag.count})</span>
                 </Link>
               </li>
             {/each}
@@ -84,21 +89,16 @@
       {/each}
     </div>
   </div>
-</div>
+</PageContainer>
 
 <style>
-  .content {
+  .tag-cloud-container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 0 1rem;
-    position: relative;
+    padding: 1rem;
   }
 
-  .tags-header {
-    margin-bottom: 2rem;
-  }
-
-  .tag-groups {
+  .tag-cloud {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 2rem;
@@ -109,5 +109,23 @@
     font-weight: 600;
     border-bottom: 2px solid rgba(156, 163, 175, 0.75);
     padding-bottom: 0.25rem;
+  }
+
+  .tag-item {
+    display: block;
+    font-size: calc(var(--tag-size) * 1rem);
+    color: var(--tag-color);
+    transition: all 0.2s ease;
+    opacity: 0.8;
+  }
+
+  .tag-item:hover {
+    opacity: 1;
+    transform: translateX(5px);
+  }
+
+  .tag-count {
+    font-size: 0.8em;
+    opacity: 0.7;
   }
 </style>

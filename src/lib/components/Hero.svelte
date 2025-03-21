@@ -90,7 +90,7 @@
     <div class="absolute inset-0 bg-radial-gradient from-background/10 via-background/40 to-background/70 z-[1]"></div>
   </div>
 
-  <div class="relative z-10 text-center flex flex-col items-center justify-center p-8 max-w-[800px] w-full">
+  <div class="relative z-10 text-center flex flex-col items-center justify-center p-8 max-w-[900px] w-full">
     <h1 class="text-6xl font-extrabold text-white mb-4 leading-none tracking-tight text-shadow-lg md:text-8xl">
       SvelteKit<span class="text-primary">.</span>Blog
     </h1>

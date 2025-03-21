@@ -4,16 +4,14 @@
   import { slide } from "svelte/transition"
   import Link from "./Link.svelte"
 
+  // Simple, single state variable for menu
   let isMenuOpen = false
   let scrollY = 0
   let headerElement: HTMLElement
   let isScrolled = false
 
-  // Toggle mobile menu with improved event handling
-  function toggleMenu(event: MouseEvent) {
-    // Stop event propagation to prevent immediate closing
-    event.stopPropagation()
-
+  // Simple toggle function
+  const toggleMenu = () => {
     isMenuOpen = !isMenuOpen
 
     // Prevent scrolling when menu is open
@@ -24,21 +22,7 @@
     }
   }
 
-  // Close menu when clicking outside
-  function handleClickOutside(event: MouseEvent) {
-    if (isMenuOpen && headerElement && !headerElement.contains(event.target as Node)) {
-      isMenuOpen = false
-      document.body.style.overflow = ''
-    }
-  }
-
-  // Handle scroll events to add shadow and background to header
-  function handleScroll() {
-    scrollY = window.scrollY
-    isScrolled = scrollY > 20
-  }
-
-  // Close mobile menu on navigation
+  // Close menu on navigation
   function handleNavigation() {
     if (isMenuOpen) {
       isMenuOpen = false
@@ -46,7 +30,7 @@
     }
   }
 
-  // Handle keyboard events for accessibility
+  // Close menu on ESC key
   function handleKeydown(event: KeyboardEvent) {
     if (event.key === 'Escape' && isMenuOpen) {
       isMenuOpen = false
@@ -54,14 +38,18 @@
     }
   }
 
+  // Handle scroll events for header appearance
+  function handleScroll() {
+    scrollY = window.scrollY
+    isScrolled = scrollY > 20
+  }
+
   onMount(() => {
     window.addEventListener('scroll', handleScroll)
-    document.addEventListener('click', handleClickOutside)
     window.addEventListener('keydown', handleKeydown)
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
-      document.removeEventListener('click', handleClickOutside)
       window.removeEventListener('keydown', handleKeydown)
     }
   })
@@ -74,9 +62,9 @@
   class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full {isScrolled ? 'bg-background/90 backdrop-blur-md shadow-lg' : 'bg-background/70 backdrop-blur-sm'}"
 >
   <div class="absolute top-0 left-0 w-full h-0.5 bg-header-glow bg-300-100 animate-gradient-shift"></div>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center py-4 md:justify-start md:space-x-10">
-      <!-- Logo as Home Link -->
+  <div class="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center py-4 md:space-x-10">
+      <!-- Logo -->
       <div class="flex justify-start lg:w-0 lg:flex-1">
         <a
           href="/"
@@ -90,7 +78,7 @@
         </a>
       </div>
 
-      <!-- Mobile menu button with improved click handling -->
+      <!-- Mobile menu button - properly attached directly to button -->
       <div class="md:hidden">
         <button
           type="button"
@@ -147,7 +135,7 @@
     </div>
   </div>
 
-  <!-- Mobile menu, show/hide based on menu state -->
+  <!-- Mobile menu -->
   {#if isMenuOpen}
     <div
       class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"

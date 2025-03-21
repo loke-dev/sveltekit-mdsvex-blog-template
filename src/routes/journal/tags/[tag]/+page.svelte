@@ -1,76 +1,111 @@
 <script lang="ts">
-  import Patterns from "$lib/components/Patterns.svelte"
   import PostCard from "$lib/components/PostCard.svelte"
+  import Link from "$lib/components/Link.svelte"
+  import Button from "$lib/components/Button.svelte"
+  import { getTagColor } from "$lib/utils/tagColors";
+  import { page } from "$app/stores";
+  import PageContainer from "$lib/components/PageContainer.svelte";
+  import PageHead from "$lib/components/PageHead.svelte";
 
   /** @type {import('./$types').PageData} */
   export let data
   const { tag, posts, relatedTags } = data
+
+  // Get the tag color
+  const tagColor = getTagColor(tag);
 </script>
 
-<svelte:head>
-  <title>{tag} - loke.dev</title>
-  <meta name="description" content="Blog posts about {tag}" />
-  <meta name="Cache-Control" content="max-age=1, stale-while-revalidate=59" />
-</svelte:head>
+<PageContainer>
+  <PageHead
+    title="Posts tagged: {tag}"
+    subtitle={`Tagged with ${tag}`}
+    description="Browse all posts with the tag '{tag}'"
+  />
 
-<Patterns variant="2" />
-
-<div class="content">
-  <div class="mb-8">
-    <a href="/journal/tags" class="flex gap-2 mb-4 items-center">❮ Back to Topics</a>
-    <h1 class="text-3xl font-bold mb-2">{tag.toLowerCase()}</h1>
-    <p class="text-gray-400">{posts.length} {posts.length === 1 ? 'post' : 'posts'}</p>
-  </div>
-
-  {#if relatedTags && relatedTags.length > 0}
-    <div class="mb-8">
-      <h2 class="text-xl font-semibold mb-3">Related Topics</h2>
-      <div class="flex flex-wrap gap-3">
-        {#each relatedTags as relatedTag}
-          <a
-            href={`/journal/tags/${encodeURIComponent(relatedTag)}`}
-            class="tag-pill"
-          >
-            {relatedTag.toLowerCase()}
-          </a>
-        {/each}
-      </div>
+  <div class="tag-posts-container">
+    <div class="tag-header glass-card" style="--tag-color: {tagColor};">
+      <Button href="/journal/tags" variant="secondary" className="back-button">
+        ❮ Browse all tags
+      </Button>
+      <h1 class="tag-title">
+        <span class="tag-name-pill" style="--tag-color: {tagColor};">
+          #{tag}
+        </span>
+        <span class="tag-count">({posts.length} posts)</span>
+      </h1>
     </div>
-  {/if}
 
-  <div class="posts-grid">
-    {#each posts as post}
-      <PostCard {post} />
-    {/each}
+    <div class="posts-grid">
+      {#each posts as post}
+        <PostCard {post} />
+      {/each}
+    </div>
   </div>
-</div>
+</PageContainer>
 
 <style>
-  .content {
+  .tag-posts-container {
     max-width: 800px;
     margin: 0 auto;
     padding: 0 1rem;
+    position: relative;
   }
 
-  .tag-pill {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    border-radius: 4px;
-    font-size: 0.875rem;
-    background-color: rgba(75, 85, 99, 0.3);
-    color: #D1D5DB;
-    transition: all 0.2s ease;
+  .tag-header {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease-out forwards;
   }
 
-  .tag-pill:hover {
-    background-color: rgba(75, 85, 99, 0.5);
-    color: white;
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .back-button-container {
+    margin-bottom: 2rem;
+  }
+
+  .back-button {
+    display: flex;
+    align-items: center;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  .tag-title {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .tag-name-pill {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--tag-color);
+  }
+
+  .tag-count {
+    font-size: 1rem;
+    color: #9CA3AF;
   }
 
   .posts-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    animation: fadeInUp 0.6s ease-out 0.2s forwards;
+    opacity: 0;
   }
 
   @media (min-width: 640px) {

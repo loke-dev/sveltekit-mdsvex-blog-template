@@ -2,33 +2,28 @@
   /** @type {import('./$types').PageData} */
   export let data;
 
-  import PageHead from "$components/PageHead.svelte"
-  import Patterns from "$lib/components/Patterns.svelte"
   import Link from "$lib/components/Link.svelte"
+  import Button from "$lib/components/Button.svelte"
   import { getTagColor } from "$lib/utils/tagColors";
+  import PageContainer from "$lib/components/PageContainer.svelte";
+  import { formatDate } from "$lib/utils/date.js";
 
   import "$styles/syntax.css"
 
   const component = data.component;
   const { title, description, date, tag } = data.frontmatter
 
-  // Format date to YYYY-MM-DD
-  function formatDate(dateString: string): string {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("sv-SE");
-  }
-
   // Get the tag color
   const tagColor = tag ? getTagColor(tag) : getTagColor('default');
 </script>
 
-<PageHead title={title} description={description} />
-
-<Patterns variant="2" />
-
 <div class="post-container">
-  <div class="post-header" style="--tag-color: {tagColor}">
-    <Link href="/journal" className="back-link">❮ Back to Journal</Link>
+  <div class="post-header glass-card" style="--tag-color: {tagColor};">
+    <div class="back-button-container">
+      <Button href="/journal" variant="secondary" className="back-button">
+        ❮ Back to Journal
+      </Button>
+    </div>
 
     <h1 class="title">{title}</h1>
     <p class="description">{description}</p>
@@ -48,7 +43,7 @@
     </div>
   </div>
 
-  <article class="prose prose-lg">
+  <article class="prose prose-lg glass-card bg-gray-800/20 backdrop-blur-sm">
     <!-- Article body -->
     <svelte:component this={component} />
   </article>
@@ -60,18 +55,22 @@
     margin: 0 auto;
     padding: 0 1rem;
     position: relative;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .post-header {
     margin-bottom: 3rem;
-  }
-
-  .post-header {
-    animation-delay: 0.2s;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease-out forwards;
   }
 
   .prose {
-    animation-delay: 0.4s;
+    animation: fadeInUp 0.6s ease-out 0.2s forwards;
+    opacity: 0;
+    padding: 2rem;
   }
 
   @keyframes fadeInUp {
@@ -85,17 +84,15 @@
     }
   }
 
-  .back-link {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
+  .back-button-container {
     margin-bottom: 2rem;
-    color: var(--color-primary);
-    transition: all 0.2s ease;
   }
 
-  .back-link:hover {
-    transform: translateX(-2px);
+  .back-button {
+    display: flex;
+    align-items: center;
+    font-size: 0.95rem;
+    font-weight: 500;
   }
 
   .title {
@@ -118,7 +115,7 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 
   .tag-pill {
@@ -137,9 +134,5 @@
   .date {
     font-size: 0.875rem;
     color: #9CA3AF;
-  }
-
-  .prose {
-    margin-bottom: 4rem;
   }
 </style>

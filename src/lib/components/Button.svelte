@@ -13,11 +13,7 @@
 {#if isLink}
   <a
     {href}
-    class="relative inline-flex items-center justify-center px-6 py-3 font-medium rounded-md transition-all duration-300 overflow-hidden {fullWidth ? 'w-full' : ''} {className}
-    {variant === 'primary' ? 'text-white bg-primary hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-1 active:translate-y-0' : ''}
-    {variant === 'secondary' ? 'text-white bg-gray-800 hover:bg-gray-700 hover:-translate-y-1 active:translate-y-0 border border-gray-700' : ''}
-    {variant === 'outline' ? 'text-white bg-transparent border border-gray-600 hover:border-primary hover:text-primary hover:-translate-y-1 active:translate-y-0' : ''}
-    {disabled ? 'opacity-60 cursor-not-allowed hover:transform-none' : ''} group"
+    class="button {variant} {fullWidth ? 'w-full' : ''} {className} {disabled ? 'disabled' : ''} group"
     aria-disabled={disabled}
     tabindex={disabled ? -1 : 0}
     on:click
@@ -30,17 +26,13 @@
       <slot />
     </span>
     {#if variant === 'primary'}
-      <div class="absolute inset-0 bg-gradient-primary bg-300-100 mix-blend-overlay opacity-0 transition-opacity duration-300 animate-gradient-shift group-hover:opacity-60"></div>
+      <div class="gradient"></div>
     {/if}
   </a>
 {:else}
   <button
     {type}
-    class="relative inline-flex items-center justify-center px-6 py-3 font-medium rounded-md transition-all duration-300 overflow-hidden {fullWidth ? 'w-full' : ''} {className}
-    {variant === 'primary' ? 'text-white bg-primary hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-1 active:translate-y-0' : ''}
-    {variant === 'secondary' ? 'text-white bg-gray-800 hover:bg-gray-700 hover:-translate-y-1 active:translate-y-0 border border-gray-700' : ''}
-    {variant === 'outline' ? 'text-white bg-transparent border border-gray-600 hover:border-primary hover:text-primary hover:-translate-y-1 active:translate-y-0' : ''}
-    {disabled ? 'opacity-60 cursor-not-allowed hover:transform-none' : ''} group"
+    class="button {variant} {fullWidth ? 'w-full' : ''} {className} {disabled ? 'disabled' : ''} group"
     disabled={disabled}
     on:click
     on:focus
@@ -52,7 +44,97 @@
       <slot />
     </span>
     {#if variant === 'primary'}
-      <div class="absolute inset-0 bg-gradient-primary bg-300-100 mix-blend-overlay opacity-0 transition-opacity duration-300 animate-gradient-shift group-hover:opacity-60"></div>
+      <div class="gradient"></div>
     {/if}
   </button>
 {/if}
+
+<style>
+  .button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    border-radius: 0.375rem;
+    transition: all 0.3s;
+    overflow: hidden;
+    color: white;
+    backdrop-filter: blur(8px);
+  }
+
+  .button:active {
+    transform: translateY(0);
+  }
+
+  .primary {
+    background-color: rgba(217, 30, 83, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -2px rgba(0, 0, 0, 0.1),
+      0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  }
+
+  .primary:hover {
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.2),
+      0 4px 6px -2px rgba(0, 0, 0, 0.15),
+      0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  }
+
+  .secondary {
+    background-color: rgba(31, 41, 55, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -2px rgba(0, 0, 0, 0.1),
+      0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  }
+
+  .secondary:hover {
+    background-color: rgba(55, 65, 81, 0.5);
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.2),
+      0 4px 6px -2px rgba(0, 0, 0, 0.15),
+      0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  }
+
+  .outline {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .outline:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    box-shadow:
+      0 6px 10px -3px rgba(0, 0, 0, 0.15),
+      0 0 0 1px rgba(217, 30, 83, 0.3) inset;
+  }
+
+  .disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .disabled:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .gradient {
+    position: absolute;
+    inset: 0;
+    background: var(--color-primary);
+    mix-blend-mode: overlay;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .group:hover .gradient {
+    opacity: 0.6;
+  }
+</style>

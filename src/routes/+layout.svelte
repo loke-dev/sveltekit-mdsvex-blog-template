@@ -52,14 +52,14 @@
 <!-- Enable prefetching for the entire app -->
 <svelte:window on:mousemove={handleMouseMove} />
 
-<!-- Only show grid background on non-homepage pages -->
+<!-- Only show grid background on non-homepage pages to avoid duplication -->
 {#if !isHomepage}
   <GridBackground />
 {/if}
 
 <Header />
 
-<main id="main-content" class="flex flex-1 flex-col p-8 w-full m-auto box-border mb-20 max-w-[900px] relative z-10">
+<main id="main-content" class="flex flex-1 flex-col w-full m-auto box-border mb-20 max-w-[900px] relative z-10 px-4 sm:px-6 lg:px-8">
   <slot />
 </main>
 

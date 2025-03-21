@@ -1,7 +1,8 @@
 <script lang="ts">
-  import Patterns from "$lib/components/Patterns.svelte"
   import PostCard from "$lib/components/PostCard.svelte"
   import Link from "$lib/components/Link.svelte"
+  import PageContainer from "$lib/components/PageContainer.svelte"
+  import PageHead from "$lib/components/PageHead.svelte"
   import { onMount } from "svelte"
 
   /** @type {any} */
@@ -30,17 +31,13 @@
   <meta name="Cache-Control" content="max-age=1, stale-while-revalidate=59" />
 </svelte:head>
 
-<Patterns variant="2" />
+<PageContainer>
+  <PageHead
+    title="Journal"
+    subtitle="Let's learn together!"
+  />
 
-<div class="content">
-  <div class="journal-header">
-    <h2 class="text-primary font-semibold tracking-wide uppercase">Journal</h2>
-    <h3 class="text-3xl leading-8 font-extrabold tracking-tight text-gray-100 sm:text-4xl mb-6">
-      Let's learn together!
-    </h3>
-  </div>
-
-    <div class="mb-8">
+  <div class="mb-8">
     <div class="flex flex-wrap gap-3 items-center">
       <span class="text-gray-400">Browse by topic:</span>
       <Link href="/journal/tags" className="tag-pill">all topics</Link>
@@ -57,29 +54,19 @@
     </div>
   </div>
 
-  <div class="posts-grid">
+  <div class="content-grid">
     {#if posts}
       {#each posts as post, i}
-        <div class="post-item" style="--delay: {i * 0.05}s">
+        <div class="content-item" style="--delay: {i * 0.05}s">
           <PostCard {post} />
         </div>
       {/each}
     {/if}
   </div>
-</div>
+</PageContainer>
 
 <style>
-  .content {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    position: relative;
-  }
-
-  .journal-header {
-    margin-bottom: 2rem;
-  }
-  .posts-grid {
+  .content-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -87,8 +74,23 @@
   }
 
   @media (min-width: 640px) {
-    .posts-grid {
+    .content-grid {
       grid-template-columns: repeat(2, 1fr);
     }
+  }
+
+  .tag-pill {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background: rgba(31, 41, 55, 0.4);
+    color: #fff;
+    transition: all 0.2s ease;
+  }
+
+  .tag-pill:hover {
+    background: var(--color-primary);
   }
 </style>

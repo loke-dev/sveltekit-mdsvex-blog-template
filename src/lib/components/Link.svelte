@@ -18,7 +18,7 @@
   class="relative transition-colors duration-200 {className}
     {variant === 'nav' ? 'font-medium text-white/80 py-2 hover:text-white' : ''}
     {variant === 'footer' ? 'inline-flex items-center text-gray-400 py-1 hover:text-white' : ''}
-    {variant === 'inline' ? 'text-primary no-underline border-b border-transparent hover:border-primary' : ''}
+    {variant === 'inline' ? 'no-underline border-b border-transparent hover:border-primary' : ''}
     {variant === 'tech' ? 'text-gray-400 px-1 hover:text-white' : ''}
     {active ? 'text-white' : ''}"
   style={style}

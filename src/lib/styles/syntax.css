@@ -26,11 +26,13 @@
     -moz-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
+    max-width: 100%;
+    overflow-x: auto;
   }
 
   /* Code blocks */
   pre[class*="language-"] {
-    @apply overflow-auto;
+    @apply overflow-auto max-w-full;
   }
 
   :not(pre) > code[class*="language-"],

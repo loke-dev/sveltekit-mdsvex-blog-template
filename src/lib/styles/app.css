@@ -32,9 +32,57 @@
 }
 
 @layer components {
+  /* Shared component styles for consistent design */
+  .glass-card {
+    @apply bg-gray-800/40 rounded-xl p-6 shadow-lg border border-white/10 backdrop-blur-md transition-all duration-300;
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -2px rgba(0, 0, 0, 0.1),
+      0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  }
+
+  .tag-pill {
+    @apply inline-block px-3 py-1 rounded-full text-sm font-medium bg-gray-800/40 text-white transition-all duration-200 backdrop-blur-sm;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  }
+
+  .tag-pill:hover {
+    background-color: var(--color-primary);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  }
+
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-15px) scale(1.05); }
+  }
+
+  /* Particle styling */
+  .particle {
+    @apply absolute rounded-full;
+    filter: blur(1px);
+    opacity: 0.7;
+    animation: float 6s ease-in-out infinite;
+  }
+
   /* Custom prose styles for markdown content */
   .prose {
     @apply max-w-none text-[#efebe9];
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
 
   .prose h1,
@@ -95,12 +143,16 @@
 
   .prose code {
     @apply bg-[#001445] text-[#FFBA02] px-1 py-0.5 rounded text-sm;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
 
   .prose pre {
     @apply bg-[#001445] p-4 rounded-lg overflow-auto;
     margin-top: 1em;
     margin-bottom: 1em;
+    max-width: 100%;
   }
 
   .prose img {
@@ -135,7 +187,7 @@
     @apply w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw];
   }
 
-  /* Custom color utilities */
+  /* Custom text color utilities */
   .text-primary {
     color: var(--color-primary);
   }
@@ -143,35 +195,13 @@
   .text-secondary {
     color: var(--color-secondary);
   }
+}
 
-  .bg-primary {
-    background-color: var(--color-primary);
-  }
-
-  .bg-secondary {
-    background-color: var(--color-secondary);
-  }
-
-  .bg-background {
-    background-color: var(--color-background);
-  }
-
-  /* Opacity variants */
-  .bg-primary\/30 {
-    background-color: color-mix(in oklab, var(--color-primary) 30%, transparent);
-  }
-
-  .bg-background\/70 {
-    background-color: color-mix(in oklab, var(--color-background) 70%, transparent);
-  }
-
-  .bg-background\/90 {
-    background-color: color-mix(in oklab, var(--color-background) 90%, transparent);
-  }
-
-  .bg-background\/95 {
-    background-color: color-mix(in oklab, var(--color-background) 95%, transparent);
-  }
+/* Custom CSS variables for colors that can be referenced in components */
+:root {
+  --bg-primary: var(--color-primary);
+  --bg-secondary: var(--color-secondary);
+  --bg-background: var(--color-background);
 }
 
 /* Custom scrollbar - keep this outside layers as it uses webkit specific selectors */
