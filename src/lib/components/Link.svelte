@@ -24,6 +24,7 @@
   style={style}
   aria-current={active ? 'page' : undefined}
   data-sveltekit-preload-data={!external ? 'hover' : undefined}
+  tabindex="0"
   {...externalAttrs}
   on:click
   on:focus

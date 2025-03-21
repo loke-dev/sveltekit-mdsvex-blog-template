@@ -55,6 +55,8 @@
                 alt={title}
                 width={370}
                 height={370}
+                loading="lazy"
+                decoding="async"
               />
             </picture>
           </div>

@@ -24,7 +24,8 @@ const config = {
   ],
   kit: {
     adapter: adapter({
-      runtime: 'nodejs22.x'
+      runtime: 'nodejs22.x',
+      compress: true
     }),
     alias: {
       $components: resolve(__dirname, "./src/lib/components"),

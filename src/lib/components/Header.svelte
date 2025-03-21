@@ -80,8 +80,8 @@
       <div class="flex justify-start lg:w-0 lg:flex-1">
         <a
           href="/"
-          class="flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md relative transition-transform duration-200 hover:-translate-y-0.5 overflow-hidden"
-          aria-label="Home"
+          class="flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-background rounded-md relative transition-transform duration-200 hover:-translate-y-0.5 overflow-hidden"
+          aria-label="SvelteKit.Blog Home"
           data-sveltekit-preload-data="hover"
           tabindex="0"
           aria-current={$page.url.pathname === '/' ? 'page' : undefined}
@@ -162,6 +162,7 @@
                 class="inline-block focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md"
                 on:click={handleNavigation}
                 tabindex="0"
+                aria-label="SvelteKit.Blog Home"
               >
                 <span class="text-2xl font-bold text-white font-sans tracking-tight">SvelteKit<span class="text-primary">.</span>Blog</span>
               </a>

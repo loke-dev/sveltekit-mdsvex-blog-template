@@ -56,6 +56,8 @@
               alt="Loke"
               width={370}
               height={335}
+              loading="lazy"
+              decoding="async"
             />
           </picture>
         </div>
