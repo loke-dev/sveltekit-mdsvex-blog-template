@@ -1,6 +1,6 @@
 ---
-title: 'Git Workflow Essentials for Development Teams'
-description: 'Learn the fundamental Git workflows and best practices that help development teams collaborate effectively and maintain clean project history.'
+title: "Git Workflow Essentials for Development Teams"
+description: "Learn the fundamental Git workflows and best practices that help development teams collaborate effectively and maintain clean project history."
 date: 2024-04-01T00:00:00.000Z
 published: true
 tag: git
@@ -46,7 +46,7 @@ git merge origin/main
 
 Commit messages should be clear and descriptive:
 
-```
+```bash
 # Bad
 git commit -m "Fix bug"
 

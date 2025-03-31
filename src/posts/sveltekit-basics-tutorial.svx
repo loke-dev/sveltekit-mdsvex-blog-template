@@ -1,6 +1,6 @@
 ---
-title: 'Getting Started with SvelteKit: A Beginner-Friendly Guide'
-description: 'Learn the fundamentals of SvelteKit, the full-stack framework for building fast, SEO-friendly web applications with less code and better developer experience.'
+title: "Getting Started with SvelteKit: A Beginner-Friendly Guide"
+description: "Learn the fundamentals of SvelteKit, the full-stack framework for building fast, SEO-friendly web applications with less code and better developer experience."
 date: 2024-02-20T00:00:00.000Z
 published: true
 tag: svelte
@@ -32,15 +32,15 @@ npm run dev
 
 SvelteKit uses a file-based routing system. Files in the `src/routes` directory automatically become pages:
 
-```
+```javascript
 src/routes/
-├── +page.svelte        # Home page (/)
+├── +page.svelte        // Home page (/)
 ├── about/
-│   └── +page.svelte    # About page (/about)
+│   └── +page.svelte    // About page (/about)
 └── blog/
-    ├── +page.svelte    # Blog index (/blog)
+    ├── +page.svelte    // Blog index (/blog)
     └── [slug]/
-        └── +page.svelte # Individual blog post (/blog/:slug)
+        └── +page.svelte // Individual blog post (/blog/:slug)
 ```
 
 ## Loading Data
@@ -50,8 +50,8 @@ SvelteKit makes data loading simple with `+page.server.js` files:
 ```javascript
 // src/routes/blog/+page.server.js
 export async function load() {
-  const posts = await fetchPosts();
-  return { posts };
+  const posts = await fetchPosts()
+  return { posts }
 }
 ```
 

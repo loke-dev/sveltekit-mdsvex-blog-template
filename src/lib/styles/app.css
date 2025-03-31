@@ -2,9 +2,9 @@
 
 @layer base {
   :root {
-    --color-primary: #D91E53;
-    --color-secondary: #FFBA02;
-    --color-background: #030E29;
+    --color-primary: #d91e53;
+    --color-secondary: #ffba02;
+    --color-background: #030e29;
     --color-tertiary: #4b2ec6;
     --color-background-faded: #101254;
     --color-background-code: #001445;
@@ -43,12 +43,16 @@
 
   .tag-pill {
     @apply inline-block px-3 py-1 rounded-full text-sm font-medium bg-gray-800/40 text-white transition-all duration-200 backdrop-blur-sm;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.1),
+      0 0 0 1px rgba(255, 255, 255, 0.05) inset;
   }
 
   .tag-pill:hover {
     background-color: var(--color-primary);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    box-shadow:
+      0 4px 6px rgba(0, 0, 0, 0.1),
+      0 0 0 1px rgba(255, 255, 255, 0.1) inset;
   }
 
   /* Animation utilities */
@@ -57,8 +61,12 @@
   }
 
   @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   .animate-float {
@@ -66,8 +74,13 @@
   }
 
   @keyframes float {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-15px) scale(1.05); }
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-15px) scale(1.05);
+    }
   }
 
   /* Particle styling */
@@ -143,7 +156,6 @@
 
   .prose code {
     @apply bg-[#001445] text-[#FFBA02] px-1 py-0.5 rounded text-sm;
-    white-space: normal;
     overflow-wrap: break-word;
     word-wrap: break-word;
   }
