@@ -32,15 +32,16 @@ describe("Footer", () => {
   })
 
   it("displays technology credits", async () => {
-    const { getByText } = render(Footer)
-    expect(getByText("SvelteKit")).toBeDefined()
-    expect(getByText("Tailwind CSS")).toBeDefined()
+    const { getByRole } = render(Footer)
+    expect(getByRole("link", { name: "SvelteKit" })).toBeDefined()
+    expect(getByRole("link", { name: "Tailwind CSS" })).toBeDefined()
   })
 
   it("has correct section headings", async () => {
-    const { getByText } = render(Footer)
-    expect(getByText("Loke.dev")).toBeDefined()
-    expect(getByText("Navigation")).toBeDefined()
-    expect(getByText("Connect")).toBeDefined()
+    const { container } = render(Footer)
+    const headings = container.querySelectorAll("h2")
+    expect(headings[0]?.textContent).toBe("SvelteKit.Blog")
+    expect(headings[1]?.textContent).toBe("Navigation")
+    expect(headings[2]?.textContent).toBe("Connect")
   })
 })

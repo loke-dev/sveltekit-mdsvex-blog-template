@@ -10,7 +10,7 @@ function setPathname(pathname: string) {
   // @ts-ignore - page is mocked as a writable store in setup-vitest.js
   page.set({
     ...get(page),
-    url: { pathname }
+    url: { pathname },
   })
 }
 
@@ -29,7 +29,7 @@ describe("Header", () => {
   it("renders all navigation links", () => {
     const { getByText, getByLabelText } = render(Header)
     // Use getByLabelText for the Home link since it uses aria-label
-    expect(getByLabelText("Home")).toBeDefined()
+    expect(getByLabelText("SvelteKit.Blog Home")).toBeDefined()
     expect(getByText("About")).toBeDefined()
     expect(getByText("Journal")).toBeDefined()
     expect(getByText("Contact")).toBeDefined()

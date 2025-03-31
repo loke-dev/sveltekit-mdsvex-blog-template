@@ -5,5 +5,5 @@
 </script>
 
 <p class="m-0 mb-8 text-gray-400">
-  <span>{formattedDate}</span>
+  <span class="date">{formattedDate}</span>
 </p>

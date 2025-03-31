@@ -4,13 +4,13 @@ import PageTransition from "../../src/lib/components/PageTransition.svelte"
 import { tick } from "svelte"
 
 // Mock Svelte transitions
-vi.mock('svelte/transition', () => {
+vi.mock("svelte/transition", () => {
   return {
     fly: () => {
       return {
-        duration: 0
+        duration: 0,
       }
-    }
+    },
   }
 })
 
@@ -29,8 +29,8 @@ describe("PageTransition", () => {
     const initialDiv = container.querySelector("div")
     expect(initialDiv).not.toBeNull()
 
-    // Update the refresh prop
-    component.$set({ refresh: "updated" })
+    // Update the refresh prop using Svelte 5's reactivity
+    component.refresh = "updated"
     await tick()
 
     // The div should still be there (we can't easily test the transition)

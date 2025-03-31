@@ -11,13 +11,13 @@
 </script>
 
 {#if slug}
-  <h3 class="m-0 text-2xl {!slug ? 'mt-12 text-3xl' : ''}" {id}>
+  <h3 class="m-0 text-2xl" {id}>
     <a {href}>
       {title}
     </a>
   </h3>
 {:else}
-  <h2 class="m-0 text-2xl {!slug ? 'mt-12 text-3xl' : ''}" {id}>
+  <h2 class="m-0 text-2xl large" {id}>
     <a {href}>
       {title}
     </a>
