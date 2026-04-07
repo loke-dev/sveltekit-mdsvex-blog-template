@@ -2,7 +2,7 @@
   import Button from "$src/lib/components/Button.svelte"
   import PageContainer from "$lib/components/PageContainer.svelte"
   import PageHead from "$lib/components/PageHead.svelte"
-  import va from "@vercel/analytics"
+  import { track } from "@vercel/analytics"
   import { dev, browser } from "$app/environment"
   import { onMount } from "svelte"
 
@@ -16,7 +16,7 @@
 
     if (!dev) {
       try {
-        va.track("Contact form submitted", {
+        track("Contact form submitted", {
           source: "contact_page",
           action: "submit",
         })
@@ -36,7 +36,7 @@
 
     if (!dev) {
       try {
-        va.track("Contact button clicked", {
+        track("Contact button clicked", {
           source: "contact_page",
           action: "click",
         })

@@ -3,27 +3,16 @@
   import Footer from "$src/lib/components/Footer.svelte"
   import { dev } from '$app/environment'
   import { inject } from '@vercel/analytics'
+  import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit'
   import { preloadData } from '$app/navigation'
   import { page } from '$app/stores'
   import GridBackground from "$src/lib/components/GridBackground.svelte"
 
   import "$styles/app.css"
 
-  // Only inject Vercel Analytics in production
   if (!dev) {
-    try {
-      // Use the latest API with configurable deployment basepath
-      inject({
-        mode: 'production',
-        debug: false,
-        beforeSend: (data) => {
-          // You can modify the data before it's sent
-          return data;
-        }
-      });
-    } catch (error) {
-      console.log('Vercel Analytics not available')
-    }
+    inject()
+    injectSpeedInsights()
   }
 
   // Handle prefetching for links that don't have explicit preload attributes
