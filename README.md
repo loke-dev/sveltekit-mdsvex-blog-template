@@ -1,56 +1,43 @@
-# SvelteKit MDSvex Blog Template
+# SvelteKit MDsveX Blog Template
 
-A blazing fast, modern blog template built with SvelteKit, MDSvex, and TailwindCSS. Perfect for developers, writers, and creators who want a performant, SEO-friendly personal website with a built-in blog.
+A blog template built with SvelteKit, MDsveX, and Tailwind CSS. Write posts in Markdown with full Svelte component support.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Floke-dev%2Fsveltekit-mdsvex-blog-template)
+![SvelteKit MDsveX Blog Template](https://github.com/user-attachments/assets/88d8ac01-220c-4c25-a3bd-27bc1ae8825a)
 
-![Image](https://github.com/user-attachments/assets/88d8ac01-220c-4c25-a3bd-27bc1ae8825a)
+## Features
 
-## ✨ Features
+- **Fast** — SvelteKit with SSG, quick page loads out of the box
+- **MDsveX** — Markdown posts with Svelte components
+- **Tailwind CSS** — Typography plugin for clean post styling
+- **SEO Optimised** — Meta tags, structured data, sitemap, social previews
+- **Tags** — Tag-based post categorisation
+- **Dark Mode** — Light and dark themes
+- **Analytics** — Vercel Analytics integration
+- **Testing** — Vitest and Playwright configured
 
-- **⚡️ Lightning Fast**: Built on SvelteKit for exceptional performance and quick page loads
-- **📝 MDSvex Integration**: Write your blog posts in Markdown with full Svelte component support
-- **🎨 Modern Styling**: Powered by TailwindCSS with typography plugin for beautiful, responsive design
-- **🔍 SEO Optimized**:
-  - Built-in meta tags and structured data
-  - Automatic sitemap generation
-  - Social media preview cards
-- **📱 Responsive Design**: Looks great on all devices, from mobile to desktop
-- **📊 Analytics Ready**: Vercel Analytics integration out of the box
-- **🧪 Testing Setup**: Comprehensive testing with Vitest and Playwright
-- **🏷️ Content Organization**: Tag-based categorization for easy content discovery
-- **🚀 Easy Deployment**: Deploy anywhere that supports SvelteKit, optimized for Vercel
+## Stack
 
-## 🚀 Quick Start
+- [SvelteKit](https://kit.svelte.dev)
+- [MDsveX](https://mdsvex.pngwn.io)
+- [Tailwind CSS](https://tailwindcss.com)
+- [TypeScript](https://typescriptlang.org)
+- [Vitest](https://vitest.dev)
+- [Playwright](https://playwright.dev)
 
-### Using the Template
-
-1. Click the "Use this template" button on GitHub
-2. Clone your new repository:
-```bash
-git clone <your-repo-url>
-cd <your-repo-name>
-```
-
-### Installation
+## Get Started
 
 ```bash
+git clone https://github.com/loke-dev/sveltekit-mdsvex-blog-template my-blog
+cd my-blog
 pnpm install
-```
-
-### Development
-
-Start the development server:
-
-```bash
 pnpm dev
 ```
 
 Visit `http://localhost:5173` to see your site.
 
-## 📝 Writing Blog Posts
+## Writing Posts
 
-Create new `.svx` files in `src/posts/` with this frontmatter:
+Create `.svx` files in `src/posts/`:
 
 ```markdown
 ---
@@ -64,43 +51,26 @@ tag: svelte
 Your content here...
 ```
 
-## ⚙️ Configuration
+## Customise
 
 1. Update `src/variables.ts` with your information
-2. Customize the site layout in `src/routes/+layout.svelte`
+2. Customise the layout in `src/routes/+layout.svelte`
 3. Modify the homepage in `src/routes/+page.svelte`
 
-## 🧪 Testing
+## Testing
 
 ```bash
-pnpm test           # Run unit tests
-pnpm test:watch     # Run tests in watch mode
-pnpm test:coverage  # Run tests with coverage
-pnpm test:e2e       # Run end-to-end tests
+pnpm test           # Unit tests
+pnpm test:e2e       # End-to-end tests
+pnpm test:coverage  # Coverage report
 ```
 
-## 🏗️ Production
+## Deploy
 
-Build for production:
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Floke-dev%2Fsveltekit-mdsvex-blog-template)
 
-```bash
-pnpm build
-```
+Works on any platform that supports SvelteKit.
 
-Preview the production build:
-
-```bash
-pnpm preview
-```
-
-## 📦 Deployment
-
-This template is optimized for deployment on Vercel and will work out of the box. It's also compatible with any platform that supports SvelteKit.
-
-## 📄 License
+## License
 
 MIT
-
-## ❤️ Credits
-
-Created by [Loke](https://github.com/loke-dev) and the SvelteKit community.
