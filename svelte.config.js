@@ -1,4 +1,4 @@
-import adapter from "@sveltejs/adapter-vercel"
+import adapter from "@sveltejs/adapter-cloudflare"
 import { mdsvex } from "mdsvex"
 import mdsvexConfig from "./mdsvex.config.js"
 import { dirname, resolve } from "path"
@@ -23,10 +23,7 @@ const config = {
     mdsvex(mdsvexConfig),
   ],
   kit: {
-    adapter: adapter({
-      runtime: 'nodejs22.x',
-      compress: true
-    }),
+    adapter: adapter(),
     alias: {
       $components: resolve(__dirname, "./src/lib/components"),
       $stores: resolve(__dirname, "./src/lib/stores"),
