@@ -19,7 +19,6 @@
   "devDependencies": {
     "@playwright/test": "^1.51.1",
     "@sveltejs/adapter-cloudflare": "^7.2.9",
-    "@sveltejs/adapter-vercel": "^5.6.3",
     "@sveltejs/kit": "^2.20.2",
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "@tailwindcss/aspect-ratio": "^0.4.2",
@@ -54,8 +53,6 @@
     "vitest": "latest"
   },
   "dependencies": {
-    "@vercel/analytics": "^1.5.0",
-    "@vercel/speed-insights": "^1.2.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",
     "remark-abbr": "^1.4.2",

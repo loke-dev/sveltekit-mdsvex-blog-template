@@ -12,7 +12,7 @@ A blog template built with SvelteKit, MDsveX, and Tailwind CSS. Write posts in M
 - **SEO Optimised** — Meta tags, structured data, sitemap, social previews
 - **Tags** — Tag-based post categorisation
 - **Dark Mode** — Light and dark themes
-- **Analytics** — Vercel Analytics integration
+- **Deployment** — Cloudflare Workers configuration included
 - **Testing** — Vitest and Playwright configured
 
 ## Stack
@@ -67,7 +67,7 @@ pnpm test:coverage  # Coverage report
 
 ## Deploy
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Floke-dev%2Fsveltekit-mdsvex-blog-template)
+[Live demo](https://sveltekit-mdsvex-blog.loke.dev)
 
 Works on any platform that supports SvelteKit.
 

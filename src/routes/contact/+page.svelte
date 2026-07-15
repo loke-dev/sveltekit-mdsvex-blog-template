@@ -2,7 +2,6 @@
   import Button from "$src/lib/components/Button.svelte"
   import PageContainer from "$lib/components/PageContainer.svelte"
   import PageHead from "$lib/components/PageHead.svelte"
-  import { track } from "@vercel/analytics"
   import { dev, browser } from "$app/environment"
   import { onMount } from "svelte"
 
@@ -14,17 +13,6 @@
       e.preventDefault()
     }
 
-    if (!dev) {
-      try {
-        track("Contact form submitted", {
-          source: "contact_page",
-          action: "submit",
-        })
-      } catch (error) {
-        console.log("Vercel Analytics not available")
-      }
-    }
-
     formSubmitted = true
     return false
   }
@@ -34,16 +22,6 @@
       formSubmitted = true
     }
 
-    if (!dev) {
-      try {
-        track("Contact button clicked", {
-          source: "contact_page",
-          action: "click",
-        })
-      } catch (error) {
-        console.log("Vercel Analytics not available")
-      }
-    }
   }
 
   onMount(() => {

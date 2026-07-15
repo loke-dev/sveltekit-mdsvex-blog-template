@@ -2,18 +2,11 @@
   import Header from "$src/lib/components/Header.svelte"
   import Footer from "$src/lib/components/Footer.svelte"
   import { dev } from '$app/environment'
-  import { inject } from '@vercel/analytics'
-  import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit'
   import { preloadData } from '$app/navigation'
   import { page } from '$app/stores'
   import GridBackground from "$src/lib/components/GridBackground.svelte"
 
   import "$styles/app.css"
-
-  if (!dev) {
-    inject()
-    injectSpeedInsights()
-  }
 
   // Handle prefetching for links that don't have explicit preload attributes
   function handleMouseMove(e: MouseEvent): void {

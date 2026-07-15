@@ -40,12 +40,6 @@ self.addEventListener('activate', event => {
 
 // Fetch event - serve from cache, fall back to network
 self.addEventListener('fetch', event => {
-  // Handle Vercel Analytics requests with a 204 No Content response
-  if (event.request.url.includes('/_vercel/insights/')) {
-    // Skip caching Vercel Analytics requests
-    return;
-  }
-
   event.respondWith(
     caches.match(event.request)
       .then(response => {
