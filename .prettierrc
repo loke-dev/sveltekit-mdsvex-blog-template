@@ -4,5 +4,13 @@
   "trailingComma": "es5",
   "printWidth": 100,
   "semi": false,
-  "svelteSortOrder": "scripts-markup-styles"
+  "plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
+  "overrides": [
+    {
+      "files": "*.svelte",
+      "options": {
+        "parser": "svelte"
+      }
+    }
+  ]
 }

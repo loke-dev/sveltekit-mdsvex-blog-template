@@ -5,15 +5,15 @@
   export let image: string
 </script>
 
-<div class="relative max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-  <div class="mx-auto text-base max-w-prose lg:grid lg:grid-cols-2 lg:gap-8 lg:max-w-none">
+<div class="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-prose text-base lg:grid lg:max-w-none lg:grid-cols-2 lg:gap-8">
     <div>
       {#if prefix}
-        <span class="text-base text-primary font-semibold tracking-wide">{prefix}</span>
+        <span class="text-primary text-base font-semibold tracking-wide">{prefix}</span>
       {/if}
       {#if title}
         <h3
-          class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-100 sm:text-4xl}"
+          class="sm:text-4xl} mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-100"
         >
           {title}
         </h3>
@@ -21,9 +21,9 @@
     </div>
   </div>
   <div class="mt-8 lg:grid lg:grid-cols-2 lg:gap-8">
-    <div class="relative lg:row-start-1 lg:col-start-2">
+    <div class="relative lg:col-start-2 lg:row-start-1">
       <svg
-        class="hidden lg:block absolute top-0 right-0 -mt-20 -mr-20"
+        class="absolute top-0 right-0 -mt-20 -mr-20 hidden lg:block"
         width={404}
         height={384}
         fill="none"
@@ -44,13 +44,13 @@
         </defs>
         <rect width={404} height={384} fill="url(#square-pattern)" />
       </svg>
-      <div class="relative text-base mx-auto max-w-prose lg:max-w-none">
+      <div class="relative mx-auto max-w-prose text-base lg:max-w-none">
         <figure>
           <div class="aspect-w-12 aspect-h-7 lg:aspect-none">
             <picture>
               <source srcSet={`${image}.webp`} type="image/webp" />
               <img
-                class="rounded-lg shadow-lg bg-white object-contain object-center"
+                class="rounded-lg bg-white object-contain object-center shadow-lg"
                 src={`${image}.png`}
                 alt={title}
                 width={370}
@@ -64,7 +64,7 @@
       </div>
     </div>
     <div class="mt-8 lg:mt-0">
-      <div class="prose mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
+      <div class="prose mx-auto lg:col-start-1 lg:row-start-1 lg:max-w-none">
         <slot />
       </div>
     </div>

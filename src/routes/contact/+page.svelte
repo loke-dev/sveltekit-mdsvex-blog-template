@@ -8,7 +8,7 @@
   let formSubmitted = false
   let formElement: HTMLFormElement
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: SubmitEvent) => {
     if (!browser || dev) {
       e.preventDefault()
     }
@@ -21,12 +21,11 @@
     if (!browser || dev) {
       formSubmitted = true
     }
-
   }
 
   onMount(() => {
     if (dev) {
-      document.querySelector("form").setAttribute("novalidate", "true")
+      formElement.setAttribute("novalidate", "true")
     }
   })
 </script>
@@ -114,7 +113,7 @@
             <polyline points="22 4 12 14.01 9 11.01"></polyline>
           </svg>
         </div>
-        <h3 class="text-2xl font-bold text-white mb-2">Thank you!</h3>
+        <h3 class="mb-2 text-2xl font-bold text-white">Thank you!</h3>
         <p class="text-gray-300">
           Your message has been sent. I'll get back to you as soon as possible.
         </p>

@@ -3,23 +3,14 @@
   import Link from "$lib/components/Link.svelte"
   import PageContainer from "$lib/components/PageContainer.svelte"
   import PageHead from "$lib/components/PageHead.svelte"
-  import { onMount } from "svelte"
+  import type { PageData } from "./$types"
 
-  /** @type {any} */
-  export let data
+  export let data: PageData
   const { posts, tags } = data
 
   const topTags = tags
-    .sort((a: {count: number}, b: {count: number}) => b.count - a.count)
+    .sort((a: { count: number }, b: { count: number }) => b.count - a.count)
     .slice(0, 6)
-
-  let visible = false;
-
-  onMount(() => {
-    setTimeout(() => {
-      visible = true;
-    }, 100);
-  });
 </script>
 
 <svelte:head>
@@ -29,21 +20,15 @@
 </svelte:head>
 
 <PageContainer>
-  <PageHead
-    title="Journal"
-    subtitle="Let's learn together!"
-  />
+  <PageHead title="Journal" subtitle="Let's learn together!" />
 
   <div class="mb-8">
-    <div class="flex flex-wrap gap-3 items-center">
+    <div class="flex flex-wrap items-center gap-3">
       <span class="text-gray-400">Browse by topic:</span>
       <Link href="/journal/tags" className="tag-pill">all topics</Link>
       {#if topTags && topTags.length > 0}
-        {#each topTags as tag}
-          <Link
-            href={`/journal/tags/${encodeURIComponent(tag.name)}`}
-            className="tag-pill"
-          >
+        {#each topTags as tag (tag.name)}
+          <Link href={`/journal/tags/${encodeURIComponent(tag.name)}`} className="tag-pill">
             {tag.name.toLowerCase()}
           </Link>
         {/each}
@@ -53,7 +38,7 @@
 
   <div class="content-grid">
     {#if posts}
-      {#each posts as post, i}
+      {#each posts as post, i (post.slug)}
         <div class="content-item" style="--delay: {i * 0.05}s">
           <PostCard {post} />
         </div>
@@ -76,7 +61,7 @@
     }
   }
 
-  .tag-pill {
+  :global(.tag-pill) {
     display: inline-block;
     padding: 0.35rem 0.75rem;
     border-radius: 9999px;
@@ -87,7 +72,7 @@
     transition: all 0.2s ease;
   }
 
-  .tag-pill:hover {
+  :global(.tag-pill:hover) {
     background: var(--color-primary);
   }
 </style>

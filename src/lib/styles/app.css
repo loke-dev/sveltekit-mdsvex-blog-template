@@ -15,7 +15,7 @@
   }
 
   body {
-    @apply min-h-screen m-0 text-white font-sans text-base antialiased;
+    @apply m-0 min-h-screen font-sans text-base text-white antialiased;
     background-color: var(--color-background);
   }
 
@@ -34,7 +34,7 @@
 @layer components {
   /* Shared component styles for consistent design */
   .glass-card {
-    @apply bg-gray-800/40 rounded-xl p-6 shadow-lg border border-white/10 backdrop-blur-md transition-all duration-300;
+    @apply rounded-xl border border-white/10 bg-gray-800/40 p-6 shadow-lg backdrop-blur-md transition-all duration-300;
     box-shadow:
       0 4px 6px -1px rgba(0, 0, 0, 0.1),
       0 2px 4px -2px rgba(0, 0, 0, 0.1),
@@ -42,7 +42,7 @@
   }
 
   .tag-pill {
-    @apply inline-block px-3 py-1 rounded-full text-sm font-medium bg-gray-800/40 text-white transition-all duration-200 backdrop-blur-sm;
+    @apply inline-block rounded-full bg-gray-800/40 px-3 py-1 text-sm font-medium text-white backdrop-blur-sm transition-all duration-200;
     box-shadow:
       0 1px 2px rgba(0, 0, 0, 0.1),
       0 0 0 1px rgba(255, 255, 255, 0.05) inset;
@@ -102,7 +102,7 @@
   .prose h2,
   .prose h3,
   .prose h4 {
-    @apply text-white font-bold;
+    @apply font-bold text-white;
     margin-top: 1.5em;
     margin-bottom: 0.5em;
   }
@@ -129,11 +129,11 @@
   }
 
   .prose a {
-    @apply text-[#FF295D] no-underline border-b border-transparent hover:border-[#FF295D];
+    @apply border-b border-transparent text-[#FF295D] no-underline hover:border-[#FF295D];
   }
 
   .prose strong {
-    @apply text-white font-bold;
+    @apply font-bold text-white;
   }
 
   .prose ul,
@@ -155,13 +155,13 @@
   }
 
   .prose code {
-    @apply bg-[#001445] text-[#FFBA02] px-1 py-0.5 rounded text-sm;
+    @apply rounded bg-[#001445] px-1 py-0.5 text-sm text-[#FFBA02];
     overflow-wrap: break-word;
     word-wrap: break-word;
   }
 
   .prose pre {
-    @apply bg-[#001445] p-4 rounded-lg overflow-auto;
+    @apply overflow-auto rounded-lg bg-[#001445] p-4;
     margin-top: 1em;
     margin-bottom: 1em;
     max-width: 100%;
@@ -186,17 +186,17 @@
   }
 
   .prose th {
-    @apply text-white font-bold p-2 border border-gray-700 bg-gray-800;
+    @apply border border-gray-700 bg-gray-800 p-2 font-bold text-white;
   }
 
   .prose td {
-    @apply p-2 border border-gray-700;
+    @apply border border-gray-700 p-2;
   }
 }
 
 @layer utilities {
   .fullWidth {
-    @apply w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw];
+    @apply relative right-1/2 left-1/2 -mr-[50vw] -ml-[50vw] w-screen;
   }
 
   /* Custom text color utilities */

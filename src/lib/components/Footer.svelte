@@ -1,32 +1,32 @@
-<script>
+<script lang="ts">
   import Link from "./Link.svelte"
 </script>
 
 <footer
-  class="relative mt-20 pt-16 pb-10 bg-background/90 backdrop-blur-md shadow-lg z-10 border-t border-white/5"
+  class="bg-background/90 relative z-10 mt-20 border-t border-white/5 pt-16 pb-10 shadow-lg backdrop-blur-md"
 >
   <!-- Decorative top border with gradient -->
   <div
-    class="absolute top-0 left-0 right-0 h-0.5 bg-footer-glow bg-300-100 animate-gradient-shift"
+    class="bg-footer-glow bg-300-100 animate-gradient-shift absolute top-0 right-0 left-0 h-0.5"
   ></div>
 
-  <div class="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-10 md:justify-between w-full">
-      <div class="relative animate-fadeIn">
-        <h2 class="text-xl font-bold mb-4 text-white">
+  <div class="mx-auto max-w-[900px] px-4 sm:px-6 lg:px-8">
+    <div class="mb-10 grid w-full grid-cols-1 gap-12 md:grid-cols-3 md:justify-between">
+      <div class="animate-fadeIn relative">
+        <h2 class="mb-4 text-xl font-bold text-white">
           <span>SvelteKit</span><span class="text-primary">.</span><span>Blog</span>
         </h2>
-        <p class="text-gray-300 mb-4">
+        <p class="mb-4 text-gray-300">
           A modern, fast, and SEO-friendly blog template built with SvelteKit, MDSvex, and
           TailwindCSS.
         </p>
-        <p class="text-gray-400 text-sm">
+        <p class="text-sm text-gray-400">
           © {new Date().getFullYear()} Loke. All rights reserved.
         </p>
       </div>
 
-      <div class="relative animate-fadeIn md:text-center">
-        <h2 class="text-xl font-bold mb-4 text-white">Navigation</h2>
+      <div class="animate-fadeIn relative md:text-center">
+        <h2 class="mb-4 text-xl font-bold text-white">Navigation</h2>
         <ul class="space-y-2">
           <li><Link href="/" variant="footer">Home</Link></li>
           <li><Link href="/about" variant="footer">About</Link></li>
@@ -35,8 +35,8 @@
         </ul>
       </div>
 
-      <div class="relative animate-fadeIn md:text-right">
-        <h2 class="text-xl font-bold mb-4 text-white">Connect</h2>
+      <div class="animate-fadeIn relative md:text-right">
+        <h2 class="mb-4 text-xl font-bold text-white">Connect</h2>
         <ul class="space-y-2">
           <li>
             <Link
@@ -46,7 +46,7 @@
               className="flex items-center group md:justify-end"
             >
               <svg
-                class="w-5 h-5 mr-2 transition-transform duration-200 group-hover:scale-110"
+                class="mr-2 h-5 w-5 transition-transform duration-200 group-hover:scale-110"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -68,7 +68,7 @@
               className="flex items-center group md:justify-end"
             >
               <svg
-                class="w-5 h-5 mr-2 transition-transform duration-200 group-hover:scale-110"
+                class="mr-2 h-5 w-5 transition-transform duration-200 group-hover:scale-110"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -87,7 +87,7 @@
               className="flex items-center group md:justify-end"
             >
               <svg
-                class="w-5 h-5 mr-2 transition-transform duration-200 group-hover:scale-110"
+                class="mr-2 h-5 w-5 transition-transform duration-200 group-hover:scale-110"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -107,7 +107,7 @@
       </div>
     </div>
 
-    <div class="text-center text-sm text-gray-400 mt-8">
+    <div class="mt-8 text-center text-sm text-gray-400">
       <p>
         Built with <Link href="https://kit.svelte.dev" variant="tech" external={true}
           >SvelteKit</Link

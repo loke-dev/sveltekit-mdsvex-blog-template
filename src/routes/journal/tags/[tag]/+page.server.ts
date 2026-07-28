@@ -1,21 +1,7 @@
 import { slugFromPath } from "$lib/utils"
+import type { MdsvexFile, Post } from "$lib/types/posts"
 import { error } from "@sveltejs/kit"
 export const prerender = true
-
-interface MdsvexFile {
-  default: any
-  metadata: Record<string, any>
-}
-
-interface Post {
-  slug: string
-  title: string
-  description: string
-  date: string
-  published: boolean
-  tag: string
-  [key: string]: any
-}
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function load({ params }) {

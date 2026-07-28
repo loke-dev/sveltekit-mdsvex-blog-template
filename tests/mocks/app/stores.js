@@ -8,5 +8,5 @@ export const page = writable({
   status: 200,
   error: null,
   data: {},
-  form: undefined
+  form: undefined,
 })

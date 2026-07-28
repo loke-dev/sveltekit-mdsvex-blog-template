@@ -8,7 +8,7 @@ describe("ArticleTitle", () => {
   it("renders component with h3 when slug is provided", () => {
     const { container } = render(ArticleTitle, {
       title: "Test Article",
-      slug: "test-article"
+      slug: "test-article",
     })
     expect(container.querySelector("h3")).not.toBeNull()
     expect(container.querySelector("h2")).toBeNull()
@@ -16,7 +16,7 @@ describe("ArticleTitle", () => {
 
   it("renders component with h2 when no slug is provided", () => {
     const { container } = render(ArticleTitle, {
-      title: "Test Article"
+      title: "Test Article",
     })
     expect(container.querySelector("h2")).not.toBeNull()
     expect(container.querySelector("h3")).toBeNull()
@@ -25,7 +25,7 @@ describe("ArticleTitle", () => {
   it("displays the title text correctly", () => {
     const { getByText } = render(ArticleTitle, {
       title: "Test Article",
-      slug: "test-article"
+      slug: "test-article",
     })
     expect(getByText("Test Article")).toBeDefined()
   })
@@ -33,7 +33,7 @@ describe("ArticleTitle", () => {
   it("generates correct href with slug", () => {
     const { container } = render(ArticleTitle, {
       title: "Test Article",
-      slug: "test-article"
+      slug: "test-article",
     })
     const link = container.querySelector("a")
     expect(link?.getAttribute("href")).toBe("/journal/test-article")
@@ -41,7 +41,7 @@ describe("ArticleTitle", () => {
 
   it("generates correct href without slug (anchor link)", () => {
     const { container } = render(ArticleTitle, {
-      title: "Test Article"
+      title: "Test Article",
     })
     const link = container.querySelector("a")
     expect(link?.getAttribute("href")).toBe("#test-article")
@@ -49,7 +49,7 @@ describe("ArticleTitle", () => {
 
   it("generates correct id from title", () => {
     const { container } = render(ArticleTitle, {
-      title: "Test Article!"
+      title: "Test Article!",
     })
     const heading = container.querySelector("h2")
     expect(heading?.getAttribute("id")).toBe("test-article")
@@ -57,7 +57,7 @@ describe("ArticleTitle", () => {
 
   it("applies large class when no slug is provided", () => {
     const { container } = render(ArticleTitle, {
-      title: "Test Article"
+      title: "Test Article",
     })
     const heading = container.querySelector("h2")
     expect(heading?.classList.contains("large")).toBe(true)
@@ -66,7 +66,7 @@ describe("ArticleTitle", () => {
   it("does not apply large class when slug is provided", () => {
     const { container } = render(ArticleTitle, {
       title: "Test Article",
-      slug: "test-article"
+      slug: "test-article",
     })
     const heading = container.querySelector("h3")
     expect(heading?.classList.contains("large")).toBe(false)

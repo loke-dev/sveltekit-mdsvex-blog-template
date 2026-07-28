@@ -8,7 +8,7 @@ declare namespace App {
   // interface Platform {}
 
   interface MdsvexFile {
-    default: import("svelte/internal").SvelteComponent
+    default: import("svelte").Component
     metadata: Record<string, string>
   }
 
@@ -21,7 +21,7 @@ declare namespace App {
     published: boolean
     tag: string
     description: string
-    default: import("svelte/internal").SvelteComponent
+    default: import("svelte").Component
     metadata: Record<string, string>
   }
 

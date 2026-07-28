@@ -1,25 +1,16 @@
 import { slugFromPath } from "$lib/utils/journal"
+import type { MdsvexFile, Post } from "$lib/types/posts"
 export const prerender = true
-
-interface Post {
-  slug: string
-  title: string
-  description: string
-  date: string
-  published: boolean
-  tag: string
-  [key: string]: any
-}
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function load() {
-  const modules: Record<string, () => any> = import.meta.glob("/src/posts/*.{md,svx,svelte.md}")
+  const modules = import.meta.glob<MdsvexFile>("/src/posts/*.{md,svx,svelte.md}")
 
   const postPromises: Promise<Post>[] = []
 
   for (const [path, resolver] of Object.entries(modules)) {
     const slug = slugFromPath(path)
-    const promise = resolver().then((post: any) => ({
+    const promise = resolver().then((post: MdsvexFile) => ({
       slug,
       ...post.metadata,
     })) as Promise<Post>

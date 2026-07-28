@@ -1,16 +1,16 @@
 <script lang="ts">
   import PostCard from "$lib/components/PostCard.svelte"
   import Button from "$lib/components/Button.svelte"
-  import { getTagColor } from "$lib/utils/tagColors";
-  import PageContainer from "$lib/components/PageContainer.svelte";
-  import PageHead from "$lib/components/PageHead.svelte";
+  import { getTagColor } from "$lib/utils/tagColors"
+  import PageContainer from "$lib/components/PageContainer.svelte"
+  import PageHead from "$lib/components/PageHead.svelte"
 
   /** @type {import('./$types').PageData} */
   export let data
-  const { tag, posts, relatedTags } = data
+  const { tag, posts } = data
 
   // Get the tag color
-  const tagColor = getTagColor(tag);
+  const tagColor = getTagColor(tag)
 </script>
 
 <PageContainer>
@@ -29,12 +29,15 @@
         <span class="tag-name-pill" style="--tag-color: {tagColor};">
           #{tag}
         </span>
-        <span class="tag-count">({posts.length} posts)</span>
+        <span class="tag-count">
+          ({posts.length}
+          {posts.length === 1 ? "post" : "posts"})
+        </span>
       </h1>
     </div>
 
     <div class="posts-grid">
-      {#each posts as post}
+      {#each posts as post (post.slug)}
         <PostCard {post} />
       {/each}
     </div>
@@ -68,11 +71,7 @@
     }
   }
 
-  .back-button-container {
-    margin-bottom: 2rem;
-  }
-
-  .back-button {
+  :global(.back-button) {
     display: flex;
     align-items: center;
     font-size: 0.95rem;
@@ -95,7 +94,7 @@
 
   .tag-count {
     font-size: 1rem;
-    color: #9CA3AF;
+    color: #9ca3af;
   }
 
   .posts-grid {

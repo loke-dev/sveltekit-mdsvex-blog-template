@@ -9,7 +9,7 @@ describe("Project", () => {
     const { container } = render(Project, {
       prefix: "Test Prefix",
       title: "Test Project",
-      image: "/test-image"
+      image: "/test-image",
     })
     expect(container.querySelector(".max-w-7xl")).not.toBeNull()
   })
@@ -18,7 +18,7 @@ describe("Project", () => {
     const { getByText } = render(Project, {
       prefix: "Test Prefix",
       title: "Test Project",
-      image: "/test-image"
+      image: "/test-image",
     })
     expect(getByText("Test Prefix")).toBeDefined()
   })
@@ -27,7 +27,7 @@ describe("Project", () => {
     const { getByText } = render(Project, {
       prefix: "Test Prefix",
       title: "Test Project",
-      image: "/test-image"
+      image: "/test-image",
     })
     expect(getByText("Test Project")).toBeDefined()
   })
@@ -36,7 +36,7 @@ describe("Project", () => {
     const { container } = render(Project, {
       prefix: "Test Prefix",
       title: "Test Project",
-      image: "/test-image"
+      image: "/test-image",
     })
 
     const picture = container.querySelector("picture")
@@ -55,7 +55,7 @@ describe("Project", () => {
     const { container } = render(Project, {
       prefix: "Test Prefix",
       title: "Test Project",
-      image: "/test-image"
+      image: "/test-image",
     })
 
     const img = container.querySelector("img")
@@ -67,7 +67,7 @@ describe("Project", () => {
     const { container } = render(Project, {
       prefix: "Test Prefix",
       title: "Test Project",
-      image: "/test-image"
+      image: "/test-image",
     })
 
     const proseDiv = container.querySelector(".prose")
@@ -78,7 +78,7 @@ describe("Project", () => {
     const { container } = render(Project, {
       prefix: "Test Prefix",
       title: "Test Project",
-      image: "/test-image"
+      image: "/test-image",
     })
 
     const svg = container.querySelector("svg")

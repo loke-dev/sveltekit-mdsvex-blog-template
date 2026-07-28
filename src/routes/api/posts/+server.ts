@@ -1,20 +1,6 @@
 import { json } from "@sveltejs/kit"
 import { slugFromPath } from "$lib/utils"
-
-interface MdsvexFile {
-  default: any
-  metadata: Record<string, any>
-}
-
-interface Post {
-  slug: string
-  title: string
-  description: string
-  date: string
-  published: boolean
-  tag: string
-  [key: string]: any
-}
+import type { MdsvexFile, Post } from "$lib/types/posts"
 
 export const prerender = true
 

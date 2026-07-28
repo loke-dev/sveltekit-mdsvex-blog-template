@@ -1,26 +1,24 @@
 <script lang="ts">
   /** @type {import('./$types').PageData} */
-  export let data;
+  export let data
 
   import Link from "$lib/components/Link.svelte"
   import Button from "$lib/components/Button.svelte"
-  import { getTagColor } from "$lib/utils/tagColors";
-  import { formatDate } from "$lib/utils/date";
+  import { getTagColor } from "$lib/utils/tagColors"
+  import { formatDate } from "$lib/utils/date"
 
   import "$styles/syntax.css"
 
-  const component = data.component;
+  const component = data.component
   const { title, description, date, tag } = data.frontmatter
 
-  const tagColor = tag ? getTagColor(tag) : getTagColor('default');
+  const tagColor = tag ? getTagColor(tag) : getTagColor("default")
 </script>
 
 <div class="post-container">
   <div class="post-header glass-card" style="--tag-color: {tagColor};">
     <div class="back-button-container">
-      <Button href="/journal" variant="secondary" className="back-button">
-        ❮ Back to Journal
-      </Button>
+      <Button href="/journal" variant="secondary" className="back-button">❮ Back to Journal</Button>
     </div>
 
     <h1 class="title">{title}</h1>
@@ -85,7 +83,7 @@
     margin-bottom: 2rem;
   }
 
-  .back-button {
+  :global(.back-button) {
     display: flex;
     align-items: center;
     font-size: 0.95rem;
@@ -115,7 +113,7 @@
     margin-bottom: 1rem;
   }
 
-  .tag-pill {
+  :global(.tag-pill) {
     display: inline-block;
     padding: 0.35rem 1rem;
     border-radius: 6px;
@@ -125,11 +123,11 @@
   }
 
   .date-divider {
-    color: #6B7280;
+    color: #6b7280;
   }
 
   .date {
     font-size: 0.875rem;
-    color: #9CA3AF;
+    color: #9ca3af;
   }
 </style>

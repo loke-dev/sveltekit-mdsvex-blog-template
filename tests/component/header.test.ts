@@ -1,4 +1,4 @@
-import { beforeEach, describe, it, expect, vi, afterEach } from "vitest"
+import { beforeEach, describe, it, expect } from "vitest"
 import { cleanup, render } from "@testing-library/svelte"
 import { page } from "$app/stores"
 import { get } from "svelte/store"
@@ -7,7 +7,7 @@ import Header from "../../src/lib/components/Header.svelte"
 
 // Helper function to set the current path for testing
 function setPathname(pathname: string) {
-  // @ts-ignore - page is mocked as a writable store in setup-vitest.js
+  // @ts-expect-error -- page is mocked as a writable store in setup-vitest.js
   page.set({
     ...get(page),
     url: { pathname },

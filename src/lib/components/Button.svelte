@@ -1,19 +1,21 @@
 <script lang="ts">
-  export let variant: 'primary' | 'secondary' | 'outline' = 'primary';
-  export let href: string | undefined = undefined;
-  export let type: 'button' | 'submit' | 'reset' = 'button';
-  export let disabled: boolean = false;
-  export let fullWidth: boolean = false;
-  export let className: string = '';
+  export let variant: "primary" | "secondary" | "outline" = "primary"
+  export let href: string | undefined = undefined
+  export let type: "button" | "submit" | "reset" = "button"
+  export let disabled: boolean = false
+  export let fullWidth: boolean = false
+  export let className: string = ""
 
   // Determine if this is a link or button
-  const isLink = href !== undefined;
+  const isLink = href !== undefined
 </script>
 
 {#if isLink}
   <a
     {href}
-    class="button {variant} {fullWidth ? 'w-full' : ''} {className} {disabled ? 'disabled' : ''} group"
+    class="button {variant} {fullWidth ? 'w-full' : ''} {className} {disabled
+      ? 'disabled'
+      : ''} group"
     aria-disabled={disabled}
     tabindex={disabled ? -1 : 0}
     on:click
@@ -25,15 +27,17 @@
     <span class="relative z-10">
       <slot />
     </span>
-    {#if variant === 'primary'}
+    {#if variant === "primary"}
       <div class="gradient"></div>
     {/if}
   </a>
 {:else}
   <button
     {type}
-    class="button {variant} {fullWidth ? 'w-full' : ''} {className} {disabled ? 'disabled' : ''} group"
-    disabled={disabled}
+    class="button {variant} {fullWidth ? 'w-full' : ''} {className} {disabled
+      ? 'disabled'
+      : ''} group"
+    {disabled}
     on:click
     on:focus
     on:blur
@@ -43,7 +47,7 @@
     <span class="relative z-10">
       <slot />
     </span>
-    {#if variant === 'primary'}
+    {#if variant === "primary"}
       <div class="gradient"></div>
     {/if}
   </button>

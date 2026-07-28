@@ -1,36 +1,43 @@
-name: Run Tests and Deploy
+name: Verify
 
 on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  contents: read
 
 jobs:
-  test-and-deploy:
+  verify:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          run_install: false
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v7
         with:
-          node-version: 18
+          node-version: 22.22.1
+          cache: pnpm
 
       - name: Install dependencies
-        run: npm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Install Playwright
-        run: npx playwright install
+        run: pnpm exec playwright install --with-deps chromium
 
-      - name: Run vitest
-        run: npm run test
+      - name: Run quality checks
+        run: pnpm ci-check
 
-      - name: Run Playwright tests
-        run: npm run test:e2e
-
-      # - name: Deploy to Vercel
-      #   if: ${{ success() }}
-      #   run: |
-      #     npx vercel --prod
+      - name: Run end-to-end tests
+        run: pnpm test:e2e

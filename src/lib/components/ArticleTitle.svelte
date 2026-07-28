@@ -17,7 +17,7 @@
     </a>
   </h3>
 {:else}
-  <h2 class="m-0 text-2xl large" {id}>
+  <h2 class="large m-0 text-2xl" {id}>
     <a {href}>
       {title}
     </a>

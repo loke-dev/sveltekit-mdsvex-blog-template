@@ -2,10 +2,13 @@
 node_modules
 /build
 /.svelte-kit
+/.wrangler
 /package
 .env
 .env.*
 .netlify
 coverage
+/test-results
 .vercel
 .cursor
+.eslintcache

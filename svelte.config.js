@@ -3,7 +3,7 @@ import { mdsvex } from "mdsvex"
 import mdsvexConfig from "./mdsvex.config.js"
 import { dirname, resolve } from "path"
 import { fileURLToPath } from "url"
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -16,9 +16,9 @@ const config = {
       typescript: {
         tsconfigFile: "./tsconfig.json",
         compilerOptions: {
-          verbatimModuleSyntax: true
-        }
-      }
+          verbatimModuleSyntax: true,
+        },
+      },
     }),
     mdsvex(mdsvexConfig),
   ],
@@ -34,15 +34,15 @@ const config = {
     prerender: {
       handleHttpError: ({ path, referrer, message }) => {
         // Ignore 404 errors for test links
-        if (path.startsWith('/test/') && referrer === '/test') {
-          return;
+        if (path.startsWith("/test/") && referrer === "/test") {
+          return
         }
 
         // Otherwise, throw the error
-        throw new Error(message);
-      }
-    }
-  }
+        throw new Error(message)
+      },
+    },
+  },
 }
 
 export default config

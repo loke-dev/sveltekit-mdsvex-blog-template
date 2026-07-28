@@ -11,7 +11,8 @@ describe("PageHead", () => {
   it("renders component with title and description", () => {
     const { component } = render(PageHead, {
       title: "Test Page",
-      description: "Test description"
+      subtitle: "Test subtitle",
+      description: "Test description",
     })
 
     expect(component).toBeDefined()
@@ -20,7 +21,8 @@ describe("PageHead", () => {
   it("renders component with empty title", () => {
     const { component } = render(PageHead, {
       title: "",
-      description: "Test description"
+      subtitle: "",
+      description: "Test description",
     })
 
     expect(component).toBeDefined()

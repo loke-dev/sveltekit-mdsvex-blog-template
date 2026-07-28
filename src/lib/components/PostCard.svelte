@@ -1,36 +1,36 @@
 <script lang="ts">
-  import { getTagColor } from "$lib/utils/tagColors";
-  import Link from "./Link.svelte";
+  import { getTagColor } from "$lib/utils/tagColors"
+  import Link from "./Link.svelte"
 
   export let post: {
-    slug: string;
-    title: string;
-    description: string;
-    date: string;
-    tag?: string;
-  };
+    slug: string
+    title: string
+    description: string
+    date: string
+    tag?: string
+  }
 
   // Format date to YYYY-MM-DD
   function formatDate(dateString: string): string {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("sv-SE");
+    const date = new Date(dateString)
+    return date.toLocaleDateString("sv-SE")
   }
 
   // Get the tag color
-  const tagColor = post.tag ? getTagColor(post.tag) : getTagColor('default');
+  const tagColor = post.tag ? getTagColor(post.tag) : getTagColor("default")
 
   // Handle tag click to prevent event propagation
   function handleTagClick(event: MouseEvent) {
-    event.stopPropagation();
+    event.stopPropagation()
   }
 </script>
 
 <div class="post-card-container group">
   <Link href={`/journal/${post.slug}`} className="post-card">
     <div class="glass-card post-card-inner" style="--tag-color: {tagColor};">
-      <h2 class="text-xl font-semibold mb-2 text-white">{post.title}</h2>
-      <p class="text-gray-400 mb-4">{post.description}</p>
-      <div class="flex justify-start items-center">
+      <h2 class="mb-2 text-xl font-semibold text-white">{post.title}</h2>
+      <p class="mb-4 text-gray-400">{post.description}</p>
+      <div class="flex items-center justify-start">
         <div class="text-sm text-gray-500">{formatDate(post.date)}</div>
       </div>
     </div>

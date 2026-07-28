@@ -1,6 +1,6 @@
 <script lang="ts">
-  export let maxWidth: string = "900px";
-  export let minHeight: string = "auto";
+  export let maxWidth: string = "900px"
+  export let minHeight: string = "auto"
 </script>
 
 <div class="page-container" style="--max-width: {maxWidth}; --min-height: {minHeight};">

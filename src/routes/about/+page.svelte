@@ -1,7 +1,7 @@
 <script>
-  import PageContainer from "$lib/components/PageContainer.svelte";
-  import PageHead from "$lib/components/PageHead.svelte";
-  import { fade } from "svelte/transition";
+  import PageContainer from "$lib/components/PageContainer.svelte"
+  import PageHead from "$lib/components/PageHead.svelte"
+  import { fade } from "svelte/transition"
 
   const yearsOfWork = new Date().getFullYear() - new Date("2017").getFullYear()
 </script>
@@ -13,27 +13,24 @@
 </svelte:head>
 
 <PageContainer title="About" description="Learn more about me and my work">
-  <PageHead
-    title="About"
-    subtitle="Loke"
-  />
+  <PageHead title="About" subtitle="Loke" />
 
   <div class="content-grid">
     <div class="about-text" in:fade={{ duration: 300, delay: 300 }}>
       <div class="prose prose-lg mobile-prose">
         <strong>
-          I've worked professionally with JavaScript for about {yearsOfWork} years now, across the
-          full stack with a focus on frontend development. I have worked with several projects for
-          mobile but mostly for the web in different sectors, primarily e-commerce.
+          I've worked professionally with JavaScript for about {yearsOfWork} years now, across the full
+          stack with a focus on frontend development. I have worked with several projects for mobile but
+          mostly for the web in different sectors, primarily e-commerce.
         </strong>
         <p>
-          Some of my go-to languages and tools for web development: React, React Native,
-          Typescript, Nextjs, Nodejs, Prisma, Postgres, Docker, SASS, Tailwind, Cypress.
+          Some of my go-to languages and tools for web development: React, React Native, Typescript,
+          Nextjs, Nodejs, Prisma, Postgres, Docker, SASS, Tailwind, Cypress.
         </p>
         <p>
-          The Web today is mind blowing and I can't wait to see what the future hold for it,
-          that's why I want to be part of it, to make it the best it can be, even though it might
-          be only a tiny piece of the whole puzzle.
+          The Web today is mind blowing and I can't wait to see what the future hold for it, that's
+          why I want to be part of it, to make it the best it can be, even though it might be only a
+          tiny piece of the whole puzzle.
         </p>
       </div>
     </div>
@@ -91,7 +88,6 @@
     height: 335px;
     z-index: 2;
     padding: 0;
-
   }
 
   .image-wrapper {

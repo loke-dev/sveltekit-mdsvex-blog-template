@@ -35,6 +35,8 @@ pnpm dev
 
 Visit `http://localhost:5173` to see your site.
 
+Requires Node.js 22.12+ and pnpm 11.17.0.
+
 ## Writing Posts
 
 Create `.svx` files in `src/posts/`:
@@ -63,13 +65,23 @@ Your content here...
 pnpm test           # Unit tests
 pnpm test:e2e       # End-to-end tests
 pnpm test:coverage  # Coverage report
+pnpm ci-check       # Complete local quality gate
 ```
 
 ## Deploy
 
 [Live demo](https://sveltekit-mdsvex-blog.loke.dev)
 
-Works on any platform that supports SvelteKit.
+The included Cloudflare adapter and Wrangler configuration deploy directly to
+Cloudflare Workers:
+
+```bash
+pnpm deploy:dry
+pnpm deploy
+```
+
+TypeScript 6 is intentional: it is the newest release currently supported by
+typescript-eslint.
 
 ## License
 

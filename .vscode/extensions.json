@@ -1,6 +1,3 @@
 {
-  "recommendations": [
-    "bradlc.vscode-tailwindcss",
-    "csstools.postcss"
-  ]
+  "recommendations": ["bradlc.vscode-tailwindcss", "csstools.postcss"]
 }
